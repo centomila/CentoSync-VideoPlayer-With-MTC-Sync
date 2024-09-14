@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="./node_modules/webmidi/dist/iife/webmidi.iife.js"></script> -->
+    <title>MIDI Timecode Display</title>
+<script defer src="bundle.js"></script></head>
+
+<body>
+    <div class="mtc-info">
+        <h1>MIDI Timecode Display</h1>
+        <div>
+            <h3>Audio Track Time</h3>
+            <p>
+                <span id="audioTrackTime">0:00:000</span>
+            </p>
+        </div>
+        <hr>
+        <div>
+            <h3>Timecode</h3>
+            <p>
+                <span id="timecode">0:00:00;00</span>
+            </p>
+            <p>
+                <span>@</span> <span id="fps">0</span> <span>FPS</span>
+            </p>
+        </div>
+        <hr>
+        <div>
+            <h3>Total Frames</h3>
+            <p>
+                <span id="totalframes">0</span>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="midi-selection">
+            <h3>MIDI port</h2>
+                <select id="midi-inputs"></select>
+        </div>
+
+        <div id="copyright">
+            <p>Made with ❤️ by <a target="_blank" href="https://centomila.com">Centomila</a></p>
+
+        </div>
+    </footer>
+</body>
+
+<!-- <script src="timecode.js" type="module"></script> -->
+
+</html>

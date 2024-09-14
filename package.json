@@ -4,8 +4,10 @@
   "description": "MTC timecode",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "build": "webpack",
+    "dev": "webpack --mode development && ts-node-dev --respawn src/server.ts",
+    "start": "node dist/server.js",
+    "start:frontend": "webpack serve --open --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +15,18 @@
   "dependencies": {
     "express": "^4.21.0",
     "webmidi": "^3.1.11"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.5",
+    "@types/webmidi": "^2.1.0",
+    "copy-webpack-plugin": "^12.0.2",
+    "html-webpack-plugin": "^5.6.0",
+    "ts-loader": "^9.5.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.2",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
   }
 }

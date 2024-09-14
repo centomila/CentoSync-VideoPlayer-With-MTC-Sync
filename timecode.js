@@ -52,33 +52,6 @@ let quarterFrameCount = 0;
  */
 const frameDropThreshold = 5 / 1000; // seconds
 
-/**
- * Expose variables and functions to the global window object.
- * @type {Object}
- */
-window.timecode = {
-  // expose variables
-  mtcData,
-  lastFrameTime,
-  quarterFrameCount,
-  frameDropThreshold,
-};
-
-/**
- * Expose functions to the global window object.
- * @type {Object}
- */
-window.MTCDisplay = {
-  initMidi,
-  onMtcMessage,
-  startMtcListening,
-  stopMtcListening,
-  getFps,
-  getTimecode,
-  getAudioTrackTime,
-  removeMidiInputOptions,
-  stopWebMidi,
-};
 
 // Initialize the high-precision clock when the user clicks anywhere on the page
 // This is important if the user leaves the page and comes back later, as the
