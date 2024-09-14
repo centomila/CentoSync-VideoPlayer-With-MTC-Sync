@@ -20,7 +20,7 @@ MIDI Timecode Display is a simple web application that shows the current MTC tim
 
 ## Why this project exists
 * I'm learning the ins and outs of webmidi.js.
-* My DAW of choice doesn't support natively video and this is one step to code a solution. Follow me on GitHub to see when it's ready 😉
+* My DAW of choice doesn't support natively video and this is one step to code an alternative solution to the existing ones. Follow me on GitHub to see when it's ready 😉
 
 ## Installation
 
@@ -44,4 +44,5 @@ After you have started the server:
 * Send MTC messages to the selected port.
 
 ## TODO
+* [ ] Separate initialization and gui. Make it more modular
 * [ ] Remember the last selected MIDI port
