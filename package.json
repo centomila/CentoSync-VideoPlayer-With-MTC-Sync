@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "MTC timecode",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "build": "webpack",
     "dev": "webpack --mode development && ts-node-dev --respawn src/server.ts",
