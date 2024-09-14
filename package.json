@@ -1,5 +1,5 @@
 {
-  "name": "mtc-timecode",
+  "name": "mtc-timecode-display",
   "version": "1.0.0",
   "description": "MTC timecode",
   "main": "server.js",
