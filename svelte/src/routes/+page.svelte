@@ -2,6 +2,7 @@
     import { LightSwitch } from '@skeletonlabs/skeleton';
     import { AppBar } from '@skeletonlabs/skeleton';
 	import MidiSelection from './MidiSelection.svelte';
+    import MidiMTCToggle from './MidiMTCToggle.svelte';
     import MidiTimecodeMain from './MidiTimecodeMain.svelte';
     import Footer from './Footer.svelte';
 </script>
@@ -12,7 +13,10 @@
         <span class="text-lg">MTC Display</span>
     </svelte:fragment>
     <svelte:fragment slot="default">
-        <MidiSelection />
+        <div class="flex items-center space-x-2">
+            <MidiSelection />
+            <MidiMTCToggle />
+        </div>
     </svelte:fragment>
     <svelte:fragment slot="trail">
         <div class="flex items-center justify-end">
