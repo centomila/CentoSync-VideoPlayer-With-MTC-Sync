@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
-	import { writable } from 'svelte/store';
+	import {selectedMidiInput} from '../lib/stores';
+
+
 
 	// Enable WEBMIDI.js and trigger the onEnabled() function when ready
 	WebMidi.enable()
@@ -39,8 +41,9 @@
 		}
 	}
 
-	// Select element
-	export const selectedMidiInput = writable('');
+	
+	
+
 
 	$: console.log(`selectedMidiInput changed to: ${$selectedMidiInput}`);
 </script>

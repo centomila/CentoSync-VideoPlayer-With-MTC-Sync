@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
-	import selectedMidiInput from './MidiSelection.svelte';
-	import { onMount } from 'svelte';
-	// import {MidiTimecodeMain} from './MidiTimecodeMain.svelte';
+	import {selectedMidiInput} from '../lib/stores';	
 
 	function startMtcListening() {
+	    // console.log(`selectedMidiInput changed to: ${$selectedMidiInput}`);
+		
 		console.log('MTC listener starting');
-		let input = WebMidi.getInputByName('loopMIDI Port');
+		let input = WebMidi.getInputByName($selectedMidiInput);
 
 		if (input) {
 			console.info(`Listening for MTC messages from ${input.name}...`);
@@ -15,9 +15,20 @@
 			console.log(`MIDI input not found`);
 		}
 
-		function onMtcMessageConsole() {
-			console.log('Received MTC message:');
+	}
+	
+	function onMtcMessageConsole() {
+		console.log('Received MTC message:');
+	}
+	function stopMtcListening() {
+		let input = WebMidi.getInputByName($selectedMidiInput);
+		if (input) {
+			input.removeListener('timecode', onMtcMessageConsole);
+		} else {
+			console.log(`MIDI input not found`);
 		}
+		
+		console.log('MTC listener stopping');
 	}
 
 	function toggleMtc() {
@@ -27,7 +38,7 @@
 			checkbox.checked = true;
 			console.log('MTC listener started');
 		} else {
-			// stopMtcListening();
+			stopMtcListening();
 			checkbox.checked = false;
 			console.log('MTC listener stopped');
 		}
