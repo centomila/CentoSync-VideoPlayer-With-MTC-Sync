@@ -41,11 +41,8 @@
 	// Select element
 	export let selectedMidiInput: string = '';
 
-	function setSelectedMidiInput(event: Event) {
-		const target = event.target as HTMLSelectElement;
-		selectedMidiInput = target.value;
-		console.log(selectedMidiInput);
-	}
+	$: console.log(`selectedMidiInput changed to: ${selectedMidiInput}`);
+
 </script>
 
 <!-- Frontend -->
@@ -55,7 +52,6 @@
 		class="select w-64"
 		id="midi-inputs"
 		bind:value={selectedMidiInput}
-		on:change={setSelectedMidiInput}
 	>
 		{#each midiInputs as input}
 			<option value={input.value}>{input.name}</option>
