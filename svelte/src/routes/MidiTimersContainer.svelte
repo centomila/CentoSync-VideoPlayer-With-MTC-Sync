@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { mtcData } from '../lib/stores';
 
-	$: ({ hours: mtcHours, minutes: mtcMinutes, seconds: mtcSeconds, frames: mtcFrames, frameRate: mtcFps } = $mtcData);
+	$: ({ hours: mtcHours, minutes: mtcMinutes, seconds: mtcSeconds, frames: mtcFrames, frameRate: mtcFps, elapsedFrames: mtcElapsedFrames } = $mtcData);
 
 	$: mtcHoursFormatted = mtcHours < 10 ? '0' + mtcHours : mtcHours;
 	$: mtcMinutesFormatted = mtcMinutes < 10 ? '0' + mtcMinutes : mtcMinutes;
@@ -12,27 +12,36 @@
 
 <div class="flex items-center justify-center space-y-8">
 	<div class="text-center text-6xl">
-		<div class="flex items-center space-x-2">
-			<h3 class="font-semibold">Song Position</h3>
-			<span class="text-gray-500">-</span>
-			<span id="audioTrackTime" class="font-mono">0:00:000</span>
+		<div class="items-center">
+			<h3 class="mb-3 font-semibold">Song Position</h3>
+			<span id="audioTrackTime" class="font-mono font-extrabold">0:00:000</span>
 		</div>
+
 		<hr class="border-t border-gray-300 my-8" />
-		<div class="flex items-center space-x-2">
-			<h3 class="font-semibold">MTC</h3>
-			<div class="flex items-center">
-				<span class="text-gray-500">-</span>
-				<span class="font-mono">{mtcHoursFormatted}:{mtcMinutesFormatted}:{mtcSecondsFormatted};{mtcFramesFormatted}</span>
-				<span class="text-gray-500">@</span>
-				<span id="fps" class="font-mono">{mtcFps}</span>
-				<span class="text-gray-500"> FPS</span>
-			</div>
+		
+		<div class="items-center">
+			<h3 class="mb-3 font-semibold">MTC</h3>
+			<p class="items-center">
+				<span class="font-mono font-extrabold">{mtcHoursFormatted}</span>
+				<span class="text-gray-500 font-extralight">:</span>
+				<span class="font-mono font-extrabold">{mtcMinutesFormatted}</span>
+				<span class="text-gray-500 font-extralight">:</span>
+				<span class="font-mono font-extrabold">{mtcSecondsFormatted}</span>
+				<span class="text-gray-500 font-extralight">;</span>
+				<span class="font-mono font-extrabold">{mtcFramesFormatted}</span>
+				<span class="text-gray-500 font-extralight">@</span>
+				<span id="fps" class="font-mono font-extrabold">{mtcFps}</span>
+				<span class="text-gray-500 font-extralight"> FPS</span>
+			</p>
 		</div>
+		
 		<hr class="border-t border-gray-300 my-8" />
-		<div class="flex items-center space-x-2">
-			<h3 class="font-semibold">Total Frames</h3>
-			<span class="text-gray-500">-</span>
-			<span id="totalframes" class="font-mono">0</span>
+		
+		<div class="items-center">
+			<h3 class="font-semibold mb-3">Elapsed Frames</h3>
+			<p class="items-center">
+				<span id="elapsedFrames" class="font-mono">{mtcElapsedFrames}</span>
+			</p>
 		</div>
 	</div>
 </div>

@@ -1,5 +1,5 @@
 // stores.ts
-import { writable, readable } from 'svelte/store';
+import { writable, readable, get } from 'svelte/store';
 
 
 interface MtcData {
@@ -8,6 +8,7 @@ interface MtcData {
   seconds: number;
   frames: number;
   frameRate: number;
+  elapsedFrames: number;
 }
 
 export const mtcData = writable<MtcData>({
@@ -16,6 +17,7 @@ export const mtcData = writable<MtcData>({
   seconds: 0,
   frames: 0,
   frameRate: 0,
+  elapsedFrames: 0
 });
 
 

@@ -1,3 +1,4 @@
+import { get } from 'svelte/store';
 import { mtcData } from '../lib/stores';  // Import the store
 
 const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
@@ -44,7 +45,10 @@ export function onMtcMessage(midiData: any) {
                 newData.frameRate = frameRate;
                 break;
         }
-
+        newData.elapsedFrames = newData.hours * 60 * 60 * newData.frameRate +
+            newData.minutes * 60 * newData.frameRate +
+            newData.seconds * newData.frameRate +
+            newData.frames
         return newData;
     });
 
