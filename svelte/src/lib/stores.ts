@@ -3,3 +3,5 @@
 
   export const selectedMidiInput = writable('');
 
+  export const mtcChecked = writable(false)
+  export const sppChecked = writable(false)

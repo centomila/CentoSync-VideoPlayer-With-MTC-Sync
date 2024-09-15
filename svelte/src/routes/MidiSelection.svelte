@@ -1,8 +1,7 @@
+<!-- This component is used to select the MIDI input port from which the MIDI time code -->
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
-	import {selectedMidiInput} from '../lib/stores';
-
-
+	import { selectedMidiInput } from '../lib/stores';
 
 	// Enable WEBMIDI.js and trigger the onEnabled() function when ready
 	WebMidi.enable()
@@ -40,10 +39,6 @@
 			}));
 		}
 	}
-
-	
-	
-
 
 	$: console.log(`selectedMidiInput changed to: ${$selectedMidiInput}`);
 </script>
