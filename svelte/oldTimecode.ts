@@ -1,4 +1,4 @@
-import {WebMidi, Input} from "webmidi";
+import { WebMidi, Input } from "webmidi";
 
 const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
 
@@ -215,6 +215,7 @@ function getTotalFrames() {
         mtcData.frames
     );
 }
+
 
 /**
  * Updates the display of timecode and related information.

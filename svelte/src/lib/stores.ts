@@ -1,7 +1,8 @@
 // stores.ts
-	import { writable } from 'svelte/store';
+import { writable, readable } from 'svelte/store';
 
-  export const selectedMidiInput = writable('');
+// GUI Settings
+export const selectedMidiInput = writable('');
+export const mtcChecked = writable(false)
+export const sppChecked = writable(false)
 
-  export const mtcChecked = writable(false)
-  export const sppChecked = writable(false)

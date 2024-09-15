@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
 	import { selectedMidiInput, mtcChecked, sppChecked } from '../lib/stores';
+	import { onMtcMessage } from '$lib/mtcMessages';
 
 	function startMtcListening() {
 		console.log('MTC listener starting');
 		let input = WebMidi.getInputByName($selectedMidiInput);
 		if (input) {
 			console.info(`Listening for MTC messages from ${input.name}...`);
-			input.addListener('timecode', onMtcMessageConsole);
+			input.addListener('timecode', onMtcMessage);
 		} else {
 			console.log(`MIDI input not found`);
 		}
@@ -18,7 +19,7 @@
 		if (WebMidi.enabled) {	
 			let input = WebMidi.getInputByName($selectedMidiInput);
 			if (input) {
-				input.removeListener('timecode', onMtcMessageConsole);
+				input.removeListener('timecode', onMtcMessage);
 			} else {
 				console.log(`MIDI input not found`);
 			}
