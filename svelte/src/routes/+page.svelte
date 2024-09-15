@@ -1,9 +1,9 @@
 <script>
     import { LightSwitch } from '@skeletonlabs/skeleton';
     import { AppBar } from '@skeletonlabs/skeleton';
-	import MidiSelection from './MidiSelection.svelte';
-    import MidiMTCToggle from './MidiMTCToggle.svelte';
-    import MidiTimecodeMain from './MidiTimecodeMain.svelte';
+	import MidiPortSelection from './MidiPortSelection.svelte';
+    import MidiTimersCheckbox from './MidiTimersCheckbox.svelte';
+    import MidiTimersContainer from './MidiTimersContainer.svelte';
     import Footer from './Footer.svelte';
 </script>
 
@@ -14,8 +14,8 @@
     </svelte:fragment>
     <svelte:fragment slot="default">
         <div class="flex items-center space-x-2">
-            <MidiSelection />
-            <MidiMTCToggle />
+            <MidiPortSelection />
+            <MidiTimersCheckbox />
         </div>
     </svelte:fragment>
     <svelte:fragment slot="trail">
@@ -29,7 +29,7 @@
 
 <div class="container mx-auto p-8 space-y-8 flex items-center justify-center h-screen">
     <section class="m-auto">
-        <MidiTimecodeMain />
+        <MidiTimersContainer />
     </section>
 </div>
 

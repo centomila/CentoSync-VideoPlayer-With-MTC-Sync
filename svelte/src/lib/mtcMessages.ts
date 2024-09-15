@@ -49,32 +49,6 @@ export function onMtcMessage(midiData: any) {
     });
 
     const currentTime = performance.now();
-    const frameTime = currentTime - lastFrameTime;
-    const expectedFrameTime = (1 / frameRate) * 2; // Two frames worth of time
-
     lastFrameTime = currentTime;
     quarterFrameCount = 0;
-    requestAnimationFrame(updateTimecodeDisplay);
-
-    if (frameTime < expectedFrameTime) {
-        // Wait until the next frame
-        setTimeout(() => {
-            requestAnimationFrame(updateTimecodeDisplay);
-        }, expectedFrameTime - frameTime);
-    }
-}
-
-function padZero(num: number, length = 3) {
-    return num.toString().padStart(length, '0');
-}
-
-function updateTimecodeDisplay() {
-    mtcData.subscribe(data => {
-        const hours = padZero(data.hours);
-        const minutes = padZero(data.minutes);
-        const seconds = padZero(data.seconds);
-        const frames = padZero(data.frames, 1);
-
-        console.log(`${hours}:${minutes}:${seconds}  ;  ${frames}`);
-    })();
 }

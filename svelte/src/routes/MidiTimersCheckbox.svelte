@@ -14,7 +14,6 @@
 		}
 	}
 
-
 	function stopMtcListening() {
 		if (WebMidi.enabled) {	
 			let input = WebMidi.getInputByName($selectedMidiInput);
@@ -27,10 +26,6 @@
 		} else {
 			console.log('WEBMIDI not enabled. Cannot stop MTC listener.');
 		}
-	}
-
-	function onMtcMessageConsole() {
-		console.log('Received MTC message:');
 	}
 
 	function startSppListening() {
