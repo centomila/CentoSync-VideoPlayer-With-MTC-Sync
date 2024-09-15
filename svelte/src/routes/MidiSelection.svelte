@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
+	import { writable } from 'svelte/store';
 
 	// Enable WEBMIDI.js and trigger the onEnabled() function when ready
 	WebMidi.enable()
@@ -39,20 +40,15 @@
 	}
 
 	// Select element
-	export let selectedMidiInput: string = '';
+	export const selectedMidiInput = writable('');
 
-	$: console.log(`selectedMidiInput changed to: ${selectedMidiInput}`);
-
+	$: console.log(`selectedMidiInput changed to: ${$selectedMidiInput}`);
 </script>
 
 <!-- Frontend -->
 <div class="flex items-center justify-end space-x-4">
 	<label class="whitespace-nowrap" for="midi-inputs">MIDI PORT</label>
-	<select
-		class="select w-64"
-		id="midi-inputs"
-		bind:value={selectedMidiInput}
-	>
+	<select class="select w-64" id="midi-inputs" bind:value={$selectedMidiInput}>
 		{#each midiInputs as input}
 			<option value={input.value}>{input.name}</option>
 		{/each}
