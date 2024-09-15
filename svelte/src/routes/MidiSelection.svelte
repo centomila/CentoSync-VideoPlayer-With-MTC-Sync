@@ -2,7 +2,9 @@
 	import { WebMidi } from 'webmidi';
 
 	// Enable WEBMIDI.js and trigger the onEnabled() function when ready
-	WebMidi.enable().then(onEnabled).catch((err) => alert(err));
+	WebMidi.enable()
+		.then(onEnabled)
+		.catch((err) => alert(err));
 
 	function onEnabled() {
 		// Display available MIDI input devices
@@ -16,39 +18,47 @@
 	WebMidi.addListener('midiaccessgranted', (e) => {
 		if (WebMidi.enabled) {
 			console.log('MIDI access granted');
-		} 
-	})
-	
+		}
+	});
+
 	WebMidi.addListener('connected', (e) => {
 		addMidiInputOptions();
 	});
-	
+
 	export let midiInputs = [] as { name: string; value: string }[];
-	
+
 	function addMidiInputOptions() {
 		if (WebMidi.inputs.length === 0) {
 			midiInputs = [{ name: 'NO MIDI INPUT AVAILABLE', value: '' }];
 		} else {
 			midiInputs = WebMidi.inputs.map((input) => ({
 				name: input.name,
-				value: input.name,
+				value: input.name
 			}));
-		}	
-	}
-	
-
-		// Select element
-		export let selectedMidiInput: string = '';
-		
-		function setSelectedMidiInput(event: Event) {
-			const target = event.target as HTMLSelectElement;
-			selectedMidiInput = target.value;
-			console.log(selectedMidiInput);
 		}
-	</script>
+	}
 
-	<select class="select" id="midi-inputs" bind:value={selectedMidiInput} on:change={setSelectedMidiInput}>
+	// Select element
+	export let selectedMidiInput: string = '';
+
+	function setSelectedMidiInput(event: Event) {
+		const target = event.target as HTMLSelectElement;
+		selectedMidiInput = target.value;
+		console.log(selectedMidiInput);
+	}
+</script>
+
+<!-- Frontend -->
+<div class="flex items-center justify-end space-x-4">
+	<label class="whitespace-nowrap" for="midi-inputs">MIDI PORT</label>
+	<select
+		class="select w-64"
+		id="midi-inputs"
+		bind:value={selectedMidiInput}
+		on:change={setSelectedMidiInput}
+	>
 		{#each midiInputs as input}
 			<option value={input.value}>{input.name}</option>
 		{/each}
 	</select>
+</div>

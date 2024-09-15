@@ -7,7 +7,7 @@
 </script>
 
 
-<AppBar>
+<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
     <svelte:fragment slot="lead">
         <span class="text-lg">MTC Display</span>
     </svelte:fragment>
