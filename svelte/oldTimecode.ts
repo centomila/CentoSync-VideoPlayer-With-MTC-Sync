@@ -112,6 +112,7 @@ midiInputElement.addEventListener('change', function () {
     selectMidiInput(midiInputElement.value);
 });
 
+// already imported in midiselection.ts
 function addMidiInputOptions() {
     const fragment = document.createDocumentFragment();
 
