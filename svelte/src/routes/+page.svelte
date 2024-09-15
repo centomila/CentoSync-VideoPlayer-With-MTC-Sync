@@ -1,17 +1,34 @@
 <script>
     import { LightSwitch } from '@skeletonlabs/skeleton';
-						
-    // import Header from './Header.svelte';
+    import { AppBar } from '@skeletonlabs/skeleton';
+	import MidiSelection from './MidiSelection.svelte';
     import MidiTimecodeMain from './MidiTimecodeMain.svelte';
     import Footer from './Footer.svelte';
 </script>
 
-<nav><LightSwitch /></nav>
-<div class="container mx-auto p-8 space-y-8">
-	<section>
+
+<AppBar>
+    <svelte:fragment slot="lead">
+        <span class="text-lg">MTC Display</span>
+    </svelte:fragment>
+    <svelte:fragment slot="default">
+        <MidiSelection />
+    </svelte:fragment>
+    <svelte:fragment slot="trail">
+        <div class="flex items-center justify-end">
+            <LightSwitch />
+        </div>
+    </svelte:fragment>
+</AppBar>
+
+
+
+<div class="container mx-auto p-8 space-y-8 flex items-center justify-center h-screen">
+    <section class="m-auto">
         <MidiTimecodeMain />
-	</section>
+    </section>
 </div>
+
 <div class="footer">
     <Footer />
 </div>

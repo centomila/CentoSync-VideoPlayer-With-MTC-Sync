@@ -1,5 +1,8 @@
-<div class="midi-selection">
-	<h3>MIDI port</h3>
-	<select id="midi-inputs"></select>
-</div>
-
+<select class="select" id="midi-inputs">
+	<option value="1">Option 1</option>
+	<option value="2">Option 2</option>
+	<option value="3">Option 3</option>
+	<option value="4">Option 4</option>
+	<option value="5">Option 5</option>
+</select>
+					

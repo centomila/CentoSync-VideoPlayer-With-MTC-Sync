@@ -1,25 +1,27 @@
-<div class="mtc-info">
-	<div>
-		<h3>Audio Track Time</h3>
-		<p>
-			<span id="audioTrackTime">0:00:000</span>
-		</p>
-	</div>
-	<hr />
-	<div>
-		<h3>Timecode</h3>
-		<p>
-			<span id="timecode">0:00:00;00</span>
-		</p>
-		<p>
-			<span>@</span> <span id="fps">0</span> <span>FPS</span>
-		</p>
-	</div>
-	<hr />
-	<div>
-		<h3>Total Frames</h3>
-		<p>
-			<span id="totalframes">0</span>
-		</p>
+<div class="flex items-center justify-center space-y-8">
+	<div class="text-center text-6xl">
+		<div class="flex items-center space-x-2">
+			<h3 class="font-semibold">Audio Track Time</h3>
+			<span class="text-gray-500">-</span>
+			<span id="audioTrackTime" class="font-mono">0:00:000</span>
+		</div>
+		<hr class="border-t border-gray-300 my-8" />
+		<div class="flex items-center space-x-2">
+			<h3 class="font-semibold">Timecode</h3>
+			<span class="text-gray-500">-</span>
+			<span id="timecode" class="font-mono">0:00:00;00</span>
+		</div>
+		<div class="flex items-center space-x-2">
+			<span class="text-gray-500">@</span>
+			<span id="fps" class="font-mono">0</span>
+			<span class="text-gray-500">FPS</span>
+		</div>
+		<hr class="border-t border-gray-300 my-8" />
+		<div class="flex items-center space-x-2">
+			<h3 class="font-semibold">Total Frames</h3>
+			<span class="text-gray-500">-</span>
+			<span id="totalframes" class="font-mono">0</span>
+		</div>
 	</div>
 </div>
+
