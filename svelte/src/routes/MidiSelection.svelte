@@ -1,8 +1,36 @@
+<script lang="ts">
+	import { WebMidi } from 'webmidi';
+
+	async function initMidi() {
+		try {
+			await WebMidi.enable();
+			console.log('WebMidi enabled!');
+		} catch (err) {
+			console.log('WebMidi could not be enabled.', err);
+		}
+	}
+	initMidi();
+
+	let midiInputs = [] as { name: string; value: string }[];
+	function updateMidiInputOptions() {
+		if (WebMidi.inputs.length === 0) {
+			midiInputs = [{ name: 'SELECT YOUR MIDI INPUT', value: '' }];
+		} else {
+			midiInputs = WebMidi.inputs.map((input) => ({
+				name: input.name,
+				value: input.name,
+			}));
+		}
+	}
+
+	if (WebMidi.enabled) {
+		console.log('MIDI access granted!');
+		updateMidiInputOptions();
+	}
+</script>
+
 <select class="select" id="midi-inputs">
-	<option value="1">Option 1</option>
-	<option value="2">Option 2</option>
-	<option value="3">Option 3</option>
-	<option value="4">Option 4</option>
-	<option value="5">Option 5</option>
+	{#each midiInputs as input}
+		<option value={input.value}>{input.name}</option>
+	{/each}
 </select>
-					
