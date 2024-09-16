@@ -42,7 +42,7 @@
 	}
 
 	function onMidiClockMessage(midiData: any) {
-		handleMidiClock(midiData.timestamp);
+		handleMidiClock();
 		// console.log(`Received clock message`);
 		//console.log(midiData.timestamp);
 	}
@@ -68,7 +68,7 @@
 	}
 
 	function onSPPMessage(midiData: any) {
-		// console.log(sppArrayToTime(midiData.data, bpm));
+		console.log(sppArrayToTime(midiData.data, bpm));
 	}
 
 	let lastClockTime: number | null = null;
@@ -76,9 +76,10 @@
 	let clockCount: number = 0;
 	let bpm: number = 0;
 
-	function handleMidiClock(timestamp: number): void {
+	function handleMidiClock(): void {
+		const now = performance.now();
 		if (lastClockTime !== null) {
-			const interval: number = timestamp - lastClockTime;
+			const interval: number = now - lastClockTime;
 			clockIntervalSum += interval;
 			clockCount++;
 
@@ -92,7 +93,7 @@
 			}
 		}
 
-		lastClockTime = timestamp;
+		lastClockTime = now;
 
 		console.log(`BPM: ${bpm}`);
 	}
