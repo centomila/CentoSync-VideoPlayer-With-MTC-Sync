@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
-	import { selectedMidiInput, sppChecked, bpm } from '../lib/stores';
+	import { selectedMidiInputMTC, sppChecked, bpm } from '../lib/stores';
 	import { onMtcMessage } from '$lib/mtcMessages';
 
 	function startSppListening() {
 		console.log('MTC listener starting');
 		if (WebMidi.enabled) {
-			let input = WebMidi.getInputByName($selectedMidiInput);
+			let input = WebMidi.getInputByName($selectedMidiInputMTC);
 			if (input) {
 				console.info(`Listening for SPP messages from ${input.name}...`);
 				input.addListener('clock', onMidiClockMessage);
@@ -25,7 +25,7 @@
 
 	function stopSppListening() {
 		if (WebMidi.enabled) {
-			let input = WebMidi.getInputByName($selectedMidiInput);
+			let input = WebMidi.getInputByName($selectedMidiInputMTC);
 			if (input) {
 				input.removeListener('clock', onMidiClockMessage);
 				input.removeListener('start', onMidiStartMessage);

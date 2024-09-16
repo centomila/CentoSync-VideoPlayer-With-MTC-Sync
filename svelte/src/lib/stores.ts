@@ -26,6 +26,6 @@ export const mtcData = writable<MtcData>({
 export const bpm = writable(120);
 
 // GUI Settings
-export const selectedMidiInput = writable('');
-export const mtcChecked = writable(false);
+export const selectedMidiInputMTC = writable('');
+
 export const sppChecked = writable(false);

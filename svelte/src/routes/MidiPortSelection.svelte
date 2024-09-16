@@ -1,7 +1,8 @@
 <!-- This component is used to select the MIDI input port from which the MIDI time code -->
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
-	import { selectedMidiInput } from '../lib/stores';
+	import { selectedMidiInputMTC } from '../lib/stores';
+	import { onMtcMessage } from '$lib/mtcMessages';
 
 	// Enable WEBMIDI.js and trigger the onEnabled() function when ready
 	WebMidi.enable()
@@ -33,20 +34,56 @@
 		if (WebMidi.inputs.length === 0) {
 			midiInputs = [{ name: 'NO MIDI INPUT AVAILABLE', value: '' }];
 		} else {
-			midiInputs = WebMidi.inputs.map((input) => ({
-				name: input.name,
-				value: input.name
-			}));
+			midiInputs = [
+				{ name: 'DISABLED', value: 'DISABLED' },
+				...WebMidi.inputs.map((input) => ({
+					name: input.name,
+					value: input.name
+				}))
+			];
 		}
 	}
 
-	$: console.log(`selectedMidiInput changed to: ${$selectedMidiInput}`);
+	function startMtcListening() {
+		if (WebMidi.enabled) {
+			console.log('MTC listener starting');
+			let input = WebMidi.getInputByName($selectedMidiInputMTC);
+			if (input) {
+				console.info(`Listening for MTC messages from ${input.name}...`);
+				input.addListener('timecode', onMtcMessage);
+			} else {
+				console.log(`MIDI input not found`);
+			}
+		}
+	}
+
+	function stopMtcListening() {
+		if (WebMidi.enabled && $selectedMidiInputMTC === 'DISABLED') {
+			console.log('MTC listener stopping');
+			midiInputs.forEach((option) => {
+				if (option.value !== 'DISABLED') {
+					let input = WebMidi.getInputByName(option.value);
+					if (input) {
+						input.removeListener('timecode', onMtcMessage);
+					} else {
+						console.log(`MIDI input not found`);
+					}
+				}
+			});
+		} else {
+			console.log('WEBMIDI not enabled. Cannot stop MTC listener.');
+		}
+	}
+
+	$: $selectedMidiInputMTC === 'DISABLED' ? stopMtcListening() : startMtcListening();
+
+	$: console.log(`selectedMidiInput changed to: ${$selectedMidiInputMTC}`);
 </script>
 
 <!-- Frontend -->
 <div class="flex items-center justify-end space-x-4">
 	<label class="whitespace-nowrap" for="midi-inputs">MIDI PORT</label>
-	<select class="select w-64" id="midi-inputs" bind:value={$selectedMidiInput}>
+	<select class="select w-64" id="midi-inputs" bind:value={$selectedMidiInputMTC}>
 		{#each midiInputs as input}
 			<option value={input.value}>{input.name}</option>
 		{/each}

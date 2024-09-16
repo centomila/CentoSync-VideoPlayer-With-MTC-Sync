@@ -1,38 +1,9 @@
 <script lang="ts">
-	import { WebMidi } from 'webmidi';
-	import { selectedMidiInput, mtcChecked } from '../lib/stores';
-	import { onMtcMessage } from '$lib/mtcMessages';
-
-	function startMtcListening() {
-		console.log('MTC listener starting');
-		let input = WebMidi.getInputByName($selectedMidiInput);
-		if (input) {
-			console.info(`Listening for MTC messages from ${input.name}...`);
-			input.addListener('timecode', onMtcMessage);
-		} else {
-			console.log(`MIDI input not found`);
-		}
-	}
-
-	function stopMtcListening() {
-		if (WebMidi.enabled) {
-			let input = WebMidi.getInputByName($selectedMidiInput);
-			if (input) {
-				input.removeListener('timecode', onMtcMessage);
-			} else {
-				console.log(`MIDI input not found`);
-			}
-			console.log('MTC listener stopping');
-		} else {
-			console.log('WEBMIDI not enabled. Cannot stop MTC listener.');
-		}
-	}
-
-	$: $mtcChecked ? startMtcListening() : stopMtcListening();
+	
 </script>
 
 <!-- Frontend -->
 <div class="flex items-center space-x-2">
-	<input class="checkbox" type="checkbox" id="MTC" name="MTC" bind:checked={$mtcChecked} />
+	<input class="checkbox" type="checkbox" id="MTC" name="MTC" />
 	<label for="MTC">MTC</label>
 </div>
