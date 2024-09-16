@@ -1,5 +1,5 @@
-import { WebMidi } from 'webmidi';
-import { selectedMidiInputMTC, bpm } from '../lib/stores';
+import { bpm } from '../lib/stores';
+import {get} from 'svelte/store';
 export { onSPPMessage, onMidiClockMessage, onMidiStartMessage, onMidiContinueMessage, onMidiStopMessage };
 
 let currentBpm = 0
@@ -43,8 +43,8 @@ function handleMidiClock(): void {
         if (clockCount === 24) {
             // 24 clock messages per quarter note
             const averageClockInterval = clockIntervalSum / 24;
-            // $bpm = 60000 / (averageClockInterval * 24); // Calculate BPM
             bpm.update((currentBpm) => 60000 / (averageClockInterval * 24));
+            currentBpm = get(bpm);
 
             clockIntervalSum = 0; // Reset sum
             clockCount = 0; // Reset count

@@ -53,5 +53,5 @@
 <!-- Frontend -->
 <div class="flex items-center space-x-2">
 	<input class="checkbox" type="checkbox" id="SPP" name="SPP" bind:checked={$sppChecked} />
-	<label for="SPP">Midi Clock</label>
+	<label for="SPP" class="whitespace-nowrap">Midi Clock</label>
 </div>
