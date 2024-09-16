@@ -15,7 +15,7 @@
 	}
 
 	function stopMtcListening() {
-		if (WebMidi.enabled) {	
+		if (WebMidi.enabled) {
 			let input = WebMidi.getInputByName($selectedMidiInput);
 			if (input) {
 				input.removeListener('timecode', onMtcMessage);

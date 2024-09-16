@@ -1,43 +1,36 @@
 <script>
-    import { LightSwitch } from '@skeletonlabs/skeleton';
-    import { AppBar } from '@skeletonlabs/skeleton';
+	import { LightSwitch } from '@skeletonlabs/skeleton';
+	import { AppBar } from '@skeletonlabs/skeleton';
 	import MidiPortSelection from './MidiPortSelection.svelte';
-    import MidiTimersCheckboxMTC from './MidiTimersCheckboxMTC.svelte';
-    import MidiTimersCheckboxSPP from './MidiTimersCheckboxSPP.svelte';
-    import MidiTimersContainer from './MidiTimersContainer.svelte';
-    import Footer from './Footer.svelte';
+	import MidiTimersCheckboxMTC from './MidiTimersCheckboxMTC.svelte';
+	import MidiTimersCheckboxSPP from './MidiTimersCheckboxSPP.svelte';
+	import MidiTimersContainer from './MidiTimersContainer.svelte';
+	import Footer from './Footer.svelte';
 </script>
-
-
-<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
+<main class="flex flex-col min-h-screen">
+  <AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
     <svelte:fragment slot="lead">
-        <span class="text-lg">MTC Display</span>
+      <span class="text-lg">MTC Display</span>
     </svelte:fragment>
     <svelte:fragment slot="default">
-        <div class="flex items-center space-x-2">
-            <MidiPortSelection />
-            <MidiTimersCheckboxMTC />
-            <MidiTimersCheckboxSPP />
-        </div>
+      <div class="flex items-center space-x-2">
+        <MidiPortSelection />
+        <MidiTimersCheckboxMTC />
+        <MidiTimersCheckboxSPP />
+      </div>
     </svelte:fragment>
     <svelte:fragment slot="trail">
-        <div class="flex items-center justify-end">
-            <LightSwitch />
-        </div>
+      <div class="flex items-center justify-end">
+        <LightSwitch />
+      </div>
     </svelte:fragment>
-</AppBar>
+  </AppBar>
 
-
-
-<div class="container mx-auto p-8 space-y-8 flex items-center justify-center h-screen">
-    <section class="m-auto">
-        <MidiTimersContainer />
+  <div class="flex-grow flex justify-center items-center">
+    <section>
+      <MidiTimersContainer />
     </section>
-</div>
+  </div>
 
-<div class="footer">
-    <Footer />
-</div>
-
-
-<!-- <Header /> -->
+  <Footer />
+</main>

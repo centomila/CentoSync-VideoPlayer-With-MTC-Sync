@@ -14,6 +14,7 @@
 				input.addListener('continue', onMidiContinueMessage);
 				input.addListener('stop', onMidiStopMessage);
 				input.addListener('songposition', onSPPMessage);
+				input.addListener('timecode', onMtcMessage);
 			} else {
 				console.log(`MIDI input not found`);
 			}
@@ -95,7 +96,7 @@
 
 		lastClockTime = now;
 
-		console.log(`BPM: ${bpm}`);
+		// console.log(`BPM: ${bpm}`);
 	}
 
 	function sppArrayToTime(sppArray: any[], bpm: number) {
@@ -125,5 +126,5 @@
 <!-- Frontend -->
 <div class="flex items-center space-x-2">
 	<input class="checkbox" type="checkbox" id="SPP" name="SPP" bind:checked={$sppChecked} />
-	<label for="SPP">Song Position</label>
+	<label for="SPP">Midi Clock</label>
 </div>
