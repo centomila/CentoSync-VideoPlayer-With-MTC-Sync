@@ -13,7 +13,7 @@
       <span class="text-lg">MTC Display</span>
     </svelte:fragment>
     <svelte:fragment slot="default">
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center space-x-8">
         <MidiPortSelection />
         <MidiTimersCheckboxMTC />
         <MidiTimersCheckboxSPP />
