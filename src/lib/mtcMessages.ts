@@ -5,7 +5,6 @@ const MTC_QUARTER_FRAME_MASK = 0xf;
 const MTC_FULL_FRAME_MASK = 0xf0;
 
 let lastFrameTime = performance.now();
-let quarterFrameCount = 0;
 
 export function onMtcMessage(midiData: any) {
 	const data = midiData.data[1];
@@ -60,7 +59,6 @@ export function onMtcMessage(midiData: any) {
 
 	const currentTime = performance.now();
 	lastFrameTime = currentTime;
-	quarterFrameCount = 0;
 }
 
 export function onStartMessage(midiData: any) {

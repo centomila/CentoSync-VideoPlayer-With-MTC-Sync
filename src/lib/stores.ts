@@ -1,5 +1,5 @@
 // stores.ts
-import { writable, readable, get } from 'svelte/store';
+import { writable } from 'svelte/store';
 // MTC
 interface MtcData {
 	hours: number;

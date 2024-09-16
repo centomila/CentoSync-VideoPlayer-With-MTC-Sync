@@ -18,7 +18,7 @@
 		}
 	}
 
-	WebMidi.addListener('midiaccessgranted', (e) => {
+	WebMidi.addListener('midiaccessgranted', () => {
 		if (WebMidi.enabled) {
 			console.log('MIDI access granted');
 		}
