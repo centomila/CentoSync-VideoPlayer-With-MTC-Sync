@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
-	import { selectedMidiInput, mtcChecked, sppChecked } from '../lib/stores';
+	import { selectedMidiInput, mtcChecked } from '../lib/stores';
 	import { onMtcMessage } from '$lib/mtcMessages';
 
 	function startMtcListening() {
@@ -28,22 +28,11 @@
 		}
 	}
 
-	function startSppListening() {
-		console.log('SPP listener starting');
-	}
-
-	function stopSppListening() {
-		console.log('SPP listener stopping');
-	}
-
 	$: $mtcChecked ? startMtcListening() : stopMtcListening();
-	$: $sppChecked ? stopSppListening() : stopSppListening();
 </script>
 
 <!-- Frontend -->
 <div class="flex items-center space-x-2">
 	<input class="checkbox" type="checkbox" id="MTC" name="MTC" bind:checked={$mtcChecked} />
 	<label for="MTC">MTC</label>
-	<input class="checkbox" type="checkbox" id="SPP" name="SPP" bind:checked={$sppChecked} />
-	<label for="SPP">Song Position</label>
 </div>
