@@ -62,3 +62,20 @@ export function onMtcMessage(midiData: any) {
 	lastFrameTime = currentTime;
 	quarterFrameCount = 0;
 }
+
+export function onStartMessage(midiData: any) {
+	console.log(midiData.data);
+	console.log(`Received start message:`);
+}
+
+export function onContinueMessage(midiData: any) {
+	if (midiData.type === 'continue') {
+		console.log('Received continue message');
+	}
+}
+
+export function onStopMessage(midiData: any) {
+	if (midiData.type === 'stop') {
+		console.log('Received stop message');
+	}
+}

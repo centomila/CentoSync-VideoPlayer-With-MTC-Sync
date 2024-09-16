@@ -9,18 +9,19 @@ MIDI Timecode Display is a simple web application that shows the current MTC tim
   - [Usage](#usage)
   - [TODO](#todo)
 
-
 ## Features
-* Shows the current MTC timecode from a selected MIDI port
-* Uses performance.now, requestAnimationFrame and binary arrays to maximize performance
-* Shows current timecode in hours, minutes, seconds and frames (HH:MM:SS:FF)
-* Shows DAW style audio track time in hours, minutes, seconds (HH:MM:SSS)
-* Shows MTC frame rate in FPS
-* Shows elapsed frames from the start of the MTC
+
+- Shows the current MTC timecode from a selected MIDI port
+- Uses performance.now, requestAnimationFrame and binary arrays to maximize performance
+- Shows current timecode in hours, minutes, seconds and frames (HH:MM:SS:FF)
+- Shows DAW style audio track time in hours, minutes, seconds (HH:MM:SSS)
+- Shows MTC frame rate in FPS
+- Shows elapsed frames from the start of the MTC
 
 ## Why this project exists
-* I'm learning the ins and outs of webmidi.js.
-* My DAW of choice doesn't support natively video and this is one step to code an alternative solution to the existing ones. Follow me on GitHub to see when it's ready 😉
+
+- I'm learning the ins and outs of webmidi.js.
+- My DAW of choice doesn't support natively video and this is one step to code an alternative solution to the existing ones. Follow me on GitHub to see when it's ready 😉
 
 ## Installation
 
@@ -38,11 +39,12 @@ npm start
 
 After you have started the server:
 
-* Go to http://localhost:3000 in your browser.
-* Allow MIDI access in your browser.
-* Select a MIDI port in the dropdown menu.
-* Send MTC messages to the selected port.
+- Go to http://localhost:3000 in your browser.
+- Allow MIDI access in your browser.
+- Select a MIDI port in the dropdown menu.
+- Send MTC messages to the selected port.
 
 ## TODO
-* [ ] Separate initialization and gui. Make it more modular
-* [ ] Remember the last selected MIDI port
+
+- [ ] Separate initialization and gui. Make it more modular
+- [ ] Remember the last selected MIDI port

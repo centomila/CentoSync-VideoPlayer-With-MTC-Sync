@@ -3,7 +3,7 @@
 	import TrackPositionDiv from './tempoComponents/TrackPositionDiv.svelte';
 	import MidiTimeCodeDiv from './tempoComponents/MidiTimeCodeDiv.svelte';
 	import ElapsedFramesDiv from './tempoComponents/ElapsedFramesDiv.svelte';
-	import {sppChecked } from '../lib/stores';
+	import { sppChecked } from '../lib/stores';
 </script>
 
 <div class="items-center justify-center py-10">

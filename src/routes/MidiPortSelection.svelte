@@ -2,7 +2,7 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
 	import { selectedMidiInputMTC } from '../lib/stores';
-	import { onMtcMessage } from '$lib/mtcMessages';
+	import { onMtcMessage, onStartMessage, onStopMessage, onContinueMessage } from '$lib/mtcMessages';
 
 	// Enable WEBMIDI.js and trigger the onEnabled() function when ready
 	WebMidi.enable()
@@ -51,6 +51,9 @@
 			if (input) {
 				console.info(`Listening for MTC messages from ${input.name}...`);
 				input.addListener('timecode', onMtcMessage);
+				input.addListener('start', onStartMessage);
+				input.addListener('continue', onContinueMessage);
+				input.addListener('stop', onStopMessage);
 			} else {
 				console.log(`MIDI input not found`);
 			}
@@ -65,6 +68,10 @@
 					let input = WebMidi.getInputByName(option.value);
 					if (input) {
 						input.removeListener('timecode', onMtcMessage);
+						input.removeListener('start', onStartMessage);
+						input.removeListener('continue', onContinueMessage);
+						input.removeListener('stop', onStopMessage);
+						console.info(`Stopped listening for MTC messages from ${input.name}...`);
 					} else {
 						console.log(`MIDI input not found`);
 					}

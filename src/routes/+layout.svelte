@@ -9,7 +9,12 @@
 
 <div class="flex min-h-screen flex-col">
 	<header>
-		<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end" shadow="shadow-lg">
+		<AppBar
+			gridColumns="grid-cols-3"
+			slotDefault="place-self-center"
+			slotTrail="place-content-end"
+			shadow="shadow-lg"
+		>
 			<svelte:fragment slot="lead">
 				<span class="text-lg">MTC Display</span>
 			</svelte:fragment>

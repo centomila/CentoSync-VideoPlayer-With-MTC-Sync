@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { bpm } from '../../lib/stores';
 
-	$: bpmFormatted = $bpm.toFixed(2).padStart(5, '0');
+	$: bpmFormatted = $bpm;
 </script>
 
 <h3 class="mb-8 font-extrabold">BPM</h3>
