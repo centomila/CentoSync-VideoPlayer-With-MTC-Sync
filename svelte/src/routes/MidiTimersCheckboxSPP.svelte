@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
 	import { selectedMidiInputMTC, sppChecked, bpm } from '../lib/stores';
-	import { onMtcMessage } from '$lib/mtcMessages';
 
 	function startSppListening() {
 		console.log('MTC listener starting');
@@ -14,7 +13,6 @@
 				input.addListener('continue', onMidiContinueMessage);
 				input.addListener('stop', onMidiStopMessage);
 				input.addListener('songposition', onSPPMessage);
-				input.addListener('timecode', onMtcMessage);
 			} else {
 				console.log(`MIDI input not found`);
 			}
@@ -42,18 +40,13 @@
 		}
 	}
 
-	function onMidiClockMessage(midiData: any) {
+	function onMidiClockMessage() {
 		handleMidiClock();
-		// console.log(`Received clock message`);
-		//console.log(midiData.timestamp);
 	}
 
 	function onMidiStartMessage(midiData: any) {
 		console.log(midiData.data);
 		console.log(`Received start message:`);
-		// if (midiData.type === 'start') {
-		// 	console.log('Received start message');
-		// }
 	}
 
 	function onMidiContinueMessage(midiData: any) {

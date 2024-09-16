@@ -3,7 +3,6 @@
 	import { AppBar } from '@skeletonlabs/skeleton';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import MidiPortSelection from './MidiPortSelection.svelte';
-	import MidiTimersCheckboxMTC from './MidiTimersCheckboxMTC.svelte';
 	import MidiTimersCheckboxSPP from './MidiTimersCheckboxSPP.svelte';
 	import Footer from './Footer.svelte';
 </script>
@@ -17,7 +16,6 @@
 			<svelte:fragment slot="default">
 				<div class="flex items-center space-x-8">
 					<MidiPortSelection />
-					<MidiTimersCheckboxMTC />
 					<MidiTimersCheckboxSPP />
 				</div>
 			</svelte:fragment>
