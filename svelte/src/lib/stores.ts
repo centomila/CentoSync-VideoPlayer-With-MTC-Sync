@@ -1,6 +1,6 @@
 // stores.ts
 import { writable, readable, get } from 'svelte/store';
-
+// MTC
 interface MtcData {
 	hours: number;
 	minutes: number;
@@ -20,6 +20,10 @@ export const mtcData = writable<MtcData>({
 	frameRate: 0,
 	elapsedFrames: 0
 });
+
+// Midi Clock
+
+export const bpm = writable(120);
 
 // GUI Settings
 export const selectedMidiInput = writable('');

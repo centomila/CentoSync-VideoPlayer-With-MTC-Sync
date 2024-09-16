@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
-	import { selectedMidiInput, sppChecked } from '../lib/stores';
+	import { selectedMidiInput, sppChecked, bpm } from '../lib/stores';
 	import { onMtcMessage } from '$lib/mtcMessages';
 
 	function startSppListening() {
@@ -69,13 +69,12 @@
 	}
 
 	function onSPPMessage(midiData: any) {
-		console.log(sppArrayToTime(midiData.data, bpm));
+		// console.log(sppArrayToTime(midiData.data, $bpm));
 	}
 
 	let lastClockTime: number | null = null;
 	let clockIntervalSum: number = 0;
 	let clockCount: number = 0;
-	let bpm: number = 0;
 
 	function handleMidiClock(): void {
 		const now = performance.now();
@@ -87,7 +86,7 @@
 			if (clockCount === 24) {
 				// 24 clock messages per quarter note
 				const averageClockInterval = clockIntervalSum / 24;
-				bpm = 60000 / (averageClockInterval * 24); // Calculate BPM
+				$bpm = 60000 / (averageClockInterval * 24); // Calculate BPM
 
 				clockIntervalSum = 0; // Reset sum
 				clockCount = 0; // Reset count
