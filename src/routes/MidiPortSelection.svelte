@@ -1,5 +1,5 @@
-<!-- This component is used to select the MIDI input port from which the MIDI time code -->
 <script lang="ts">
+	// This component is used to select the MIDI input port from which the MIDI time code
 	import { WebMidi } from 'webmidi';
 	import { selectedMidiInputMTC } from '../lib/stores';
 	import { onMtcMessage, onStartMessage, onStopMessage, onContinueMessage } from '$lib/mtcMessages';
