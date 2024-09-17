@@ -1,11 +1,12 @@
 <script>
-  import SelectVideoFile from './SelectVideoFile.svelte';
-
+	
 	import '../app.css';
+	import '@fortawesome/fontawesome-free/css/all.min.css';
 	import { AppBar } from '@skeletonlabs/skeleton';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import MidiPortSelection from './MidiPortSelection.svelte';
 	import MidiTimersCheckboxSPP from './MidiTimersCheckboxSPP.svelte';
+	import SelectVideoFile from './SelectVideoFile.svelte';
 	import Footer from './Footer.svelte';
 
 	let selectedTheme = 'skeleton';
