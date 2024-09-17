@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { loadedFiles } from '$lib/stores';
 
-	const loadedFiles = {
-		files: null as FileList | null,
-		currentFileName: 'Load a video file or drag and drop it on the page',
-	};
+
 
 	let dropZone: HTMLElement;
 	onMount(() => {
@@ -68,10 +66,8 @@
 	}
 </script>
 
-<button class="btn variant-filled-primary">
-	<label for="video-file" class="flex cursor-pointer items-center space-x-2">
+	<label for="video-file" class="flex cursor-pointer items-center space-x-2 btn variant-filled-primary">
 		<i class="fa fa-film"></i><span style="translate: 0 -0.095rem">{loadedFiles.currentFileName}</span>
 		<input type="file" id="video-file" bind:files={loadedFiles.files} on:change={loadVideoFile} accept="video" class="hidden" />
 	</label>
-</button>
 

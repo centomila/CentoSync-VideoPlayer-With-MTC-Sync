@@ -21,6 +21,13 @@ export const mtcData = writable<MtcData>({
 	elapsedFrames: 0
 });
 
+// files
+
+export let loadedFiles = {
+	files: null as FileList | null,
+	currentFileName: 'Load a video file or drag and drop it on the page',
+};
+
 // Midi Clock
 
 export const bpm = writable(120);
