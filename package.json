@@ -45,6 +45,7 @@
 	"type": "module",
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^6.6.0",
+		"mediainfo.js": "^0.3.2",
 		"webmidi": "^3.1.11"
 	}
 }
