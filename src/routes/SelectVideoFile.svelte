@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { FileButton } from '@skeletonlabs/skeleton';
-	import { FileDropzone } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
 
-	let files: FileList;
-	let fileName = 'Load a video file or drag and drop it on the page';
+	const loadedFiles = {
+		files: null as FileList | null,
+		currentFileName: 'Load a video file or drag and drop it on the page',
+	};
 
 	let dropZone: HTMLElement;
 	onMount(() => {
@@ -45,25 +45,33 @@
 			);
 		});
 
-		dropZone.addEventListener('drop', (event) => {
+		dropZone.addEventListener('drop', (event: DragEvent) => {
 			if (event.dataTransfer) {
-				files = event.dataTransfer.files;
+        const draggedFiles = event.dataTransfer.files;
+        if (draggedFiles.length === 1 && draggedFiles[0].type.startsWith('video/')) {
+          loadedFiles.files = event.dataTransfer.files;
+        } else if (draggedFiles.length > 1) {
+          alert('Only one file can be loaded at a time')
+        } else {
+          alert('This isn\'t a video file!')
+        }
 			}
       loadVideoFile();
 		});
 	}
 
 	function loadVideoFile() {
-		if (files.length > 0) {
-			console.log(files);
+		if (loadedFiles.files?.length) {
+			console.log(loadedFiles.files);
 		}
-    fileName = files[0].name;
+    loadedFiles.currentFileName = loadedFiles.files?.[0].name || 'Load a video file or drag and drop it on the page';
 	}
 </script>
 
 <button class="btn variant-filled-primary">
 	<label for="video-file" class="flex cursor-pointer items-center space-x-2">
-		<i class="fa fa-film"></i><span style="translate: 0 -0.095rem">{fileName}</span>
-		<input type="file" id="video-file" bind:files accept="video" class="hidden" />
+		<i class="fa fa-film"></i><span style="translate: 0 -0.095rem">{loadedFiles.currentFileName}</span>
+		<input type="file" id="video-file" bind:files={loadedFiles.files} on:change={loadVideoFile} accept="video" class="hidden" />
 	</label>
 </button>
+
