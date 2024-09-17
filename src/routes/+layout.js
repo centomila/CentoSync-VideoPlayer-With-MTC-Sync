@@ -1,1 +1,2 @@
-export const prerender = true; // This is for SSG
+// This is for SSG
+export const prerender = true;
