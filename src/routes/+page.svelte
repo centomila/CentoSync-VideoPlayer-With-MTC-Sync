@@ -1,12 +1,12 @@
 <script>
-  import MediaInfo from './MediaInfo.svelte';
+	import MediaInfo from './MediaInfo.svelte';
 
 	import MidiTimersContainer from './MidiTimersContainer.svelte';
 </script>
 
 <div>
 	<section>
-		<MediaInfo />
+		<MediaInfo/>
 	</section>
 	<section>
 		<MidiTimersContainer />
