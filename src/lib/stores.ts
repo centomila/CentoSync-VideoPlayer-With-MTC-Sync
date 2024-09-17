@@ -23,10 +23,15 @@ export const mtcData = writable<MtcData>({
 
 // files
 
-export let loadedFiles = {
+interface LoadedFiles {
+	files: FileList | null;
+	currentFileName: string;
+}
+
+export const loadedFiles = writable<LoadedFiles> ({
 	files: null as FileList | null,
 	currentFileName: 'Load a video file or drag and drop it on the page',
-};
+});
 
 // Midi Clock
 

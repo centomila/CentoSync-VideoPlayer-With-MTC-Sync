@@ -1,42 +1,28 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
-	import mediaInfoFactory from 'mediainfo.js';
-	import type { MediaInfo, ReadChunkFunc } from 'mediainfo.js';
+  import { onMount, onDestroy } from 'svelte';
+  import { createMediaInfoHandler } from '$lib/MediaInfo';
+  import { loadedFiles } from '$lib/stores';
 
-	let mediaInfo: MediaInfo<'text'> | undefined;
-	let result = '';
+  let mediaInfoHandler = createMediaInfoHandler();
+  let result = '';
 
-	const makeReadChunk =
-		(file: File): ReadChunkFunc =>
-		async (chunkSize: number, offset: number) => {
-			return new Uint8Array(await file.slice(offset, offset + chunkSize).arrayBuffer());
-		};
+  $: $loadedFiles;
 
-	const handleChange = async (ev: Event & { currentTarget: EventTarget & HTMLInputElement }) => {
-		const file = (ev.currentTarget as HTMLInputElement).files?.[0];
-		if (file && mediaInfo) {
-			try {
-				result = await mediaInfo.analyzeData(file.size, makeReadChunk(file));
-			} catch (error: unknown) {
-				console.error(error);
-			}
-		}
-	};
+  const handleChange = async (ev: Event & { currentTarget: EventTarget & HTMLInputElement }) => {
+    const file = (ev.currentTarget as HTMLInputElement).files?.[0];
+    if (file) {
+      result = await mediaInfoHandler.analyzeFile(file);
+    }
+  };
 
-	onMount(async () => {
-		try {
-			mediaInfo = await mediaInfoFactory({ format: 'text' });
-		} catch (error: unknown) {
-			console.error(error);
-		}
-	});
+  onMount(async () => {
+    await mediaInfoHandler.init();
+  });
 
-	onDestroy(() => {
-		if (mediaInfo) {
-			mediaInfo.close();
-		}
-	});
+  onDestroy(() => {
+    mediaInfoHandler.close();
+  });
 </script>
 
-<input type="file" placeholder="Select file..." on:change={handleChange} />
+<input type="file" placeholder="Select file..." bind:files={$loadedFiles.files} on:change={handleChange} />
 <pre>{result}</pre>

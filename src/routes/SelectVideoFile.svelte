@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { loadedFiles } from '$lib/stores';
 
-
+	$: $loadedFiles;
 
 	let dropZone: HTMLElement;
 	onMount(() => {
@@ -47,7 +47,7 @@
 			if (event.dataTransfer) {
         const draggedFiles = event.dataTransfer.files;
         if (draggedFiles.length === 1 && draggedFiles[0].type.startsWith('video/')) {
-          loadedFiles.files = event.dataTransfer.files;
+          $loadedFiles.files = event.dataTransfer.files;
         } else if (draggedFiles.length > 1) {
           alert('Only one file can be loaded at a time')
         } else {
@@ -59,15 +59,15 @@
 	}
 
 	function loadVideoFile() {
-		if (loadedFiles.files?.length) {
-			console.log(loadedFiles.files);
+		if ($loadedFiles.files?.length) {
+			console.log($loadedFiles.files);
 		}
-    loadedFiles.currentFileName = loadedFiles.files?.[0].name || 'Load a video file or drag and drop it on the page';
+    $loadedFiles.currentFileName = $loadedFiles.files?.[0].name || 'Load a video file or drag and drop it on the page';
 	}
 </script>
 
 	<label for="video-file" class="flex cursor-pointer items-center space-x-2 btn variant-filled-primary">
-		<i class="fa fa-film"></i><span style="translate: 0 -0.095rem">{loadedFiles.currentFileName}</span>
-		<input type="file" id="video-file" bind:files={loadedFiles.files} on:change={loadVideoFile} accept="video" class="hidden" />
+		<i class="fa fa-film"></i><span style="translate: 0 -0.095rem">{$loadedFiles.currentFileName}</span>
+		<input type="file" id="video-file" bind:files={$loadedFiles.files} on:change={loadVideoFile} accept="video" class="hidden" />
 	</label>
 
