@@ -21,18 +21,17 @@
 			gridColumns="grid-cols-3"
 			slotDefault="place-self-center"
 			slotTrail="place-content-end"
-			shadow="shadow-xl"
+			class="variant-glass-surface"
 			
 		>
-			<svelte:fragment slot="lead">
-				<span class="text-lg font-extrabold">MTC Display</span>
-			</svelte:fragment>
-			<svelte:fragment slot="default">
-				<div class="flex items-center space-x-8">
-					<MidiPortSelection />
-					<MidiTimersCheckboxSPP />
-				</div>
-			</svelte:fragment>
+		<svelte:fragment slot="lead">
+			<div class="flex items-center space-x-8">
+				<MidiPortSelection />
+				<MidiTimersCheckboxSPP />
+			</div>
+		</svelte:fragment>
+		<svelte:fragment slot="default">
+		</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<div class="space-x-10 mr-3">
 					<select class="select w-40 capitalize" bind:value={selectedTheme} on:change={setTheme}>
@@ -51,7 +50,7 @@
 		<!-- Page content will be injected here -->
 	</main>
 
-	<footer class="footer bottom-0 w-full bg-gray-950 py-5 text-center">
+	<footer class="footer bottom-0 w-full bg-gray-950 variant-glass-surface p-4 ">
 		<Footer />
 	</footer>
 </div>

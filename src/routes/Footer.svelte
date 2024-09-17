@@ -1,4 +1,6 @@
-<div id="copyright" class="text-xs">
+<div id="copyright" class="flex items-center justify-between text-xs">
+	<p class="text-lg font-extrabold">MTC Display</p>
+
 	<p class="font-semibold">
 		Made with ❤️ by <a
 			target="_blank"
@@ -7,3 +9,4 @@
 		>
 	</p>
 </div>
+

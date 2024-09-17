@@ -46,5 +46,6 @@ After you have started the server:
 
 ## TODO
 
-- [ ] Separate initialization and gui. Make it more modular
-- [ ] Remember the last selected MIDI port
+- [ ] Remember the last selected MIDI port (https://github.com/joshnuss/svelte-persisted-store)
+- [ ] Install mediainfo
+- [ ] Videoplayer
