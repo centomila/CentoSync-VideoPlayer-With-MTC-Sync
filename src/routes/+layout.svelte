@@ -1,4 +1,6 @@
 <script>
+  import SelectVideoFile from './SelectVideoFile.svelte';
+
 	import '../app.css';
 	import { AppBar } from '@skeletonlabs/skeleton';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
@@ -7,7 +9,17 @@
 	import Footer from './Footer.svelte';
 
 	let selectedTheme = 'skeleton';
-	const themeList = ["skeleton", "modern", "rocket", "seafoam", "vintage", "sahara", "hamlindigo", "gold-nouveau", "crimson"];
+	const themeList = [
+		'skeleton',
+		'modern',
+		'rocket',
+		'seafoam',
+		'vintage',
+		'sahara',
+		'hamlindigo',
+		'gold-nouveau',
+		'crimson'
+	];
 
 	function setTheme() {
 		// use the selectedTheme variable here
@@ -22,21 +34,20 @@
 			slotDefault="place-self-center"
 			slotTrail="place-content-end"
 			class="variant-glass-surface"
-			
 		>
-		<svelte:fragment slot="lead">
-			<div class="flex items-center space-x-8">
-				<MidiPortSelection />
-				<MidiTimersCheckboxSPP />
-			</div>
-		</svelte:fragment>
-		<svelte:fragment slot="default">
-		</svelte:fragment>
+			<svelte:fragment slot="lead">
+				<div class="flex items-center space-x-8">
+					<MidiPortSelection />
+					<MidiTimersCheckboxSPP />
+					<SelectVideoFile></SelectVideoFile>
+				</div>
+			</svelte:fragment>
+			<svelte:fragment slot="default"></svelte:fragment>
 			<svelte:fragment slot="trail">
-				<div class="space-x-10 mr-3">
+				<div class="mr-3 space-x-10">
 					<select class="select w-40 capitalize" bind:value={selectedTheme} on:change={setTheme}>
 						{#each themeList as theme}
-						<option value={theme}>{theme}</option>
+							<option value={theme}>{theme}</option>
 						{/each}
 					</select>
 				</div>
@@ -50,7 +61,7 @@
 		<!-- Page content will be injected here -->
 	</main>
 
-	<footer class="footer bottom-0 w-full bg-gray-950 variant-glass-surface p-4 ">
+	<footer class="footer variant-glass-surface bottom-0 w-full bg-gray-950 p-4">
 		<Footer />
 	</footer>
 </div>
