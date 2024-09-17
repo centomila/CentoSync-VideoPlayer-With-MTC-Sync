@@ -18,7 +18,21 @@ const config = {
 	},
 	plugins: [
 		skeleton({
-			themes: { preset: ['skeleton'] }
+			themes:
+			{
+				preset: [
+					{ name: "skeleton", enhancements: false },
+					{ name: "modern", enhancements: false },
+					{ name: "rocket", enhancements: false },
+					{ name: "seafoam", enhancements: false },
+					{ name: "vintage", enhancements: false },
+					{ name: "sahara", enhancements: false },
+					{ name: "hamlindigo", enhancements: false },
+					{ name: "gold-nouveau", enhancements: false },
+					{ name: "crimson", enhancements: false }
+				]
+			},
+			
 		}),
 		forms
 	]
