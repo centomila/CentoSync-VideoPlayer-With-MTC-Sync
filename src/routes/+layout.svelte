@@ -14,9 +14,10 @@
 </script>
 
 <div class="flex min-h-screen flex-col">
-	<header>
+	<header class="w-full">
 		<AppBar
 			gridColumns="grid-cols-3"
+			spacing="p-5"
 			slotDefault="place-self-center"
 			slotTrail="place-content-end"
 			class="variant-glass-surface"

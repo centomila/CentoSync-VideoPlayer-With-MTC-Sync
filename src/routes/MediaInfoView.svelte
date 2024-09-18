@@ -29,8 +29,8 @@
 					const result = await mediaInfoHandler.analyzeFile(file);
 					results = [...results, result];
 				} catch (error) {
-					console.error(`Error analyzing file ${file.name}:`, error);
-					results = [...results, `Error analyzing ${file.name}`];
+					console.error(`Analyzing file ${file.name}:`, error);
+					results = [...results, `Analyzing ${file.name}`];
 				}
 			}
 		} finally {
@@ -58,17 +58,19 @@
 
 <!-- <input type="file" multiple bind:files={$loadedFiles.files} /> -->
 
-{#if isAnalyzing}
-	<p>Analyzing files...</p>
-{:else if results.length > 0}
-	{#each results as result, index}
-		<h3>File {index + 1}</h3>
-		{#if typeof result === 'string'}
-			<pre>{result}</pre>
-		{:else}
-			<pre>{JSON.stringify(result, null, 2)}</pre>
-		{/if}
-	{/each}
-{:else}
-	<h3 class="title text-xl text-center">No files analyzed yet.</h3>
-{/if}
+<div class="max-w-screen-lg py-10">
+	{#if isAnalyzing}
+		<pre class="text-xxl">Analyzing { $loadedFiles.currentFileName }</pre>
+	{:else if results.length > 0}
+		{#each results as result, index}
+			<!-- <h3>File {index + 1}</h3> -->
+			{#if typeof result === 'string'}
+				<pre class="text-xl text-wrap">{result}</pre>
+			{:else}
+				<pre>{JSON.stringify(result, null, 2)}</pre>
+			{/if}
+		{/each}
+	{:else}
+		<h3 class="title text-xl text-center">No files analyzed yet.</h3>
+	{/if}
+</div>

@@ -27,7 +27,8 @@ export class MediaInfoHandler<T extends MediaInfoFormat = 'text'> {
 
 	private makeFileReader(file: File) {
 		return async (chunkSize: number, offset: number) => {
-			return new Uint8Array(await file.slice(offset, offset + chunkSize).arrayBuffer());
+			let r = new Uint8Array(await file.slice(offset, offset + chunkSize).arrayBuffer());
+			return r
 		};
 	}
 
@@ -38,6 +39,7 @@ export class MediaInfoHandler<T extends MediaInfoFormat = 'text'> {
 
 		try {
 			const result = await this.mediaInfo.analyzeData(file.size, this.makeFileReader(file));
+			console.log(result);
 			return result as T extends 'object' ? Record<string, unknown> : string;
 		} catch (error: unknown) {
 			console.error('Error analyzing file:', error);
