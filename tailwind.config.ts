@@ -1,6 +1,7 @@
 import { join } from 'path';
 import type { Config } from 'tailwindcss';
 import forms from '@tailwindcss/forms';
+import { centomilaTheme } from './centomila-theme'
 
 // 1. Import the Skeleton plugin
 import { skeleton } from '@skeletonlabs/tw-plugin';
@@ -20,15 +21,18 @@ const config = {
 		skeleton({
 			themes: {
 				preset: [
-					{ name: 'skeleton', enhancements: false },
-					{ name: 'modern', enhancements: false },
-					{ name: 'rocket', enhancements: false },
-					{ name: 'seafoam', enhancements: false },
-					{ name: 'vintage', enhancements: false },
-					{ name: 'sahara', enhancements: false },
-					{ name: 'hamlindigo', enhancements: false },
-					{ name: 'gold-nouveau', enhancements: false },
-					{ name: 'crimson', enhancements: false }
+					{ name: 'skeleton', enhancements: true },
+					{ name: 'modern', enhancements: true },
+					{ name: 'rocket', enhancements: true },
+					{ name: 'seafoam', enhancements: true },
+					{ name: 'vintage', enhancements: true },
+					{ name: 'sahara', enhancements: true },
+					{ name: 'hamlindigo', enhancements: true },
+					{ name: 'gold-nouveau', enhancements: true },
+					{ name: 'crimson', enhancements: true }
+				],
+				custom: [
+					centomilaTheme
 				]
 			}
 		}),

@@ -71,9 +71,7 @@
 	for="video-file"
 	class="variant-filled-primary btn flex cursor-pointer items-center space-x-2"
 >
-	<i class="fa fa-film"></i><span style="translate: 0 -0.095rem"
-		>{$loadedFiles.currentFileName}</span
-	>
+	<i class="fa fa-film"></i><span>{$loadedFiles.currentFileName}</span>
 	<input
 		type="file"
 		id="video-file"

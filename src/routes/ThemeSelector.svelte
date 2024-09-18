@@ -3,8 +3,9 @@ import { onMount } from 'svelte';
 
 
 
-	let selectedTheme = 'skeleton';
+	let selectedTheme = 'centomila';
 	const themeList = [
+		'centomila',	
 		'skeleton',
 		'modern',
 		'rocket',
