@@ -1,4 +1,6 @@
 <script>
+	import ThemeSelector from './ThemeSelector.svelte';
+
 	import '../app.css';
 	import '@fortawesome/fontawesome-free/css/all.min.css';
 	import { AppBar } from '@skeletonlabs/skeleton';
@@ -7,24 +9,6 @@
 	import MidiTimersCheckboxSPP from './MidiTimersCheckboxSPP.svelte';
 	import SelectVideoFile from './SelectVideoFile.svelte';
 	import Footer from './Footer.svelte';
-
-	let selectedTheme = 'skeleton';
-	const themeList = [
-		'skeleton',
-		'modern',
-		'rocket',
-		'seafoam',
-		'vintage',
-		'sahara',
-		'hamlindigo',
-		'gold-nouveau',
-		'crimson'
-	];
-
-	function setTheme() {
-		// use the selectedTheme variable here
-		document.body.setAttribute('data-theme', selectedTheme);
-	}
 </script>
 
 <div class="flex min-h-screen flex-col">
@@ -44,13 +28,7 @@
 			</svelte:fragment>
 			<svelte:fragment slot="default"></svelte:fragment>
 			<svelte:fragment slot="trail">
-				<div class="mr-3 space-x-10">
-					<select class="select w-40 capitalize" bind:value={selectedTheme} on:change={setTheme}>
-						{#each themeList as theme}
-							<option value={theme}>{theme}</option>
-						{/each}
-					</select>
-				</div>
+				<div class="mr-3 space-x-10"><ThemeSelector /></div>
 				<LightSwitch />
 			</svelte:fragment>
 		</AppBar>
