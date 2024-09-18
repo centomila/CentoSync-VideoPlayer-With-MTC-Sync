@@ -6,7 +6,7 @@
 
 <div>
 	<section>
-		<MediaInfo/>
+		<MediaInfo />
 	</section>
 	<section>
 		<MidiTimersContainer />

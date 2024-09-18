@@ -28,9 +28,9 @@ interface LoadedFiles {
 	currentFileName: string;
 }
 
-export const loadedFiles = writable<LoadedFiles> ({
+export const loadedFiles = writable<LoadedFiles>({
 	files: null as FileList | null,
-	currentFileName: 'Load a video file or drag and drop it on the page',
+	currentFileName: 'Load a video file or drag and drop it on the page'
 });
 
 // Midi Clock

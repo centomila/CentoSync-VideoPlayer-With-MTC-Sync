@@ -2,14 +2,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-
 #drop-zone {
-  
-  transition: all 0.3s ease;
+	transition: all 0.3s ease;
 }
 
 #drop-zone.dragover {
-  /* invert effect */
-  filter: opacity(0.5);
-  z-index: 9999999;
+	/* invert effect */
+	filter: opacity(0.5);
+	z-index: 9999999;
 }
