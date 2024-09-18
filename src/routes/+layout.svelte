@@ -13,7 +13,7 @@
 	import Footer from './Footer.svelte';
 </script>
 
-<div class="flex min-h-screen flex-col">
+<div class="flex min-h-screen flex-col" id="drop-zone">
 	<header class="w-full">
 		<AppBar
 			gridColumns="grid-cols-3"

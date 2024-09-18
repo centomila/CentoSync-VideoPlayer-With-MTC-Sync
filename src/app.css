@@ -1,13 +1,13 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import '../node_modules/video.js/dist/video-js.css';
 
 #drop-zone {
 	transition: all 0.3s ease;
 }
 
-#drop-zone.dragover {
-	/* invert effect */
+/* #drop-zone.dragover {
 	filter: opacity(0.5);
 	z-index: 9999999;
-}
+} */

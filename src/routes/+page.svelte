@@ -1,4 +1,6 @@
 <script>
+  import VideoComponent from './VideoComponent.svelte';
+
 	import MediaInfoView from './MediaInfoView.svelte';
 	import MidiTimersContainer from './MidiTimersContainer.svelte';
 	import { guiView } from '$lib/stores';
@@ -13,7 +15,8 @@
 	{:else if $guiView === 'video'}
 		<!-- View video -->
 		<section>
-			<h2 class="flex h-50 w-full items-center justify-center">VIDEO PLAYER</h2>
+			<!-- <h2 class="flex h-50 w-full items-center justify-center">VIDEO PLAYER</h2> -->
+			<VideoComponent />
 		</section>
 	{:else if $guiView === 'info'}
 		<!-- View info -->
