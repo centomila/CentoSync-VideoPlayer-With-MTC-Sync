@@ -60,17 +60,17 @@
 
 <div class="max-w-screen-lg py-10">
 	{#if isAnalyzing}
-		<pre class="text-xxl">Analyzing { $loadedFiles.currentFileName }</pre>
+		<pre class="text-xxl">Analyzing {$loadedFiles.currentFileName}</pre>
 	{:else if results.length > 0}
 		{#each results as result, index}
 			<!-- <h3>File {index + 1}</h3> -->
 			{#if typeof result === 'string'}
-				<pre class="text-xl text-wrap">{result}</pre>
+				<pre class="text-wrap text-xl">{result}</pre>
 			{:else}
 				<pre>{JSON.stringify(result, null, 2)}</pre>
 			{/if}
 		{/each}
 	{:else}
-		<h3 class="title text-xl text-center">No files analyzed yet.</h3>
+		<h3 class="title text-center text-xl">No files analyzed yet.</h3>
 	{/if}
 </div>

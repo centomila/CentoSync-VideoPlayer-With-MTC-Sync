@@ -68,17 +68,16 @@
 	}
 </script>
 
-<div class="flex flex-grow items-center justify-center max-w-full">
-
+<div class="flex max-w-full flex-grow items-center justify-center">
 	<FileDropzone
-	name="video-file"
-	id="video-file"
-	bind:files={$loadedFiles.files}
-	on:change={loadVideoFile}
-	accept="video"
-	>	
-	<svelte:fragment slot="lead"><i class="fa fa-film"></i></svelte:fragment>
-	<svelte:fragment slot="message">Drop video here</svelte:fragment>
-	<svelte:fragment slot="meta">(meta)</svelte:fragment>
-</FileDropzone>
+		name="video-file"
+		id="video-file"
+		bind:files={$loadedFiles.files}
+		on:change={loadVideoFile}
+		accept="video"
+	>
+		<svelte:fragment slot="lead"><i class="fa fa-film"></i></svelte:fragment>
+		<svelte:fragment slot="message">Drop video here</svelte:fragment>
+		<svelte:fragment slot="meta">(meta)</svelte:fragment>
+	</FileDropzone>
 </div>

@@ -12,7 +12,7 @@
 	let videoElement: HTMLVideoElement;
 
 	function updatePlayer() {
-// if player don't exist, initialize
+		// if player don't exist, initialize
 		if (!player && $loadedFiles.files?.[0]) {
 			initializePlayer();
 		}
@@ -21,9 +21,7 @@
 			player.src({
 				src: URL.createObjectURL($loadedFiles.files[0]),
 				type: $loadedFiles.files[0].type,
-				heigth : window.parent.innerHeight,
-
-				
+				heigth: window.parent.innerHeight
 			});
 			player?.show();
 			console.log($loadedFiles.files[0].type);
@@ -51,7 +49,6 @@
 			});
 		}
 	}
-
 
 	onDestroy(() => {
 		if (player && typeof player.dispose === 'function') {

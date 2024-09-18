@@ -1,11 +1,9 @@
 <script lang="ts">
-import { onMount } from 'svelte';
-
-
+	import { onMount } from 'svelte';
 
 	let selectedTheme = 'centomila';
 	const themeList = [
-		'centomila',	
+		'centomila',
 		'skeleton',
 		'modern',
 		'rocket',
@@ -22,7 +20,7 @@ import { onMount } from 'svelte';
 		document.body.setAttribute('data-theme', selectedTheme);
 	}
 
-    onMount(setTheme);
+	onMount(setTheme);
 </script>
 
 <select class="select w-40 capitalize" bind:value={selectedTheme} on:change={setTheme}>

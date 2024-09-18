@@ -1,8 +1,7 @@
 import { join } from 'path';
 import type { Config } from 'tailwindcss';
 import forms from '@tailwindcss/forms';
-import { centomilaTheme } from './centomila-theme'
-
+import { centomilaTheme } from './centomila-theme';
 
 // 1. Import the Skeleton plugin
 import { skeleton } from '@skeletonlabs/tw-plugin';
@@ -32,9 +31,7 @@ const config = {
 					{ name: 'gold-nouveau', enhancements: true },
 					{ name: 'crimson', enhancements: true }
 				],
-				custom: [
-					centomilaTheme
-				]
+				custom: [centomilaTheme]
 			}
 		}),
 		forms

@@ -1,5 +1,5 @@
 <script>
-  import VideoComponent from './VideoComponent.svelte';
+	import VideoComponent from './VideoComponent.svelte';
 
 	import MediaInfoView from './MediaInfoView.svelte';
 	import MidiTimersContainer from './MidiTimersContainer.svelte';
