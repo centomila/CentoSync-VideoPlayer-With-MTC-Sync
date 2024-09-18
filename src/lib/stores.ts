@@ -24,12 +24,12 @@ export const mtcData = writable<MtcData>({
 // files
 
 interface LoadedFiles {
-	files: FileList | null;
+	files: FileList | undefined;
 	currentFileName: string;
 }
 
 export const loadedFiles = writable<LoadedFiles>({
-	files: null as FileList | null,
+	files: undefined,
 	currentFileName: 'Load a video file or drag and drop it on the page'
 });
 

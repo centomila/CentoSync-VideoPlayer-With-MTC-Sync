@@ -6,7 +6,7 @@
 	import { sppChecked } from '../lib/stores';
 </script>
 
-<div class="items-center justify-center py-10">
+<div class="items-center py-10 max-w-prose">
 	<div class="text-center text-5xl">
 		<TrackPositionDiv />
 		{#if $sppChecked}

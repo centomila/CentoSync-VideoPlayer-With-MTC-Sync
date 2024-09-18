@@ -9,7 +9,6 @@
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import MidiPortSelection from './MidiPortSelection.svelte';
 	import MidiTimersCheckboxSPP from './MidiTimersCheckboxSPP.svelte';
-	import SelectVideoFile from './SelectVideoFile.svelte';
 	import Footer from './Footer.svelte';
 </script>
 
@@ -26,7 +25,6 @@
 				<div class="flex items-center space-x-8">
 					<MidiPortSelection />
 					<MidiTimersCheckboxSPP />
-					<SelectVideoFile />
 				</div>
 			</svelte:fragment>
 			<svelte:fragment slot="default">
