@@ -88,8 +88,8 @@
 
 <!-- Frontend -->
 <div class="flex items-center justify-end space-x-4">
-	<label class="whitespace-nowrap" for="midi-inputs">MIDI PORT</label>
-	<select class="select w-64" id="midi-inputs" bind:value={$selectedMidiInputMTC}>
+	<label class="whitespace-nowrap title text-bold" for="midi-inputs">MIDI PORT</label>
+	<select class="select w-auto" id="midi-inputs" bind:value={$selectedMidiInputMTC}>
 		{#each midiInputs as input}
 			<option value={input.value}>{input.name}</option>
 		{/each}

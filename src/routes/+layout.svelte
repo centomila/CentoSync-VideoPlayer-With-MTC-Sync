@@ -1,4 +1,6 @@
 <script>
+	import GuiViewSelection from './GuiViewSelection.svelte';
+
 	import ThemeSelector from './ThemeSelector.svelte';
 
 	import '../app.css';
@@ -26,7 +28,9 @@
 					<SelectVideoFile />
 				</div>
 			</svelte:fragment>
-			<svelte:fragment slot="default"></svelte:fragment>
+			<svelte:fragment slot="default">
+				<GuiViewSelection />
+			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<div class="mr-3 space-x-10"><ThemeSelector /></div>
 				<LightSwitch />

@@ -39,5 +39,8 @@ export const bpm = writable(120);
 
 // GUI Settings
 export const selectedMidiInputMTC = writable('');
-
 export const sppChecked = writable(false);
+
+// View
+
+export const guiView = writable('mtc');
