@@ -13,7 +13,7 @@
 	</section>
 {:else if $guiView === 'video'}
 	<!-- View video -->
-	<section class="flex w-full ">
+	<section>
 		<!-- <h2 class="flex h-50 w-full items-center justify-center">VIDEO PLAYER</h2> -->
 		<VideoComponent />
 	</section>
