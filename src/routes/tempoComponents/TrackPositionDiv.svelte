@@ -15,7 +15,7 @@
 </script>
 
 <h3 class="mb-8 font-extrabold">Track Position</h3>
-<div class="grid grid-cols-7 gap-2">
+<div class="grid grid-cols-7 gap-0">
 	<div class="text-center font-mono font-light">{mtcHoursFormatted}</div>
 	<div class="font-extralight text-gray-500">:</div>
 	<div class="text-center font-mono font-light">{mtcMinutesFormatted}</div>

@@ -7,6 +7,7 @@
 	import MidiPortSelection from './MidiPortSelection.svelte';
 	import MidiTimersCheckboxSPP from './MidiTimersCheckboxSPP.svelte';
 	import SelectVideoFile from './SelectVideoFile.svelte';
+	import MidiTimersContainer from './MidiTimersContainer.svelte';
 	import { guiView } from '$lib/stores';
 	import Footer from './Footer.svelte';
 </script>
@@ -25,6 +26,8 @@
 				<GuiViewSelection />
 			</div>
 			<!-- Add more sidebar items here -->
+			<MidiTimersContainer />
+
 		</div>
 
 		<div

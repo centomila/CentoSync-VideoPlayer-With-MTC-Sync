@@ -1,30 +1,16 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { guiView } from '$lib/stores';
+	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
 	$: $guiView;
 
-	function setGuiView(event: Event) {
-		guiView.update(() => (event.target as HTMLButtonElement).value);
-	}
-
 	const views = {
-		mtc: 'MTC',
 		video: 'Video Sync',
 		info: 'Info Video'
 	};
 </script>
 
-<div class="variant-filled btn-group-vertical w-full">
-	{#each Object.entries(views) as [key, value]}
-		<button
-			class={$guiView === key
-				? 'variant-filled-primary  w-full hover:variant-soft-primary'
-				: 'variant-filled  w-full hover:variant-soft'}
-			value={key}
-			on:click={setGuiView}
-		>
-			{value}
-		</button>
-	{/each}
-</div>
+<RadioGroup>
+	<RadioItem bind:group={$guiView} name="justify" value="video"><i class="fas fa-film"></i></RadioItem>
+	<RadioItem bind:group={$guiView} name="justify" value="info"><i class="fas fa-info"></i></RadioItem>
+</RadioGroup>
