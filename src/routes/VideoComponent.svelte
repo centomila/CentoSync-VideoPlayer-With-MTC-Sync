@@ -8,8 +8,7 @@
 
 	let player: Player | null = null;
 	let videoElement: HTMLVideoElement;
-	let playerWidth: number;
-	let playerHeight: number;
+
 
 	function updatePlayer() {
 		// if player don't exist, initialize
@@ -22,9 +21,7 @@
 		if (player && $loadedFiles.files?.[0]) {
 			player.src({
 				src: URL.createObjectURL($loadedFiles.files[0]),
-				type: $loadedFiles.files[0].type,
-				width: playerWidth,
-				height: playerHeight
+				type: $loadedFiles.files[0].type
 			});
 			player?.show();
 			console.log($loadedFiles.files[0].type);
@@ -38,14 +35,13 @@
 			player = videojs(videoElement, {
 				// poster: $loadedFiles.files?.[0] ? URL.createObjectURL($loadedFiles.files[0]) : '',
 				autoSetup: false,
-				preload: 'auto',
-				liveui: true,
 				enableSmoothSeeking: true,
+				fluid: true,
 				responsive: true,
-				autoplay: false,
 				controls: true,
 				muted: true,
-				fluid: false,
+				width: 640,
+				height: 264,
 				sources: [
 					{
 						src: $loadedFiles.files?.[0] ? URL.createObjectURL($loadedFiles.files[0]) : '',
@@ -63,36 +59,15 @@
 		}
 	});
 
-	function updatePlayerSize() {
-		playerWidth =
-		document.body.scrollWidth
-		
-		playerHeight =
-		document.body.scrollHeight -
-		(document.querySelector('header')?.clientHeight || 0) -
-		(document.querySelector('footer')?.clientHeight || 0);
-		
-		player?.width(playerWidth);
-		player?.height(playerHeight);
-	}
-	
 	let videoContainer: HTMLElement;
 	onMount(() => {
-	 videoContainer = document.getElementById('video-container') as HTMLElement;
+		videoContainer = document.getElementById('video-container') as HTMLElement;
 
-	 updatePlayer();
-		updatePlayerSize();
-		window.addEventListener('resize', updatePlayerSize);
+		updatePlayer();
 	});
 </script>
 
 <!-- svelte-ignore a11y-media-has-caption -->
-<div id="video-container" style="width: {playerWidth}; height: {playerHeight};">
-	<video
-		bind:this={videoElement}
-		id="my-video"
-		class="video-js"
-		width={playerWidth}
-		height={playerHeight}
-	></video>
+<div id="video-container" class="hidden">
+	<video bind:this={videoElement} id="my-video" class="video-js "></video>
 </div>

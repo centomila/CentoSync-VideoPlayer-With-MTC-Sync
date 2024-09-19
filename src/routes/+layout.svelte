@@ -42,7 +42,7 @@
 		<!-- Page content will be injected here -->
 	</main>
 
-	<footer id="footer" class="footer variant-glass-surface bottom-0 w-full bg-gray-950 p-4">
+	<footer id="footer" class="footer variant-glass-surface bottom-0 w-full p-4">
 		<Footer />
 	</footer>
 </div>
