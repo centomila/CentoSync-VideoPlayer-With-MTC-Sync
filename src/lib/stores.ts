@@ -43,4 +43,4 @@ export const sppChecked = writable(false);
 
 // View
 
-export const guiView = writable('video');
+export const guiView = writable('mtc');

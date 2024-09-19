@@ -15,12 +15,12 @@
 	};
 </script>
 
-<div class="variant-filled btn-group">
+<div class="variant-filled btn-group-vertical w-full">
 	{#each Object.entries(views) as [key, value]}
 		<button
 			class={$guiView === key
-				? 'variant-filled-primary w-40 hover:variant-soft-primary'
-				: 'variant-filled w-40 hover:variant-soft'}
+				? 'variant-filled-primary  w-full hover:variant-soft-primary'
+				: 'variant-filled  w-full hover:variant-soft'}
 			value={key}
 			on:click={setGuiView}
 		>

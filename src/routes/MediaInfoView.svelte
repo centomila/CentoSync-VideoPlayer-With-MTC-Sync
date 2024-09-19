@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount, onDestroy, afterUpdate } from 'svelte';
 	import { createMediaInfoHandler } from '$lib/MediaInfo';
-	import { loadedFiles } from '$lib/stores';
+	import { loadedFiles, guiView } from '$lib/stores';
+	import SelectVideoFile from './SelectVideoFile.svelte';
 	import type { MediaInfoFormat } from '$lib/MediaInfo';
 
 	export let format: MediaInfoFormat = 'text';
@@ -57,7 +58,7 @@
 
 <!-- <input type="file" multiple bind:files={$loadedFiles.files} /> -->
 
-<div class="max-w-screen-lg py-10">
+<div class="mx-auto max-w-screen-lg py-10">
 	{#if isAnalyzing}
 		<pre class="text-xxl">Analyzing {$loadedFiles.currentFileName}</pre>
 	{:else if results.length > 0}
@@ -70,6 +71,11 @@
 			{/if}
 		{/each}
 	{:else}
+		{#if $guiView === 'info' || $guiView === 'video'}
+			<section class="flex-col items-center space-x-4 space-y-4">
+				<SelectVideoFile />
+			</section>
+		{/if}
 		<h3 class="title text-center text-xl">No files analyzed yet.</h3>
 	{/if}
 </div>

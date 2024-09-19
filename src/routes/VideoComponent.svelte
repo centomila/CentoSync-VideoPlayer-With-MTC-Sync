@@ -9,7 +9,6 @@
 	let player: Player | null = null;
 	let videoElement: HTMLVideoElement;
 
-
 	function updatePlayer() {
 		// if player don't exist, initialize
 		if (!player && $loadedFiles.files?.[0]) {
@@ -69,5 +68,5 @@
 
 <!-- svelte-ignore a11y-media-has-caption -->
 <div id="video-container" class="hidden">
-	<video bind:this={videoElement} id="my-video" class="video-js "></video>
+	<video bind:this={videoElement} id="my-video" class="video-js"></video>
 </div>

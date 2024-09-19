@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
+	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { selectedMidiInputMTC, sppChecked } from '../lib/stores';
 	import { onSPPMessage, onMidiClockMessage } from '$lib/sppMessages';
 
@@ -32,12 +33,5 @@
 
 <!-- Frontend -->
 <div class="flex items-center space-x-2">
-	<input
-		class="checkbox"
-		type="checkbox"
-		id="MIDICLOCK"
-		name="MIDICLOCK"
-		bind:checked={$sppChecked}
-	/>
-	<label for="MIDICLOCK" class="whitespace-nowrap">Midi Clock</label>
+	<SlideToggle name="slider-label" bind:checked={$sppChecked}>Midi Clock (BPM)</SlideToggle>
 </div>
