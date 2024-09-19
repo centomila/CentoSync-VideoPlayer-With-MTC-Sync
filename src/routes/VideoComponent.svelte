@@ -15,6 +15,8 @@
 		// if player don't exist, initialize
 		if (!player && $loadedFiles.files?.[0]) {
 			initializePlayer();
+			const videoContainer = document.getElementById('video-container');
+			videoContainer?.classList.remove('hidden');
 		}
 
 		if (player && $loadedFiles.files?.[0]) {
@@ -58,10 +60,13 @@
 	});
 </script>
 
-{#if !$loadedFiles.files?.[0]}
-	<SelectVideoFile />
-{/if}
-<section class="flex flex-grow items-center justify-center">
-	<!-- svelte-ignore a11y-media-has-caption -->
-	<video bind:this={videoElement} id="my-video" class="video-js vjs-hidden" preload="auto"></video>
+<section class="flex h-full w-full flex-grow items-center justify-center">
+	{#if !$loadedFiles.files?.[0]}
+		<SelectVideoFile />
+	{/if}
 </section>
+
+<!-- svelte-ignore a11y-media-has-caption -->
+<div id="video-container" class="hidden">
+	<video bind:this={videoElement} id="my-video" class="video-js" preload="auto"></video>
+</div>

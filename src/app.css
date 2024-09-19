@@ -7,7 +7,7 @@
 	transition: all 0.3s ease;
 }
 
-/* #drop-zone.dragover {
+#drop-zone.dragover {
 	filter: opacity(0.5);
 	z-index: 9999999;
-} */
+}
