@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {onMount,  onDestroy } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import videojs from 'video.js';
 	import type Player from 'video.js/dist/types/player';
 	import { loadedFiles } from '$lib/stores';
@@ -8,7 +8,6 @@
 
 	let player: Player | null = null;
 	let videoElement: HTMLVideoElement;
-	
 
 	function updatePlayer() {
 		// if player don't exist, initialize
@@ -21,7 +20,7 @@
 		if (player && $loadedFiles.files?.[0]) {
 			player.src({
 				src: URL.createObjectURL($loadedFiles.files[0]),
-				type: $loadedFiles.files[0].type,
+				type: $loadedFiles.files[0].type
 			});
 			player?.show();
 			console.log($loadedFiles.files[0].type);
@@ -34,7 +33,10 @@
 		if (videoElement && !player) {
 			player = videojs(videoElement, {
 				autoSetup: false,
-				height: (document.body.clientHeight - (document.querySelector('header')?.clientHeight || 0) - (document.querySelector('footer')?.clientHeight || 0)),
+				height:
+					document.body.clientHeight -
+					(document.querySelector('header')?.clientHeight || 0) -
+					(document.querySelector('footer')?.clientHeight || 0),
 				preload: 'auto',
 				liveui: true,
 				enableSmoothSeeking: true,
@@ -63,8 +65,7 @@
 	onMount(() => {
 		updatePlayer();
 		window.addEventListener('resize', updatePlayer);
-	})
-
+	});
 </script>
 
 <!-- svelte-ignore a11y-media-has-caption -->

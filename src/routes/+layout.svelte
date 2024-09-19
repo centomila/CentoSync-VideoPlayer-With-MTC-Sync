@@ -25,7 +25,6 @@
 				<div class="flex items-center space-x-8">
 					<MidiPortSelection />
 					<MidiTimersCheckboxSPP />
-
 				</div>
 			</svelte:fragment>
 			<svelte:fragment slot="default">
