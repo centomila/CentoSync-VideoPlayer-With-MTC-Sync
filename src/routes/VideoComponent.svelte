@@ -22,7 +22,6 @@
 			player.src({
 				src: URL.createObjectURL($loadedFiles.files[0]),
 				type: $loadedFiles.files[0].type,
-				// heigth: window.parent.innerHeight
 			});
 			player?.show();
 			console.log($loadedFiles.files[0].type);
@@ -60,6 +59,12 @@
 			player = null;
 		}
 	});
+
+	onMount(() => {
+		updatePlayer();
+		window.addEventListener('resize', updatePlayer);
+	})
+
 </script>
 
 <!-- svelte-ignore a11y-media-has-caption -->

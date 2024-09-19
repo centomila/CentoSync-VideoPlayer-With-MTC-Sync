@@ -29,7 +29,7 @@
 					const result = await mediaInfoHandler.analyzeFile(file);
 					results = [...results, result];
 				} catch (error) {
-					console.error(`Analyzing file ${file.name}:`, error);
+					console.log(`Analyzing file ${file.name}:`, error);
 					results = [...results, `Analyzing ${file.name}`];
 				}
 			}

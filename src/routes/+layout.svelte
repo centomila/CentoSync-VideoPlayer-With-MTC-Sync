@@ -9,7 +9,6 @@
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import MidiPortSelection from './MidiPortSelection.svelte';
 	import MidiTimersCheckboxSPP from './MidiTimersCheckboxSPP.svelte';
-	import SelectVideoFile from './SelectVideoFile.svelte';
 	import Footer from './Footer.svelte';
 </script>
 
@@ -33,7 +32,6 @@
 				<GuiViewSelection />
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<SelectVideoFile />
 				<div class="mr-3 space-x-10"><ThemeSelector /></div>
 				<LightSwitch />
 			</svelte:fragment>

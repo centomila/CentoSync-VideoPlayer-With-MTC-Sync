@@ -40,6 +40,7 @@
 					value: input.name
 				}))
 			];
+			$selectedMidiInputMTC = 'DISABLED';
 		}
 	}
 
