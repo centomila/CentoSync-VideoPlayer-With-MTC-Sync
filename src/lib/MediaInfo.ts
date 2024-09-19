@@ -34,11 +34,21 @@ export class MediaInfoHandler<T extends MediaInfoFormat = 'text'> {
 
 	async analyzeFile(file: File): Promise<T extends 'object' ? Record<string, unknown> : string> {
 		if (!this.mediaInfo) {
-			throw new Error('MediaInfo not initialized');
+			await this.init();
+			if (!this.mediaInfo) {
+				throw new Error('MediaInfo not initialized');
+			}
 		}
 
 		try {
+			if (file.size === 0) {
+				throw new Error(`File size is 0`);
+			}
+
 			const result = await this.mediaInfo.analyzeData(file.size, this.makeFileReader(file));
+			if (result === null) {
+				throw new Error(`MediaInfo returned null`);
+			}
 			console.log(result);
 			return result as T extends 'object' ? Record<string, unknown> : string;
 		} catch (error: unknown) {

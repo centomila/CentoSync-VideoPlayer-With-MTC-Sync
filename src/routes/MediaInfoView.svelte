@@ -39,7 +39,6 @@
 	}
 
 	onMount(async () => {
-		await mediaInfoHandler.init();
 		if ($loadedFiles.files) {
 			await analyzeFiles($loadedFiles.files);
 		}
