@@ -1,7 +1,9 @@
+import { get } from 'svelte/store';
 import { mtcData } from '$lib/stores'; // Import the store
 import { videoPlayerStore } from '$lib/videoPlayerStore';
 
-$: mtcData 
+$: mtcData
+
 
 const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
 const MTC_QUARTER_FRAME_MASK = 0xf;
@@ -56,6 +58,11 @@ export function onMtcMessage(midiData: any) {
 			currentData.minutes * 60 * currentData.frameRate +
 			currentData.seconds * currentData.frameRate +
 			currentData.frames;
+		currentData.seekPosition =
+			currentData.hours * 60 * 60 +
+			currentData.minutes * 60 +
+			currentData.seconds +
+			currentData.milliseconds / 1000;
 		return currentData;
 	});
 
@@ -63,21 +70,42 @@ export function onMtcMessage(midiData: any) {
 	lastFrameTime = currentTime;
 }
 
-export function onStartMessage(midiData: any) {
-	console.log(midiData.data);
-	console.log(`Received start message:`);
+let seekTimeout: ReturnType<typeof setTimeout> | null = null;
+
+export function onStartMessage(midiData: { data: any }) {
+	console.log('Received start message:', midiData.data);
 	videoPlayerStore.play();
 }
 
-export function onContinueMessage(midiData: any) {
+export function onContinueMessage(midiData: { type: string }) {
 	if (midiData.type === 'continue') {
 		console.log('Received continue message');
-		videoPlayerStore.play();
+
+		// Clear any existing timeout
+		if (seekTimeout !== null) {
+			clearTimeout(seekTimeout);
+		}
+
+		// Set a new timeout to debounce seek operations
+		seekTimeout = setTimeout(() => {
+			const currentData = get(mtcData);
+			const seekTime = currentData.seekPosition;
+			console.log('Seeking to:', seekTime);
+			videoPlayerStore.play();
+			videoPlayerStore.seek(seekTime);
+		}, 50); // 50ms debounce
 	}
 }
 
-export function onStopMessage(midiData: any) {
+export function onStopMessage(midiData: { type: string }) {
 	if (midiData.type === 'stop') {
 		console.log('Received stop message');
+		videoPlayerStore.pause();
+
+		// Clear any pending seek operation
+		if (seekTimeout !== null) {
+			clearTimeout(seekTimeout);
+			seekTimeout = null;
+		}
 	}
 }

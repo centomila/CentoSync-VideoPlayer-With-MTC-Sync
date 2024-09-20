@@ -33,7 +33,7 @@
         if (videoElement && !player) {
             player = videojs(videoElement, {
                 autoSetup: false,
-                enableSmoothSeeking: true,
+                enableSmoothSeeking: false,
                 fill: true,
                 responsive: true,
                 controls: true,
@@ -66,5 +66,5 @@
 
 <!-- svelte-ignore a11y-media-has-caption -->
 <div id="video-container" class="hidden w-full">
-    <video bind:this={videoElement} id="my-video" class="video-js"></video>
+    <video bind:this={videoElement} id="my-video" class="video-js" preload="auto"></video>
 </div>

@@ -9,6 +9,7 @@ interface MtcData {
 	frames: number;
 	frameRate: number;
 	elapsedFrames: number;
+	seekPosition: number;
 }
 
 export const mtcData = writable<MtcData>({
@@ -18,7 +19,8 @@ export const mtcData = writable<MtcData>({
 	milliseconds: 0,
 	frames: 0,
 	frameRate: 0,
-	elapsedFrames: 0
+	elapsedFrames: 0,
+	seekPosition: 0
 });
 
 // files

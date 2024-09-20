@@ -6,7 +6,12 @@ function createVideoPlayerStore() {
 
     return {
         subscribe,
-        setPlayer: (player: Player) => set(player),
+        setPlayer: (player: Player | null) => {
+            if (player === null) {
+                player = null;
+            }
+            set(player);
+        },
         play: () => update(player => {
             player?.play();
             return player;
