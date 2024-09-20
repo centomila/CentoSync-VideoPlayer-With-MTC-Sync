@@ -25,7 +25,13 @@ function createVideoPlayerStore() {
                 player.currentTime(time);
             }
             return player;
-        })
+        }),
+        currentTime: () => subscribe(player => {
+            if (player) {
+                return player.currentTime();
+            }
+        }),
+        
     };
 }
 

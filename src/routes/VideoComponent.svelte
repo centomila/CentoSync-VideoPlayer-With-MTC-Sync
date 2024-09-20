@@ -32,8 +32,8 @@
     function initializePlayer() {
         if (videoElement && !player) {
             player = videojs(videoElement, {
-                autoSetup: false,
-                enableSmoothSeeking: false,
+                autoSetup: true,
+                enableSmoothSeeking: true,
                 fill: true,
                 responsive: true,
                 controls: true,

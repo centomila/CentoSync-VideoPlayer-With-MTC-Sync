@@ -51,7 +51,7 @@
 			if (input) {
 				console.info(`Listening for MTC messages from ${input.name}...`);
 				input.addListener('timecode', onMtcMessage);
-				input.addListener('start', onStartMessage);
+				input.addListener('start', onContinueMessage);
 				input.addListener('continue', onContinueMessage);
 				input.addListener('stop', onStopMessage);
 			} else {
@@ -68,7 +68,7 @@
 					let input = WebMidi.getInputByName(option.value);
 					if (input) {
 						input.removeListener('timecode', onMtcMessage);
-						input.removeListener('start', onStartMessage);
+						input.removeListener('start', onContinueMessage);
 						input.removeListener('continue', onContinueMessage);
 						input.removeListener('stop', onStopMessage);
 						console.info(`Stopped listening for MTC messages from ${input.name}...`);

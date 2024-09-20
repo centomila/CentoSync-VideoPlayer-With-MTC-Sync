@@ -72,12 +72,20 @@ export function onMtcMessage(midiData: any) {
 
 let seekTimeout: ReturnType<typeof setTimeout> | null = null;
 
-export function onStartMessage(midiData: { data: any }) {
-	console.log('Received start message:', midiData.data);
-	videoPlayerStore.play();
+export function onStartMessage(midiData: { type: string } | null) {
+	playFromPosition(midiData)
+
 }
 
-export function onContinueMessage(midiData: { type: string }) {
+export function onContinueMessage(midiData: { type: string } | null) {
+	playFromPosition(midiData)
+}
+
+export function playFromPosition(midiData: { type: string } | null) {
+	if (midiData === null) {
+		console.error('Received null continue message');
+		return;
+	}
 	if (midiData.type === 'continue') {
 		console.log('Received continue message');
 
@@ -89,15 +97,23 @@ export function onContinueMessage(midiData: { type: string }) {
 		// Set a new timeout to debounce seek operations
 		seekTimeout = setTimeout(() => {
 			const currentData = get(mtcData);
+			if (currentData === undefined) {
+				console.error('MTC data is undefined');
+				return;
+			}
 			const seekTime = currentData.seekPosition;
 			console.log('Seeking to:', seekTime);
 			videoPlayerStore.play();
 			videoPlayerStore.seek(seekTime);
-		}, 50); // 50ms debounce
+		}, 0); // 50ms debounce
 	}
 }
 
-export function onStopMessage(midiData: { type: string }) {
+export function onStopMessage(midiData: { type: string } | null) {
+	if (midiData === null) {
+		console.error('Received null stop message');
+		return;
+	}
 	if (midiData.type === 'stop') {
 		console.log('Received stop message');
 		videoPlayerStore.pause();
