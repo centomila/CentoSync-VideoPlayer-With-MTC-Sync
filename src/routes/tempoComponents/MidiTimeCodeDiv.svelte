@@ -25,7 +25,7 @@
 		<div class="col-span-2 text-center font-mono font-light text-gray-500"></div>
 		<div class="text-center font-mono font-light text-gray-500">FR</div>
 		<div class="text-center font-mono font-light text-gray-500">FPS</div>
-	
+
 		<div class="text-center font-mono">{mtcHoursFormatted}</div>
 		<div class="text-center font-mono">{mtcMinutesFormatted}</div>
 		<div class="text-center font-mono">{mtcSecondsFormatted}</div>

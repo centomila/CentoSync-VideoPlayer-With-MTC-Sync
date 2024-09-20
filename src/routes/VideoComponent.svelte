@@ -65,6 +65,6 @@
 </script>
 
 <!-- svelte-ignore a11y-media-has-caption -->
-<div id="video-container" class="w-full hidden">
+<div id="video-container" class="hidden w-full">
 	<video bind:this={videoElement} id="my-video" class="video-js"></video>
 </div>

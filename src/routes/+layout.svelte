@@ -8,7 +8,6 @@
 	import MidiTimersCheckboxSPP from './MidiTimersCheckboxSPP.svelte';
 	import SelectVideoFile from './SelectVideoFile.svelte';
 	import MidiTimersContainer from './MidiTimersContainer.svelte';
-	import { guiView } from '$lib/stores';
 	import Footer from './Footer.svelte';
 </script>
 
@@ -33,7 +32,7 @@
 		</div>
 
 		<div
-			class="items-center border-surface-300-600-token flex w-full flex-col space-y-4 border-t p-4"
+			class="border-surface-300-600-token flex w-full flex-col items-center space-y-4 border-t p-4"
 		>
 			<MidiPortSelection />
 			<MidiTimersCheckboxSPP />
@@ -49,10 +48,9 @@
 	</aside>
 
 	<!-- Main content area -->
-	
-		<main class="w-full p-0">
-			<slot></slot>
-			<!-- Page content will be injected here -->
-		</main>
-	
+
+	<main class="w-full p-0">
+		<slot></slot>
+		<!-- Page content will be injected here -->
+	</main>
 </div>

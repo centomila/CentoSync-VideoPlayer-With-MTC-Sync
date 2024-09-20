@@ -27,7 +27,7 @@ export class MediaInfoHandler<T extends MediaInfoFormat = 'text'> {
 
 	private makeFileReader(file: File) {
 		return async (chunkSize: number, offset: number) => {
-			let r = new Uint8Array(await file.slice(offset, offset + chunkSize).arrayBuffer());
+			const r = new Uint8Array(await file.slice(offset, offset + chunkSize).arrayBuffer());
 			return r;
 		};
 	}
