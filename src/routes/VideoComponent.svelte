@@ -35,12 +35,10 @@
 				// poster: $loadedFiles.files?.[0] ? URL.createObjectURL($loadedFiles.files[0]) : '',
 				autoSetup: false,
 				enableSmoothSeeking: true,
-				fluid: true,
+				fill: true,
 				responsive: true,
 				controls: true,
 				muted: true,
-				width: 640,
-				height: 264,
 				sources: [
 					{
 						src: $loadedFiles.files?.[0] ? URL.createObjectURL($loadedFiles.files[0]) : '',
@@ -67,6 +65,6 @@
 </script>
 
 <!-- svelte-ignore a11y-media-has-caption -->
-<div id="video-container" class="hidden">
+<div id="video-container" class="w-full hidden">
 	<video bind:this={videoElement} id="my-video" class="video-js"></video>
 </div>

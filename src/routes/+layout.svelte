@@ -33,7 +33,7 @@
 		</div>
 
 		<div
-			class="items-left border-surface-300-600-token flex w-full flex-col space-y-4 border-t p-4"
+			class="items-center border-surface-300-600-token flex w-full flex-col space-y-4 border-t p-4"
 		>
 			<MidiPortSelection />
 			<MidiTimersCheckboxSPP />
@@ -50,7 +50,7 @@
 
 	<!-- Main content area -->
 	
-		<main class="w-full">
+		<main class="w-full p-0">
 			<slot></slot>
 			<!-- Page content will be injected here -->
 		</main>
