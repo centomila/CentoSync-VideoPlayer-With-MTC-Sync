@@ -30,7 +30,7 @@ interface LoadedFiles {
 
 export const loadedFiles = writable<LoadedFiles>({
 	files: undefined,
-	currentFileName: 'Load a video file or drag and drop it on the page'
+	currentFileName: 'Load a video'
 });
 
 // Midi Clock

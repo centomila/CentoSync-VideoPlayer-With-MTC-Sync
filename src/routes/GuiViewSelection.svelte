@@ -10,7 +10,11 @@
 	};
 </script>
 
-<RadioGroup>
-	<RadioItem bind:group={$guiView} name="justify" value="video"><i class="fas fa-film"></i></RadioItem>
-	<RadioItem bind:group={$guiView} name="justify" value="info"><i class="fas fa-info"></i></RadioItem>
+<RadioGroup class="w-full flex-wrap">
+	<RadioItem bind:group={$guiView} name="justify" value="video" class="min-w-20 py-4"
+		><i class="fas fa-2x fa-film"></i></RadioItem
+	>
+	<RadioItem bind:group={$guiView} name="justify" value="info" class="min-w-20 py-4"
+		><i class="fas fa-2x fa-info"></i></RadioItem
+	>
 </RadioGroup>

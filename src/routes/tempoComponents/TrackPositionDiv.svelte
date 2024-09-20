@@ -14,8 +14,8 @@
 	$: mtcMillisecondsFormatted = mtcMilliseconds.toString().split('.')[0].padStart(3, '0');
 </script>
 
-<h3 class="mb-8 font-extrabold">Track Position</h3>
-<div class="grid grid-cols-7 gap-0">
+<h3 class="mb-4 font-extrabold">Track Position</h3>
+<div class="grid grid-cols-7 gap-2 max-w-screen-lg text px-4">
 	<div class="text-center font-mono font-light">{mtcHoursFormatted}</div>
 	<div class="font-extralight text-gray-500">:</div>
 	<div class="text-center font-mono font-light">{mtcMinutesFormatted}</div>

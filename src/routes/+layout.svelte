@@ -14,20 +14,22 @@
 
 <div class="bg-surface-100-800-token flex min-h-screen">
 	<!-- Sidebar -->
-	<aside class="border-surface-300-600-token sticky top-0 flex max-h-screen w-64 flex-col border-r">
+	<aside class="border-surface-300-600-token sticky top-0 flex max-h-screen flex-col border-r">
 		<!-- Header -->
 		<header class="border-surface-300-600-token border-b p-4">
 			<h1 class="text-center text-2xl font-bold">Video Sync MTC</h1>
 		</header>
 
 		<!-- Sidebar content -->
-		<div class="flex-grow space-y-4 p-0">
+		<div class="flex-grow">
+			<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
+				<SelectVideoFile />
+			</div>
 			<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
 				<GuiViewSelection />
 			</div>
 			<!-- Add more sidebar items here -->
 			<MidiTimersContainer />
-
 		</div>
 
 		<div
@@ -47,10 +49,10 @@
 	</aside>
 
 	<!-- Main content area -->
-	<div class="flex flex-grow flex-col">
-		<main class="flex-grow">
+	
+		<main class="w-full">
 			<slot></slot>
 			<!-- Page content will be injected here -->
 		</main>
-	</div>
+	
 </div>

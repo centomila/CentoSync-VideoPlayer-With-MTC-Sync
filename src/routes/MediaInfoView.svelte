@@ -71,11 +71,6 @@
 			{/if}
 		{/each}
 	{:else}
-		{#if $guiView === 'info' || $guiView === 'video'}
-			<section class="flex-col items-center space-x-4 space-y-4">
-				<SelectVideoFile />
-			</section>
-		{/if}
-		<h3 class="title text-center text-xl">No files analyzed yet.</h3>
+		<h3 class="title text-center text-xl">I have nothing to analyze. Load a video.</h3>
 	{/if}
 </div>

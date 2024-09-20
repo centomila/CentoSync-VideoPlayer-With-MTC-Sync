@@ -67,17 +67,20 @@
 	}
 </script>
 
-<label
-	for="video-file"
-	class="variant-filled-primary btn flex cursor-pointer items-center space-x-2"
->
-	<i class="fa fa-film"></i><span>{$loadedFiles.currentFileName}</span>
-	<input
-		type="file"
-		id="video-file"
-		bind:files={$loadedFiles.files}
-		on:change={loadVideoFile}
-		accept="video"
-		class="hidden"
-	/>
-</label>
+<div class="max-w-64 min-w-64"> <!-- Adjust max-w-md as needed -->
+  <label
+    for="video-file"
+    class="variant-filled-primary btn cursor-pointer flex items-center space-x-2 w-full"
+  >
+    <i class="fa fa-upload flex-shrink-0"></i>
+    <span class="truncate">{$loadedFiles.currentFileName}</span>
+    <input
+      type="file"
+      id="video-file"
+      bind:files={$loadedFiles.files}
+      on:change={loadVideoFile}
+      accept="video/*"
+      class="hidden"
+    />
+  </label>
+</div>

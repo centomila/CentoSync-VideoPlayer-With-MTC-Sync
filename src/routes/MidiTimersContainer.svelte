@@ -6,16 +6,16 @@
 	import { sppChecked } from '../lib/stores';
 </script>
 
-<div class="mx-auto max-w-screen-lg py-4">
-	<div class="text-center">
-		<TrackPositionDiv />
-		{#if $sppChecked}
-			<hr class="my-16 border-t border-gray-300" />
-			<BpmDiv />
-		{/if}
-		<hr class="my-16 border-t border-gray-300" />
-		<MidiTimeCodeDiv />
-		<hr class="my-16 w-full border-t border-gray-300" />
-		<ElapsedFramesDiv />
-	</div>
+<div class="text-center">
+	<hr class="mb-4 w-full border-t border-gray-300" />
+	<TrackPositionDiv />
+	{#if $sppChecked}
+		<hr class="my-4 border-t border-gray-300" />
+		<BpmDiv />
+	{/if}
+	<hr class="my-4 border-t border-gray-300" />
+	<MidiTimeCodeDiv />
+	<hr class="my-4 w-full border-t border-gray-300" />
+	<ElapsedFramesDiv />
+	<hr class="my-4 w-full border-t border-gray-300" />
 </div>
