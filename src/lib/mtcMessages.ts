@@ -2,8 +2,7 @@ import { get } from 'svelte/store';
 import { mtcData } from '$lib/stores'; // Import the store
 import { videoPlayerStore } from '$lib/videoPlayerStore';
 
-$: mtcData
-
+$: mtcData;
 
 const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
 const MTC_QUARTER_FRAME_MASK = 0xf;
@@ -73,12 +72,11 @@ export function onMtcMessage(midiData: any) {
 let seekTimeout: ReturnType<typeof setTimeout> | null = null;
 
 export function onStartMessage(midiData: { type: string } | null) {
-	playFromPosition(midiData)
-
+	playFromPosition(midiData);
 }
 
 export function onContinueMessage(midiData: { type: string } | null) {
-	playFromPosition(midiData)
+	playFromPosition(midiData);
 }
 
 export function playFromPosition(midiData: { type: string } | null) {
