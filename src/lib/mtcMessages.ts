@@ -1,4 +1,5 @@
 import { mtcData } from '$lib/stores'; // Import the store
+import { videoPlayerStore } from '$lib/videoPlayerStore';
 
 $: mtcData 
 
@@ -65,11 +66,13 @@ export function onMtcMessage(midiData: any) {
 export function onStartMessage(midiData: any) {
 	console.log(midiData.data);
 	console.log(`Received start message:`);
+	videoPlayerStore.play();
 }
 
 export function onContinueMessage(midiData: any) {
 	if (midiData.type === 'continue') {
 		console.log('Received continue message');
+		videoPlayerStore.play();
 	}
 }
 
