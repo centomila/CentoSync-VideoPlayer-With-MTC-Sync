@@ -96,12 +96,16 @@ export function onSysexMessage(midiData: any) {
 				frames;
 
 			// Calculate total seconds
-			const totalSeconds = hours * 3600 + minutes * 60 + (seconds / 1000 + milliseconds / 1000 / 2);
+			const totalSeconds = currentData.hours * 60 * 60 +
+				currentData.minutes * 60 +
+				currentData.seconds +
+				currentData.milliseconds / 1000;
 			currentData.seekPosition = totalSeconds;
 
 			return currentData;
 		});
 	}
+	videoPlayerStore.seek(get(mtcData).seekPosition);
 	seekPosition();
 }
 
