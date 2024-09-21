@@ -3,19 +3,44 @@
 	import TrackPositionDiv from './tempoComponents/TrackPositionDiv.svelte';
 	import MidiTimeCodeDiv from './tempoComponents/MidiTimeCodeDiv.svelte';
 	import ElapsedFramesDiv from './tempoComponents/ElapsedFramesDiv.svelte';
-	import { sppChecked } from '../lib/stores';
+	import {
+		bpmComponent,
+		midiTimecodeComponent,
+		elapsedFramesComponent,
+		trackPositionComponent
+	} from '$lib/stores';
+
+	$: enabledComponents = [
+		$trackPositionComponent,
+		$bpmComponent,
+		$midiTimecodeComponent,
+		$elapsedFramesComponent
+	].filter(Boolean);
+
+	$: gridCols = enabledComponents.length;
 </script>
 
-<div class="text-center">
-	<hr class="mb-4 w-full border-t border-gray-300" />
-	<TrackPositionDiv />
-	{#if $sppChecked}
-		<hr class="my-4 border-t border-gray-300" />
-		<BpmDiv />
+<div
+	class="flex-col w-full justify-center pb-4 text-center"
+>
+	{#if $trackPositionComponent}
+		<div class="border-b border-surface-300-600-token py-4 last:border-b-0">
+			<TrackPositionDiv />
+		</div>
 	{/if}
-	<hr class="my-4 border-t border-gray-300" />
-	<MidiTimeCodeDiv />
-	<hr class="my-4 w-full border-t border-gray-300" />
-	<ElapsedFramesDiv />
-	<hr class="my-4 w-full border-t border-gray-300" />
+	{#if $bpmComponent}
+		<div class="border-b border-surface-300-600-token py-4 last:border-b-0">
+			<BpmDiv />
+		</div>
+	{/if}
+	{#if $midiTimecodeComponent}
+		<div class="border-b border-surface-300-600-token py-4 last:border-b-0">
+			<MidiTimeCodeDiv />
+		</div>
+	{/if}
+	{#if $elapsedFramesComponent}
+		<div class="border-b border-surface-300-600-token py-4 last:border-b-0">
+			<ElapsedFramesDiv />
+		</div>
+	{/if}
 </div>

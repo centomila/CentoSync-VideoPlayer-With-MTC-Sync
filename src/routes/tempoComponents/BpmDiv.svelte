@@ -4,7 +4,10 @@
 	$: bpmFormatted = $bpm ? parseFloat($bpm.toFixed(2)) : 0;
 </script>
 
-<h3 class="mb-4 font-extrabold">BPM</h3>
-<div class="grid grid-cols-1 gap-2">
-	<div class="text-center font-mono font-light">{bpmFormatted}</div>
+<div class="px-4">
+	<!-- <h3 class="mb-2 font-extrabold">Beats Per Minute</h3> -->
+	<div class="grid grid-cols-1 gap-1">
+		<div class="text-center font-mono font-light text-gray-500">BPM</div>
+		<div class="text-center font-mono font-light lg:text-2xl">{bpmFormatted}</div>
+	</div>
 </div>

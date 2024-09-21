@@ -16,8 +16,8 @@
 </script>
 
 <div class="px-4">
-	<h3 class="mb-4 font-extrabold">Midi Timecode</h3>
-	<div class="grid grid-cols-7 gap-2">
+	<!-- <h3 class="mb-2 font-extrabold">Midi Timecode</h3> -->
+	<div class="grid grid-cols-7 gap-1">
 		<div class="text-center font-mono font-light text-gray-500">H</div>
 		<div class="text-center font-mono font-light text-gray-500">M</div>
 		<div class="text-center font-mono font-light text-gray-500">S</div>
@@ -25,11 +25,11 @@
 		<div class="text-center font-mono font-light text-gray-500">FR</div>
 		<div class="text-center font-mono font-light text-gray-500">FPS</div>
 
-		<div class="text-center font-mono">{mtcHoursFormatted}</div>
-		<div class="text-center font-mono">{mtcMinutesFormatted}</div>
-		<div class="text-center font-mono">{mtcSecondsFormatted}</div>
-		<div class="col-span-2 text-center font-mono"></div>
-		<div class="text-center font-mono">{mtcFramesFormatted}</div>
-		<div class="text-center font-mono">{mtcFps}</div>
+		<div class="lg:text-2xl text-center font-mono">{mtcHoursFormatted}</div>
+		<div class="lg:text-2xl text-center font-mono">{mtcMinutesFormatted}</div>
+		<div class="lg:text-2xl text-center font-mono">{mtcSecondsFormatted}</div>
+		<div class="lg:text-2xl col-span-2 text-center font-mono"></div>
+		<div class="lg:text-2xl text-center font-mono">{mtcFramesFormatted}</div>
+		<div class="lg:text-2xl text-center font-mono">{mtcFps}</div>
 	</div>
 </div>

@@ -14,13 +14,23 @@
 	$: mtcMillisecondsFormatted = mtcMilliseconds.toString().split('.')[0].padStart(3, '0');
 </script>
 
-<h3 class="mb-4 font-extrabold">Track Position</h3>
-<div class="text grid max-w-screen-lg grid-cols-7 gap-2 px-4">
-	<div class="text-center font-mono font-light">{mtcHoursFormatted}</div>
-	<div class="font-extralight text-gray-500">:</div>
-	<div class="text-center font-mono font-light">{mtcMinutesFormatted}</div>
-	<div class="font-extralight text-gray-500">:</div>
-	<div class="text-center font-mono font-light">{mtcSecondsFormatted}</div>
-	<div class="font-extralight text-gray-500">:</div>
-	<div class="text-center font-mono font-light">{mtcMillisecondsFormatted}</div>
+<div class="px-4">
+	<!-- <h3 class="mb-2 font-extrabold">Track Position</h3> -->
+	<div class="text grid grid-cols-7 gap-1 px-4">
+		<div class="text-center font-mono font-light text-gray-500">H</div>
+		<div class="text-center font-mono font-light text-gray-500"></div>
+		<div class="text-center font-mono font-light text-gray-500">M</div>
+		<div class="text-center font-mono font-light text-gray-500"></div>
+		<div class="text-center font-mono font-light text-gray-500">S</div>
+		<div class="text-center font-mono font-light text-gray-500"></div>
+		<div class="text-center font-mono font-light text-gray-500">MS</div>
+
+		<div class="lg:text-2xl text-center font-mono font-light">{mtcHoursFormatted}</div>
+		<div class="lg:text-2xl font-extralight text-gray-500">:</div>
+		<div class="lg:text-2xl text-center font-mono font-light">{mtcMinutesFormatted}</div>
+		<div class="lg:text-2xl font-extralight text-gray-500">:</div>
+		<div class="lg:text-2xl text-center font-mono font-light">{mtcSecondsFormatted}</div>
+		<div class="lg:text-2xl font-extralight text-gray-500">.</div>
+		<div class="lg:text-2xl text-center font-mono font-light">{mtcMillisecondsFormatted}</div>
+	</div>
 </div>

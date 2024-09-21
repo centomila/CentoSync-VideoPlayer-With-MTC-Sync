@@ -41,7 +41,11 @@ export const bpm = writable(120);
 
 // GUI Settings
 export const selectedMidiInputMTC = writable('');
-export const sppChecked = writable(false);
+
+export const trackPositionComponent = writable(true);
+export const midiTimecodeComponent = writable(true);
+export const elapsedFramesComponent = writable(true);
+export const bpmComponent = writable(false);
 
 // View
 

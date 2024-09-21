@@ -4,7 +4,12 @@
 	$: ({ elapsedFrames: mtcElapsedFrames } = $mtcData);
 </script>
 
-<h3 class="mb-4 font-extrabold">Elapsed Frames</h3>
-<p class="items-center">
-	<span id="elapsedFrames" class="font-mono">{mtcElapsedFrames}</span>
-</p>
+<div class="px-4">
+	<!-- <h3 class="mb-2 font-extrabold">Elapsed Frames</h3> -->
+	<div class="grid grid-cols-1 gap-1">
+		<div class="text-center font-mono font-light text-gray-500">Elapsed Frames</div>
+		<div id="elapsedFrames" class="text-center font-mono lg:text-2xl font-light">
+			{mtcElapsedFrames}
+		</div>
+	</div>
+</div>
