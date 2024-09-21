@@ -6,8 +6,6 @@ const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
 const MTC_QUARTER_FRAME_MASK = 0xf;
 const MTC_FULL_FRAME_MASK = 0xf0;
 
-let lastFrameTime = performance.now();
-
 export function onMtcMessage(midiData: any) {
 	const data = midiData.data[1];
 	const msgType = data >> 4;
@@ -61,8 +59,6 @@ export function onMtcMessage(midiData: any) {
 			currentData.milliseconds / 1000;
 		return currentData;
 	});
-
-	lastFrameTime = performance.now();
 }
 
 export function onSysexMessage(midiData: any) {
