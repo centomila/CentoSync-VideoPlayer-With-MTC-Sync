@@ -1,5 +1,5 @@
 // stores.ts
-import { writable } from 'svelte/store';
+import { writable, readable } from 'svelte/store';
 // MTC
 interface MtcData {
 	hours: number;
@@ -46,3 +46,6 @@ export const sppChecked = writable(false);
 // View
 
 export const guiView = writable('video');
+
+export const appName = readable('Zimmer Time MTC', () => {});
+export const appVersion = readable('0.5.0', () => {});

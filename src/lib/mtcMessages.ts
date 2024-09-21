@@ -67,19 +67,24 @@ export function onMtcMessage(midiData: any) {
 
 	const currentTime = performance.now();
 	lastFrameTime = currentTime;
-	
 }
 
 export function onSysexMessage(midiData: any) {
 	const data = midiData.data; // Example: [240, 127, 127, 1, 1, 96, 0, 2, 0, 247]
 
 	// Ensure this is the expected SysEx message type
-	if (data[0] === 0xF0 && data[1] === 0x7F && data[2] === 0x7F && data[3] === 0x01 && data[4] === 0x01) {
+	if (
+		data[0] === 0xf0 &&
+		data[1] === 0x7f &&
+		data[2] === 0x7f &&
+		data[3] === 0x01 &&
+		data[4] === 0x01
+	) {
 		// Extract and decode MTC data
-		const hours = (data[5] & 0x1F);        // 5 bits for hours (0-23)
-		const minutes = (data[6] & 0x3F);      // 6 bits for minutes (0-59)
-		const seconds = (data[7] & 0x3F);      // 6 bits for seconds (0-59)
-		const frames = (data[8] & 0x1F);       // 5 bits for frames (0-29 typically)
+		const hours = data[5] & 0x1f; // 5 bits for hours (0-23)
+		const minutes = data[6] & 0x3f; // 6 bits for minutes (0-59)
+		const seconds = data[7] & 0x3f; // 6 bits for seconds (0-59)
+		const frames = data[8] & 0x1f; // 5 bits for frames (0-29 typically)
 
 		// Assuming 30 fps (adjust if your DAW uses a different frame rate)
 		const framesPerSecond = get(mtcData).frameRate || 30;
@@ -93,7 +98,7 @@ export function onSysexMessage(midiData: any) {
 			currentData.milliseconds = milliseconds;
 
 			// Calculate total seconds
-			const totalSeconds = (hours * 3600) + (minutes * 60) + seconds + (milliseconds / 1000);
+			const totalSeconds = hours * 3600 + minutes * 60 + seconds + milliseconds / 1000;
 			currentData.seekPosition = totalSeconds;
 
 			return currentData;
@@ -101,7 +106,6 @@ export function onSysexMessage(midiData: any) {
 	}
 	seekPosition();
 }
-
 
 let seekTimeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -116,26 +120,24 @@ export function onContinueMessage(midiData: { type: string } | null) {
 }
 
 export function seekPosition() {
-	
-		console.log('Received continue message');
+	console.log('Received continue message');
 
-		// Clear any existing timeout
-		if (seekTimeout !== null) {
-			clearTimeout(seekTimeout);
+	// Clear any existing timeout
+	if (seekTimeout !== null) {
+		clearTimeout(seekTimeout);
+	}
+
+	// Set a new timeout to debounce seek operations
+	seekTimeout = setTimeout(() => {
+		const currentData = get(mtcData);
+		if (currentData === undefined) {
+			console.error('MTC data is undefined');
+			return;
 		}
-
-		// Set a new timeout to debounce seek operations
-		seekTimeout = setTimeout(() => {
-			const currentData = get(mtcData);
-			if (currentData === undefined) {
-				console.error('MTC data is undefined');
-				return;
-			}
-			const seekTime = currentData.seekPosition;
-			console.log('Seeking to:', seekTime);
-			videoPlayerStore.seek(seekTime);
-		}, 10); // 0ms debounce
-	
+		const seekTime = currentData.seekPosition;
+		console.log('Seeking to:', seekTime);
+		videoPlayerStore.seek(seekTime);
+	}, 10); // 0ms debounce
 }
 
 export function startPlaying() {
