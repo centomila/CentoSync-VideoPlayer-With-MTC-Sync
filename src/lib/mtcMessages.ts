@@ -62,8 +62,7 @@ export function onMtcMessage(midiData: any) {
 		return currentData;
 	});
 
-	const currentTime = performance.now();
-	lastFrameTime = currentTime;
+	lastFrameTime = performance.now();
 }
 
 export function onSysexMessage(midiData: any) {
@@ -101,7 +100,7 @@ export function onSysexMessage(midiData: any) {
 				frames;
 
 			// Calculate total seconds
-			const totalSeconds = hours * 3600 + minutes * 60 + ((seconds / 1000) + (milliseconds / 1000) / 2);
+			const totalSeconds = hours * 3600 + minutes * 60 + (seconds / 1000 + milliseconds / 1000 / 2);
 			currentData.seekPosition = totalSeconds;
 
 			return currentData;
@@ -112,12 +111,12 @@ export function onSysexMessage(midiData: any) {
 
 let seekTimeout: ReturnType<typeof setTimeout> | null = null;
 
-export function onStartMessage(midiData: { type: string } | null) {
+export function onStartMessage() {
 	startPlaying();
 	seekPosition();
 }
 
-export function onContinueMessage(midiData: { type: string } | null) {
+export function onContinueMessage() {
 	startPlaying();
 	seekPosition();
 }

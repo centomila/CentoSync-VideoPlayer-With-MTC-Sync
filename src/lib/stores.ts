@@ -48,4 +48,4 @@ export const sppChecked = writable(false);
 export const guiView = writable('video');
 
 export const appName = readable('Zimmer Time MTC', () => {});
-export const appVersion = readable('0.5.0', () => {});
+export const appVersion = readable('0.5.1', () => {});
