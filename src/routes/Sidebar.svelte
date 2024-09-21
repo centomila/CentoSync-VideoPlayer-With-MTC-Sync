@@ -3,12 +3,13 @@
 	import ThemeSelector from './ThemeSelector.svelte';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import MidiPortSelection from './MidiPortSelection.svelte';
-	import MidiTimersCheckboxSPP from './MidiTimersCheckboxSPP.svelte';
+	import ToggleBpm from './ToggleBpm.svelte';
+	import ToggleElapsedFrames from './ToggleElapsedFrames.svelte';
 	import SelectVideoFile from './SelectVideoFile.svelte';
-	import MidiTimersContainer from './MidiTimersContainer.svelte';
-	import Footer from './Footer.svelte';
 	import { appName, appVersion } from '$lib/stores';
 	import { onMount } from 'svelte';
+	import { SlideToggle } from '@skeletonlabs/skeleton';
+	import Copyright from './Copyright.svelte';
 
 	onMount(() => {
 		document.title = `${$appName} ${$appVersion} - No video loaded`;
@@ -17,7 +18,7 @@
 
 <aside class="border-surface-300-600-token sticky top-0 flex max-h-screen flex-col border-r">
 	<!-- Header -->
-	<header class="border-surface-300-600-token border-b p-4">
+	<header class="border-surface-300-600-token p-4">
 		<h1 class="text-center text-2xl font-bold">{$appName}</h1>
 		<pre class="text-xxl text-center">{$appVersion}</pre>
 	</header>
@@ -30,15 +31,28 @@
 		<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
 			<GuiViewSelection />
 		</div>
-		<!-- Add more sidebar items here -->
-		<MidiTimersContainer />
+		<div class="flex flex-col border-surface-300-600-token border-t p-4">
+			<div class="py-2">
+				<SlideToggle name="slider-label" checked>(label)</SlideToggle>
+			</div>
+			<div class="py-2">
+				<SlideToggle name="slider-label" checked>(label)</SlideToggle>
+			</div>
+
+			<div class="py-2">
+				<ToggleElapsedFrames />
+			</div>
+
+			<div class="py-2">
+				<ToggleBpm />
+			</div>
+		</div>
 	</div>
 
 	<div
 		class="border-surface-300-600-token flex w-full flex-col items-center space-y-4 border-t p-4"
 	>
 		<MidiPortSelection />
-		<MidiTimersCheckboxSPP />
 	</div>
 	<!-- Footer -->
 	<div class="border-surface-300-600-token flex flex-col items-center space-y-4 border-t p-4">
@@ -46,6 +60,6 @@
 		<LightSwitch title="Dark Mode" />
 	</div>
 	<footer class="border-surface-300-600-token border-t p-4">
-		<Footer />
+		<Copyright />
 	</footer>
 </aside>

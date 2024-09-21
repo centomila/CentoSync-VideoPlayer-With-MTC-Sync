@@ -21,26 +21,26 @@
 </script>
 
 <div
-	class="flex-col w-full justify-center pb-4 text-center"
+	class="flex flex-grow justify-center border-t border-surface-300-600-token"
 >
 	{#if $trackPositionComponent}
-		<div class="border-b border-surface-300-600-token py-4 last:border-b-0">
+		<div class="flex-grow border-r border-surface-300-600-token py-4 ">
 			<TrackPositionDiv />
 		</div>
 	{/if}
-	{#if $bpmComponent}
-		<div class="border-b border-surface-300-600-token py-4 last:border-b-0">
-			<BpmDiv />
-		</div>
-	{/if}
 	{#if $midiTimecodeComponent}
-		<div class="border-b border-surface-300-600-token py-4 last:border-b-0">
-			<MidiTimeCodeDiv />
-		</div>
+	<div class="flex-grow border-r border-surface-300-600-token py-4 ">
+		<MidiTimeCodeDiv />
+	</div>
 	{/if}
 	{#if $elapsedFramesComponent}
-		<div class="border-b border-surface-300-600-token py-4 last:border-b-0">
-			<ElapsedFramesDiv />
+	<div class="flex-grow border-r border-surface-300-600-token py-4 ">
+		<ElapsedFramesDiv />
+	</div>
+	{/if}
+	{#if $bpmComponent}
+		<div class="flex-grow border-r border-surface-300-600-token py-4 ">
+			<BpmDiv />
 		</div>
 	{/if}
 </div>

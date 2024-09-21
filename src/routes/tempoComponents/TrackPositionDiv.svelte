@@ -26,11 +26,11 @@
 		<div class="text-center font-mono font-light text-gray-500">MS</div>
 
 		<div class="lg:text-2xl text-center font-mono font-light">{mtcHoursFormatted}</div>
-		<div class="lg:text-2xl font-extralight text-gray-500">:</div>
+		<div class="lg:text-2xl text-center font-extralight text-gray-500">:</div>
 		<div class="lg:text-2xl text-center font-mono font-light">{mtcMinutesFormatted}</div>
-		<div class="lg:text-2xl font-extralight text-gray-500">:</div>
+		<div class="lg:text-2xl text-center font-extralight text-gray-500">:</div>
 		<div class="lg:text-2xl text-center font-mono font-light">{mtcSecondsFormatted}</div>
-		<div class="lg:text-2xl font-extralight text-gray-500">.</div>
+		<div class="lg:text-2xl text-center font-extralight text-gray-500">.</div>
 		<div class="lg:text-2xl text-center font-mono font-light">{mtcMillisecondsFormatted}</div>
 	</div>
 </div>

@@ -4,6 +4,7 @@
 	import type Player from 'video.js/dist/types/player';
 	import { loadedFiles } from '$lib/stores';
 	import { videoPlayerStore } from '$lib/videoPlayerStore';
+	import MidiTimersContainer from './MidiTimersContainer.svelte';
 
 	let player: Player | null = null;
 	let videoElement: HTMLVideoElement;
@@ -62,5 +63,6 @@
 
 <!-- svelte-ignore a11y-media-has-caption -->
 <div id="video-container" class="w-full mx-auto my-auto">
+	<MidiTimersContainer/>
 	<video bind:this={videoElement} id="my-video" class="video-js" preload="auto"></video>
 </div>

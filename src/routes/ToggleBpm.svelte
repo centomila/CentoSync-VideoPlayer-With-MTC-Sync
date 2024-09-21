@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
 	import { SlideToggle } from '@skeletonlabs/skeleton';
-	import { selectedMidiInputMTC, bpmComponent } from '../lib/stores';
+	import {
+		selectedMidiInputMTC,
+		bpmComponent
+	} from '$lib/stores';
 	import { onSPPMessage, onMidiClockMessage } from '$lib/sppMessages';
 
 	function startClockListening() {
@@ -36,6 +39,6 @@
 </script>
 
 <!-- Frontend -->
-<div class="flex items-center space-x-2">
+<div class="items-left flex space-x-2">
 	<SlideToggle name="slider-label" bind:checked={$bpmComponent}>Midi Clock (BPM)</SlideToggle>
 </div>
