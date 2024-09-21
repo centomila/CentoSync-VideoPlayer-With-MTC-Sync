@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy, afterUpdate } from 'svelte';
 	import { createMediaInfoHandler } from '$lib/MediaInfo';
-	import { loadedFiles, guiView } from '$lib/stores';
-	import SelectVideoFile from './SelectVideoFile.svelte';
+	import { loadedFiles } from '$lib/stores';
 	import type { MediaInfoFormat } from '$lib/MediaInfo';
 
 	export let format: MediaInfoFormat = 'text';
@@ -58,12 +57,12 @@
 
 <!-- <input type="file" multiple bind:files={$loadedFiles.files} /> -->
 
-<div class="mx-auto max-w-screen-lg py-10">
+<div class="mx-auto my-auto max-w-screen-lg py-10">
 	{#if isAnalyzing}
 		<pre class="text-xxl">Analyzing {$loadedFiles.currentFileName}</pre>
 	{:else if results.length > 0}
-		{#each results as result, index}
-			<!-- <h3>File {index + 1}</h3> -->
+		<h2 class="title text-xxl text-center">Media Info</h2>
+		{#each results as result}
 			{#if typeof result === 'string'}
 				<pre class="text-wrap text-xl">{result}</pre>
 			{:else}
@@ -71,6 +70,8 @@
 			{/if}
 		{/each}
 	{:else}
-		<h3 class="title text-center text-xl">I have nothing to analyze. Load a video.</h3>
+		<div class="flex h-screen items-center justify-center">
+			<h2 class="title text-center text-xl">I have nothing to analyze. Load a video.</h2>
+		</div>
 	{/if}
 </div>

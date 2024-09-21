@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { bpm } from '../../lib/stores';
+	import { bpm } from '$lib/stores';
 
-	$: bpmFormatted = $bpm;
+	$: bpmFormatted = $bpm ? parseFloat($bpm.toFixed(2)) : 0;
 </script>
 
 <h3 class="mb-4 font-extrabold">BPM</h3>

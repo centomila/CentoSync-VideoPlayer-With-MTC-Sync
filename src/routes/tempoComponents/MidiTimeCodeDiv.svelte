@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { mtcData } from '../../lib/stores';
+	import { mtcData } from '$lib/stores';
 
 	$: ({
 		hours: mtcHours,

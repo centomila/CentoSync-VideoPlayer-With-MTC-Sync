@@ -1,5 +1,4 @@
-import { bpm } from '../lib/stores';
-import { get } from 'svelte/store';
+import { bpm } from '$lib/stores';
 export { onSPPMessage, onMidiClockMessage };
 
 let currentBpm = 0;
@@ -25,9 +24,9 @@ function handleMidiClock(): void {
 
 		if (clockCount === 24) {
 			const averageClockInterval = clockIntervalSum / 24;
-			const newBpm = Math.round(60000 / averageClockInterval / 24);
+			const newBpm = 60000 / averageClockInterval / 24;
 			if (newBpm !== currentBpm) {
-				bpm.update((_) => newBpm);
+				bpm.update(() => newBpm);
 				currentBpm = newBpm;
 			}
 
@@ -42,20 +41,20 @@ function handleMidiClock(): void {
 
 function sppArrayToTime(sppArray: any[], bpm: number) {
 	// Extract the LSB and MSB from the array
-	let lsb = sppArray[1]; // Least significant byte
-	let msb = sppArray[2]; // Most significant byte
+	const lsb = sppArray[1]; // Least significant byte
+	const msb = sppArray[2]; // Most significant byte
 
 	// Calculate the 14-bit SPP value from the LSB and MSB
-	let sppValue = (msb << 7) | lsb; // Combine MSB and LSB to get the SPP value
+	const sppValue = (msb << 7) | lsb; // Combine MSB and LSB to get the SPP value
 
 	// Convert the SPP value to time in seconds
-	let timeInSeconds = (sppValue * 60) / (bpm * 4);
+	const timeInSeconds = (sppValue * 60) / (bpm * 4);
 
 	// Convert time in seconds to HH:MM:SSS format
-	let hours = Math.floor(timeInSeconds / 3600);
-	let minutes = Math.floor((timeInSeconds % 3600) / 60);
-	let seconds = Math.floor(timeInSeconds % 60);
-	let milliseconds = Math.floor((timeInSeconds % 1) * 1000);
+	const hours = Math.floor(timeInSeconds / 3600);
+	const minutes = Math.floor((timeInSeconds % 3600) / 60);
+	const seconds = Math.floor(timeInSeconds % 60);
+	const milliseconds = Math.floor((timeInSeconds % 1) * 1000);
 
 	// Format the time as HH:MM:SSS and return it
 	return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')}`;

@@ -6,7 +6,6 @@ const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
 const MTC_QUARTER_FRAME_MASK = 0xf;
 const MTC_FULL_FRAME_MASK = 0xf0;
 
-
 let lastFrameTime = performance.now();
 
 export function onMtcMessage(midiData: any) {
@@ -85,7 +84,7 @@ export function onSysexMessage(midiData: any) {
 		const frames = data[8] & 0x1f; // 5 bits for frames (0-29 typically)
 
 		// Assuming 30 fps (adjust if your DAW uses a different frame rate)
-		const framesPerSecond = get(mtcData).frameRate || 30;
+		const framesPerSecond = get(mtcData).frameRate === 0 ? 30 : get(mtcData).frameRate;
 		const milliseconds = (frames / framesPerSecond) * 1000;
 
 		// Update Svelte store (mtcData) using the decoded MTC data
@@ -94,9 +93,15 @@ export function onSysexMessage(midiData: any) {
 			currentData.minutes = minutes;
 			currentData.seconds = seconds;
 			currentData.milliseconds = milliseconds;
+			currentData.frames = frames;
+			currentData.elapsedFrames =
+				hours * 60 * 60 * framesPerSecond +
+				minutes * 60 * framesPerSecond +
+				seconds * framesPerSecond +
+				frames;
 
 			// Calculate total seconds
-			const totalSeconds = hours * 3600 + minutes * 60 + seconds + milliseconds / 1000;
+			const totalSeconds = hours * 3600 + minutes * 60 + ((seconds / 1000) + (milliseconds / 1000) / 2);
 			currentData.seekPosition = totalSeconds;
 
 			return currentData;
