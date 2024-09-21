@@ -15,22 +15,13 @@
 		.then(() => console.log('System exclusive messages are enabled'))
 		.catch((err) => console.log(err));
 
-	function onEnabled() {
-		// Display available MIDI input devices
-		if (WebMidi.inputs.length < 1) {
-			console.log('No device detected.');
-		} else {
-			console.log('MIDI enabled!');
-		}
-	}
-
 	WebMidi.addListener('midiaccessgranted', () => {
 		if (WebMidi.enabled) {
 			console.log('MIDI access granted');
 		}
 	});
 
-	WebMidi.addListener('connected', (e) => {
+	WebMidi.addListener('connected', () => {
 		addMidiInputOptions();
 	});
 
@@ -41,14 +32,19 @@
 			midiInputs = [{ name: 'NO MIDI INPUT AVAILABLE', value: '' }];
 		} else {
 			midiInputs = [
-				{ name: 'DISABLED', value: 'DISABLED' },
+				{ name: 'SELECT A MIDI PORT', value: 'DISABLED' },
 				...WebMidi.inputs.map((input) => ({
 					name: input.name,
 					value: input.name
 				}))
 			];
-			$selectedMidiInputMTC = 'loopMIDI Port'; // default for debugging
-			// $selectedMidiInputMTC = 'DISABLED';
+			if (WebMidi.inputs.find((input) => input.name === 'loopMIDI Port')) {
+				$selectedMidiInputMTC = 'loopMIDI Port';
+				startMtcListening();
+			} else {
+				$selectedMidiInputMTC = 'DISABLED';
+			}
+			
 		}
 	}
 
@@ -71,22 +67,20 @@
 	}
 
 	function stopMtcListening() {
-		if (WebMidi.enabled && $selectedMidiInputMTC === 'DISABLED') {
+		if (WebMidi.enabled) {
 			console.log('MTC listener stopping');
 			midiInputs.forEach((option) => {
-				if (option.value !== 'DISABLED') {
-					let input = WebMidi.getInputByName(option.value);
-					if (input) {
-						input.removeListener('midimessage', onSysexMessage);
-						input.removeListener('timecode', onMtcMessage);
-						input.removeListener('start', onContinueMessage);
-						input.removeListener('start', onStartMessage);
-						input.removeListener('continue', onContinueMessage);
-						input.removeListener('stop', onStopMessage);
-						console.info(`Stopped listening for MTC messages from ${input.name}...`);
-					} else {
-						console.log(`MIDI input not found`);
-					}
+				let input = WebMidi.getInputByName($selectedMidiInputMTC);
+				if (input) {
+					input.removeListener('sysex', onSysexMessage);
+					input.removeListener('timecode', onMtcMessage);
+					input.removeListener('start', onContinueMessage);
+					input.removeListener('start', onStartMessage);
+					input.removeListener('continue', onContinueMessage);
+					input.removeListener('stop', onStopMessage);
+					console.info(`Stopped listening for MTC messages from ${input.name}...`);
+				} else {
+					console.log(`MIDI input not found`);
 				}
 			});
 		} else {
@@ -94,7 +88,10 @@
 		}
 	}
 
-	$: $selectedMidiInputMTC === 'DISABLED' ? stopMtcListening() : startMtcListening();
+	function restartMtcListening() {
+		stopMtcListening();
+		startMtcListening();
+	}
 
 	$: console.log(`selectedMidiInput changed to: ${$selectedMidiInputMTC}`);
 </script>
@@ -102,7 +99,12 @@
 <!-- Frontend -->
 
 <label class="title text-bold text-left" for="midi-inputs">MIDI PORT</label>
-<select class="select w-full text-left" id="midi-inputs" bind:value={$selectedMidiInputMTC}>
+<select
+	class="select w-full text-left"
+	id="midi-inputs"
+	bind:value={$selectedMidiInputMTC}
+	on:change={restartMtcListening}
+>
 	{#each midiInputs as input}
 		<option value={input.value}>{input.name}</option>
 	{/each}
