@@ -12,7 +12,7 @@
 
 	onMount(() => {
 		document.title = `${$appName} ${$appVersion} - No video loaded`;
-	})
+	});
 </script>
 
 <aside class="border-surface-300-600-token sticky top-0 flex max-h-screen flex-col border-r">

@@ -5,8 +5,6 @@
 	import { loadedFiles } from '$lib/stores';
 	import { videoPlayerStore } from '$lib/videoPlayerStore';
 
-	$: $loadedFiles;
-
 	let player: Player | null = null;
 	let videoElement: HTMLVideoElement;
 

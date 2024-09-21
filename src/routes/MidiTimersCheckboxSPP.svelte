@@ -15,6 +15,8 @@
 		} else {
 			console.log(`MIDI input not found`);
 		}
+
+		return;
 	}
 
 	function stopClockListening() {
@@ -26,6 +28,8 @@
 				input.removeListener('songposition', onSPPMessage);
 			}
 		}
+
+		return;
 	}
 
 	$: $sppChecked ? startClockListening() : stopClockListening();

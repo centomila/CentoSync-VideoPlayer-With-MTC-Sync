@@ -1,13 +1,6 @@
 <script lang="ts">
 	import { guiView } from '$lib/stores';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-
-	$: $guiView;
-
-	const views = {
-		video: 'Video Sync',
-		info: 'Info Video'
-	};
 </script>
 
 <RadioGroup class="w-full flex-wrap">

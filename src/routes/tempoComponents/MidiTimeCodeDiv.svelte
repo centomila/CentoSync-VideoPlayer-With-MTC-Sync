@@ -5,7 +5,6 @@
 		hours: mtcHours,
 		minutes: mtcMinutes,
 		seconds: mtcSeconds,
-		milliseconds: mtcMilliseconds,
 		frames: mtcFrames,
 		frameRate: mtcFps
 	} = $mtcData);
