@@ -67,24 +67,56 @@ export function onMtcMessage(midiData: any) {
 
 	const currentTime = performance.now();
 	lastFrameTime = currentTime;
+	
 }
+
+export function onSysexMessage(midiData: any) {
+	const data = midiData.data; // Example: [240, 127, 127, 1, 1, 96, 0, 2, 0, 247]
+
+	// Ensure this is the expected SysEx message type
+	if (data[0] === 0xF0 && data[1] === 0x7F && data[2] === 0x7F && data[3] === 0x01 && data[4] === 0x01) {
+		// Extract and decode MTC data
+		const hours = (data[5] & 0x1F);        // 5 bits for hours (0-23)
+		const minutes = (data[6] & 0x3F);      // 6 bits for minutes (0-59)
+		const seconds = (data[7] & 0x3F);      // 6 bits for seconds (0-59)
+		const frames = (data[8] & 0x1F);       // 5 bits for frames (0-29 typically)
+
+		// Assuming 30 fps (adjust if your DAW uses a different frame rate)
+		const framesPerSecond = 30;
+		const milliseconds = Math.floor((frames / framesPerSecond) * 1000);
+
+		// Update Svelte store (mtcData) using the decoded MTC data
+		mtcData.update((currentData) => {
+			currentData.hours = hours;
+			currentData.minutes = minutes;
+			currentData.seconds = seconds;
+			currentData.milliseconds = milliseconds;
+
+			// Calculate total seconds
+			const totalSeconds = (hours * 3600) + (minutes * 60) + seconds + (milliseconds / 1000);
+			currentData.seekPosition = totalSeconds;
+
+			return currentData;
+		});
+	}
+	seekPosition();
+}
+
 
 let seekTimeout: ReturnType<typeof setTimeout> | null = null;
 
 export function onStartMessage(midiData: { type: string } | null) {
-	playFromPosition(midiData);
+	startPlaying();
+	seekPosition();
 }
 
 export function onContinueMessage(midiData: { type: string } | null) {
-	playFromPosition(midiData);
+	startPlaying();
+	seekPosition();
 }
 
-export function playFromPosition(midiData: { type: string } | null) {
-	if (midiData === null) {
-		console.error('Received null continue message');
-		return;
-	}
-	if (midiData.type === 'continue') {
+export function seekPosition() {
+	
 		console.log('Received continue message');
 
 		// Clear any existing timeout
@@ -101,10 +133,13 @@ export function playFromPosition(midiData: { type: string } | null) {
 			}
 			const seekTime = currentData.seekPosition;
 			console.log('Seeking to:', seekTime);
-			videoPlayerStore.play();
 			videoPlayerStore.seek(seekTime);
-		}, 0); // 50ms debounce
-	}
+		}, 0); // 0ms debounce
+	
+}
+
+export function startPlaying() {
+	videoPlayerStore.play();
 }
 
 export function onStopMessage(midiData: { type: string } | null) {

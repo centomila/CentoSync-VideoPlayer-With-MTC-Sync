@@ -1,12 +1,19 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
 	import { selectedMidiInputMTC } from '../lib/stores';
-	import { onMtcMessage, onStartMessage, onStopMessage, onContinueMessage } from '$lib/mtcMessages';
+	import {
+		onMtcMessage,
+		onStartMessage,
+		onStopMessage,
+		onContinueMessage,
+		onSysexMessage
+	} from '$lib/mtcMessages';
 
 	// Enable WEBMIDI.js and trigger the onEnabled() function when ready
-	WebMidi.enable()
-		.then(onEnabled)
-		.catch((err) => alert(err));
+
+	WebMidi.enable({ sysex: true })
+		.then(() => console.log('System exclusive messages are enabled'))
+		.catch((err) => console.log(err));
 
 	function onEnabled() {
 		// Display available MIDI input devices
@@ -40,7 +47,8 @@
 					value: input.name
 				}))
 			];
-			$selectedMidiInputMTC = 'DISABLED';
+			$selectedMidiInputMTC = 'loopMIDI Port'; // default for debugging
+			// $selectedMidiInputMTC = 'DISABLED';
 		}
 	}
 
@@ -50,8 +58,10 @@
 			let input = WebMidi.getInputByName($selectedMidiInputMTC);
 			if (input) {
 				console.info(`Listening for MTC messages from ${input.name}...`);
+				input.addListener('sysex', onSysexMessage);
 				input.addListener('timecode', onMtcMessage);
 				input.addListener('start', onContinueMessage);
+				input.addListener('start', onStartMessage);
 				input.addListener('continue', onContinueMessage);
 				input.addListener('stop', onStopMessage);
 			} else {
@@ -67,8 +77,10 @@
 				if (option.value !== 'DISABLED') {
 					let input = WebMidi.getInputByName(option.value);
 					if (input) {
+						input.removeListener('midimessage', onSysexMessage);
 						input.removeListener('timecode', onMtcMessage);
 						input.removeListener('start', onContinueMessage);
+						input.removeListener('start', onStartMessage);
 						input.removeListener('continue', onContinueMessage);
 						input.removeListener('stop', onStopMessage);
 						console.info(`Stopped listening for MTC messages from ${input.name}...`);
