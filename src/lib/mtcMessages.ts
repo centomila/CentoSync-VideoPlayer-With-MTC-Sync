@@ -82,7 +82,7 @@ export function onSysexMessage(midiData: any) {
 		const frames = (data[8] & 0x1F);       // 5 bits for frames (0-29 typically)
 
 		// Assuming 30 fps (adjust if your DAW uses a different frame rate)
-		const framesPerSecond = 30;
+		const framesPerSecond = get(mtcData).frameRate || 30;
 		const milliseconds = Math.floor((frames / framesPerSecond) * 1000);
 
 		// Update Svelte store (mtcData) using the decoded MTC data
@@ -134,7 +134,7 @@ export function seekPosition() {
 			const seekTime = currentData.seekPosition;
 			console.log('Seeking to:', seekTime);
 			videoPlayerStore.seek(seekTime);
-		}, 0); // 0ms debounce
+		}, 10); // 0ms debounce
 	
 }
 
