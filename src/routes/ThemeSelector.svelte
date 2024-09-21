@@ -24,7 +24,12 @@
 </script>
 
 <label class="title text-bold text-left" for="theme-selector">Theme</label>
-<select bind:value={selectedTheme} on:change={setTheme} class="select w-full capitalize" id="theme-selector">
+<select
+	bind:value={selectedTheme}
+	on:change={setTheme}
+	class="select w-full capitalize"
+	id="theme-selector"
+>
 	{#each themeList as theme}
 		<option value={theme}>{theme}</option>
 	{/each}

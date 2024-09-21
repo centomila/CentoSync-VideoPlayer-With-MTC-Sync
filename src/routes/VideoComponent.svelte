@@ -57,9 +57,7 @@
 		}
 	});
 
-	let videoContainer: HTMLElement;
 	onMount(() => {
-		videoContainer = document.getElementById('video-container') as HTMLElement;
 		updatePlayer();
 	});
 </script>
