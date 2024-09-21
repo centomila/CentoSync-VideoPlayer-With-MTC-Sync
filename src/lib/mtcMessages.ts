@@ -2,13 +2,11 @@ import { get } from 'svelte/store';
 import { mtcData } from '$lib/stores'; // Import the store
 import { videoPlayerStore } from '$lib/videoPlayerStore';
 
-$: mtcData;
-
 const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
 const MTC_QUARTER_FRAME_MASK = 0xf;
 const MTC_FULL_FRAME_MASK = 0xf0;
 
-// @ts-ignore
+
 let lastFrameTime = performance.now();
 
 export function onMtcMessage(midiData: any) {
@@ -88,7 +86,7 @@ export function onSysexMessage(midiData: any) {
 
 		// Assuming 30 fps (adjust if your DAW uses a different frame rate)
 		const framesPerSecond = get(mtcData).frameRate || 30;
-		const milliseconds = Math.floor((frames / framesPerSecond) * 1000);
+		const milliseconds = (frames / framesPerSecond) * 1000;
 
 		// Update Svelte store (mtcData) using the decoded MTC data
 		mtcData.update((currentData) => {
