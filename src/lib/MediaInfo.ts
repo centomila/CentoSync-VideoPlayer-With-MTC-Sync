@@ -13,7 +13,16 @@ export class MediaInfoHandler<T extends MediaInfoFormat = 'text'> {
 
 	async init(): Promise<void> {
 		try {
-			this.mediaInfo = await mediaInfoFactory({ format: this.format });
+			this.mediaInfo = await mediaInfoFactory({
+				format: this.format,
+				locateFile: (path: string, prefix: string) => {
+					if (path.endsWith('.wasm')) {
+						// Use the base path from SvelteKit
+						return `${import.meta.env.BASE_URL}${path}`;
+					}
+					return prefix + path;
+				}
+			});
 		} catch (error: unknown) {
 			console.error('Error initializing MediaInfo:', error);
 		}
