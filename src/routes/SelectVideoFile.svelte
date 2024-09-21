@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { loadedFiles } from '$lib/stores';
-
-	$: $loadedFiles;
+	import { loadedFiles, appName, appVersion } from '$lib/stores';
 
 	let dropZone: HTMLElement;
 	onMount(() => {
@@ -64,6 +62,8 @@
 		}
 		$loadedFiles.currentFileName =
 			$loadedFiles.files?.[0].name || 'Load a video file or drag and drop it on the page';
+
+		document.title = `${$appName} ${$appVersion} - ${$loadedFiles.currentFileName}`;
 	}
 </script>
 
