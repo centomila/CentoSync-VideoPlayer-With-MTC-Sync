@@ -3,7 +3,6 @@
 @import 'tailwindcss/utilities';
 @import '../node_modules/video.js/dist/video-js.css';
 
-
 #drop-zone {
 	transition: all 0.3s ease;
 }
@@ -39,8 +38,8 @@ video.vjs-tech {
 }
 
 .video-js .vjs-time-control {
-    display: block;
+	display: block;
 }
 .video-js .vjs-remaining-time {
-    display: none;
+	display: none;
 }

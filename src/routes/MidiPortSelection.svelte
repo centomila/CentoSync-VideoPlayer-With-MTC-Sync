@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
-	import { selectedMidiInputMTC } from '../lib/stores';
+	import { selectedMidiInputMTC } from '$lib/stores';
 	import {
 		onMtcMessage,
 		onStartMessage,
@@ -94,16 +94,30 @@
 		}
 	}
 
+	function refreshPorts() {
+		console.log('Refreshing MIDI ports');
+		stopMtcListening();
+		midiInputs = [];
+		addMidiInputOptions();
+	}
+
 	$: console.log(`selectedMidiInput changed to: ${$selectedMidiInputMTC}`);
 	$: if ($selectedMidiInputMTC !== 'DISABLED') {
 		stopMtcListening();
 		startMtcListening();
+	} else if ($selectedMidiInputMTC === 'DISABLED') {
+		stopMtcListening();
 	}
 </script>
 
 <!-- Frontend -->
 
-<label class="title text-bold text-left" for="midi-inputs">MIDI PORT</label>
+<div class="w-full flex justify-between">
+	<label class="title text-bold text-left" for="midi-inputs">MIDI PORT </label>
+	<button class="btn-primary variant-filled btn-icon max-h-5 max-w-5 " title="Refresh MIDI ports" on:click={refreshPorts}
+		><i class="fa fa-2xs fa-refresh"></i></button
+	>
+</div>
 <select class="select w-full text-left" id="midi-inputs" bind:value={$selectedMidiInputMTC}>
 	{#each midiInputs as input}
 		<option value={input.value}>{input.name}</option>

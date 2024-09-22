@@ -61,7 +61,6 @@
 	});
 </script>
 
-
 <!-- svelte-ignore a11y-media-has-caption -->
 <div id="video-container" class="mx-auto my-auto w-full">
 	<MidiTimersContainer />
