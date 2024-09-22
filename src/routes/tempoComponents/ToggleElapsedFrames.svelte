@@ -4,8 +4,7 @@
 </script>
 
 <!-- Frontend -->
-<div class="items-left space-x-2">
-	<SlideToggle name="slider-label" bind:checked={$elapsedFramesComponent}
-		>Elapsed Frames</SlideToggle
-	>
-</div>
+
+<SlideToggle name="slider-label" bind:checked={$elapsedFramesComponent}
+		>Elapsed Frames</SlideToggle>
+

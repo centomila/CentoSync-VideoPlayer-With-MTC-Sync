@@ -11,6 +11,7 @@
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import Copyright from './Copyright.svelte';
 	import ToggleMidiTimeCode from './tempoComponents/ToggleMidiTimeCode.svelte';
+	import ToggleTrackPosition from './tempoComponents/ToggleTrackPosition.svelte';
 
 	onMount(() => {
 		document.title = `${$appName} ${$appVersion} - No video loaded`;
@@ -34,16 +35,14 @@
 		</div>
 		<div class="border-surface-300-600-token flex flex-col border-t p-4">
 			<div class="py-2">
-				<SlideToggle name="slider-label" checked>(label)</SlideToggle>
+				<ToggleTrackPosition />
 			</div>
 			<div class="py-2">
 				<ToggleMidiTimeCode />
 			</div>
-
 			<div class="py-2">
 				<ToggleElapsedFrames />
 			</div>
-
 			<div class="py-2">
 				<ToggleBpm />
 			</div>

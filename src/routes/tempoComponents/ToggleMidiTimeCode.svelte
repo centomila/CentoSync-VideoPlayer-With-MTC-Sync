@@ -4,6 +4,4 @@
 </script>
 
 <!-- Frontend -->
-<div class="items-left flex space-x-2">
-	<SlideToggle name="slider-label" bind:checked={$midiTimecodeComponent}>MTC Timecode</SlideToggle>
-</div>
+<SlideToggle name="slider-label" bind:checked={$midiTimecodeComponent}>MTC Timecode</SlideToggle>
