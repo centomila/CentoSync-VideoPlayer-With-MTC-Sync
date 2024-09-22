@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
+	import { theme } from '$lib/stores';
 
-	let selectedTheme = 'centomila';
 	const themeList = [
 		'centomila',
 		'skeleton',
@@ -18,10 +18,18 @@
 
 	function setTheme() {
 		// use the selectedTheme variable here
-		document.body.setAttribute('data-theme', selectedTheme);
+		localStorage.setItem("theme", $theme);
+		document.body.setAttribute('data-theme', $theme);
+		
+	}
+	function getTheme() {
+		// use the selectedTheme variable here
+		$theme = localStorage.getItem("theme") || 'centomila';
+		document.body.setAttribute('data-theme', $theme);
 	}
 
-	onMount(setTheme);
+
+	onMount(getTheme);
 </script>
 
 <div class="flex justify-between">
@@ -29,7 +37,7 @@
 	<LightSwitch title="Dark Mode" />
 </div>
 <select
-	bind:value={selectedTheme}
+	bind:value={$theme}
 	on:change={setTheme}
 	class="select w-full capitalize"
 	id="theme-selector"
