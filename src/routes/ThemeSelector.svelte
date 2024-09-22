@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { LightSwitch } from '@skeletonlabs/skeleton';
 
 	let selectedTheme = 'centomila';
 	const themeList = [
@@ -23,7 +24,10 @@
 	onMount(setTheme);
 </script>
 
-<label class="title text-bold text-left" for="theme-selector">Theme</label>
+<div class="flex justify-between">
+	<label class="title text-bold text-left" for="theme-selector">Theme</label>
+	<LightSwitch title="Dark Mode" />
+</div>
 <select
 	bind:value={selectedTheme}
 	on:change={setTheme}

@@ -51,14 +51,12 @@
 		</div>
 
 		<div
-			class="border-surface-300-600-token space-y-4 border-t p-4"
-		>
+			class="border-surface-300-600-token space-y-4 border-t p-4">
 			<MidiPortSelection />
 		</div>
 		<!-- Footer -->
-		<div class="border-surface-300-600-token flex flex-col items-center space-y-4 border-t p-4">
+		<div class="border-surface-300-600-token space-y-4 border-t p-4">
 			<ThemeSelector />
-			<LightSwitch title="Dark Mode" />
 		</div>
 		<footer class="border-surface-300-600-token border-t">
 			<Copyright />
