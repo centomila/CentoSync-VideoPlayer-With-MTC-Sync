@@ -2,7 +2,6 @@
 	import '../app.css';
 	import '@fortawesome/fontawesome-free/css/all.min.css';
 	import Sidebar from './Sidebar.svelte';
-	
 </script>
 
 <div class="bg-surface-100-800-token flex min-h-screen">

@@ -3,7 +3,7 @@
 	import { createMediaInfoHandler } from '$lib/MediaInfo';
 	import { loadedFiles } from '$lib/stores';
 	import type { MediaInfoFormat } from '$lib/MediaInfo';
-	import {fade} from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 
 	export let format: MediaInfoFormat = 'text';
 
@@ -60,9 +60,11 @@
 
 <div class="mx-auto my-auto max-w-screen-lg py-10">
 	{#if isAnalyzing}
-		<pre class="text-xxl" transition:fade={{ delay: 0, duration: 150 }}>Analyzing {$loadedFiles.currentFileName}</pre>
+		<pre
+			class="text-xxl"
+			transition:fade={{ delay: 0, duration: 150 }}>Analyzing {$loadedFiles.currentFileName}</pre>
 	{:else if results.length > 0}
-		<h2 class="title text-5xl font-bold text-center">Media Info</h2>
+		<h2 class="title text-center text-5xl font-bold">Media Info</h2>
 		<div transition:fade={{ delay: 0, duration: 150 }}>
 			{#each results as result}
 				{#if typeof result === 'string'}

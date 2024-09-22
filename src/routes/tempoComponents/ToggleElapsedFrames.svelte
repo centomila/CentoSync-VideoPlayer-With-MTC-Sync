@@ -5,6 +5,4 @@
 
 <!-- Frontend -->
 
-<SlideToggle name="slider-label" bind:checked={$elapsedFramesComponent}
-		>Elapsed Frames</SlideToggle>
-
+<SlideToggle name="slider-label" bind:checked={$elapsedFramesComponent}>Elapsed Frames</SlideToggle>

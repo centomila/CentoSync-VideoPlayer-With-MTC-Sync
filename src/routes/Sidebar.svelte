@@ -8,7 +8,6 @@
 	import SelectVideoFile from './SelectVideoFile.svelte';
 	import { appName, appVersion } from '$lib/stores';
 	import { onMount } from 'svelte';
-	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import Copyright from './Copyright.svelte';
 	import ToggleMidiTimeCode from './tempoComponents/ToggleMidiTimeCode.svelte';
 	import ToggleTrackPosition from './tempoComponents/ToggleTrackPosition.svelte';

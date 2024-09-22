@@ -37,4 +37,3 @@
 
 <!-- Frontend -->
 <SlideToggle name="slider-label" bind:checked={$bpmComponent}>Midi Clock (BPM)</SlideToggle>
-
