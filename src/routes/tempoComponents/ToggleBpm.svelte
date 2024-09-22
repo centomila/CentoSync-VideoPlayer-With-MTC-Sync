@@ -1,10 +1,7 @@
 <script lang="ts">
 	import { WebMidi } from 'webmidi';
 	import { SlideToggle } from '@skeletonlabs/skeleton';
-	import {
-		selectedMidiInputMTC,
-		bpmComponent
-	} from '$lib/stores';
+	import { selectedMidiInputMTC, bpmComponent } from '$lib/stores';
 	import { onSPPMessage, onMidiClockMessage } from '$lib/sppMessages';
 
 	function startClockListening() {

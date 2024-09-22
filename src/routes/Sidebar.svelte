@@ -3,13 +3,14 @@
 	import ThemeSelector from './ThemeSelector.svelte';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import MidiPortSelection from './MidiPortSelection.svelte';
-	import ToggleBpm from './ToggleBpm.svelte';
-	import ToggleElapsedFrames from './ToggleElapsedFrames.svelte';
+	import ToggleBpm from './tempoComponents/ToggleBpm.svelte';
+	import ToggleElapsedFrames from './tempoComponents/ToggleElapsedFrames.svelte';
 	import SelectVideoFile from './SelectVideoFile.svelte';
 	import { appName, appVersion } from '$lib/stores';
 	import { onMount } from 'svelte';
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import Copyright from './Copyright.svelte';
+	import ToggleMidiTimeCode from './tempoComponents/ToggleMidiTimeCode.svelte';
 
 	onMount(() => {
 		document.title = `${$appName} ${$appVersion} - No video loaded`;
@@ -31,12 +32,12 @@
 		<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
 			<GuiViewSelection />
 		</div>
-		<div class="flex flex-col border-surface-300-600-token border-t p-4">
+		<div class="border-surface-300-600-token flex flex-col border-t p-4">
 			<div class="py-2">
 				<SlideToggle name="slider-label" checked>(label)</SlideToggle>
 			</div>
 			<div class="py-2">
-				<SlideToggle name="slider-label" checked>(label)</SlideToggle>
+				<ToggleMidiTimeCode />
 			</div>
 
 			<div class="py-2">

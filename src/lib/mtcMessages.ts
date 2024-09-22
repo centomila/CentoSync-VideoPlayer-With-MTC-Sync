@@ -96,7 +96,8 @@ export function onSysexMessage(midiData: any) {
 				frames;
 
 			// Calculate total seconds
-			const totalSeconds = currentData.hours * 60 * 60 +
+			const totalSeconds =
+				currentData.hours * 60 * 60 +
 				currentData.minutes * 60 +
 				currentData.seconds +
 				currentData.milliseconds / 1000;

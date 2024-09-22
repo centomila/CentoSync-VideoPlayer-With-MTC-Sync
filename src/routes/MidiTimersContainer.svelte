@@ -20,26 +20,24 @@
 	$: gridCols = enabledComponents.length;
 </script>
 
-<div
-	class="flex flex-grow justify-center border-t border-surface-300-600-token"
->
+<div class="border-surface-300-600-token flex flex-grow justify-center border-t">
 	{#if $trackPositionComponent}
-		<div class="flex-grow border-r border-surface-300-600-token py-4 ">
+		<div class="border-surface-300-600-token flex-grow border-r py-2 lg:px-4">
 			<TrackPositionDiv />
 		</div>
 	{/if}
 	{#if $midiTimecodeComponent}
-	<div class="flex-grow border-r border-surface-300-600-token py-4 ">
-		<MidiTimeCodeDiv />
-	</div>
+		<div class="border-surface-300-600-token flex-grow border-r py-2 lg:px-4">
+			<MidiTimeCodeDiv />
+		</div>
 	{/if}
 	{#if $elapsedFramesComponent}
-	<div class="flex-grow border-r border-surface-300-600-token py-4 ">
-		<ElapsedFramesDiv />
-	</div>
+		<div class="border-surface-300-600-token flex-grow border-r py-2 lg:px-4">
+			<ElapsedFramesDiv />
+		</div>
 	{/if}
 	{#if $bpmComponent}
-		<div class="flex-grow border-r border-surface-300-600-token py-4 ">
+		<div class="border-surface-300-600-token flex-grow border-r py-2 lg:px-4">
 			<BpmDiv />
 		</div>
 	{/if}

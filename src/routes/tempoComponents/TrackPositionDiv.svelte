@@ -25,12 +25,12 @@
 		<div class="text-center font-mono font-light text-gray-500"></div>
 		<div class="text-center font-mono font-light text-gray-500">MS</div>
 
-		<div class="lg:text-2xl text-center font-mono font-light">{mtcHoursFormatted}</div>
-		<div class="lg:text-2xl text-center font-extralight text-gray-500">:</div>
-		<div class="lg:text-2xl text-center font-mono font-light">{mtcMinutesFormatted}</div>
-		<div class="lg:text-2xl text-center font-extralight text-gray-500">:</div>
-		<div class="lg:text-2xl text-center font-mono font-light">{mtcSecondsFormatted}</div>
-		<div class="lg:text-2xl text-center font-extralight text-gray-500">.</div>
-		<div class="lg:text-2xl text-center font-mono font-light">{mtcMillisecondsFormatted}</div>
+		<div class="text-center font-mono font-light lg:text-2xl">{mtcHoursFormatted}</div>
+		<div class="text-center font-extralight text-gray-500 lg:text-2xl">:</div>
+		<div class="text-center font-mono font-light lg:text-2xl">{mtcMinutesFormatted}</div>
+		<div class="text-center font-extralight text-gray-500 lg:text-2xl">:</div>
+		<div class="text-center font-mono font-light lg:text-2xl">{mtcSecondsFormatted}</div>
+		<div class="text-center font-extralight text-gray-500 lg:text-2xl">.</div>
+		<div class="text-center font-mono font-light lg:text-2xl">{mtcMillisecondsFormatted}</div>
 	</div>
 </div>

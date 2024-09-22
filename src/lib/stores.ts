@@ -51,5 +51,5 @@ export const bpmComponent = writable(false);
 
 export const guiView = writable('video');
 
-export const appName = readable('Zimmer Time MTC', () => {});
+export const appName = readable('VideoSyncWeb', () => {});
 export const appVersion = readable('0.5.1', () => {});

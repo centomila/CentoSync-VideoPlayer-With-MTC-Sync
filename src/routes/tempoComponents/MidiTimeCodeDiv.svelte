@@ -25,11 +25,11 @@
 		<div class="text-center font-mono font-light text-gray-500">FR</div>
 		<div class="text-center font-mono font-light text-gray-500">FPS</div>
 
-		<div class="lg:text-2xl text-center font-mono">{mtcHoursFormatted}</div>
-		<div class="lg:text-2xl text-center font-mono">{mtcMinutesFormatted}</div>
-		<div class="lg:text-2xl text-center font-mono">{mtcSecondsFormatted}</div>
-		<div class="lg:text-2xl col-span-2 text-center font-mono"></div>
-		<div class="lg:text-2xl text-center font-mono">{mtcFramesFormatted}</div>
-		<div class="lg:text-2xl text-center font-mono">{mtcFps}</div>
+		<div class="text-center font-mono lg:text-2xl">{mtcHoursFormatted}</div>
+		<div class="text-center font-mono lg:text-2xl">{mtcMinutesFormatted}</div>
+		<div class="text-center font-mono lg:text-2xl">{mtcSecondsFormatted}</div>
+		<div class="col-span-2 text-center font-mono lg:text-2xl"></div>
+		<div class="text-center font-mono lg:text-2xl">{mtcFramesFormatted}</div>
+		<div class="text-center font-mono lg:text-2xl">{mtcFps}</div>
 	</div>
 </div>
