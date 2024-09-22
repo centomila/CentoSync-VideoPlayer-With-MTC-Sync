@@ -3,6 +3,7 @@
 	import { createMediaInfoHandler } from '$lib/MediaInfo';
 	import { loadedFiles } from '$lib/stores';
 	import type { MediaInfoFormat } from '$lib/MediaInfo';
+	import {fade} from 'svelte/transition';
 
 	export let format: MediaInfoFormat = 'text';
 
@@ -59,16 +60,18 @@
 
 <div class="mx-auto my-auto max-w-screen-lg py-10">
 	{#if isAnalyzing}
-		<pre class="text-xxl">Analyzing {$loadedFiles.currentFileName}</pre>
+		<pre class="text-xxl" transition:fade={{ delay: 0, duration: 150 }}>Analyzing {$loadedFiles.currentFileName}</pre>
 	{:else if results.length > 0}
-		<h2 class="title text-xxl text-center">Media Info</h2>
-		{#each results as result}
-			{#if typeof result === 'string'}
-				<pre class="text-wrap text-xl">{result}</pre>
-			{:else}
-				<pre>{JSON.stringify(result, null, 2)}</pre>
-			{/if}
-		{/each}
+		<h2 class="title text-5xl font-bold text-center">Media Info</h2>
+		<div transition:fade={{ delay: 0, duration: 150 }}>
+			{#each results as result}
+				{#if typeof result === 'string'}
+					<pre class="text-wrap text-xl">{result}</pre>
+				{:else}
+					<pre>{JSON.stringify(result, null, 2)}</pre>
+				{/if}
+			{/each}
+		</div>
 	{:else}
 		<div class="flex h-screen items-center justify-center">
 			<h2 class="title text-center text-xl">I have nothing to analyze. Load a video.</h2>

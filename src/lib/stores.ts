@@ -52,4 +52,4 @@ export const bpmComponent = writable(false);
 export const guiView = writable('video');
 
 export const appName = readable('VideoSyncWeb', () => {});
-export const appVersion = readable('0.5.1', () => {});
+export const appVersion = readable('0.6.0', () => {});

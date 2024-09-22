@@ -10,6 +10,8 @@
 		trackPositionComponent
 	} from '$lib/stores';
 
+	import { fade } from 'svelte/transition';
+
 	$: enabledComponents = [
 		$trackPositionComponent,
 		$bpmComponent,
@@ -29,22 +31,22 @@
 
 <div class="border-surface-300-600-token flex flex-grow justify-center border-t">
 	{#if $trackPositionComponent}
-		<div class="{divClassess()}">
+		<div class={divClassess()} transition:fade={{ delay: 0, duration: 150 }}>
 			<TrackPositionDiv />
 		</div>
 	{/if}
 	{#if $midiTimecodeComponent}
-		<div class={divClassess()}>
+		<div class={divClassess()} transition:fade={{ delay: 0, duration: 150 }}>
 			<MidiTimeCodeDiv />
 		</div>
 	{/if}
 	{#if $elapsedFramesComponent}
-		<div class={divClassess()}>
+		<div class={divClassess()} transition:fade={{ delay: 0, duration: 150 }}>
 			<ElapsedFramesDiv />
 		</div>
 	{/if}
 	{#if $bpmComponent}
-		<div class={divClassess()}>
+		<div class={divClassess()} transition:fade={{ delay: 0, duration: 150 }}>
 			<BpmDiv />
 		</div>
 	{/if}
