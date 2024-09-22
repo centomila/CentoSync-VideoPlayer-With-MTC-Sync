@@ -66,7 +66,7 @@
 
 <button
 	on:click={() => (sideBarToggle = !sideBarToggle)}
-	class="variant-glass-primary btn absolute left-0 top-0 z-50 h-8 w-8 hover:translate-x-1 hover:translate-y-1 hover:scale-125"
+	class="variant-glass-primary btn absolute left-0 top-0 z-50 rounded-none h-8 w-8 hover:translate-x-1 hover:translate-y-1 hover:scale-125"
 	title={sideBarToggle ? 'Hide sidebar (H)' : 'Show sidebar (H)'}
 >
 	{#if sideBarToggle}<i class="fas fa-eye-slash" />{:else}<i class="fas fa-eye" />{/if}
