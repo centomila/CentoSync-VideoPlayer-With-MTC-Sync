@@ -3,6 +3,7 @@
 @import 'tailwindcss/utilities';
 @import '../node_modules/video.js/dist/video-js.css';
 
+
 #drop-zone {
 	transition: all 0.3s ease;
 }
@@ -35,4 +36,11 @@ video.vjs-tech {
 /* Fix the control bar due to us resetting the line-height on the video-js */
 .vjs-control-bar {
 	line-height: 1;
+}
+
+.video-js .vjs-time-control {
+    display: block;
+}
+.video-js .vjs-remaining-time {
+    display: none;
 }
