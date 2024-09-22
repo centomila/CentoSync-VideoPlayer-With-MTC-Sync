@@ -1,9 +1,11 @@
-<div id="copyright" class="inline items-center text-xs">
+<a
+	id="copyright"
+	href="https://centomila.com"
+	target="_blank"
+	class="hover:color-primary-100
+		cursor-pointer block p-4 text-xs transition-all duration-300 hover:bg-surface-900"
+>
 	<p class="text-center font-semibold">
-		Made with ❤️ by <a
-			target="_blank"
-			href="https://centomila.com"
-			class="text-blue-500 hover:underline">Centomila</a
-		>
+		Made with ❤️ by <span class="text-primary font-extrabold">Centomila</span>
 	</p>
-</div>
+</a>
