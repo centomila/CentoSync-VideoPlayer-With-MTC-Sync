@@ -14,16 +14,15 @@
 
 	import Copyright from './Copyright.svelte';
 
+	let sideBarToggle = true;
 	onMount(() => {
 		document.title = `${$appName} ${$appVersion} - No video loaded`;
-	});
 
-	let sideBarToggle = true;
-
-	window.addEventListener('keydown', (event) => {
-		if (event.key === 'h' || event.key === 'H') {
-			sideBarToggle = !sideBarToggle;
-		}
+		window.addEventListener('keydown', (event) => {
+			if (event.key === 'h' || event.key === 'H') {
+				sideBarToggle = !sideBarToggle;
+			}
+		});
 	});
 </script>
 
@@ -69,7 +68,7 @@
 
 <button
 	on:click={() => (sideBarToggle = !sideBarToggle)}
-	class="variant-glass-primary btn absolute left-0 top-0 z-50 h-8 w-8 hover:scale-125 hover:translate-x-1 hover:translate-y-1"
+	class="variant-glass-primary btn absolute left-0 top-0 z-50 h-8 w-8 hover:translate-x-1 hover:translate-y-1 hover:scale-125"
 	title={sideBarToggle ? 'Hide sidebar (H)' : 'Show sidebar (H)'}
 >
 	{#if sideBarToggle}<i class="fas fa-eye-slash" />{:else}<i class="fas fa-eye" />{/if}
