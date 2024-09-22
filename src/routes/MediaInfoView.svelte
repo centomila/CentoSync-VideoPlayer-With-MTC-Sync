@@ -62,7 +62,10 @@
 	{#if isAnalyzing}
 		<pre
 			class="text-xxl"
-			transition:fade={{ delay: 0, duration: 150 }}>Analyzing {$loadedFiles.currentFileName}</pre>
+			transition:fade={{
+				delay: 0,
+				duration: 150
+			}}>Analyzing {$loadedFiles.currentFileName}</pre>
 	{:else if results.length > 0}
 		<h2 class="title text-center text-5xl font-bold">Media Info</h2>
 		<div transition:fade={{ delay: 0, duration: 150 }}>
