@@ -2,18 +2,31 @@ import { get } from 'svelte/store';
 import { mtcData } from '$lib/stores'; // Import the store
 import { videoPlayerStore } from '$lib/videoPlayerStore';
 
+// Constants
 const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
 const MTC_QUARTER_FRAME_MASK = 0xf;
 const MTC_FULL_FRAME_MASK = 0xf0;
 
-export function onMtcMessage(midiData: any) {
+// Interface for currentData
+interface MTCData {
+	frames: number;
+	seconds: number;
+	minutes: number;
+	hours: number;
+	frameRate: number;
+	milliseconds: number;
+	elapsedFrames: number;
+	seekPosition: number;
+}
+
+export function onMtcMessage(midiData: { data: Uint8Array }): void {
 	const data = midiData.data[1];
 	const msgType = data >> 4;
 	const value = data & MTC_QUARTER_FRAME_MASK;
 
 	const frameRate = FRAME_RATES[value >> 1];
 
-	mtcData.update((currentData) => {
+	mtcData.update((currentData: MTCData) => {
 		switch (msgType) {
 			case 0:
 				currentData.frames = (currentData.frames & MTC_FULL_FRAME_MASK) | value;
@@ -41,28 +54,28 @@ export function onMtcMessage(midiData: any) {
 				currentData.frameRate = frameRate;
 				break;
 		}
-		currentData.milliseconds =
-			(currentData.hours * 60 * 60 * 1000 +
-				currentData.minutes * 60 * 1000 +
-				currentData.seconds * 1000 +
-				(currentData.frames / currentData.frameRate) * 1000) %
-			1000;
-		currentData.elapsedFrames =
-			currentData.hours * 60 * 60 * currentData.frameRate +
+
+		// Calculate total frames
+		const totalFrames =
+			currentData.hours * 3600 * currentData.frameRate +
 			currentData.minutes * 60 * currentData.frameRate +
 			currentData.seconds * currentData.frameRate +
 			currentData.frames;
-		currentData.seekPosition =
-			currentData.hours * 60 * 60 +
-			currentData.minutes * 60 +
-			currentData.seconds +
-			currentData.milliseconds / 1000;
+
+		// Calculate total seconds with high precision
+		const totalSeconds = totalFrames / currentData.frameRate;
+
+		// Update derived values
+		currentData.milliseconds = Math.round((totalSeconds % 1) * 1000);
+		currentData.elapsedFrames = Math.floor(totalFrames);
+		currentData.seekPosition = totalSeconds;
+
 		return currentData;
 	});
 }
 
-export function onSysexMessage(midiData: any) {
-	const data = midiData.data; // Example: [240, 127, 127, 1, 1, 96, 0, 2, 0, 247]
+export function onSysexMessage(midiData: { data: Uint8Array }): void {
+	const data = midiData.data;
 
 	// Ensure this is the expected SysEx message type
 	if (
@@ -70,47 +83,64 @@ export function onSysexMessage(midiData: any) {
 		data[1] === 0x7f &&
 		data[2] === 0x7f &&
 		data[3] === 0x01 &&
-		data[4] === 0x01
+		data[4] === 0x01 &&
+		data.length >= 9  // Ensure we have enough data
 	) {
 		// Extract and decode MTC data
-		const hours = data[5] & 0x1f; // 5 bits for hours (0-23)
+		const hours = data[5] & 0x1f;   // 5 bits for hours (0-23)
 		const minutes = data[6] & 0x3f; // 6 bits for minutes (0-59)
 		const seconds = data[7] & 0x3f; // 6 bits for seconds (0-59)
-		const frames = data[8] & 0x1f; // 5 bits for frames (0-29 typically)
+		const frames = data[8] & 0x1f;  // 5 bits for frames (0-29 typically)
 
-		// Assuming 30 fps (adjust if your DAW uses a different frame rate)
-		const framesPerSecond = get(mtcData).frameRate === 0 ? 30 : get(mtcData).frameRate;
-		const milliseconds = (frames / framesPerSecond) * 1000;
+		mtcData.update((currentData: MTCData) => {
+			// Handle frame rate
+			if (currentData.frameRate === 0) {
+				console.warn('Frame rate not set. Using project default or 30 fps. For accurate timing, ensure frame rate is set before seeking (Just press play in your DAW once 😉).');
+				// You might want to get the project's default frame rate here
+				// currentData.frameRate = getProjectDefaultFrameRate();
+				currentData.frameRate = 30; // Fallback to 30 fps if no project default
+			}
 
-		// Update Svelte store (mtcData) using the decoded MTC data
-		mtcData.update((currentData) => {
+			// Update basic time components
 			currentData.hours = hours;
 			currentData.minutes = minutes;
 			currentData.seconds = seconds;
-			currentData.milliseconds = milliseconds;
 			currentData.frames = frames;
-			currentData.elapsedFrames =
-				hours * 60 * 60 * framesPerSecond +
-				minutes * 60 * framesPerSecond +
-				seconds * framesPerSecond +
+
+			// Calculate total frames
+			const totalFrames =
+				hours * 3600 * currentData.frameRate +
+				minutes * 60 * currentData.frameRate +
+				seconds * currentData.frameRate +
 				frames;
 
-			// Calculate total seconds
-			const totalSeconds =
-				currentData.hours * 60 * 60 +
-				currentData.minutes * 60 +
-				currentData.seconds +
-				currentData.milliseconds / 1000;
+			// Calculate total seconds with high precision
+			const totalSeconds = totalFrames / currentData.frameRate;
+
+			// Update derived values
+			currentData.milliseconds = Math.round((totalSeconds % 1) * 1000);
+			currentData.elapsedFrames = Math.floor(totalFrames);
 			currentData.seekPosition = totalSeconds;
 
 			return currentData;
 		});
+
+		// Update video player and seek position
+		console.log('SysEx message received');
+		seekPosition();
 	}
-	videoPlayerStore.seek(get(mtcData).seekPosition);
-	seekPosition();
 }
 
-let seekTimeout: ReturnType<typeof setTimeout> | null = null;
+// Function to get the current MTC data safely
+export function getSafeMtcData(): MTCData {
+	const currentData = get(mtcData);
+	if (currentData.frameRate === 0) {
+		console.warn('Frame rate not set. Using 30 fps as default.<br>For accurate timing, ensure frame rate is set before reading MTC data by playing sending MTC messages for at least 30 frames (just press play in the DAW).');
+		return { ...currentData, frameRate: 30 };
+	}
+	return currentData;
+}
+
 
 export function onStartMessage() {
 	startPlaying();
@@ -122,25 +152,23 @@ export function onContinueMessage() {
 	seekPosition();
 }
 
-export function seekPosition() {
-	console.log('Received continue message');
+let seekTimeout: ReturnType<typeof setTimeout> | null = null;
 
-	// Clear any existing timeout
+export function seekPosition(): void {
 	if (seekTimeout !== null) {
 		clearTimeout(seekTimeout);
 	}
 
-	// Set a new timeout to debounce seek operations
 	seekTimeout = setTimeout(() => {
 		const currentData = get(mtcData);
-		if (currentData === undefined) {
-			console.error('MTC data is undefined');
-			return;
+		if (currentData && typeof currentData.seekPosition === 'number') {
+			const seekTime = currentData.seekPosition;
+			console.log('Seeking to:', seekTime, 'seconds');
+			videoPlayerStore.seek(seekTime);
+		} else {
+			console.warn('Invalid MTC data for seeking');
 		}
-		const seekTime = currentData.seekPosition;
-		console.log('Seeking to:', seekTime);
-		videoPlayerStore.seek(seekTime);
-	}, 10); // 0ms debounce
+	}, 100); // 10ms debounce
 }
 
 export function startPlaying() {
