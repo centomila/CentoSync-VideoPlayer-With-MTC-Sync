@@ -10,7 +10,6 @@
 	import MidiPortSelection from './MidiPortSelection.svelte';
 
 	import ThemeSelector from './ThemeSelector.svelte';
-	import { LightSwitch } from '@skeletonlabs/skeleton';
 
 	import Copyright from './Copyright.svelte';
 

@@ -84,18 +84,20 @@ export function onSysexMessage(midiData: { data: Uint8Array }): void {
 		data[2] === 0x7f &&
 		data[3] === 0x01 &&
 		data[4] === 0x01 &&
-		data.length >= 9  // Ensure we have enough data
+		data.length >= 9 // Ensure we have enough data
 	) {
 		// Extract and decode MTC data
-		const hours = data[5] & 0x1f;   // 5 bits for hours (0-23)
+		const hours = data[5] & 0x1f; // 5 bits for hours (0-23)
 		const minutes = data[6] & 0x3f; // 6 bits for minutes (0-59)
 		const seconds = data[7] & 0x3f; // 6 bits for seconds (0-59)
-		const frames = data[8] & 0x1f;  // 5 bits for frames (0-29 typically)
+		const frames = data[8] & 0x1f; // 5 bits for frames (0-29 typically)
 
 		mtcData.update((currentData: MTCData) => {
 			// Handle frame rate
 			if (currentData.frameRate === 0) {
-				console.warn('Frame rate not set. Using project default or 30 fps. For accurate timing, ensure frame rate is set before seeking (Just press play in your DAW once 😉).');
+				console.warn(
+					'Frame rate not set. Using project default or 30 fps. For accurate timing, ensure frame rate is set before seeking (Just press play in your DAW once 😉).'
+				);
 				// You might want to get the project's default frame rate here
 				// currentData.frameRate = getProjectDefaultFrameRate();
 				currentData.frameRate = 30; // Fallback to 30 fps if no project default
@@ -135,12 +137,13 @@ export function onSysexMessage(midiData: { data: Uint8Array }): void {
 export function getSafeMtcData(): MTCData {
 	const currentData = get(mtcData);
 	if (currentData.frameRate === 0) {
-		console.warn('Frame rate not set. Using 30 fps as default.<br>For accurate timing, ensure frame rate is set before reading MTC data by playing sending MTC messages for at least 30 frames (just press play in the DAW).');
+		console.warn(
+			'Frame rate not set. Using 30 fps as default.<br>For accurate timing, ensure frame rate is set before reading MTC data by playing sending MTC messages for at least 30 frames (just press play in the DAW).'
+		);
 		return { ...currentData, frameRate: 30 };
 	}
 	return currentData;
 }
-
 
 export function onStartMessage() {
 	startPlaying();

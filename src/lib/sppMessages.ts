@@ -1,4 +1,5 @@
 import { bpm } from '$lib/stores';
+import type { MessageEvent } from 'webmidi';
 export { onSPPMessage, onMidiClockMessage };
 
 let currentBpm = 0;
@@ -7,8 +8,9 @@ function onMidiClockMessage() {
 	handleMidiClock();
 }
 
-function onSPPMessage(midiData: any) {
-	console.log(sppArrayToTime(midiData.data, currentBpm));
+function onSPPMessage(midiData: MessageEvent) {
+	console.log(midiData);
+	console.log(sppArrayToTime(midiData, currentBpm));
 }
 
 let lastClockTime: number | null = null;
@@ -39,16 +41,18 @@ function handleMidiClock(): void {
 	// console.log(`Received clock message: ${currentBpm}`);
 }
 
-function sppArrayToTime(sppArray: any[], bpm: number) {
+function sppArrayToTime(midiData: MessageEvent, bpm: number) {
 	// Extract the LSB and MSB from the array
-	const lsb = sppArray[1]; // Least significant byte
-	const msb = sppArray[2]; // Most significant byte
+	const lsb = midiData.data[1]; // Least significant byte
+	const msb = midiData.data[2]; // Most significant byte
+
+	console.log({ lsb, msb });
 
 	// Calculate the 14-bit SPP value from the LSB and MSB
 	const sppValue = (msb << 7) | lsb; // Combine MSB and LSB to get the SPP value
 
 	// Convert the SPP value to time in seconds
-	const timeInSeconds = (sppValue * 60) / (bpm * 4);
+	const timeInSeconds = (sppValue * 60) / (Math.round(bpm) * 4);
 
 	// Convert time in seconds to HH:MM:SSS format
 	const hours = Math.floor(timeInSeconds / 3600);

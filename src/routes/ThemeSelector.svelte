@@ -18,16 +18,14 @@
 
 	function setTheme() {
 		// use the selectedTheme variable here
-		localStorage.setItem("theme", $theme);
+		localStorage.setItem('theme', $theme);
 		document.body.setAttribute('data-theme', $theme);
-		
 	}
 	function getTheme() {
 		// use the selectedTheme variable here
-		$theme = localStorage.getItem("theme") || 'centomila';
+		$theme = localStorage.getItem('theme') || 'centomila';
 		document.body.setAttribute('data-theme', $theme);
 	}
-
 
 	onMount(getTheme);
 </script>

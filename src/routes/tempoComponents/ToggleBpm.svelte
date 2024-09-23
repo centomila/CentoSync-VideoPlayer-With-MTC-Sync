@@ -31,7 +31,7 @@
 
 		return;
 	}
-
+	// eslint-disable-next-line
 	$: $bpmComponent ? startClockListening() : stopClockListening();
 </script>
 

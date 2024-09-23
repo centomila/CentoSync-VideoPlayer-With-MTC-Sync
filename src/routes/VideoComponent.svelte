@@ -26,6 +26,7 @@
 		}
 	}
 
+	// eslint-disable-next-line
 	$: $loadedFiles, updatePlayer();
 
 	function initializePlayer() {

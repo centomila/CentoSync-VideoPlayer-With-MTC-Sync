@@ -61,4 +61,4 @@ export const guiView = writable('video');
 export const theme = writable('centomila');
 
 export const appName = readable('VideoSyncWeb', () => {});
-export const appVersion = readable('0.6.3', () => {});
+export const appVersion = readable('0.6.4', () => {});
