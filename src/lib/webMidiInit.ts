@@ -12,10 +12,22 @@ import {
 $: selectedMidiInputMTC.subscribe((value) => {
     if (value !== 'DISABLED') {
         stopMtcListening();
+        
+        // // close connection for all the unselected inputs
+        // for (const input of WebMidi.inputs) {
+        //     if (input.name === get(selectedMidiInputMTC)) {
+        //         input.open();
+        //     } else {
+        //         input.close();
+        //     }
+        // }
+        
         startMtcListening();
+        
     } else if (value === 'DISABLED') {
         stopMtcListening();
     }
+    logListOfInputs();
     console.log(`Selected MIDI input: ${value}`);
 });
 
@@ -82,14 +94,18 @@ function stopMtcListening() {
     }
 }
 
-export function refreshPorts() {
-    console.log('Refreshing MIDI ports');
+function logListOfInputs() {
     console.table(WebMidi.inputs.map((input) => ({
         name: input.name,
         manufacturer: input.manufacturer,
         state: input.state,
         connection: input.connection
     })));
+}
+
+export function refreshPorts() {
+    console.log('Refreshing MIDI ports');
+    logListOfInputs();
     stopMtcListening();
     // empty midiInputs store
     midiInputs.set([]);
