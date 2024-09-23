@@ -1,6 +1,6 @@
 {
 	"name": "videosyncweb",
-	"version": "0.6.0",
+	"version": "0.6.3",
 	"license": "MIT",
 	"homepage": "https://github.com/centomila/zimmertime-mtc",
 	"description": "Video Player with MTC Sync",
