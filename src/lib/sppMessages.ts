@@ -65,8 +65,8 @@ function sppArrayToTime(midiData: MessageEvent, bpm: number) {
 	const milliseconds = (timeInSeconds % 1) * 1000;
 
 	sppData.update((data: SPPData) => {
-		data.hours = Math.round(hours);
-		data.minutes = Math.round(minutes);
+		data.hours = hours;
+		data.minutes = minutes;
 		data.seconds = seconds;
 		data.milliseconds = milliseconds;
 		data.seekPosition = timeInSeconds;
