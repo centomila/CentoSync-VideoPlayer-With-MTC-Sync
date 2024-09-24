@@ -1,7 +1,6 @@
 import { get } from 'svelte/store';
 import { mtcData, type MTCData } from '$lib/stores'; // Import the store
-import { videoPlayerStore } from '$lib/videoPlayerStore';
-
+import { seekPosition } from './webMidiInit';
 
 // Constants
 const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
@@ -136,52 +135,4 @@ export function getSafeMtcData(): MTCData {
 	return currentData;
 }
 
-export function onStartMessage() {
-	startPlaying();
-	seekPosition();
-}
 
-export function onContinueMessage() {
-	startPlaying();
-	seekPosition();
-}
-
-let seekTimeout: ReturnType<typeof setTimeout> | null = null;
-
-export function seekPosition(): void {
-	if (seekTimeout !== null) {
-		clearTimeout(seekTimeout);
-	}
-
-	seekTimeout = setTimeout(() => {
-		const currentData = get(mtcData);
-		if (currentData && typeof currentData.seekPosition === 'number') {
-			const seekTime = currentData.seekPosition;
-			console.log('Seeking to:', seekTime, 'seconds');
-			videoPlayerStore.seek(seekTime);
-		} else {
-			console.warn('Invalid MTC data for seeking');
-		}
-	}, 100); // 10ms debounce
-}
-
-export function startPlaying() {
-	videoPlayerStore.play();
-}
-
-export function onStopMessage(midiData: { type: string } | null) {
-	if (midiData === null) {
-		console.error('Received null stop message');
-		return;
-	}
-	if (midiData.type === 'stop') {
-		console.log('Received stop message');
-		videoPlayerStore.pause();
-
-		// Clear any pending seek operation
-		if (seekTimeout !== null) {
-			clearTimeout(seekTimeout);
-			seekTimeout = null;
-		}
-	}
-}

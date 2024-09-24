@@ -1,7 +1,8 @@
 import { get } from 'svelte/store';
 import { sppData } from '$lib/stores';
-import type {SPPData} from '$lib/stores';
+import type { SPPData } from '$lib/stores';
 import type { MessageEvent } from 'webmidi';
+import { seekPosition } from './webMidiInit';
 export { onSPPMessage, onMidiClockMessage };
 
 let currentBpm = 0;
@@ -10,15 +11,15 @@ $: sppData.subscribe((data: SPPData) => {
 		currentBpm = data.bpm;
 	}
 });
-	
+
 
 function onMidiClockMessage() {
 	handleMidiClock();
 }
 
 function onSPPMessage(midiData: MessageEvent) {
-	console.log(midiData);
-	console.log(sppArrayToTime(midiData, get(sppData).bpm));
+	// console.log(midiData);
+	sppArrayToTime(midiData, get(sppData).bpm);
 }
 
 let lastClockTime: number | null = null;
@@ -70,6 +71,18 @@ function sppArrayToTime(midiData: MessageEvent, bpm: number) {
 	const seconds = Math.floor(timeInSeconds % 60);
 	const milliseconds = Math.floor((timeInSeconds % 1) * 1000);
 
-	// Format the time as HH:MM:SSS and return it
-	return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')}`;
+	sppData.update((data: SPPData) => {
+		data.hours = hours;
+		data.minutes = minutes;
+		data.seconds = seconds;
+		data.milliseconds = milliseconds;
+		data.seekPosition = timeInSeconds;
+		data.bpm = bpm;
+		data.elapsedFrames = 0;
+		data.frameRate = 0;
+		console.log(data);
+		return data;
+
+	});
+
 }

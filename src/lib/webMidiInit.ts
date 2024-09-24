@@ -1,14 +1,19 @@
 import { WebMidi } from 'webmidi';
 import { get } from 'svelte/store';
-import { selectedMidiInputMTC, midiInputs, syncModeIsMTC } from '$lib/stores';
+import { selectedMidiInputMTC, midiInputs, syncModeIsMTC, mtcData, sppData } from '$lib/stores';
+import type { MTCData, SPPData } from '$lib/stores';
 import { onSPPMessage, onMidiClockMessage } from '$lib/sppMessages';
-import {
-	onMtcMessage,
-	onStartMessage,
-	onStopMessage,
-	onContinueMessage,
-	onSysexMessage
-} from '$lib/mtcMessages';
+import {onMtcMessage,onSysexMessage} from '$lib/mtcMessages';
+import { videoPlayerStore } from '$lib/videoPlayerStore';
+
+
+function syncMode() {
+	if (get(syncModeIsMTC)) {
+		return 'MTC';
+	} else {
+		return 'SPP';
+	}
+}
 
 // eslint-disable-next-line
 $: selectedMidiInputMTC.subscribe((value) => {
@@ -143,4 +148,65 @@ export function refreshPorts() {
 	// empty midiInputs store
 	midiInputs.set([]);
 	addMidiInputOptions();
+}
+
+
+export function onStartMessage() {
+	startPlaying();
+	seekPosition();
+}
+
+export function onContinueMessage() {
+	startPlaying();
+	seekPosition();
+}
+
+
+
+export function onStopMessage(midiData: { type: string } | null) {
+	if (midiData === null) {
+		console.error('Received null stop message');
+		return;
+	}
+	if (midiData.type === 'stop') {
+		console.log('Received stop message');
+		videoPlayerStore.pause();
+
+		// Clear any pending seek operation
+		if (seekTimeout !== null) {
+			clearTimeout(seekTimeout);
+			seekTimeout = null;
+		}
+	}
+}
+
+let seekTimeout: ReturnType<typeof setTimeout> | null = null;
+
+export function seekPosition(): void {
+	if (seekTimeout !== null) {
+		clearTimeout(seekTimeout);
+	}
+
+	seekTimeout = setTimeout(() => {
+		let data: SPPData | MTCData;
+		let seekTime
+		if (syncMode() === 'MTC') {
+			data = get(mtcData);
+		} else if (syncMode() === 'SPP') {
+			data = get(sppData);
+		} else {
+			throw new Error('Invalid sync mode');
+		}
+		if (data && typeof data.seekPosition === 'number') {
+			seekTime = data.seekPosition;
+			console.log('Seeking to:', seekTime, 'seconds');
+			videoPlayerStore.seek(seekTime);
+		} else {
+			console.warn('Invalid data for seeking');
+		}
+	}, 100); // 10ms debounce
+}
+
+export function startPlaying() {
+	videoPlayerStore.play();
 }

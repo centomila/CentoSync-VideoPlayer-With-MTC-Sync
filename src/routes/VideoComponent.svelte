@@ -38,6 +38,7 @@
 				responsive: true,
 				controls: true,
 				muted: true,
+				inactivityTimeout: 0,
 				sources: [
 					{
 						src: $loadedFiles.files?.[0] ? URL.createObjectURL($loadedFiles.files[0]) : '',
