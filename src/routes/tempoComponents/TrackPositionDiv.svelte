@@ -1,17 +1,22 @@
 <script lang="ts">
-	import { mtcData } from '$lib/stores';
+	import { mtcData, sppData, syncModeIsMTC } from '$lib/stores';
 
-	$: ({
-		hours: mtcHours,
-		minutes: mtcMinutes,
-		seconds: mtcSeconds,
-		milliseconds: mtcMilliseconds
-	} = $mtcData);
+	let hoursFormatted: unknown;
+	let minutesFormatted: unknown;
+	let secondsFormatted: unknown;
+	let millisecondsFormatted: unknown;
 
-	$: mtcHoursFormatted = mtcHours < 10 ? '0' + mtcHours : mtcHours;
-	$: mtcMinutesFormatted = mtcMinutes < 10 ? '0' + mtcMinutes : mtcMinutes;
-	$: mtcSecondsFormatted = mtcSeconds < 10 ? '0' + mtcSeconds : mtcSeconds;
-	$: mtcMillisecondsFormatted = mtcMilliseconds.toString().split('.')[0].padStart(3, '0');
+	$: if ($syncModeIsMTC) {
+		hoursFormatted = $mtcData.hours < 10 ? '0' + $mtcData.hours : $mtcData.hours;
+		minutesFormatted = $mtcData.minutes < 10 ? '0' + $mtcData.minutes : $mtcData.minutes;
+		secondsFormatted = $mtcData.seconds < 10 ? '0' + $mtcData.seconds : $mtcData.seconds;
+		millisecondsFormatted = $mtcData.milliseconds.toString().split('.')[0].padStart(3, '0');
+	} else {
+		hoursFormatted = Math.floor($sppData.hours);
+		minutesFormatted = Math.floor($sppData.minutes);
+		secondsFormatted = Math.floor($sppData.seconds);
+		millisecondsFormatted = Math.floor($sppData.milliseconds);
+	}
 </script>
 
 <div class="px-4">
@@ -26,19 +31,19 @@
 		<div class="text-center font-mono font-light text-primary-500">MS</div>
 
 		<div class="text-center font-mono font-light lg:text-2xl">
-			{mtcHoursFormatted}
+			{hoursFormatted}
 		</div>
 		<div class="text-center font-extralight text-gray-500 lg:text-2xl">:</div>
 		<div class="text-center font-mono font-light lg:text-2xl">
-			{mtcMinutesFormatted}
+			{minutesFormatted}
 		</div>
 		<div class="text-center font-extralight text-gray-500 lg:text-2xl">:</div>
 		<div class="text-center font-mono font-light lg:text-2xl">
-			{mtcSecondsFormatted}
+			{secondsFormatted}
 		</div>
 		<div class="text-center font-extralight text-gray-500 lg:text-2xl">.</div>
 		<div class="text-center font-mono font-light lg:text-2xl">
-			{mtcMillisecondsFormatted}
+			{millisecondsFormatted}
 		</div>
 	</div>
 </div>

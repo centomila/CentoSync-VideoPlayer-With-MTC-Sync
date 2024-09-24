@@ -6,7 +6,7 @@
 <!-- Frontend -->
 
 <div class="flex w-full justify-between">
-	<label class="title text-bold text-left" for="midi-inputs">MIDI PORT </label>
+	<label class="title text-bold text-left" for="midi-inputs">MIDI Port </label>
 	<button
 		class="btn-primary variant-filled btn-icon max-h-5 max-w-5"
 		title="Refresh MIDI ports"

@@ -76,9 +76,7 @@
 				<MidiPortSelection />
 			</div>
 			<div class="border-surface-300-600-token space-y-4 border-t p-4">
-				<div class="py-2">
-					<ToggleSyncModeIsMTC />
-				</div>
+				<ToggleSyncModeIsMTC />
 			</div>
 			<!-- Footer -->
 			<div class="border-surface-300-600-token space-y-4 border-t p-4">

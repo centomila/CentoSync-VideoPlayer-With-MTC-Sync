@@ -1,10 +1,21 @@
 // stores.ts
 import { writable, readable } from 'svelte/store';
 
+// View
+
+export const guiView = writable('video');
+export const theme = writable('centomila');
+
+export const appName = readable('VideoSyncWeb', () => {});
+export const appVersion = readable('0.7.0', () => {});
+
 interface MidiInputs {
 	name: string;
 	value: string;
 }
+
+export const isPlaying = writable(false);
+export const lastTimeReceivedPlay = writable(0);
 
 export const midiInputs = writable<MidiInputs[]>([]);
 
@@ -30,6 +41,7 @@ export interface SPPData {
 	frameRate: number;
 	elapsedFrames: number;
 	seekPosition: number;
+	secondsOnSPP: number;
 }
 
 export const sppData = writable<SPPData>({
@@ -41,7 +53,8 @@ export const sppData = writable<SPPData>({
 	frames: 0,
 	frameRate: 0,
 	elapsedFrames: 0,
-	seekPosition: 0
+	seekPosition: 0,
+	secondsOnSPP: 0
 });
 
 export const mtcData = writable<MTCData>({
@@ -67,7 +80,6 @@ export const loadedFiles = writable<LoadedFiles>({
 	currentFileName: 'Load a video'
 });
 
-
 // GUI Settings
 export const selectedMidiInputMTC = writable('');
 
@@ -78,11 +90,3 @@ export const bpmComponent = writable(false);
 
 // SyncSetting
 export const syncModeIsMTC = writable(true);
-
-// View
-
-export const guiView = writable('video');
-export const theme = writable('centomila');
-
-export const appName = readable('VideoSyncWeb', () => {});
-export const appVersion = readable('0.6.4', () => {});

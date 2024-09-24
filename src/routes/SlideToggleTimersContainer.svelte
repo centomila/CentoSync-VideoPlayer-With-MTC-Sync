@@ -4,7 +4,7 @@
 	import ToggleMidiTimeCode from './tempoComponents/ToggleMidiTimeCode.svelte';
 	import ToggleTrackPosition from './tempoComponents/ToggleTrackPosition.svelte';
 	import ToggleSyncModeIsMTC from './tempoComponents/ToggleSyncModeIsMTC.svelte';
-	import {syncModeIsMTC} from '$lib/stores';
+	import { syncModeIsMTC } from '$lib/stores';
 </script>
 
 <div class="py-2">
@@ -14,17 +14,17 @@
 	<ToggleTrackPosition />
 </div>
 {#if $syncModeIsMTC}
-<div class="py-2">
-	<ToggleMidiTimeCode />
-</div>
+	<div class="py-2">
+		<ToggleMidiTimeCode />
+	</div>
 {/if}
 {#if $syncModeIsMTC}
-<div class="py-2">
-	<ToggleElapsedFrames />
-</div>
+	<div class="py-2">
+		<ToggleElapsedFrames />
+	</div>
 {/if}
 {#if !$syncModeIsMTC}
-<div class="py-2">
-	<ToggleBpm />
-</div>
+	<div class="py-2">
+		<ToggleBpm />
+	</div>
 {/if}

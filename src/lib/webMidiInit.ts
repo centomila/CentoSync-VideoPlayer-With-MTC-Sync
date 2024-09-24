@@ -1,11 +1,17 @@
 import { WebMidi } from 'webmidi';
 import { get } from 'svelte/store';
-import { selectedMidiInputMTC, midiInputs, syncModeIsMTC, mtcData, sppData } from '$lib/stores';
+import {
+	selectedMidiInputMTC,
+	midiInputs,
+	syncModeIsMTC,
+	mtcData,
+	sppData,
+	isPlaying
+} from '$lib/stores';
 import type { MTCData, SPPData } from '$lib/stores';
 import { onSPPMessage, onMidiClockMessage } from '$lib/sppMessages';
-import {onMtcMessage,onSysexMessage} from '$lib/mtcMessages';
+import { onMtcMessage, onSysexMessage } from '$lib/mtcMessages';
 import { videoPlayerStore } from '$lib/videoPlayerStore';
-
 
 function syncMode() {
 	if (get(syncModeIsMTC)) {
@@ -45,6 +51,8 @@ $: syncModeIsMTC.subscribe((value) => {
 		startSPPListening();
 	}
 });
+
+$: isPlaying;
 
 // Enable WEBMIDI.js and trigger the onEnabled() function when ready
 
@@ -132,9 +140,8 @@ function stopMtcAndSPPListeners() {
 	}
 }
 
-
 export function startSPPListening() {
-	const input = getSelectedMidiInput()
+	const input = getSelectedMidiInput();
 	console.log('SPP listener starting on port ', input?.name);
 
 	if (WebMidi.enabled && input) {
@@ -174,7 +181,6 @@ export function refreshPorts() {
 	addMidiInputOptions();
 }
 
-
 export function onStartMessage() {
 	startPlaying();
 	seekPosition();
@@ -184,8 +190,6 @@ export function onContinueMessage() {
 	startPlaying();
 	seekPosition();
 }
-
-
 
 export function onStopMessage(midiData: { type: string } | null) {
 	if (midiData === null) {
@@ -202,6 +206,11 @@ export function onStopMessage(midiData: { type: string } | null) {
 			seekTimeout = null;
 		}
 	}
+	isPlaying.set(false);
+	sppData.set({
+		...get(sppData),
+		secondsOnSPP: 0
+	});
 }
 
 let seekTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -213,7 +222,7 @@ export function seekPosition(): void {
 
 	seekTimeout = setTimeout(() => {
 		let data: SPPData | MTCData;
-		let seekTime
+		let seekTime;
 		if (syncMode() === 'MTC') {
 			data = get(mtcData);
 		} else if (syncMode() === 'SPP') {
@@ -232,5 +241,6 @@ export function seekPosition(): void {
 }
 
 export function startPlaying() {
+	isPlaying.set(true);
 	videoPlayerStore.play();
 }
