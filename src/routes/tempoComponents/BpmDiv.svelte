@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { bpm } from '$lib/stores';
+	import { sppData } from '$lib/stores';
+	import type { SPPData } from '$lib/stores';
 
-	$: bpmFormatted = $bpm ? parseFloat($bpm.toFixed(2)) : 0;
+	$: bpmFormatted = $sppData.bpm ? parseFloat($sppData.bpm.toFixed(2)) : 0;
 </script>
 
 <div class="px-4">

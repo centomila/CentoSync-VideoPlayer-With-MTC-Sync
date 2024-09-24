@@ -1,8 +1,16 @@
-import { bpm } from '$lib/stores';
+import { get } from 'svelte/store';
+import { sppData } from '$lib/stores';
+import type {SPPData} from '$lib/stores';
 import type { MessageEvent } from 'webmidi';
 export { onSPPMessage, onMidiClockMessage };
 
 let currentBpm = 0;
+$: sppData.subscribe((data: SPPData) => {
+	if (data.bpm !== 0) {
+		currentBpm = data.bpm;
+	}
+});
+	
 
 function onMidiClockMessage() {
 	handleMidiClock();
@@ -10,7 +18,7 @@ function onMidiClockMessage() {
 
 function onSPPMessage(midiData: MessageEvent) {
 	console.log(midiData);
-	console.log(sppArrayToTime(midiData, currentBpm));
+	console.log(sppArrayToTime(midiData, get(sppData).bpm));
 }
 
 let lastClockTime: number | null = null;
@@ -28,7 +36,9 @@ function handleMidiClock(): void {
 			const averageClockInterval = clockIntervalSum / 24;
 			const newBpm = 60000 / averageClockInterval / 24;
 			if (newBpm !== currentBpm) {
-				bpm.update(() => newBpm);
+				sppData.update((data: SPPData) => {
+					return { ...data, bpm: newBpm };
+				})
 				currentBpm = newBpm;
 			}
 

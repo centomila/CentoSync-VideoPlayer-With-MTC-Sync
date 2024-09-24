@@ -3,6 +3,7 @@
 	import ToggleElapsedFrames from './tempoComponents/ToggleElapsedFrames.svelte';
 	import ToggleMidiTimeCode from './tempoComponents/ToggleMidiTimeCode.svelte';
 	import ToggleTrackPosition from './tempoComponents/ToggleTrackPosition.svelte';
+	import ToggleSyncModeIsMTC from './tempoComponents/ToggleSyncModeIsMTC.svelte';
 </script>
 
 <div class="py-2">
@@ -16,4 +17,7 @@
 </div>
 <div class="py-2">
 	<ToggleBpm />
+</div>
+<div class="py-2">
+	<ToggleSyncModeIsMTC />
 </div>

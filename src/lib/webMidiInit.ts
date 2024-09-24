@@ -1,6 +1,7 @@
 import { WebMidi } from 'webmidi';
 import { get } from 'svelte/store';
-import { selectedMidiInputMTC, midiInputs } from '$lib/stores';
+import { selectedMidiInputMTC, midiInputs, syncModeIsMTC } from '$lib/stores';
+import { onSPPMessage, onMidiClockMessage } from '$lib/sppMessages';
 import {
 	onMtcMessage,
 	onStartMessage,
@@ -12,7 +13,7 @@ import {
 // eslint-disable-next-line
 $: selectedMidiInputMTC.subscribe((value) => {
 	if (value !== 'DISABLED') {
-		stopMtcListening();
+		stopMtcAndClockListeners();
 
 		// // close connection for all the unselected inputs
 		// for (const input of WebMidi.inputs) {
@@ -25,10 +26,19 @@ $: selectedMidiInputMTC.subscribe((value) => {
 
 		startMtcListening();
 	} else if (value === 'DISABLED') {
-		stopMtcListening();
+		stopMtcAndClockListeners();
 	}
 	logListOfInputs();
 	console.log(`Selected MIDI input: ${value}`);
+});
+
+$: syncModeIsMTC.subscribe((value) => {
+	stopMtcAndClockListeners();
+	if (value) {
+		startMtcListening();
+	} else {
+		startClockListening();
+	}
 });
 
 // Enable WEBMIDI.js and trigger the onEnabled() function when ready
@@ -67,8 +77,8 @@ function addMidiInputOptions() {
 
 function startMtcListening() {
 	if (WebMidi.enabled) {
-		console.log('MTC listener starting');
-		const input = WebMidi.getInputByName(get(selectedMidiInputMTC));
+		const input = getSelectedMidiInput();
+		console.log('MTC listener starting on port ', input?.name);
 		if (input) {
 			console.info(`Listening for MTC messages from ${input.name}...`);
 			input.addListener('sysex', onSysexMessage);
@@ -77,20 +87,42 @@ function startMtcListening() {
 			input.addListener('continue', onContinueMessage);
 			input.addListener('stop', onStopMessage);
 		} else {
-			console.log(`MIDI input not found`);
+			console.warn(`MIDI input not found`);
 		}
 	}
 }
 
-function stopMtcListening() {
+function stopMtcAndClockListeners() {
 	if (WebMidi.enabled) {
-		console.log('MTC listener stopping');
+		console.log('MTC and clock listener stopping');
 		// Remove all listeners
 		for (const input of WebMidi.inputs) {
 			input.removeListener();
 			console.info(`Removed listeners for messages from ${input.name}...`);
 		}
 	}
+}
+
+
+export function startClockListening() {
+	const input = getSelectedMidiInput()
+	console.log('SPP listener starting on port ', input?.name);
+
+	if (WebMidi.enabled && input) {
+		input.addListener('clock', onMidiClockMessage);
+		input.addListener('songposition', onSPPMessage);
+		input.addListener('start', onStartMessage);
+		input.addListener('continue', onContinueMessage);
+		input.addListener('stop', onStopMessage);
+	} else if (!WebMidi.enabled) {
+		console.warn('WEBMIDI not enabled. Cannot start SPP listener.');
+	} else {
+		console.warn(`MIDI input not found`);
+	}
+}
+
+function getSelectedMidiInput() {
+	return WebMidi.getInputByName(get(selectedMidiInputMTC));
 }
 
 function logListOfInputs() {
@@ -107,7 +139,7 @@ function logListOfInputs() {
 export function refreshPorts() {
 	console.log('Refreshing MIDI ports');
 	logListOfInputs();
-	stopMtcListening();
+	stopMtcAndClockListeners();
 	// empty midiInputs store
 	midiInputs.set([]);
 	addMidiInputOptions();

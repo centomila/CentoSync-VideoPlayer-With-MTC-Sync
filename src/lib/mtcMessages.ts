@@ -1,23 +1,14 @@
 import { get } from 'svelte/store';
-import { mtcData } from '$lib/stores'; // Import the store
+import { mtcData, type MTCData } from '$lib/stores'; // Import the store
 import { videoPlayerStore } from '$lib/videoPlayerStore';
+
 
 // Constants
 const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
 const MTC_QUARTER_FRAME_MASK = 0xf;
 const MTC_FULL_FRAME_MASK = 0xf0;
 
-// Interface for currentData
-interface MTCData {
-	frames: number;
-	seconds: number;
-	minutes: number;
-	hours: number;
-	frameRate: number;
-	milliseconds: number;
-	elapsedFrames: number;
-	seekPosition: number;
-}
+
 
 export function onMtcMessage(midiData: { data: Uint8Array }): void {
 	const data = midiData.data[1];

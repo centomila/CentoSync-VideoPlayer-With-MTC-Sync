@@ -9,7 +9,7 @@ interface MidiInputs {
 export const midiInputs = writable<MidiInputs[]>([]);
 
 // MTC
-interface MtcData {
+export interface MTCData {
 	hours: number;
 	minutes: number;
 	seconds: number;
@@ -20,7 +20,31 @@ interface MtcData {
 	seekPosition: number;
 }
 
-export const mtcData = writable<MtcData>({
+export interface SPPData {
+	bpm: number;
+	hours: number;
+	minutes: number;
+	seconds: number;
+	milliseconds: number;
+	frames: number;
+	frameRate: number;
+	elapsedFrames: number;
+	seekPosition: number;
+}
+
+export const sppData = writable<SPPData>({
+	bpm: 120,
+	hours: 0,
+	minutes: 0,
+	seconds: 0,
+	milliseconds: 0,
+	frames: 0,
+	frameRate: 0,
+	elapsedFrames: 0,
+	seekPosition: 0
+});
+
+export const mtcData = writable<MTCData>({
 	hours: 0,
 	minutes: 0,
 	seconds: 0,
@@ -43,9 +67,6 @@ export const loadedFiles = writable<LoadedFiles>({
 	currentFileName: 'Load a video'
 });
 
-// Midi Clock
-
-export const bpm = writable(120);
 
 // GUI Settings
 export const selectedMidiInputMTC = writable('');
@@ -54,6 +75,9 @@ export const trackPositionComponent = writable(true);
 export const midiTimecodeComponent = writable(true);
 export const elapsedFramesComponent = writable(true);
 export const bpmComponent = writable(false);
+
+// SyncSetting
+export const syncModeIsMTC = writable(true);
 
 // View
 
