@@ -22,9 +22,9 @@
 	$: gridCols = enabledComponents.length;
 	$: divClassess = () => {
 		if (gridCols === 1 || gridCols === 2) {
-			return 'border-surface-300-600-token flex-auto max-w-md first:border-l border-r py-2 lg:px-4';
+			return 'border-surface-300-600-token flex-auto max-w-md border-r first:border-l-0 last:border-r-0 py-2 lg:px-4';
 		} else {
-			return 'border-surface-300-600-token flex-auto max-w-md border-r py-2 lg:px-4';
+			return 'border-surface-300-600-token flex-auto max-w-md border-r first:border-l-0 last:border-r-0 py-2 lg:px-4';
 		}
 	};
 </script>
