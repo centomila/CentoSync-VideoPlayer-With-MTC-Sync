@@ -12,11 +12,13 @@ MIDI Timecode Display is a simple web application that shows the current MTC tim
 ## Features
 
 - Shows the current MTC timecode from a selected MIDI port
-- Uses performance.now, requestAnimationFrame and binary arrays to maximize performance
 - Shows current timecode in hours, minutes, seconds and frames (HH:MM:SS:FF)
-- Shows DAW style audio track time in hours, minutes, seconds (HH:MM:SSS)
+- Shows DAW style audio track time in hours, minutes, seconds (HH:MM:SSS) (MS are estimated from frames)
 - Shows MTC frame rate in FPS
 - Shows elapsed frames from the start of the MTC
+- Easily hide the GUI when is not needed
+- Load the video from a local file (muted by default)
+- Multiple themes to find inspiration when composition
 
 ## Why this project exists
 

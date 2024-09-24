@@ -30,11 +30,6 @@
 </script>
 
 <div class="border-surface-300-600-token flex flex-grow justify-center border-t">
-	{#if $trackPositionComponent}
-		<div class={divClassess()} transition:fade={{ delay: 0, duration: 150 }}>
-			<TrackPositionDiv />
-		</div>
-	{/if}
 	{#if $midiTimecodeComponent}
 		<div class={divClassess()} transition:fade={{ delay: 0, duration: 150 }}>
 			<MidiTimeCodeDiv />
@@ -43,6 +38,11 @@
 	{#if $elapsedFramesComponent}
 		<div class={divClassess()} transition:fade={{ delay: 0, duration: 150 }}>
 			<ElapsedFramesDiv />
+		</div>
+	{/if}
+	{#if $trackPositionComponent}
+		<div class={divClassess()} transition:fade={{ delay: 0, duration: 150 }}>
+			<TrackPositionDiv />
 		</div>
 	{/if}
 	{#if $bpmComponent}
