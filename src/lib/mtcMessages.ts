@@ -54,8 +54,8 @@ export function onMtcMessage(midiData: { data: Uint8Array }): void {
 		const totalSeconds = totalFrames / currentData.frameRate;
 
 		// Update derived values
-		currentData.milliseconds = Math.round((totalSeconds % 1) * 1000);
-		currentData.elapsedFrames = Math.round(totalFrames);
+		currentData.milliseconds = (totalSeconds % 1) * 1000;
+		currentData.elapsedFrames = totalFrames;
 		currentData.seekPosition = totalSeconds;
 
 		return currentData;
@@ -108,8 +108,8 @@ export function onSysexMessage(midiData: { data: Uint8Array }): void {
 			const totalSeconds = totalFrames / currentData.frameRate;
 
 			// Update derived values
-			currentData.milliseconds = Math.round((totalSeconds % 1) * 1000);
-			currentData.elapsedFrames = Math.round(totalFrames);
+			currentData.milliseconds = (totalSeconds % 1) * 1000;
+			currentData.elapsedFrames = totalFrames;
 			currentData.seekPosition = totalSeconds;
 
 			return currentData;
