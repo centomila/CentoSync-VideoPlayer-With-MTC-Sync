@@ -12,10 +12,10 @@
 		secondsFormatted = $mtcData.seconds < 10 ? '0' + $mtcData.seconds : $mtcData.seconds;
 		millisecondsFormatted = $mtcData.milliseconds.toString().split('.')[0].padStart(3, '0');
 	} else {
-		hoursFormatted = Math.floor($sppData.hours);
-		minutesFormatted = Math.floor($sppData.minutes);
-		secondsFormatted = Math.floor($sppData.seconds);
-		millisecondsFormatted = Math.floor($sppData.milliseconds);
+		hoursFormatted = $sppData.hours < 10 ? '0' + $sppData.hours : $sppData.hours;
+		minutesFormatted = $sppData.minutes < 10 ? '0' + $sppData.minutes : $sppData.minutes;
+		secondsFormatted = $sppData.seconds.toString().split('.')[0].padStart(2, '0');
+		millisecondsFormatted = $sppData.milliseconds.toString().split('.')[0].padStart(3, '0');
 	}
 </script>
 

@@ -56,7 +56,7 @@ function sppArrayToTime(midiData: MessageEvent, bpm: number) {
 	const sppValue = (msb << 7) | lsb; // Combine MSB and LSB to get the SPP value
 
 	// Convert the SPP value to time in seconds
-	const timeInSeconds = (sppValue * 60) / (bpm * 4);
+	const timeInSeconds = (sppValue * 60) / (Math.round(bpm) * 4);
 
 	// Convert time in seconds to HH:MM:SSS format
 	const hours = timeInSeconds / 3600;
@@ -65,8 +65,8 @@ function sppArrayToTime(midiData: MessageEvent, bpm: number) {
 	const milliseconds = (timeInSeconds % 1) * 1000;
 
 	sppData.update((data: SPPData) => {
-		data.hours = hours;
-		data.minutes = minutes;
+		data.hours = Math.round(hours);
+		data.minutes = Math.round(minutes);
 		data.seconds = seconds;
 		data.milliseconds = milliseconds;
 		data.seekPosition = timeInSeconds;
