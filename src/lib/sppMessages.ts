@@ -2,7 +2,6 @@ import { get } from 'svelte/store';
 import { sppData } from '$lib/stores';
 import type { SPPData } from '$lib/stores';
 import type { MessageEvent } from 'webmidi';
-import { seekPosition } from './webMidiInit';
 export { onSPPMessage, onMidiClockMessage };
 
 let currentBpm = 0;
@@ -13,20 +12,7 @@ $: sppData.subscribe((data: SPPData) => {
 });
 
 
-function onMidiClockMessage() {
-	handleMidiClock();
-}
-
-function onSPPMessage(midiData: MessageEvent) {
-	// console.log(midiData);
-	sppArrayToTime(midiData, get(sppData).bpm);
-}
-
-let lastClockTime: number | null = null;
-let clockIntervalSum: number = 0;
-let clockCount: number = 0;
-
-function handleMidiClock(): void {
+function onMidiClockMessage(): void {
 	const now = performance.now();
 	if (lastClockTime !== null) {
 		const interval = now - lastClockTime;
@@ -51,6 +37,16 @@ function handleMidiClock(): void {
 	lastClockTime = now;
 	// console.log(`Received clock message: ${currentBpm}`);
 }
+
+function onSPPMessage(midiData: MessageEvent) {
+	// console.log(midiData);
+	sppArrayToTime(midiData, get(sppData).bpm);
+}
+
+let lastClockTime: number | null = null;
+let clockIntervalSum: number = 0;
+let clockCount: number = 0;
+
 
 function sppArrayToTime(midiData: MessageEvent, bpm: number) {
 	// Extract the LSB and MSB from the array

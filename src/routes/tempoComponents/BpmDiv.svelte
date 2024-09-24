@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { sppData } from '$lib/stores';
-	import type { SPPData } from '$lib/stores';
 
 	$: bpmFormatted = $sppData.bpm ? parseFloat($sppData.bpm.toFixed(2)) : 0;
 </script>

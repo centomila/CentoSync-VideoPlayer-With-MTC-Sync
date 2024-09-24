@@ -6,8 +6,14 @@
 
 	import SelectVideoFile from './SelectVideoFile.svelte';
 	import GuiViewSelection from './GuiViewSelection.svelte';
-	import SlideToggleTimersContainer from './SlideToggleTimersContainer.svelte';
 	import MidiPortSelection from './MidiPortSelection.svelte';
+
+	import ToggleBpm from './tempoComponents/ToggleBpm.svelte';
+	import ToggleElapsedFrames from './tempoComponents/ToggleElapsedFrames.svelte';
+	import ToggleMidiTimeCode from './tempoComponents/ToggleMidiTimeCode.svelte';
+	import ToggleTrackPosition from './tempoComponents/ToggleTrackPosition.svelte';
+	import ToggleSyncModeIsMTC from './tempoComponents/ToggleSyncModeIsMTC.svelte';
+	import { syncModeIsMTC } from '$lib/stores';
 
 	import ThemeSelector from './ThemeSelector.svelte';
 
@@ -45,13 +51,34 @@
 				<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
 					<GuiViewSelection />
 				</div>
-				<div class="border-surface-300-600-token flex flex-col border-t p-4">
-					<SlideToggleTimersContainer />
+
+				<div class="border-surface-300-600-token flex flex-col border-b border-t p-4">
+					<div class="py-2">
+						<ToggleTrackPosition />
+					</div>
+					{#if $syncModeIsMTC}
+						<div class="py-2">
+							<ToggleMidiTimeCode />
+						</div>
+					{/if}
+					{#if $syncModeIsMTC}
+						<div class="py-2">
+							<ToggleElapsedFrames />
+						</div>
+					{/if}
+					<div class="py-2">
+						<ToggleBpm />
+					</div>
 				</div>
 			</div>
 
 			<div class="border-surface-300-600-token space-y-4 border-t p-4">
 				<MidiPortSelection />
+			</div>
+			<div class="border-surface-300-600-token space-y-4 border-t p-4">
+				<div class="py-2">
+					<ToggleSyncModeIsMTC />
+				</div>
 			</div>
 			<!-- Footer -->
 			<div class="border-surface-300-600-token space-y-4 border-t p-4">

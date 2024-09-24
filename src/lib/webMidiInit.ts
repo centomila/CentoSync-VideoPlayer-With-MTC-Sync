@@ -18,7 +18,7 @@ function syncMode() {
 // eslint-disable-next-line
 $: selectedMidiInputMTC.subscribe((value) => {
 	if (value !== 'DISABLED') {
-		stopMtcAndClockListeners();
+		stopMtcAndSPPListeners();
 
 		// // close connection for all the unselected inputs
 		// for (const input of WebMidi.inputs) {
@@ -31,18 +31,18 @@ $: selectedMidiInputMTC.subscribe((value) => {
 
 		startMtcListening();
 	} else if (value === 'DISABLED') {
-		stopMtcAndClockListeners();
+		stopMtcAndSPPListeners();
 	}
 	logListOfInputs();
 	console.log(`Selected MIDI input: ${value}`);
 });
 
 $: syncModeIsMTC.subscribe((value) => {
-	stopMtcAndClockListeners();
+	stopMtcAndSPPListeners();
 	if (value) {
 		startMtcListening();
 	} else {
-		startClockListening();
+		startSPPListening();
 	}
 });
 
@@ -97,19 +97,43 @@ function startMtcListening() {
 	}
 }
 
-function stopMtcAndClockListeners() {
+export function startMidiClockLisening() {
+	if (WebMidi.enabled) {
+		const input = getSelectedMidiInput();
+		console.log('Clock listener starting on port ', input?.name);
+		if (input) {
+			console.info(`Listening for clock messages from ${input.name}...`);
+			input.addListener('clock', onMidiClockMessage);
+		} else {
+			console.warn(`MIDI input not found`);
+		}
+	}
+}
+
+export function stopMidiClockLisening() {
+	if (WebMidi.enabled) {
+		console.log('Clock listener stopping');
+		// Remove all listeners
+		for (const input of WebMidi.inputs) {
+			input.removeListener('clock');
+			console.info(`Removed listeners for CLOCK from ${input.name}...`);
+		}
+	}
+}
+
+function stopMtcAndSPPListeners() {
 	if (WebMidi.enabled) {
 		console.log('MTC and clock listener stopping');
 		// Remove all listeners
 		for (const input of WebMidi.inputs) {
 			input.removeListener();
-			console.info(`Removed listeners for messages from ${input.name}...`);
+			console.info(`Removed listeners for ALL messages from ${input.name}...`);
 		}
 	}
 }
 
 
-export function startClockListening() {
+export function startSPPListening() {
 	const input = getSelectedMidiInput()
 	console.log('SPP listener starting on port ', input?.name);
 
@@ -144,7 +168,7 @@ function logListOfInputs() {
 export function refreshPorts() {
 	console.log('Refreshing MIDI ports');
 	logListOfInputs();
-	stopMtcAndClockListeners();
+	stopMtcAndSPPListeners();
 	// empty midiInputs store
 	midiInputs.set([]);
 	addMidiInputOptions();
