@@ -86,8 +86,6 @@ export function onSysexMessage(midiData: { data: Uint8Array }): void {
 				console.warn(
 					'Frame rate not set. Using project default or 30 fps. For accurate timing, ensure frame rate is set before seeking (Just press play in your DAW once 😉).'
 				);
-				// You might want to get the project's default frame rate here
-				// currentData.frameRate = getProjectDefaultFrameRate();
 				currentData.frameRate = 30; // Fallback to 30 fps if no project default
 			}
 
@@ -97,20 +95,25 @@ export function onSysexMessage(midiData: { data: Uint8Array }): void {
 			currentData.seconds = seconds;
 			currentData.frames = frames;
 
-			// Calculate total frames
+			// Calculate only the milliseconds for the current second using frames and frame rate
+			const frameTimeInMilliseconds = (frames / currentData.frameRate) * 1000;
+
+			// Final precise millisecond calculation (only for the current second)
+			currentData.milliseconds = Math.round(frameTimeInMilliseconds);
+
+			// Calculate total frames for elapsed frames
 			const totalFrames =
 				hours * 3600 * currentData.frameRate +
 				minutes * 60 * currentData.frameRate +
 				seconds * currentData.frameRate +
 				frames;
 
-			// Calculate total seconds with high precision
-			const totalSeconds = totalFrames / currentData.frameRate;
-
 			// Update derived values
-			currentData.milliseconds = (totalSeconds % 1) * 1000;
 			currentData.elapsedFrames = totalFrames;
-			currentData.seekPosition = totalSeconds;
+
+			// Calculate seek position in seconds
+			currentData.seekPosition =
+				(hours * 3600 + minutes * 60 + seconds) + frames / currentData.frameRate;
 
 			return currentData;
 		});
@@ -120,6 +123,8 @@ export function onSysexMessage(midiData: { data: Uint8Array }): void {
 		seekPosition();
 	}
 }
+
+
 
 // Function to get the current MTC data safely
 export function getSafeMtcData(): MTCData {

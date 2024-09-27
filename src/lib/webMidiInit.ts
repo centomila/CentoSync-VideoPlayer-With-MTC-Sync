@@ -56,19 +56,36 @@ $: isPlaying;
 
 // Enable WEBMIDI.js and trigger the onEnabled() function when ready
 
-WebMidi.enable({ sysex: true })
-	.then(() => console.log('System exclusive messages are enabled'))
-	.catch((err) => console.log(err));
+function startWebMidi() {
+	WebMidi.enable({ sysex: true })
+		.then(() => console.log('System exclusive messages are enabled'))
+		.catch((err) => console.log(err));
 
-WebMidi.addListener('midiaccessgranted', () => {
-	if (WebMidi.enabled) {
-		console.log('MIDI access granted');
-	}
-});
+	WebMidi.addListener('midiaccessgranted', () => {
+		if (WebMidi.enabled) {
+			console.log('MIDI access granted');
+		}
+	});
 
-WebMidi.addListener('connected', () => {
-	addMidiInputOptions();
-});
+	WebMidi.addListener('connected', () => {
+		addMidiInputOptions();
+	});
+
+	WebMidi.addListener('disconnected', () => {
+		console.log('Device disconnected')
+	});
+
+	WebMidi.addListener('disabled', () => {
+		if (!WebMidi.enabled) {
+			console.log('WEBMIDI disabled');
+		}
+	});
+}
+startWebMidi();
+
+
+
+
 
 function addMidiInputOptions() {
 	if (WebMidi.inputs.length === 0) {
@@ -162,22 +179,33 @@ function getSelectedMidiInput() {
 }
 
 function logListOfInputs() {
-	console.table(
-		WebMidi.inputs.map((input) => ({
-			name: input.name,
-			manufacturer: input.manufacturer,
-			state: input.state,
-			connection: input.connection
-		}))
-	);
+	if (WebMidi.enabled) {
+		console.log('List of available MIDI inputs:');
+		console.table(
+			WebMidi.inputs.map((input) => ({
+				name: input.name,
+				manufacturer: input.manufacturer,
+				state: input.state,
+				connection: input.connection
+			}))
+		);
+	} else {
+		console.warn('WEBMIDI not enabled. Cannot log list of available MIDI inputs.');
+	}
 }
 
 export function refreshPorts() {
 	console.log('Refreshing MIDI ports');
-	logListOfInputs();
-	stopMtcAndSPPListeners();
+	if (WebMidi.enabled) {
+		logListOfInputs();
+		stopMtcAndSPPListeners();
+		midiInputs.set([]);
+		WebMidi.disable();
+	} else {
+		console.log("WebMidi is already stopped")
+	}
 	// empty midiInputs store
-	midiInputs.set([]);
+	startWebMidi();
 	addMidiInputOptions();
 }
 
@@ -237,7 +265,7 @@ export function seekPosition(): void {
 		} else {
 			console.warn('Invalid data for seeking');
 		}
-	}, 100); // 10ms debounce
+	}, 0); // 10ms debounce
 }
 
 export function startPlaying() {
