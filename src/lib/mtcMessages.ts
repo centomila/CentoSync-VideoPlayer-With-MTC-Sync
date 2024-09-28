@@ -113,7 +113,7 @@ export function onSysexMessage(midiData: { data: Uint8Array }): void {
 
 			// Calculate seek position in seconds
 			currentData.seekPosition =
-				(hours * 3600 + minutes * 60 + seconds) + frames / currentData.frameRate;
+				hours * 3600 + minutes * 60 + seconds + frames / currentData.frameRate;
 
 			return currentData;
 		});
@@ -123,8 +123,6 @@ export function onSysexMessage(midiData: { data: Uint8Array }): void {
 		seekPosition();
 	}
 }
-
-
 
 // Function to get the current MTC data safely
 export function getSafeMtcData(): MTCData {

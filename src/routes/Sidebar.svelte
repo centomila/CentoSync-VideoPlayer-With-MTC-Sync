@@ -17,7 +17,7 @@
 
 	import ThemeSelector from './ThemeSelector.svelte';
 
-	import HelpComponent  from './HelpComponent.svelte';
+	import HelpComponent from './HelpComponent.svelte';
 
 	import Copyright from './Copyright.svelte';
 
@@ -72,8 +72,10 @@
 						<ToggleBpm />
 					</div>
 				</div>
-				<div class="border-surface-300-600-token flex w-full flex-col  items-center border-t border-b p-4">
-					<HelpComponent/>
+				<div
+					class="border-surface-300-600-token flex w-full flex-col items-center border-b border-t p-4"
+				>
+					<HelpComponent />
 				</div>
 			</div>
 
@@ -96,7 +98,7 @@
 	<div class="relative h-0 w-0">
 		<button
 			on:click={() => (sideBarToggle = !sideBarToggle)}
-			class="variant-glass-primary btn relative left-0 top-0 h-8 w-8 rounded-none hover:translate-x-1 hover:translate-y-1 hover:scale-125 -z-10"
+			class="variant-glass-primary btn relative left-0 top-0 -z-10 h-8 w-8 rounded-none hover:translate-x-1 hover:translate-y-1 hover:scale-125"
 			title={sideBarToggle ? 'Hide sidebar (H)' : 'Show sidebar (H)'}
 		>
 			{#if sideBarToggle}<i class="fas fa-eye-slash" />{:else}<i class="fas fa-eye" />{/if}

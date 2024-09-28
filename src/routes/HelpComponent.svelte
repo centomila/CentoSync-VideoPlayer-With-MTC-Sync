@@ -83,7 +83,8 @@
 						<p>
 							On Windows, you can use the free <a
 								href="https://www.tobias-erichsen.de/software/loopmidi.html"
-								target="_blank" class="anchor">loopMIDI by Tobias Erichsen</a
+								target="_blank"
+								class="anchor">loopMIDI by Tobias Erichsen</a
 							>. Here's how to set it up:
 						</p>
 						<ol class="list-inside list-decimal">
@@ -228,7 +229,10 @@
 					the window
 				</li>
 				<li>Start playback in your DAW</li>
-				<li>The video player will automatically synchronize with your DAW's timeline. The player receive the current second as a float number (e.g. 126.23456843)</li>
+				<li>
+					The video player will automatically synchronize with your DAW's timeline. The player
+					receive the current second as a float number (e.g. 126.23456843)
+				</li>
 			</ol>
 		</div>
 	{:else if $drawerStore.id === 'help-bitwig'}

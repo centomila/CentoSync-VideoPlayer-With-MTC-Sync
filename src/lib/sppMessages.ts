@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import {  sppData } from '$lib/stores';
+import { sppData } from '$lib/stores';
 import type { SPPData } from '$lib/stores';
 import type { MessageEvent } from 'webmidi';
 export { onSPPMessage, onMidiClockMessage };

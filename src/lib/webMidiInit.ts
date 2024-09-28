@@ -72,7 +72,7 @@ function startWebMidi() {
 	});
 
 	WebMidi.addListener('disconnected', () => {
-		console.log('Device disconnected')
+		console.log('Device disconnected');
 	});
 
 	WebMidi.addListener('disabled', () => {
@@ -82,10 +82,6 @@ function startWebMidi() {
 	});
 }
 startWebMidi();
-
-
-
-
 
 function addMidiInputOptions() {
 	if (WebMidi.inputs.length === 0) {
@@ -202,7 +198,7 @@ export function refreshPorts() {
 		midiInputs.set([]);
 		WebMidi.disable();
 	} else {
-		console.log("WebMidi is already stopped")
+		console.log('WebMidi is already stopped');
 	}
 	// empty midiInputs store
 	startWebMidi();
