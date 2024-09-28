@@ -6,8 +6,8 @@ import { writable, readable } from 'svelte/store';
 export const guiView = writable('video');
 export const theme = writable('centomila');
 
-export const appName = readable('VideoSyncWeb', () => {});
-export const appVersion = readable('0.7.0', () => {});
+export const appName = readable('CentoSync', () => {});
+export const appVersion = readable('0.7.2', () => {});
 
 interface MidiInputs {
 	name: string;
