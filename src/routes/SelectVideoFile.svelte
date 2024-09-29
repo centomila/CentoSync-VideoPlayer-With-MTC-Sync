@@ -6,7 +6,13 @@
 	onMount(() => {
 		dropZone = document.getElementById('drop-zone')!;
 		initDropZone();
+		window.addEventListener('keydown', (event) => {
+			if (event.key === 'l' || event.key === 'L') {
+				(document.querySelector('#video-file') as HTMLElement)?.click();
+			}
+		});
 	});
+
 
 	function preventDefaults(event: Event) {
 		event.preventDefault();
