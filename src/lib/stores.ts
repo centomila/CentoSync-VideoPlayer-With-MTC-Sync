@@ -81,6 +81,7 @@ export const loadedFiles = writable<LoadedFiles>({
 });
 
 // GUI Settings
+export const sidebarIsVisible = writable(true);
 export const selectedMidiInputMTC = writable('');
 
 export const trackPositionComponent = writable(true);

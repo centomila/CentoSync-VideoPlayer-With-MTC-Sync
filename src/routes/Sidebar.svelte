@@ -1,6 +1,8 @@
 <script>
+  import ToggleSidebar from './ToggleSidebar.svelte';
+
 	import { onMount } from 'svelte';
-	import { appName, appVersion } from '$lib/stores';
+	import { appName, appVersion, sidebarIsVisible } from '$lib/stores';
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
@@ -21,23 +23,17 @@
 
 	import Copyright from './Copyright.svelte';
 
-	let sideBarToggle = true;
+	
 	onMount(() => {
 		document.title = `${$appName} ${$appVersion} - No video loaded`;
-
-		window.addEventListener('keydown', (event) => {
-			if (event.key === 'h' || event.key === 'H') {
-				sideBarToggle = !sideBarToggle;
-			}
-		});
 	});
 </script>
 
 <div class="flex flex-row">
-	{#if sideBarToggle}
+	{#if $sidebarIsVisible}
 		<aside
 			transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
-			class="border-surface-300-600-token sticky top-0 flex max-h-screen flex-col border-r pt-1"
+			class="border-surface-300-600-token sticky top-0 flex max-h-screen flex-col border-r pt-1 w-72"
 		>
 			<!-- Header -->
 			<header class="border-surface-300-600-token py-4">
@@ -96,12 +92,6 @@
 	{/if}
 
 	<div class="relative h-0 w-0" id="hideSidebarBtn">
-		<button
-			on:click={() => (sideBarToggle = !sideBarToggle)}
-			class="variant-glass-primary btn relative left-0 top-0 h-8 w-8 rounded-none hover:translate-x-1 hover:translate-y-1 hover:scale-125"
-			title={sideBarToggle ? 'Hide sidebar (H)' : 'Show sidebar (H)'}
-		>
-			{#if sideBarToggle}<i class="fas fa-eye-slash" />{:else}<i class="fas fa-eye" />{/if}
-		</button>
+		<ToggleSidebar/>
 	</div>
 </div>

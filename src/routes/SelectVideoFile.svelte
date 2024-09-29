@@ -67,7 +67,7 @@
 	}
 </script>
 
-<div class="min-w-64 max-w-64">
+<div class="w-full">
 	<!-- Adjust max-w-md as needed -->
 	<label
 		for="video-file"

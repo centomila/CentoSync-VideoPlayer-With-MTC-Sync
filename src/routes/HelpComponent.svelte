@@ -13,7 +13,7 @@
 	const drawerBgBackdrop = 'bg-gradient-to-tr from-orange-700/80 via-black-800/50 to-orange-900';
 	const drawerBg = 'transparent';
 	const drawersRounded = 'rounded-xl';
-	const drawersWidth = 'w-96';
+	const drawersWidth = 'w-1/3';
 	const drawersPadding = 'p-4';
 
 	const HelpGeneral: DrawerSettings = {
