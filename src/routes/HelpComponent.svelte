@@ -55,7 +55,7 @@
 	</div>
 </div>
 
-<Drawer on:backdrop={() => closeDrawerCustom()} >
+<Drawer on:backdrop={() => closeDrawerCustom()} zIndex="z-50" >
 	{#if $drawerStore.id === 'help-general'}
 		<!-- (show 'example-1' contents) -->
 		<HelpGeneralComponent />
