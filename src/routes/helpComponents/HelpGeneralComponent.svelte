@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { appName, appVersion } from '$lib/stores';
-	import ToggleSyncModeIsMtc from './tempoComponents/ToggleSyncModeIsMTC.svelte';
-	import MidiPortSelection from './MidiPortSelection.svelte';
+	import ToggleSyncModeIsMtc from '../tempoComponents/ToggleSyncModeIsMTC.svelte';
+	import MidiPortSelection from '../MidiPortSelection.svelte';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
-
-
+	import MidiTimeCodeDiv from '../tempoComponents/MidiTimeCodeDiv.svelte';
+	import TrackPositionDiv from '../tempoComponents/TrackPositionDiv.svelte';
 </script>
 
 <div class="space-y-4 p-4">
@@ -131,14 +131,19 @@
 	</Accordion>
 	<!-- Rest of the content remains the same -->
 
-	<hr>
+	<hr />
 
 	<h4 class="h4">MIDI Port</h4>
 	<p>Select the MIDI port that will receive MTC or SPP/Clock messages</p>
 	<MidiPortSelection />
 
 	<h4 class="h4">Sync Modes</h4>
+	<p>{$appName} offers two different synchronization modes: MTC (MIDI Time Code) and SPP (Song Position Pointer). MTC is the default and reccomended mode.</p>
+	
+	<div class="border p-4">
+
 	<ToggleSyncModeIsMtc />
+	</div>
 	<h5 class="h5">MTC (MIDI Time Code)</h5>
 	<p>
 		In MTC mode, your DAW sends updates every quarter frame with the current cursor position. This
@@ -150,7 +155,11 @@
 		<li>Seconds (SS)</li>
 		<li>Frames (FF)</li>
 	</ul>
+	<div class="border p-4">
+		<MidiTimeCodeDiv />
+	</div>
 	<p>This precise timing allows for accurate synchronization between your video player and DAW.</p>
+	<hr />
 	<h5 class="h5">MIDI Clock with SPP (Song Position Pointer)</h5>
 	<p>This mode uses two types of MIDI messages for synchronization:</p>
 	<ul class="list-inside list-disc">
@@ -177,6 +186,13 @@
 			Start/Continue/Stop messages manage ongoing synchronization.
 		</li>
 	</ol>
+	<div class="border p-4">
+		<TrackPositionDiv />
+	</div>
+	<p>
+		NOTE: In SPP Mode, this timer is updated only on start and when you manually change the cursor
+		position.
+	</p>
 	<h4 class="h4">Usage</h4>
 	<ol class="list-inside list-decimal">
 		<li>Select your desired sync mode (MTC or MIDI Clock with SPP)</li>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Drawer, getDrawerStore, initializeStores } from '@skeletonlabs/skeleton';
 	import type { DrawerSettings, DrawerStore } from '@skeletonlabs/skeleton';
-	import HelpGeneralComponent from './HelpGeneralComponent.svelte';
+	import HelpGeneralComponent from './helpComponents/HelpGeneralComponent.svelte';
 	import { onDestroy, onMount } from 'svelte';
 
 	initializeStores();
@@ -13,7 +13,7 @@
 	const drawerBgBackdrop = 'bg-gradient-to-tr from-orange-700/80 via-black-800/50 to-orange-900';
 	const drawerBg = 'transparent';
 	const drawersRounded = 'rounded-xl';
-	const drawersWidth = 'w-3/5';
+	const drawersWidth = 'w-96';
 	const drawersPadding = 'p-4';
 
 	const HelpGeneral: DrawerSettings = {
