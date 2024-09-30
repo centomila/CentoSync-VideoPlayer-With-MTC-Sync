@@ -77,7 +77,7 @@
 	<label
 		for="video-file"
 		class="variant-filled-primary btn flex w-full cursor-pointer items-center space-x-2"
-		title="{$loadedFiles.currentFileName}"
+		title={$loadedFiles.currentFileName}
 	>
 		<i class="fa fa-upload flex-shrink-0"></i>
 		<span class="truncate">{$loadedFiles.currentFileName}</span>

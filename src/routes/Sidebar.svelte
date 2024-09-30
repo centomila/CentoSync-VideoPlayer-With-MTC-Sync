@@ -5,7 +5,6 @@
 	import { appName, appVersion, sidebarIsVisible } from '$lib/stores';
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-	
 
 	import SelectVideoFile from './SelectVideoFile.svelte';
 	import GuiViewSelection from './GuiViewSelection.svelte';
@@ -69,7 +68,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="border-surface-300-600-token space-y-4 border-t p-4">
 				<MidiPortSelection />
 			</div>
@@ -80,9 +79,7 @@
 			<div class="border-surface-300-600-token space-y-4 border-t p-4 font-normal">
 				<ThemeSelector />
 			</div>
-			<div
-				class="border-surface-300-600-token flex w-full flex-col border-t py-0"
-			>
+			<div class="border-surface-300-600-token flex w-full flex-col border-t py-0">
 				<HelpComponent />
 			</div>
 			<footer class="border-surface-300-600-token border-t">

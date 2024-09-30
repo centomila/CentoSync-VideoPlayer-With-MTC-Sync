@@ -38,6 +38,8 @@ $: selectedMidiInputMTC.subscribe((value) => {
 		startMtcListening();
 	} else if (value === 'DISABLED') {
 		stopMtcAndSPPListeners();
+		closeAllMidiOutputs();
+		// closeAllMidiInputs();
 	}
 	logListOfInputs();
 	console.log(`Selected MIDI input: ${value}`);
@@ -82,6 +84,27 @@ function startWebMidi() {
 	});
 }
 startWebMidi();
+
+function closeAllMidiInputs() {
+	for (const input of WebMidi.inputs) {
+		input.close();
+	}
+}
+
+function closeAllMidiOutputs() {
+	for (const output of WebMidi.outputs) {
+		output.close();
+	}
+	console.log('All MIDI outputs closed');
+	console.table(
+		WebMidi.outputs.map((output) => ({
+			name: output.name,
+			manufacturer: output.manufacturer,
+			state: output.state,
+			connection: output.connection
+		}))
+	);
+}
 
 function addMidiInputOptions() {
 	if (WebMidi.inputs.length === 0) {

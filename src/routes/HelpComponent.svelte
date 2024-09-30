@@ -68,7 +68,7 @@
 						}}>License</button
 					>
 					<button
-					title="Privacy Policy. This app don't collect any information. No analytics, no cookies, no ads."
+						title="Privacy Policy. This app don't collect any information. No analytics, no cookies, no ads."
 						class="anchor block w-full text-left"
 						on:click={() => {
 							openDrawerCustom(HelpBitwig);
@@ -83,32 +83,30 @@
 			<svelte:fragment slot="summary"><span>Help</span></svelte:fragment>
 			<svelte:fragment slot="content">
 				<div class="space-y-4 pl-9">
-
-				<button
-					class="anchor block w-full text-left"
-					on:click={() => {
-						openDrawerCustom(HelpGeneral);
-					}}>General</button
-				>
-				<button
-					class="anchor block w-full text-left"
-					on:click={() => {
-						openDrawerCustom(HelpBitwig);
-					}}>Bitwig Studio</button
-				>
-				<button
-					class="anchor block w-full text-left"
-					on:click={() => {
-						openDrawerCustom(HelpBitwig);
-					}}>Ableton Live</button
-				>
-				<button
-					class="anchor block w-full text-left"
-					on:click={() => {
-						openDrawerCustom(HelpBitwig);
-					}}>Reason Studio</button
-				>
-
+					<button
+						class="anchor block w-full text-left"
+						on:click={() => {
+							openDrawerCustom(HelpGeneral);
+						}}>General</button
+					>
+					<button
+						class="anchor block w-full text-left"
+						on:click={() => {
+							openDrawerCustom(HelpBitwig);
+						}}>Bitwig Studio</button
+					>
+					<button
+						class="anchor block w-full text-left"
+						on:click={() => {
+							openDrawerCustom(HelpBitwig);
+						}}>Ableton Live</button
+					>
+					<button
+						class="anchor block w-full text-left"
+						on:click={() => {
+							openDrawerCustom(HelpBitwig);
+						}}>Reason Studio</button
+					>
 				</div>
 				<span class="block"></span>
 			</svelte:fragment>
