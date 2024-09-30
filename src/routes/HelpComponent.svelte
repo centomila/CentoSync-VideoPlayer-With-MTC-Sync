@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { Drawer, getDrawerStore, initializeStores } from '@skeletonlabs/skeleton';
+	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 	import type { DrawerSettings, DrawerStore } from '@skeletonlabs/skeleton';
 	import HelpGeneralComponent from './helpComponents/HelpGeneralComponent.svelte';
 	import { onDestroy, onMount } from 'svelte';
 
 	initializeStores();
-
-	let drawerIsOpened: boolean = false;
 
 	const drawerStore = getDrawerStore();
 	const drawersPosition = 'right';
@@ -47,16 +46,74 @@
 	}
 </script>
 
-<div class="p-8">
-	<h3 class="mb-2 text-center font-extrabold">Help</h3>
-	<div class="grid grid-cols-1 gap-1">
-		<button
-			on:click={() => {
-				openDrawerCustom(HelpGeneral);
-			}}>General</button
-		>
-		<button on:click={() => drawerStore.open(HelpBitwig)}>Bitwig</button>
-	</div>
+<div>
+	<Accordion spacing="space-y-0" padding="pl-4 pr-8 py-2" rounded="rounded-none">
+		<AccordionItem>
+			<svelte:fragment slot="lead"
+				><i class="fa-solid fa-exclamation-circle pl-1" /></svelte:fragment
+			>
+			<svelte:fragment slot="summary"><span>About</span></svelte:fragment>
+			<svelte:fragment slot="content">
+				<div class="space-y-4 pl-9">
+					<button
+						class="anchor block w-full text-left"
+						on:click={() => {
+							openDrawerCustom(HelpGeneral);
+						}}>Donate</button
+					>
+					<button
+						class="anchor block w-full text-left"
+						on:click={() => {
+							openDrawerCustom(HelpBitwig);
+						}}>License</button
+					>
+					<button
+					title="Privacy Policy. This app don't collect any information. No analytics, no cookies, no ads."
+						class="anchor block w-full text-left"
+						on:click={() => {
+							openDrawerCustom(HelpBitwig);
+						}}>Privacy Policy</button
+					>
+				</div>
+				<span class="block"></span>
+			</svelte:fragment>
+		</AccordionItem>
+		<AccordionItem>
+			<svelte:fragment slot="lead"><i class="fa-solid fa-question-circle pl-1" /></svelte:fragment>
+			<svelte:fragment slot="summary"><span>Help</span></svelte:fragment>
+			<svelte:fragment slot="content">
+				<div class="space-y-4 pl-9">
+
+				<button
+					class="anchor block w-full text-left"
+					on:click={() => {
+						openDrawerCustom(HelpGeneral);
+					}}>General</button
+				>
+				<button
+					class="anchor block w-full text-left"
+					on:click={() => {
+						openDrawerCustom(HelpBitwig);
+					}}>Bitwig Studio</button
+				>
+				<button
+					class="anchor block w-full text-left"
+					on:click={() => {
+						openDrawerCustom(HelpBitwig);
+					}}>Ableton Live</button
+				>
+				<button
+					class="anchor block w-full text-left"
+					on:click={() => {
+						openDrawerCustom(HelpBitwig);
+					}}>Reason Studio</button
+				>
+
+				</div>
+				<span class="block"></span>
+			</svelte:fragment>
+		</AccordionItem>
+	</Accordion>
 </div>
 
 <Drawer on:backdrop={() => closeDrawerCustom()} zIndex="z-50">
