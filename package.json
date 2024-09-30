@@ -1,12 +1,12 @@
 {
 	"name": "videosyncweb",
-	"version": "0.7.0",
+	"version": "0.7.3",
 	"license": "MIT",
-	"homepage": "https://github.com/centomila/zimmertime-mtc",
+	"homepage": "https://github.com/centomila/CentoSync-Web-MTC",
 	"description": "Video Player with MTC Sync",
 	"author": "Centomila",
-	"repository": "https://github.com/centomila/zimmertime-mtc",
-	"bugs": "https://github.com/centomila/zimmertime-mtc/issues",
+	"repository": "https://github.com/centomila/CentoSync-Web-MTC",
+	"bugs": "https://github.com/centomila/CentoSync-Web-MTC/issues",
 	"keywords": [
 		"svelte",
 		"sveltekit",
