@@ -10,7 +10,7 @@
 	import ToggleSidebar from '../ToggleSidebar.svelte';
 </script>
 
-<div class="space-y-8 p-4" use:tocCrawler={{ mode: 'generate' }}>
+<div class="space-y-8 p-8" use:tocCrawler={{ mode: 'generate' }}>
 	<h2 class="h2 mb-4">Help General</h2>
 	<TableOfContents />
 	<p>
@@ -142,15 +142,16 @@
 		Select the MIDI port that will receive MTC or SPP/Clock messages. If you don't see any port, be
 		sure that MIDI permission is granted (check in your browser address bar)
 	</p>
-	<div class="border-primary-50-900-token my-8 space-y-4 border p-4">
+	<div class="my-4 space-y-4 border border-primary-600 p-4">
 		<MidiPortSelection />
 	</div>
 
 	<h4 class="h4 font-bold">Sync Mode</h4>
 	<p>
 		{$appName} offers two different synchronization modes: MTC (MIDI Time Code) and SPP (Song Position
-		Pointer). MTC is the default and recommended mode.
+		Pointer).
 	</p>
+	<p>MTC is the default and recommended mode.</p>
 	<p>
 		Both modes can show the <i>DAW Timecode timer</i> widget with HH:MM:SS.MS. Note that milliseconds
 		after the first decimal are estimates and may not display the exact same time as your DAW, except
@@ -158,7 +159,7 @@
 		it's only a visual indicator. Refer to the DAW time to see the real track time.
 	</p>
 
-	<div class="border-primary-50-900-token my-8 space-y-4 border p-4">
+	<div class="my-4 space-y-4 border border-primary-600 p-4">
 		<ToggleSyncModeIsMtc />
 	</div>
 	<h5 class="h5 font-bold">MTC (MIDI Time Code)</h5>
@@ -172,12 +173,13 @@
 		<li>Seconds (SS)</li>
 		<li>Frames (FF)</li>
 	</ul>
-	<div class="border-primary-50-900-token my-8 space-y-4 border p-4">
+	<div class="my-4 space-y-4 border border-primary-600 p-4">
 		<MidiTimeCodeDiv />
 	</div>
 	<p>This precise timing allows for accurate synchronization between your video player and DAW.</p>
 	<hr />
 	<h5 class="h5 font-bold">MIDI Clock with SPP (Song Position Pointer)</h5>
+	<p>SPP is available on all DAWs that can send MIDI Clock messages to an external MIDI port.</p>
 	<p>This mode uses two types of MIDI messages for synchronization:</p>
 	<ul class="list-inside list-disc">
 		<li>
@@ -203,33 +205,60 @@
 			Start/Continue/Stop messages manage ongoing synchronization.
 		</li>
 	</ol>
-	<div class="border-primary-50-900-token my-8 space-y-4 border p-4">
+	<div class="my-4 space-y-4 border border-primary-600 p-4">
 		<TrackPositionDiv />
 	</div>
 	<p>
 		NOTE: In SPP Mode, this timer is updated only on start and when you manually change the cursor
 		position.
 	</p>
+
+	<hr />
 	<h4 class="h4 font-bold">Usage</h4>
 	<h5 class="h5 font-bold">Syncing the video</h5>
 	<p>Once the application has been configured with the desired sync mode and MIDI port:</p>
 	<ol class="list-inside list-decimal space-y-2">
 		<li>
-			Load your video into the player by clicking the LOAD A VIDEO button or by dragging and
-			dropping a video file into the window.
-			<div class="border-primary-50-900-token my-8 flex border p-4 text-center">
+			You can can load a video into the player in three different ways:
+			<span class="ml-1 block">- By clicking the LOAD A VIDEO button</span>
+			<div class="my-4 flex border border-primary-600 p-4 text-center">
 				<SelectVideoFile />
 			</div>
+			<span class="ml-1 block">- By dropping a video file into the window</span>
+			<span class="ml-1 block">- By pressing the <kbd class="kbd">L</kbd> key</span>
 		</li>
-		<li>Start playback in your DAW</li>
+		<li>Start playback in your DAW ▶️</li>
 		<li>
 			The video player will start playback and automatically synchronize with your DAW's timeline.
-			The player calculates the time based on the current second as a floating-point number (e.g.,
-			126.23456843).
 		</li>
 	</ol>
 
+	<h6 class="h6 font-bold">Notes about the video player:</h6>
+	<ul class="list-inside list-disc space-y-2">
+		<li>
+			The player can read any video format that is supported by your browser.<br class="mb-1" />
+			<blockquote class="blockquote my-4">
+				{$appName} use <i>Video.js</i> for video playback. See their websites for more informations
+				about the supported formats:
+				<a target="_blank" class="anchor" href="https://videojs.com/html5-video-support/"
+					>https://videojs.com/html5-video-support/</a
+				>
+			</blockquote>
+		</li>
+		<li>
+			Video decoding can be a demanding task, especially on older hardware. Consider loading lower
+			quality videos if you are using the same machine where is running your DAW.
+		</li>
+		<li>The player calculates the time based on the current second as a floating-point number (e.g. 126.23456843).</li>
+	</ul>
+
 	<h5 class="h5 font-bold">Hiding the sidebar</h5>
-	<p> The sidebar can be hidden by clicking the HIDE SIDEBAR button.</p>
-	<!-- <ToggleSidebar /> -->
+	<p>The sidebar can be hidden by clicking the HIDE SIDEBAR button.</p>
+	<div class="flex items-center justify-center border border-primary-600 p-4">
+		<ToggleSidebar />
+	</div>
+	<p>
+		The sidebar can also be hidden by pressing the key <kbd class="kbd">H</kbd>. Press
+		<kbd class="kbd">H</kbd> a second time to show the sidebar again.
+	</p>
 </div>

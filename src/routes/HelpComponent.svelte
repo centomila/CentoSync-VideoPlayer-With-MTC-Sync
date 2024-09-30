@@ -14,7 +14,7 @@
 	const drawerBg = 'transparent';
 	const drawersRounded = 'rounded-xl';
 	const drawersWidth = 'w-1/3';
-	const drawersPadding = 'p-4';
+	const drawersPadding = 'p-8';
 
 	const HelpGeneral: DrawerSettings = {
 		id: 'help-general',
@@ -47,7 +47,7 @@
 	}
 </script>
 
-<div class="p-4">
+<div class="p-8">
 	<h3 class="mb-2 text-center font-extrabold">Help</h3>
 	<div class="grid grid-cols-1 gap-1">
 		<button on:click={() => {openDrawerCustom(HelpGeneral);}}>General</button>

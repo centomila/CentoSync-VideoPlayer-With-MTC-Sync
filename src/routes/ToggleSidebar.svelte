@@ -1,26 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
 	import { sidebarIsVisible } from '$lib/stores';
-	import { slide } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
-
-	import SelectVideoFile from './SelectVideoFile.svelte';
-	import GuiViewSelection from './GuiViewSelection.svelte';
-	import MidiPortSelection from './MidiPortSelection.svelte';
-
-	import ToggleBpm from './tempoComponents/ToggleBpm.svelte';
-	import ToggleElapsedFrames from './tempoComponents/ToggleElapsedFrames.svelte';
-	import ToggleMidiTimeCode from './tempoComponents/ToggleMidiTimeCode.svelte';
-	import ToggleTrackPosition from './tempoComponents/ToggleTrackPosition.svelte';
-	import ToggleSyncModeIsMTC from './tempoComponents/ToggleSyncModeIsMTC.svelte';
-	import { syncModeIsMTC } from '$lib/stores';
-
-	import ThemeSelector from './ThemeSelector.svelte';
-
-	import HelpComponent from './HelpComponent.svelte';
-
-	import Copyright from './Copyright.svelte';
-
 	
 	onMount(() => {
 		window.addEventListener('keydown', (event) => {
