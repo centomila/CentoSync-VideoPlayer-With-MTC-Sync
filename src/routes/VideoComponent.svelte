@@ -66,5 +66,5 @@
 <!-- svelte-ignore a11y-media-has-caption -->
 <div id="video-container" class="mx-auto my-auto w-full">
 	<MidiTimersContainer />
-	<video bind:this={videoElement} id="my-video" class="video-js" preload="auto" ></video>
+	<video bind:this={videoElement} id="my-video" class="video-js" preload="auto"></video>
 </div>

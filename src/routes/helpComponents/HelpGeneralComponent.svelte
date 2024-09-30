@@ -249,7 +249,10 @@
 			Video decoding can be a demanding task, especially on older hardware. Consider loading lower
 			quality videos if you are using the same machine where is running your DAW.
 		</li>
-		<li>The player calculates the time based on the current second as a floating-point number (e.g. 126.23456843).</li>
+		<li>
+			The player calculates the time based on the current second as a floating-point number (e.g.
+			126.23456843).
+		</li>
 	</ul>
 
 	<h5 class="h5 font-bold">Hiding the sidebar</h5>

@@ -34,28 +34,32 @@
 		meta: { foo: 'bar', fizz: 'buzz', age: 40 }
 	};
 
-	function openDrawerCustom(selecteDrawer:DrawerSettings) {
-        console.log('openDrawer')
+	function openDrawerCustom(selecteDrawer: DrawerSettings) {
+		console.log('openDrawer');
 		const videoPlayer = document.getElementById('my-video');
 		videoPlayer?.classList.add('-z-40');
-        drawerStore.open(selecteDrawer); 
+		drawerStore.open(selecteDrawer);
 	}
 	function closeDrawerCustom() {
 		const videoPlayer = document.getElementById('my-video');
 		videoPlayer?.classList.remove('-z-40');
-        console.log('closeDrawer')
+		console.log('closeDrawer');
 	}
 </script>
 
 <div class="p-8">
 	<h3 class="mb-2 text-center font-extrabold">Help</h3>
 	<div class="grid grid-cols-1 gap-1">
-		<button on:click={() => {openDrawerCustom(HelpGeneral);}}>General</button>
+		<button
+			on:click={() => {
+				openDrawerCustom(HelpGeneral);
+			}}>General</button
+		>
 		<button on:click={() => drawerStore.open(HelpBitwig)}>Bitwig</button>
 	</div>
 </div>
 
-<Drawer on:backdrop={() => closeDrawerCustom()} zIndex="z-50" >
+<Drawer on:backdrop={() => closeDrawerCustom()} zIndex="z-50">
 	{#if $drawerStore.id === 'help-general'}
 		<!-- (show 'example-1' contents) -->
 		<HelpGeneralComponent />

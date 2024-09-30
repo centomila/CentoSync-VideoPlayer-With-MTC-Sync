@@ -13,7 +13,6 @@
 		});
 	});
 
-
 	function preventDefaults(event: Event) {
 		event.preventDefault();
 		event.stopPropagation();

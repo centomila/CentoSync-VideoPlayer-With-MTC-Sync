@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { sidebarIsVisible } from '$lib/stores';
-	
+
 	onMount(() => {
 		window.addEventListener('keydown', (event) => {
 			if (event.key === 'h' || event.key === 'H') {

@@ -1,5 +1,5 @@
 <script>
-  import ToggleSidebar from './ToggleSidebar.svelte';
+	import ToggleSidebar from './ToggleSidebar.svelte';
 
 	import { onMount } from 'svelte';
 	import { appName, appVersion, sidebarIsVisible } from '$lib/stores';
@@ -23,7 +23,6 @@
 
 	import Copyright from './Copyright.svelte';
 
-	
 	onMount(() => {
 		document.title = `${$appName} ${$appVersion} - No video loaded`;
 	});
@@ -33,7 +32,7 @@
 	{#if $sidebarIsVisible}
 		<aside
 			transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
-			class="border-surface-300-600-token sticky top-0 flex max-h-screen flex-col border-r pt-1 w-72"
+			class="border-surface-300-600-token sticky top-0 flex max-h-screen w-72 flex-col border-r pt-1"
 		>
 			<!-- Header -->
 			<header class="border-surface-300-600-token py-4">
@@ -92,6 +91,6 @@
 	{/if}
 
 	<div class="relative h-0 w-0" id="hideSidebarBtn">
-		<ToggleSidebar/>
+		<ToggleSidebar />
 	</div>
 </div>
