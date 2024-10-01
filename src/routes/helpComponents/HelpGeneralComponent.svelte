@@ -209,8 +209,7 @@
 		<TrackPositionDiv />
 	</div>
 	<p>
-		NOTE: In SPP Mode, this timer is updated only on start and when you manually change the cursor
-		position.
+		<b>NOTE:</b> In SPP mode, the time will reset to 0 if playback starts after bar 1024. This corresponds to 34:08.000 at 120 BPM. To extend the time, you can run your project at half the tempo, effectively doubling the duration. This limitation is due to the MIDI standard.
 	</p>
 
 	<hr />
