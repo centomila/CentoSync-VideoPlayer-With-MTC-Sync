@@ -7,8 +7,8 @@
 	<h2 class="h2 mb-4">License</h2>
 	<TableOfContents />
 	<p>
-		<b>{$appName}</b> is released under the MIT License, an open-source license that allows you to freely use,
-		modify, and distribute the software, provided that proper attribution is given.
+		<b>{$appName}</b> is released under the MIT License, an open-source license that allows you to freely
+		use, modify, and distribute the software, provided that proper attribution is given.
 	</p>
 	<h3 class="h3 mb-4">MIT License</h3>
 	<p>
@@ -34,8 +34,8 @@
 	</p>
 	<h3 class="h3 mb-4">Third-Party Libraries</h3>
 	<p>
-		<b>{$appName}</b> uses the following third-party libraries. Each library is licensed under its own terms
-		as described below:
+		<b>{$appName}</b> uses the following third-party libraries. Each library is licensed under its own
+		terms as described below:
 	</p>
 	<ul class="list-inside">
 		<li class="mb-8 list-item border-b border-surface-300 pb-8">
@@ -150,9 +150,9 @@
 		<li>Maschine and Maschine 2 are registered trademarks of Native Instruments GmbH.</li>
 	</ul>
 	<p>
-		<b>{$appName}</b> is an independent project and is not affiliated with, endorsed by, sponsored by, or
-		in any way officially connected with Ableton AG, Bitwig GmbH, Reason Studios AB, or Native
-		Instruments GmbH.
+		<b>{$appName}</b> is an independent project and is not affiliated with, endorsed by, sponsored by,
+		or in any way officially connected with Ableton AG, Bitwig GmbH, Reason Studios AB, or Native Instruments
+		GmbH.
 	</p>
 	<p>
 		All product names, logos, and brands mentioned are property of their respective owners and are

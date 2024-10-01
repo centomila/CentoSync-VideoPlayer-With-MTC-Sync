@@ -42,9 +42,9 @@
 
 			<!-- Sidebar content -->
 			<div class="flex-grow">
-							<div class="border-surface-300-600-token flex w-full flex-col border-t py-0">
-				<HelpComponent />
-			</div>
+				<div class="border-surface-300-600-token flex w-full flex-col border-t py-0">
+					<HelpComponent />
+				</div>
 				<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
 					<SelectVideoFile />
 				</div>

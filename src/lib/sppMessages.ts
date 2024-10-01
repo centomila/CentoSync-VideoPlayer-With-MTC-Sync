@@ -32,7 +32,7 @@ function onMidiClockMessage(): void {
 			clockIntervalSum = 0;
 			clockCount = 0;
 		}
-		
+
 		if (get(isPlaying) && get(syncModeIsMTC) === false) {
 			sppData.update((data: SPPData) => {
 				let newTimeInSeconds: number;
@@ -49,7 +49,7 @@ function onMidiClockMessage(): void {
 				const minutes = Math.floor((newTimeInSeconds % 3600) / 60);
 				const seconds = Math.floor(newTimeInSeconds % 60);
 				const milliseconds = Math.floor((newTimeInSeconds % 1) * 1000);
-				
+
 				return {
 					...data,
 					secondsOnSPP: newTimeInSeconds,
@@ -61,9 +61,9 @@ function onMidiClockMessage(): void {
 			});
 		}
 	}
-		
-		lastClockTime = now;
-	}
+
+	lastClockTime = now;
+}
 
 function onSPPMessage(midiData: MessageEvent) {
 	console.log(midiData);
@@ -103,6 +103,4 @@ function sppArrayToTime(midiData: MessageEvent, bpm: number) {
 		seekPosition: timeInSeconds,
 		secondsOnSPP: timeInSeconds
 	}));
-
-
 }
