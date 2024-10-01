@@ -1,3 +1,4 @@
+import { WebMidi } from 'webmidi';
 import { get } from 'svelte/store';
 import { isPlaying, sppData, syncModeIsMTC } from '$lib/stores';
 import type { SPPData } from '$lib/stores';
@@ -12,7 +13,7 @@ $: sppData.subscribe((data: SPPData) => {
 });
 
 function onMidiClockMessage(): void {
-	const now = performance.now();
+	const now = WebMidi.time;
 	if (lastClockTime !== null) {
 		const interval = now - lastClockTime;
 		clockIntervalSum += interval;
@@ -31,37 +32,38 @@ function onMidiClockMessage(): void {
 			clockIntervalSum = 0;
 			clockCount = 0;
 		}
+		
+		if (get(isPlaying) && get(syncModeIsMTC) === false) {
+			sppData.update((data: SPPData) => {
+				let newTimeInSeconds: number;
+				if (lastClockTime !== null) {
+					newTimeInSeconds = data.secondsOnSPP + (now - lastClockTime) / 1000;
+					// ... rest of the code
+				} else {
+					// handle the case where lastClockTime is null
+					// for example, you could set newTimeInSeconds to a default value
+					console.log('lastClockTime is null');
+					newTimeInSeconds = data.secondsOnSPP;
+				}
+				const hours = Math.floor(newTimeInSeconds / 3600);
+				const minutes = Math.floor((newTimeInSeconds % 3600) / 60);
+				const seconds = Math.floor(newTimeInSeconds % 60);
+				const milliseconds = Math.floor((newTimeInSeconds % 1) * 1000);
+				
+				return {
+					...data,
+					secondsOnSPP: newTimeInSeconds,
+					hours,
+					minutes,
+					seconds,
+					milliseconds
+				};
+			});
+		}
 	}
-
-	if (get(isPlaying) && get(syncModeIsMTC) === false) {
-		sppData.update((data: SPPData) => {
-			let newTimeInSeconds: number;
-			if (lastClockTime !== null) {
-				 newTimeInSeconds = data.secondsOnSPP + (now - lastClockTime) / 1000;
-				// ... rest of the code
-			} else {
-				// handle the case where lastClockTime is null
-				// for example, you could set newTimeInSeconds to a default value
-				 newTimeInSeconds = data.secondsOnSPP;
-			}
-			const hours = Math.floor(newTimeInSeconds / 3600);
-			const minutes = Math.floor((newTimeInSeconds % 3600) / 60);
-			const seconds = Math.floor(newTimeInSeconds % 60);
-			const milliseconds = Math.floor((newTimeInSeconds % 1) * 1000);
-
-			return {
-				...data,
-				secondsOnSPP: newTimeInSeconds,
-				hours,
-				minutes,
-				seconds,
-				milliseconds
-			};
-		});
+		
+		lastClockTime = now;
 	}
-
-	lastClockTime = now;
-}
 
 function onSPPMessage(midiData: MessageEvent) {
 	console.log(midiData);
@@ -84,7 +86,7 @@ function sppArrayToTime(midiData: MessageEvent, bpm: number) {
 	const sppValue = (msb << 7) | lsb; // Combine MSB and LSB to get the SPP value
 
 	// Convert the SPP value to time in seconds
-	const timeInSeconds = (sppValue * 60) / (bpm * 4);
+	const timeInSeconds = (sppValue * 60) / Math.round(bpm * 4);
 
 	// Calculate hours, minutes, seconds, and milliseconds as floating-point values
 	const hours = timeInSeconds / 3600;
@@ -102,13 +104,5 @@ function sppArrayToTime(midiData: MessageEvent, bpm: number) {
 		secondsOnSPP: timeInSeconds
 	}));
 
-	console.log({
-		sppValue,
-		timeInSeconds,
-		hours,
-		minutes,
-		seconds,
-		milliseconds,
-		totalSeconds: hours * 3600 + minutes * 60 + seconds + milliseconds / 1000
-	});
+
 }

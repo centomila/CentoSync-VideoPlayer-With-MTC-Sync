@@ -183,6 +183,7 @@ export function startSPPListening() {
 	if (WebMidi.enabled && input) {
 		input.addListener('clock', onMidiClockMessage);
 		input.addListener('songposition', onSPPMessage);
+		// input.addListener('sysex', onSysexMessage);
 		input.addListener('start', onStartMessage);
 		input.addListener('continue', onContinueMessage);
 		input.addListener('stop', onStopMessage);
