@@ -7,6 +7,7 @@
 	import HelpPrivacyPolicy from './helpComponents/HelpPrivacyPolicy.svelte';
 	import HelpLicense from './helpComponents/HelpLicense.svelte';
 	import HelpSupportThisProject from './helpComponents/HelpSupportThisProject.svelte';
+	import HelpDawConfiguration from './helpComponents/HelpDAWConfiguration.svelte';
 
 	initializeStores();
 
@@ -23,6 +24,7 @@
 	const HelpPrivacyDrawer = { id: 'help-privacy-policy', ...drawerConfig };
 	const HelpLicenseDrawer = { id: 'help-license', ...drawerConfig };
 	const HelpSupportThisProjectDrawer = { id: 'help-support-this-project', ...drawerConfig };
+	const HelpDAWConfigurationDrawer = { id: 'help-daw-configuration', ...drawerConfig };
 
 	function openDrawerCustom(selecteDrawer: DrawerSettings) {
 		console.log('openDrawer');
@@ -83,20 +85,8 @@
 					<button
 						class="anchor block w-full text-left"
 						on:click={() => {
-							openDrawerCustom(HelpGeneralDrawer);
-						}}>Bitwig Studio</button
-					>
-					<button
-						class="anchor block w-full text-left"
-						on:click={() => {
-							openDrawerCustom(HelpGeneralDrawer);
-						}}>Ableton Live</button
-					>
-					<button
-						class="anchor block w-full text-left"
-						on:click={() => {
-							openDrawerCustom(HelpGeneralDrawer);
-						}}>Reason Studio</button
+							openDrawerCustom(HelpDAWConfigurationDrawer);
+						}}>DAW Configuration</button
 					>
 				</div>
 				<span class="block"></span>
@@ -114,6 +104,8 @@
 		<HelpLicense />
 	{:else if $drawerStore.id === 'help-support-this-project'}
 		<HelpSupportThisProject />
+	{:else if $drawerStore.id === 'help-daw-configuration'}
+		<HelpDawConfiguration />
 	{:else}
 		<!-- (fallback contents) -->
 	{/if}
