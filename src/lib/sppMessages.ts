@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { sppData } from '$lib/stores';
+import { isPlaying, sppData, syncModeIsMTC } from '$lib/stores';
 import type { SPPData } from '$lib/stores';
 import type { MessageEvent } from 'webmidi';
 export { onSPPMessage, onMidiClockMessage };
@@ -33,6 +33,33 @@ function onMidiClockMessage(): void {
 		}
 	}
 
+	if (get(isPlaying) && get(syncModeIsMTC) === false) {
+		sppData.update((data: SPPData) => {
+			let newTimeInSeconds: number;
+			if (lastClockTime !== null) {
+				 newTimeInSeconds = data.secondsOnSPP + (now - lastClockTime) / 1000;
+				// ... rest of the code
+			} else {
+				// handle the case where lastClockTime is null
+				// for example, you could set newTimeInSeconds to a default value
+				 newTimeInSeconds = data.secondsOnSPP;
+			}
+			const hours = Math.floor(newTimeInSeconds / 3600);
+			const minutes = Math.floor((newTimeInSeconds % 3600) / 60);
+			const seconds = Math.floor(newTimeInSeconds % 60);
+			const milliseconds = Math.floor((newTimeInSeconds % 1) * 1000);
+
+			return {
+				...data,
+				secondsOnSPP: newTimeInSeconds,
+				hours,
+				minutes,
+				seconds,
+				milliseconds
+			};
+		});
+	}
+
 	lastClockTime = now;
 }
 
@@ -46,6 +73,7 @@ let clockIntervalSum: number = 0;
 let clockCount: number = 0;
 
 function sppArrayToTime(midiData: MessageEvent, bpm: number) {
+	console.log('SPP message received: ', midiData.data);
 	// Extract the LSB and MSB from the array
 	const lsb = midiData.data[1]; // Least significant byte
 	const msb = midiData.data[2]; // Most significant byte
@@ -56,25 +84,31 @@ function sppArrayToTime(midiData: MessageEvent, bpm: number) {
 	const sppValue = (msb << 7) | lsb; // Combine MSB and LSB to get the SPP value
 
 	// Convert the SPP value to time in seconds
-	const timeInSeconds = (sppValue * 60) / (Math.round(bpm) * 4);
+	const timeInSeconds = (sppValue * 60) / (bpm * 4);
 
-	// Convert time in seconds to HH:MM:SSS format
+	// Calculate hours, minutes, seconds, and milliseconds as floating-point values
 	const hours = timeInSeconds / 3600;
 	const minutes = (timeInSeconds % 3600) / 60;
 	const seconds = timeInSeconds % 60;
 	const milliseconds = (timeInSeconds % 1) * 1000;
 
-	sppData.update((data: SPPData) => {
-		data.hours = hours;
-		data.minutes = minutes;
-		data.seconds = seconds;
-		data.milliseconds = milliseconds;
-		data.seekPosition = timeInSeconds;
-		data.bpm = bpm;
-		data.elapsedFrames = 0;
-		data.frameRate = 0;
-		data.secondsOnSPP = timeInSeconds;
-		console.log(data);
-		return data;
+	sppData.update((data: SPPData) => ({
+		...data,
+		hours,
+		minutes,
+		seconds,
+		milliseconds,
+		seekPosition: timeInSeconds,
+		secondsOnSPP: timeInSeconds
+	}));
+
+	console.log({
+		sppValue,
+		timeInSeconds,
+		hours,
+		minutes,
+		seconds,
+		milliseconds,
+		totalSeconds: hours * 3600 + minutes * 60 + seconds + milliseconds / 1000
 	});
 }
