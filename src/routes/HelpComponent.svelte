@@ -6,6 +6,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import HelpPrivacyPolicy from './helpComponents/HelpPrivacyPolicy.svelte';
 	import HelpLicense from './helpComponents/HelpLicense.svelte';
+	import HelpSupportThisProject from './helpComponents/HelpSupportThisProject.svelte';
 
 	initializeStores();
 
@@ -21,6 +22,7 @@
 	const HelpGeneralDrawer = { id: 'help-general', ...drawerConfig };
 	const HelpPrivacyDrawer = { id: 'help-privacy-policy', ...drawerConfig };
 	const HelpLicenseDrawer = { id: 'help-license', ...drawerConfig };
+	const HelpSupportThisProjectDrawer = { id: 'help-support-this-project', ...drawerConfig };
 
 	function openDrawerCustom(selecteDrawer: DrawerSettings) {
 		console.log('openDrawer');
@@ -47,8 +49,8 @@
 					<button
 						class="anchor block w-full text-left"
 						on:click={() => {
-							openDrawerCustom(HelpGeneralDrawer);
-						}}>Donate</button
+							openDrawerCustom(HelpSupportThisProjectDrawer);
+						}}>Support this project</button
 					>
 					<button
 						class="anchor block w-full text-left"
@@ -110,6 +112,8 @@
 		<HelpPrivacyPolicy />
 	{:else if $drawerStore.id === 'help-license'}
 		<HelpLicense />
+	{:else if $drawerStore.id === 'help-support-this-project'}
+		<HelpSupportThisProject />
 	{:else}
 		<!-- (fallback contents) -->
 	{/if}

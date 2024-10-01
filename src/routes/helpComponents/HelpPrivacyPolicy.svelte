@@ -7,7 +7,7 @@
 	<h2 class="h2 mb-4">Privacy Policy</h2>
 	<TableOfContents />
 
-	<p>{$appName} respects your privacy and does not collect, store, or share any personal data.</p>
+	<p>{$appName} respects your privacy and does not collect or share any data.</p>
 
 	<h3 class="h3 mb-4">Data Collection</h3>
 	<p>
