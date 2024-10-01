@@ -4,34 +4,23 @@
 	import type { DrawerSettings, DrawerStore } from '@skeletonlabs/skeleton';
 	import HelpGeneralComponent from './helpComponents/HelpGeneralComponent.svelte';
 	import { onDestroy, onMount } from 'svelte';
+	import HelpPrivacyPolicy from './helpComponents/HelpPrivacyPolicy.svelte';
+	import HelpLicense from './helpComponents/HelpLicense.svelte';
 
 	initializeStores();
 
 	const drawerStore = getDrawerStore();
-	const drawersPosition = 'right';
-	const drawerBgBackdrop = 'bg-gradient-to-tr from-orange-700/80 via-black-800/50 to-orange-900';
-	const drawerBg = 'transparent';
-	const drawersRounded = 'rounded-xl';
-	const drawersWidth = 'w-1/3';
-	const drawersPadding = 'p-8';
 
-	const HelpGeneral: DrawerSettings = {
-		id: 'help-general',
-		position: drawersPosition,
-		rounded: drawersRounded,
-		width: drawersWidth,
-		padding: drawersPadding,
-		meta: { foo: 'bar', fizz: 'buzz', age: 40 }
+	const drawerConfig = {
+		position: 'right' as 'right', // or 'left', 'top', or 'bottom'
+		rounded: 'rounded-xl',
+		width: 'w-1/3',
+		padding: 'p-8'
 	};
 
-	const HelpBitwig: DrawerSettings = {
-		id: 'help-bitwig',
-		position: drawersPosition,
-		rounded: drawersRounded,
-		width: drawersWidth,
-		padding: drawersPadding,
-		meta: { foo: 'bar', fizz: 'buzz', age: 40 }
-	};
+	const HelpGeneralDrawer = { id: 'help-general', ...drawerConfig };
+	const HelpPrivacyDrawer = { id: 'help-privacy-policy', ...drawerConfig };
+	const HelpLicenseDrawer = { id: 'help-license', ...drawerConfig };
 
 	function openDrawerCustom(selecteDrawer: DrawerSettings) {
 		console.log('openDrawer');
@@ -58,20 +47,20 @@
 					<button
 						class="anchor block w-full text-left"
 						on:click={() => {
-							openDrawerCustom(HelpGeneral);
+							openDrawerCustom(HelpGeneralDrawer);
 						}}>Donate</button
 					>
 					<button
 						class="anchor block w-full text-left"
 						on:click={() => {
-							openDrawerCustom(HelpBitwig);
+							openDrawerCustom(HelpLicenseDrawer);
 						}}>License</button
 					>
 					<button
 						title="Privacy Policy. This app don't collect any information. No analytics, no cookies, no ads."
 						class="anchor block w-full text-left"
 						on:click={() => {
-							openDrawerCustom(HelpBitwig);
+							openDrawerCustom(HelpPrivacyDrawer);
 						}}>Privacy Policy</button
 					>
 				</div>
@@ -86,25 +75,25 @@
 					<button
 						class="anchor block w-full text-left"
 						on:click={() => {
-							openDrawerCustom(HelpGeneral);
+							openDrawerCustom(HelpGeneralDrawer);
 						}}>General</button
 					>
 					<button
 						class="anchor block w-full text-left"
 						on:click={() => {
-							openDrawerCustom(HelpBitwig);
+							openDrawerCustom(HelpGeneralDrawer);
 						}}>Bitwig Studio</button
 					>
 					<button
 						class="anchor block w-full text-left"
 						on:click={() => {
-							openDrawerCustom(HelpBitwig);
+							openDrawerCustom(HelpGeneralDrawer);
 						}}>Ableton Live</button
 					>
 					<button
 						class="anchor block w-full text-left"
 						on:click={() => {
-							openDrawerCustom(HelpBitwig);
+							openDrawerCustom(HelpGeneralDrawer);
 						}}>Reason Studio</button
 					>
 				</div>
@@ -116,13 +105,11 @@
 
 <Drawer on:backdrop={() => closeDrawerCustom()} zIndex="z-50">
 	{#if $drawerStore.id === 'help-general'}
-		<!-- (show 'example-1' contents) -->
 		<HelpGeneralComponent />
-	{:else if $drawerStore.id === 'help-bitwig'}
-		<!-- (show 'example-2' contents) -->
-		<div class="p-4">
-			<p>Help Bitwig</p>
-		</div>
+	{:else if $drawerStore.id === 'help-privacy-policy'}
+		<HelpPrivacyPolicy />
+	{:else if $drawerStore.id === 'help-license'}
+		<HelpLicense />
 	{:else}
 		<!-- (fallback contents) -->
 	{/if}
