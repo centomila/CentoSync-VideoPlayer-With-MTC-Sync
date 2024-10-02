@@ -231,6 +231,7 @@ export function refreshPorts() {
 }
 
 export function onStartMessage() {
+	console.log('Received start message');
 	startPlaying();
 	seekPosition();
 }
@@ -269,6 +270,8 @@ export function seekPosition(): void {
 		clearTimeout(seekTimeout);
 	}
 
+	const debounceTime = 0;
+
 	seekTimeout = setTimeout(() => {
 		let data: SPPData | MTCData;
 		let seekTime;
@@ -280,13 +283,13 @@ export function seekPosition(): void {
 			throw new Error('Invalid sync mode');
 		}
 		if (data && typeof data.seekPosition === 'number') {
-			seekTime = data.seekPosition;
+			seekTime = data.seekPosition + debounceTime / 1000;
 			console.log('Seeking to:', seekTime, 'seconds');
 			videoPlayerStore.seek(seekTime);
 		} else {
 			console.warn('Invalid data for seeking');
 		}
-	}, 0); // 10ms debounce
+	}, debounceTime); // 10ms debounce
 }
 
 export function startPlaying() {

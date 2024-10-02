@@ -1,6 +1,20 @@
 import { get } from 'svelte/store';
-import { mtcData, type MTCData } from '$lib/stores'; // Import the store
-import { seekPosition } from './webMidiInit';
+import { isPlaying, mtcData, type MTCData } from '$lib/stores'; // Import the store
+import { onStartMessage, onStopMessage, seekPosition } from './webMidiInit';
+import { videoPlayerStore } from '$lib/videoPlayerStore';
+
+// Force resync on play
+$: videoPlayerStore.subscribe((player) => {
+	if (player) {
+		player.on('play', () => {
+			if (player.currentTime() !== get(mtcData).seconds) {
+				seekPosition();
+			}
+		});
+	}
+});
+
+
 
 // Constants
 const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
@@ -58,9 +72,15 @@ export function onMtcMessage(midiData: { data: Uint8Array }): void {
 		currentData.elapsedFrames = totalFrames;
 		currentData.seekPosition = totalSeconds;
 
+
 		return currentData;
 	});
+
+
+
 }
+
+let mtcIsPlayingTimer: ReturnType<typeof setTimeout> | null = null;
 
 export function onSysexMessage(midiData: { data: Uint8Array }): void {
 	const data = midiData.data;

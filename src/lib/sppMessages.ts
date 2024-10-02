@@ -1,9 +1,12 @@
 import { WebMidi } from 'webmidi';
 import { get } from 'svelte/store';
 import { isPlaying, sppData, syncModeIsMTC } from '$lib/stores';
+import { seekPosition } from './webMidiInit';
 import type { SPPData } from '$lib/stores';
 import type { MessageEvent } from 'webmidi';
+import { videoPlayerStore } from '$lib/videoPlayerStore';
 export { onSPPMessage, onMidiClockMessage };
+
 
 let currentBpm = 0;
 $: sppData.subscribe((data: SPPData) => {
@@ -11,6 +14,8 @@ $: sppData.subscribe((data: SPPData) => {
 		currentBpm = data.bpm;
 	}
 });
+
+
 
 function onMidiClockMessage(): void {
 	const now = WebMidi.time;
@@ -26,7 +31,7 @@ function onMidiClockMessage(): void {
 				sppData.update((data: SPPData) => {
 					return { ...data, bpm: newBpm };
 				});
-				currentBpm = Math.round(newBpm);
+				currentBpm = (newBpm);
 			}
 
 			clockIntervalSum = 0;
@@ -86,7 +91,7 @@ function sppArrayToTime(midiData: MessageEvent, bpm: number) {
 	const sppValue = (msb << 7) | lsb; // Combine MSB and LSB to get the SPP value
 
 	// Convert the SPP value to time in seconds
-	const timeInSeconds = (sppValue * 60) / Math.round(bpm * 4);
+	const timeInSeconds = (sppValue * 60) / (bpm * 4);
 
 	// Calculate hours, minutes, seconds, and milliseconds as floating-point values
 	const hours = timeInSeconds / 3600;
