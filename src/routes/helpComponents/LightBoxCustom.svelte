@@ -14,9 +14,18 @@
 	export let imgAlt = '';
 </script>
 
-<div class="w-full">
-	<Lightbox title={imgAlt} transitionDuration={100}>
-		<img src={imgSrc} alt={imgAlt} title={imgAlt} class="my-4 border border-primary-600" />
-	</Lightbox>
-	<span>{imgAlt}</span>
-</div>
+<Lightbox transitionDuration={100}>
+	<div
+		class="transition:ease-in-out
+        transition:duration-300
+        bg-primary-backdrop-token
+        w-full rounded
+        transition-all
+        hover:brightness-110
+        hover:filter
+        hover:transition-all"
+	>
+		<img src={imgSrc} alt={imgAlt} title={imgAlt} class="block w-full" />
+		<span class="block p-2 text-center">{imgAlt}</span>
+	</div>
+</Lightbox>
