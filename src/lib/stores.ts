@@ -84,6 +84,7 @@ export const loadedFiles = writable<LoadedFiles>({
 // GUI Settings
 export const sidebarIsVisible = writable(true);
 export const selectedMidiInputMTC = writable('');
+export const selectedMidiInputSPP = writable('');
 
 export const trackPositionComponent = writable(true);
 export const midiTimecodeComponent = writable(true);

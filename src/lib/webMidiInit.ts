@@ -2,6 +2,7 @@ import { WebMidi } from 'webmidi';
 import { get } from 'svelte/store';
 import {
 	selectedMidiInputMTC,
+	selectedMidiInputSPP,
 	midiInputs,
 	syncModeIsMTC,
 	mtcData,
@@ -120,13 +121,14 @@ function addMidiInputOptions() {
 		if (WebMidi.inputs.find((input) => input.name === 'loopMIDI Port')) {
 			console.log('LoopMIDI port found. Set as default because it works well.');
 			selectedMidiInputMTC.set('loopMIDI Port');
+			selectedMidiInputSPP.set('loopMIDI Port 2');
 		}
 	}
 }
 
 function startMtcListening() {
 	if (WebMidi.enabled) {
-		const input = getSelectedMidiInput();
+		const input = getSelectedMidiInput("MTC");
 		console.log('MTC listener starting on port ', input?.name);
 		if (input) {
 			console.info(`Listening for MTC messages from ${input.name}...`);
@@ -195,8 +197,12 @@ export function startSPPListening() {
 	}
 }
 
-function getSelectedMidiInput() {
-	return WebMidi.getInputByName(get(selectedMidiInputMTC));
+function getSelectedMidiInput(syncMode = "MTC") {
+	if (syncMode === "MTC") {
+		return WebMidi.getInputByName(get(selectedMidiInputMTC));
+	} else if (syncMode === "SPP") {
+		return WebMidi.getInputByName(get(selectedMidiInputSPP));
+	}
 }
 
 function logListOfInputs() {
