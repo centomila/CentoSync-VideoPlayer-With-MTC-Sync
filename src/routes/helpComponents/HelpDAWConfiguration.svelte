@@ -18,10 +18,9 @@
 	<TableOfContents />
 
 	<p>
-		{$appName} should work with any DAW on Windows, Mac, and Linux. {$appName} requires a browser with WebMIDI
-		capabilities. Check
-		<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API"
-		class="anchor"
+		{$appName} should work with any DAW on Windows, Mac, and Linux. {$appName} requires a browser with
+		WebMIDI capabilities. Check
+		<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API" class="anchor"
 			>https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API</a
 		> for more details.
 	</p>
@@ -31,21 +30,37 @@
 		Go to <b>Settings</b> > <b>Synchronization</b> and look for the MIDI port that you want to use
 		for sending messages to <b>{$appName}</b>. Once you have found it, enable these options:
 	</p>
-	<ul class="list-inside list-disc space-y-2">
-		<li>Enable MIDI Clock | first button</li>
-		<li>Enable MIDI Clock Start/Stop messages | second button</li>
-		<li>Enable MTC (MIDI Time Code) | fifth button</li>
+	<ul class="list-inside space-y-2">
+		<li><span class="min-w-20 inline-block"><kbd class="kbd">🕑</kbd></span>Enable <b>MIDI Clock</b></li>
+		<li><span class="min-w-20 inline-block"><kbd class="kbd">▶️</kbd></span>Enable <b>MIDI Clock Start/Stop messages</b></li>
+		<li><span class="min-w-20 inline-block"><kbd class="kbd">MTC</kbd></span>Enable <b>MTC (MIDI Time Code)</b></li>
 	</ul>
 	<p>
-		Set the MTC Rate according to the framerate of your video. If your video is 60 fps or
-		120 fps, set it to 30. If your video is 50 fps, set it to 25.
+		Set the MTC Rate according to the framerate of your video. If your video is 60 fps or 120 fps,
+		set it to 30. If your video is 50 fps, set it to 25.
 	</p>
 
 	<LightBoxCustom imgSrc="./Bitwig-Help-MTC.png" imgAlt="Bitwig Studio MTC Mode" />
 
+	<h3 class="h3 font-bold">FL Studio</h3>
+	<p>FL Studio has native support for the <i>Sync Mode: <b>MTC Timecode</b></i>.</p>
+	<p>
+		Go to <b>Options</b> > <b>MIDI Settings</b> and look for the MIDI port that you want to use for
+		sending messages to <b>{$appName}</b>. Once you have found it, enable these options:
+	</p>
+	<ul class="list-inside list-disc space-y-2">
+		<li>Enable <b>Send Master Sync</b></li>
+		<li>Set the port on 0</li>
+		<li>From the <b>Synchronization Type</b> dropdown, select <b>MTC XX fps (non drop)</b></li>
+	</ul>
+	<p>
+		Set the MTC Rate according to the framerate of your video. If your video is 60 fps or 120 fps,
+		set it to 30. If your video is 50 fps, set it to 25.
+	</p>
+
+	<LightBoxCustom imgSrc="./FLStudio-Help-MTC.png" imgAlt="FL Studio MTC Mode" />
+
 	<h3 class="h3 font-bold">Ableton Live</h3>
 
 	<h3 class="h3 font-bold">Reason Studio</h3>
-
-	<h3 class="h3 font-bold">FL Studio</h3>
 </div>

@@ -135,13 +135,14 @@ function startMtcListening() {
 			input.addListener('start', onStartMessage);
 			input.addListener('continue', onContinueMessage);
 			input.addListener('stop', onStopMessage);
+			input.addListener('songposition', onSPPMessage);
 		} else {
 			console.warn(`MIDI input not found`);
 		}
 	}
 }
 
-export function startMidiClockLisening() {
+export function startMidiClockListening() {
 	if (WebMidi.enabled) {
 		const input = getSelectedMidiInput();
 		console.log('Clock listener starting on port ', input?.name);

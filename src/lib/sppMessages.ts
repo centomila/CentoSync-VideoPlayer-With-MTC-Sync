@@ -26,7 +26,7 @@ function onMidiClockMessage(): void {
 				sppData.update((data: SPPData) => {
 					return { ...data, bpm: newBpm };
 				});
-				currentBpm = newBpm;
+				currentBpm = Math.round(newBpm);
 			}
 
 			clockIntervalSum = 0;

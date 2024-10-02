@@ -18,12 +18,14 @@
 	<div
 		class="transition:ease-in-out
         transition:duration-300
-        bg-primary-backdrop-token
+        bg-surface-50-900-token
         w-full rounded
         transition-all
         hover:brightness-110
         hover:filter
-        hover:transition-all"
+        hover:transition-all
+        p-1"
+
 	>
 		<img src={imgSrc} alt={imgAlt} title={imgAlt} class="block w-full" />
 		<span class="block p-2 text-center">{imgAlt}</span>
