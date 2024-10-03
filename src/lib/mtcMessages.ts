@@ -92,8 +92,6 @@ export function onMtcMessage(midiData: { data: Uint8Array }): void {
 	});
 }
 
-let mtcIsPlayingTimer: ReturnType<typeof setTimeout> | null = null;
-
 export function onSysexMessage(midiData: { data: Uint8Array }): void {
 	const data = midiData.data;
 

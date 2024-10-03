@@ -1,16 +1,8 @@
 <script lang="ts">
 	import LightBoxCustom from './LightBoxCustom.svelte';
 
-	import { appName, appVersion } from '$lib/stores';
-	import ToggleSyncModeIsMtc from '../tempoComponents/ToggleSyncModeIsMTC.svelte';
-	import MidiPortSelection from '../MidiPortSelection.svelte';
-	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
-	import MidiTimeCodeDiv from '../tempoComponents/MidiTimeCodeDiv.svelte';
-	import TrackPositionDiv from '../tempoComponents/TrackPositionDiv.svelte';
-	import SelectVideoFile from '../SelectVideoFile.svelte';
+	import { appName } from '$lib/stores';
 	import { TableOfContents, tocCrawler } from '@skeletonlabs/skeleton';
-	import ToggleSidebar from '../ToggleSidebar.svelte';
-	import { Lightbox } from 'svelte-lightbox';
 </script>
 
 <div class="space-y-8 p-8 text-justify" use:tocCrawler={{ mode: 'generate' }}>
@@ -52,7 +44,10 @@
 
 	<h3 class="h3 font-bold">FL Studio</h3>
 	<h4 class="h4 font-bold">MIDI Time Code (MTC)</h4>
-	<p>FL Studio has native support for the <i>Sync Mode: <b>MTC Timecode</b></i> but in this mode don't send start/stop messages.</p>
+	<p>
+		FL Studio has native support for the <i>Sync Mode: <b>MTC Timecode</b></i> but in this mode don't
+		send start/stop messages.
+	</p>
 	<p>
 		Go to <b>Options</b> > <b>MIDI Settings</b> and look for the MIDI port that you want to use for
 		sending messages to <b>{$appName}</b>. Once you have found it, enable these options:

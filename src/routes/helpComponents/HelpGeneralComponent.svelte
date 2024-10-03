@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { appName, appVersion } from '$lib/stores';
+	import { appName } from '$lib/stores';
 	import ToggleSyncModeIsMtc from '../tempoComponents/ToggleSyncModeIsMTC.svelte';
 	import MidiPortSelection from '../MidiPortSelection.svelte';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
