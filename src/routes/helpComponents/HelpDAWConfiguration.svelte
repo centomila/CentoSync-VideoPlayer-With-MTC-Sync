@@ -31,9 +31,17 @@
 		for sending messages to <b>{$appName}</b>. Once you have found it, enable these options:
 	</p>
 	<ul class="list-inside space-y-2">
-		<li><span class="min-w-20 inline-block"><kbd class="kbd">🕑</kbd></span>Enable <b>MIDI Clock</b></li>
-		<li><span class="min-w-20 inline-block"><kbd class="kbd">▶️</kbd></span>Enable <b>MIDI Clock Start/Stop messages</b></li>
-		<li><span class="min-w-20 inline-block"><kbd class="kbd">MTC</kbd></span>Enable <b>MTC (MIDI Time Code)</b></li>
+		<li>
+			<span class="inline-block min-w-20"><kbd class="kbd">🕑</kbd></span>Enable <b>MIDI Clock</b>
+		</li>
+		<li>
+			<span class="inline-block min-w-20"><kbd class="kbd">▶️</kbd></span>Enable
+			<b>MIDI Clock Start/Stop messages</b>
+		</li>
+		<li>
+			<span class="inline-block min-w-20"><kbd class="kbd">MTC</kbd></span>Enable
+			<b>MTC (MIDI Time Code)</b>
+		</li>
 	</ul>
 	<p>
 		Set the MTC Rate according to the framerate of your video. If your video is 60 fps or 120 fps,
@@ -43,7 +51,8 @@
 	<LightBoxCustom imgSrc="./Bitwig-Help-MTC.png" imgAlt="Bitwig Studio MTC Mode" />
 
 	<h3 class="h3 font-bold">FL Studio</h3>
-	<p>FL Studio has native support for the <i>Sync Mode: <b>MTC Timecode</b></i>.</p>
+	<h4 class="h4 font-bold">MIDI Time Code (MTC)</h4>
+	<p>FL Studio has native support for the <i>Sync Mode: <b>MTC Timecode</b></i> but in this mode don't send start/stop messages.</p>
 	<p>
 		Go to <b>Options</b> > <b>MIDI Settings</b> and look for the MIDI port that you want to use for
 		sending messages to <b>{$appName}</b>. Once you have found it, enable these options:

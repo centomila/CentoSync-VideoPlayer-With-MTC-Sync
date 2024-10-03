@@ -34,6 +34,18 @@ function createVideoPlayerStore() {
 				if (player) {
 					return player.currentTime();
 				}
+			}),
+		duration: () =>
+			subscribe((player) => {
+				if (player) {
+					return player.duration();
+				}
+			}),
+		playing: () =>
+			subscribe((player) => {
+				if (player) {
+					return player.paused() === false;
+				}
 			})
 	};
 }

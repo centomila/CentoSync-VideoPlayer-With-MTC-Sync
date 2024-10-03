@@ -1,20 +1,36 @@
 import { get } from 'svelte/store';
-import { isPlaying, mtcData, type MTCData } from '$lib/stores'; // Import the store
-import { onStartMessage, onStopMessage, seekPosition } from './webMidiInit';
+import { isPlaying, mtcData, syncModeIsMTC, type MTCData } from '$lib/stores'; // Import the store
+import { onStartMessage, onStopMessage, seekPosition, startPlaying } from './webMidiInit';
 import { videoPlayerStore } from '$lib/videoPlayerStore';
+
+const SYNC_TOLERANCE = 0.1; // Tolerance of 0.1 seconds
+
+const isSynchronized = (playerTime: number, mtcTime: number) => {
+	return Math.abs(playerTime - mtcTime) <= SYNC_TOLERANCE;
+};
 
 // Force resync on play
 $: videoPlayerStore.subscribe((player) => {
-	if (player) {
+	if (player && get(syncModeIsMTC)) {
 		player.on('play', () => {
-			if (player.currentTime() !== get(mtcData).seconds) {
-				seekPosition();
-			}
+			console.log('player on play');
+			seekPosition();
 		});
+
+		setTimeout(() => {
+			const playerTime = player.currentTime();
+			const mtcTime = get(mtcData).seekPosition;
+
+			if (typeof playerTime === 'number' && !isSynchronized(playerTime, mtcTime)) {
+				console.log('Seeking position');
+				console.log('Player time:', playerTime, 'MTC time:', mtcTime);
+				seekPosition();
+			} else {
+				console.log('Player and MTC are synchronized');
+			}
+		}, 500);
 	}
 });
-
-
 
 // Constants
 const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
@@ -72,12 +88,8 @@ export function onMtcMessage(midiData: { data: Uint8Array }): void {
 		currentData.elapsedFrames = totalFrames;
 		currentData.seekPosition = totalSeconds;
 
-
 		return currentData;
 	});
-
-
-
 }
 
 let mtcIsPlayingTimer: ReturnType<typeof setTimeout> | null = null;

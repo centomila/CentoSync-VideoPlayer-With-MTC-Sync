@@ -1,12 +1,11 @@
 import { WebMidi } from 'webmidi';
 import { get } from 'svelte/store';
 import { isPlaying, sppData, syncModeIsMTC } from '$lib/stores';
-import { seekPosition } from './webMidiInit';
+
 import type { SPPData } from '$lib/stores';
 import type { MessageEvent } from 'webmidi';
-import { videoPlayerStore } from '$lib/videoPlayerStore';
-export { onSPPMessage, onMidiClockMessage };
 
+export { onSPPMessage, onMidiClockMessage };
 
 let currentBpm = 0;
 $: sppData.subscribe((data: SPPData) => {
@@ -14,8 +13,6 @@ $: sppData.subscribe((data: SPPData) => {
 		currentBpm = data.bpm;
 	}
 });
-
-
 
 function onMidiClockMessage(): void {
 	const now = WebMidi.time;
@@ -29,9 +26,9 @@ function onMidiClockMessage(): void {
 			const newBpm = 60000 / averageClockInterval / 24;
 			if (newBpm !== currentBpm) {
 				sppData.update((data: SPPData) => {
-					return { ...data, bpm: newBpm };
+					return { ...data, bpm: Math.round(newBpm) };
 				});
-				currentBpm = (newBpm);
+				currentBpm = Math.round(newBpm);
 			}
 
 			clockIntervalSum = 0;
@@ -50,17 +47,17 @@ function onMidiClockMessage(): void {
 					console.log('lastClockTime is null');
 					newTimeInSeconds = data.secondsOnSPP;
 				}
-				const hours = Math.floor(newTimeInSeconds / 3600);
-				const minutes = Math.floor((newTimeInSeconds % 3600) / 60);
-				const seconds = Math.floor(newTimeInSeconds % 60);
-				const milliseconds = Math.floor((newTimeInSeconds % 1) * 1000);
+				const hours = newTimeInSeconds / 3600;
+				const minutes = (newTimeInSeconds % 3600) / 60;
+				const seconds = newTimeInSeconds % 60;
+				const milliseconds = (newTimeInSeconds % 1) * 1000;
 
 				return {
 					...data,
 					secondsOnSPP: newTimeInSeconds,
-					hours,
-					minutes,
-					seconds,
+					hours: Math.floor(hours),
+					minutes: Math.floor(minutes),
+					seconds: Math.floor(seconds),
 					milliseconds
 				};
 			});

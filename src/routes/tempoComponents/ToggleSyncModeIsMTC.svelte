@@ -10,6 +10,6 @@
 	> -->
 </div>
 <select bind:value={$syncModeIsMTC} class="select w-full">
-	<option value={true}>MTC Timecode</option>
+	<option value={true}>MIDI TimeCode (MTC)</option>
 	<option value={false}>Song Position Pointer (SPP)</option>
 </select>

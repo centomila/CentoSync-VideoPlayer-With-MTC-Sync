@@ -24,36 +24,32 @@ function syncMode() {
 
 // eslint-disable-next-line
 $: selectedMidiInputMTC.subscribe((value) => {
-	if (value !== 'DISABLED') {
-		stopMtcAndSPPListeners();
-
-		// // close connection for all the unselected inputs
-		// for (const input of WebMidi.inputs) {
-		//     if (input.name === get(selectedMidiInputMTC)) {
-		//         input.open();
-		//     } else {
-		//         input.close();
-		//     }
-		// }
-
-		startMtcListening();
-	} else if (value === 'DISABLED') {
-		stopMtcAndSPPListeners();
-		closeAllMidiOutputs();
-		// closeAllMidiInputs();
-	}
+	stopMtcAndSPPListeners();
+	restartListeners();
 	logListOfInputs();
-	console.log(`Selected MIDI input: ${value}`);
+	console.log(`Selected MTC  input: ${value}`);
+});
+$: selectedMidiInputSPP.subscribe((value) => {
+	stopMtcAndSPPListeners();
+	restartListeners();
+	logListOfInputs();
+	logListOfInputs();
+	console.log(`Selected SPP input: ${value}`);
 });
 
-$: syncModeIsMTC.subscribe((value) => {
+$: syncModeIsMTC.subscribe(() => {
+	restartListeners();
+});
+
+function restartListeners() {
 	stopMtcAndSPPListeners();
-	if (value) {
+	if (get(syncModeIsMTC)) {
 		startMtcListening();
 	} else {
 		startSPPListening();
 	}
-});
+	startMidiClockListening();
+}
 
 $: isPlaying;
 
@@ -85,6 +81,7 @@ function startWebMidi() {
 	});
 }
 startWebMidi();
+restartListeners();
 
 function closeAllMidiInputs() {
 	for (const input of WebMidi.inputs) {
@@ -112,7 +109,7 @@ function addMidiInputOptions() {
 		midiInputs.set([{ name: 'NO MIDI INPUT AVAILABLE', value: '' }]);
 	} else {
 		midiInputs.set([
-			{ name: 'SELECT A MIDI PORT', value: 'DISABLED' },
+			{ name: 'DISABLED', value: 'DISABLED' },
 			...WebMidi.inputs.map((input) => ({
 				name: input.name,
 				value: input.name
@@ -121,14 +118,14 @@ function addMidiInputOptions() {
 		if (WebMidi.inputs.find((input) => input.name === 'loopMIDI Port')) {
 			console.log('LoopMIDI port found. Set as default because it works well.');
 			selectedMidiInputMTC.set('loopMIDI Port');
-			selectedMidiInputSPP.set('loopMIDI Port 2');
+			selectedMidiInputSPP.set('DISABLED');
 		}
 	}
 }
 
 function startMtcListening() {
 	if (WebMidi.enabled) {
-		const input = getSelectedMidiInput("MTC");
+		const input = getSelectedMidiInput('MTC');
 		console.log('MTC listener starting on port ', input?.name);
 		if (input) {
 			console.info(`Listening for MTC messages from ${input.name}...`);
@@ -144,9 +141,9 @@ function startMtcListening() {
 	}
 }
 
-export function startMidiClockListening() {
+function startMidiClockListening() {
 	if (WebMidi.enabled) {
-		const input = getSelectedMidiInput();
+		const input = getSelectedMidiInput('SPP');
 		console.log('Clock listener starting on port ', input?.name);
 		if (input) {
 			console.info(`Listening for clock messages from ${input.name}...`);
@@ -157,7 +154,7 @@ export function startMidiClockListening() {
 	}
 }
 
-export function stopMidiClockLisening() {
+function stopMidiClockLisening() {
 	if (WebMidi.enabled) {
 		console.log('Clock listener stopping');
 		// Remove all listeners
@@ -180,11 +177,11 @@ function stopMtcAndSPPListeners() {
 }
 
 export function startSPPListening() {
-	const input = getSelectedMidiInput();
+	const input = getSelectedMidiInput('SPP');
 	console.log('SPP listener starting on port ', input?.name);
 
 	if (WebMidi.enabled && input) {
-		input.addListener('clock', onMidiClockMessage);
+		// input.addListener('clock', onMidiClockMessage);
 		input.addListener('songposition', onSPPMessage);
 		// input.addListener('sysex', onSysexMessage);
 		input.addListener('start', onStartMessage);
@@ -197,10 +194,10 @@ export function startSPPListening() {
 	}
 }
 
-function getSelectedMidiInput(syncMode = "MTC") {
-	if (syncMode === "MTC") {
+function getSelectedMidiInput(syncMode = 'MTC') {
+	if (syncMode === 'MTC') {
 		return WebMidi.getInputByName(get(selectedMidiInputMTC));
-	} else if (syncMode === "SPP") {
+	} else if (syncMode === 'SPP') {
 		return WebMidi.getInputByName(get(selectedMidiInputSPP));
 	}
 }
@@ -295,7 +292,7 @@ export function seekPosition(): void {
 		} else {
 			console.warn('Invalid data for seeking');
 		}
-	}, debounceTime); // 10ms debounce
+	}, debounceTime); // 0ms debounce
 }
 
 export function startPlaying() {
