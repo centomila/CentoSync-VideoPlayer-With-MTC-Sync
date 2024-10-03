@@ -55,7 +55,7 @@ $: isPlaying;
 
 // Enable WEBMIDI.js and trigger the onEnabled() function when ready
 
-function startWebMidi() {
+export function startWebMidi() {
 	WebMidi.enable({ sysex: true })
 		.then(() => console.log('System exclusive messages are enabled'))
 		.catch((err) => console.log(err));
@@ -80,8 +80,8 @@ function startWebMidi() {
 		}
 	});
 }
-startWebMidi();
-restartListeners();
+// startWebMidi();
+// restartListeners();
 
 function closeAllMidiInputs() {
 	for (const input of WebMidi.inputs) {

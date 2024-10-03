@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { refreshPorts } from '$lib/webMidiInit';
-	import { selectedMidiInputMTC, selectedMidiInputSPP, midiInputs } from '$lib/stores';
+	import { startWebMidi } from '$lib/webMidiInit';
+	import { selectedMidiInputMTC, selectedMidiInputSPP, midiInputs, syncModeIsMTC } from '$lib/stores';
+	startWebMidi();
 </script>
 
 <!-- Frontend -->
-
+{#if $syncModeIsMTC}
 <div class="flex w-full justify-between">
 	<label class="title text-bold text-left" for="midi-inputs">MTC/SysEx</label>
 	<span
@@ -17,6 +18,7 @@
 		<option value={input.value}>{input.name}</option>
 	{/each}
 </select>
+{/if}
 <div class="flex w-full justify-between">
 	<label class="title text-bold text-left" for="midi-inputs">SPP/Clock</label>
 	<span
