@@ -1,27 +1,27 @@
 <script>
-	import ToggleSidebar from './ToggleSidebar.svelte';
+	import ToggleSidebar from './sidebar/SidebarToggle.svelte';
 
 	import { onMount } from 'svelte';
 	import { appName, appVersion, sidebarIsVisible } from '$lib/stores';
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
-	import SelectVideoFile from './LoadVideoFileInput.svelte';
+	import SelectVideoFile from './sidebar/LoadVideoFileInput.svelte';
 	import GuiViewSelection from './ToggleMediaInfo.svelte';
 	import MidiPortSelection from './MidiPortSelection.svelte';
 
-	import ToggleBpm from './tempoComponents/ToggleBpm.svelte';
-	import ToggleElapsedFrames from './tempoComponents/ToggleElapsedFrames.svelte';
-	import ToggleMidiTimeCode from './tempoComponents/ToggleMidiTimeCode.svelte';
-	import ToggleTrackPosition from './tempoComponents/ToggleTrackPosition.svelte';
+	import ToggleBpm from './sidebar/widgetsToggle/ToggleBpm.svelte';
+	import ToggleElapsedFrames from './sidebar/widgetsToggle/ToggleElapsedFrames.svelte';
+	import ToggleMidiTimeCode from './sidebar/widgetsToggle/ToggleMidiTimeCode.svelte';
+	import ToggleTrackPosition from './sidebar/widgetsToggle/ToggleTrackPosition.svelte';
 	import ToggleSyncModeIsMTC from './tempoComponents/ToggleSyncModeIsMTC.svelte';
 	import { syncModeIsMTC } from '$lib/stores';
 
-	import ThemeSelector from './ThemeSelector.svelte';
+	import ThemeSelector from './sidebar/ThemeSelector.svelte';
 
-	import HelpComponent from './HelpComponent.svelte';
+	import HelpComponent from './sidebar/HelpMenuDrawer.svelte';
 
-	import Copyright from './Copyright.svelte';
+	import Copyright from './sidebar/Copyright.svelte';
 
 	onMount(() => {
 		document.title = `${$appName} ${$appVersion} - No video loaded`;

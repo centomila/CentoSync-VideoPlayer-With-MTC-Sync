@@ -5,9 +5,9 @@
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 	import MidiTimeCodeDiv from '../tempoComponents/MidiTimeCodeDiv.svelte';
 	import TrackPositionDiv from '../tempoComponents/TrackPositionDiv.svelte';
-	import SelectVideoFile from '../LoadVideoFileInput.svelte';
+	import SelectVideoFile from '../sidebar/LoadVideoFileInput.svelte';
 	import { TableOfContents, tocCrawler } from '@skeletonlabs/skeleton';
-	import ToggleSidebar from '../ToggleSidebar.svelte';
+	import ToggleSidebar from '../sidebar/SidebarToggle.svelte';
 </script>
 
 <div class="space-y-8 p-8" use:tocCrawler={{ mode: 'generate' }}>

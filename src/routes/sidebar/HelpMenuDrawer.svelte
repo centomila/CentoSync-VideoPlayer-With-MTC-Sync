@@ -2,11 +2,11 @@
 	import { Drawer, getDrawerStore, initializeStores } from '@skeletonlabs/skeleton';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 	import type { DrawerSettings } from '@skeletonlabs/skeleton';
-	import HelpGeneralComponent from './helpComponents/HelpGeneralComponent.svelte';
-	import HelpPrivacyPolicy from './helpComponents/HelpPrivacyPolicy.svelte';
-	import HelpLicense from './helpComponents/HelpLicense.svelte';
-	import HelpSupportThisProject from './helpComponents/HelpSupportThisProject.svelte';
-	import HelpDawConfiguration from './helpComponents/HelpDAWConfiguration.svelte';
+	import HelpGeneralComponent from '../helpComponents/HelpGeneralComponent.svelte';
+	import HelpPrivacyPolicy from '../helpComponents/HelpPrivacyPolicy.svelte';
+	import HelpLicense from '../helpComponents/HelpLicense.svelte';
+	import HelpSupportThisProject from '../helpComponents/HelpSupportThisProject.svelte';
+	import HelpDawConfiguration from '../helpComponents/HelpDAWConfiguration.svelte';
 
 	initializeStores();
 

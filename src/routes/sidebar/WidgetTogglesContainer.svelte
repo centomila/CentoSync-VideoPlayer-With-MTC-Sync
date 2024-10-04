@@ -1,9 +1,9 @@
 <script lang="ts">
-	import ToggleBpm from './tempoComponents/ToggleBpm.svelte';
-	import ToggleElapsedFrames from './tempoComponents/ToggleElapsedFrames.svelte';
-	import ToggleMidiTimeCode from './tempoComponents/ToggleMidiTimeCode.svelte';
-	import ToggleTrackPosition from './tempoComponents/ToggleTrackPosition.svelte';
-	import ToggleSyncModeIsMTC from './tempoComponents/ToggleSyncModeIsMTC.svelte';
+	import ToggleBpm from './widgetsToggle/ToggleBpm.svelte';
+	import ToggleElapsedFrames from './widgetsToggle/ToggleElapsedFrames.svelte';
+	import ToggleMidiTimeCode from './widgetsToggle/ToggleMidiTimeCode.svelte';
+	import ToggleTrackPosition from './widgetsToggle/ToggleTrackPosition.svelte';
+	import ToggleSyncModeIsMTC from '../tempoComponents/ToggleSyncModeIsMTC.svelte';
 	import { syncModeIsMTC } from '$lib/stores';
 </script>
 

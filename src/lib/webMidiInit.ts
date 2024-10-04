@@ -118,8 +118,10 @@ function addMidiInputOptions() {
 		if (WebMidi.inputs.find((input) => input.name === 'loopMIDI Port')) {
 			console.log('LoopMIDI port found. Set as default because it works well.');
 			selectedMidiInputMTC.set('loopMIDI Port');
-			selectedMidiInputSPP.set('DISABLED');
+		} else {
+			selectedMidiInputMTC.set('DISABLED');
 		}
+		selectedMidiInputSPP.set('DISABLED');
 	}
 }
 

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import BpmDiv from './tempoComponents/BpmDiv.svelte';
-	import TrackPositionDiv from './tempoComponents/TrackPositionDiv.svelte';
-	import MidiTimeCodeDiv from './tempoComponents/MidiTimeCodeDiv.svelte';
-	import ElapsedFramesDiv from './tempoComponents/ElapsedFramesDiv.svelte';
+	import BpmDiv from '../tempoComponents/BpmDiv.svelte';
+	import TrackPositionDiv from '../tempoComponents/TrackPositionDiv.svelte';
+	import MidiTimeCodeDiv from '../tempoComponents/MidiTimeCodeDiv.svelte';
+	import ElapsedFramesDiv from '../tempoComponents/ElapsedFramesDiv.svelte';
 	import {
 		bpmComponent,
 		midiTimecodeComponent,
