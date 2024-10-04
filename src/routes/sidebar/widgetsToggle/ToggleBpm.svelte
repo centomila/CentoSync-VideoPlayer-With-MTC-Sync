@@ -3,10 +3,14 @@
 	import { bpmComponent, selectedMidiInputSPP } from '$lib/stores';
 
 	// eslint-disable-next-line
-	$: $bpmComponent 
+	$: $bpmComponent;
 
-	$: $selectedMidiInputSPP === 'DISABLED' ? ($bpmComponent = false) : ($bpmComponent);
+	$: $selectedMidiInputSPP === 'DISABLED' ? ($bpmComponent = false) : $bpmComponent;
 </script>
 
 <!-- Frontend -->
-<SlideToggle name="slider-label" disabled={$selectedMidiInputSPP === 'DISABLED'} bind:checked={$bpmComponent}>Midi Clock (BPM)</SlideToggle>
+<SlideToggle
+	name="slider-label"
+	disabled={$selectedMidiInputSPP === 'DISABLED'}
+	bind:checked={$bpmComponent}>Midi Clock (BPM)</SlideToggle
+>

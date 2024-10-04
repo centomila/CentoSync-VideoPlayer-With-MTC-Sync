@@ -11,12 +11,18 @@
 	> -->
 </div>
 <RadioGroup display="flex" flexDirection="flex-row" gap="gap-0" padding="p-0">
-	<RadioItem bind:group={$syncModeIsMTC} name="justify" value={true} class="min-w-16 py-1"
-		title="MIDI TimeCode (MTC)"
-		>MTC</RadioItem
+	<RadioItem
+		bind:group={$syncModeIsMTC}
+		name="justify"
+		value={true}
+		class="min-w-16 py-1"
+		title="MIDI TimeCode (MTC)">MTC</RadioItem
 	>
-	<RadioItem bind:group={$syncModeIsMTC} name="justify" value={false} class="min-w-16 py-1"
-		title="Song Position Pointer (SPP)"
-		>SPP</RadioItem
+	<RadioItem
+		bind:group={$syncModeIsMTC}
+		name="justify"
+		value={false}
+		class="min-w-16 py-1"
+		title="Song Position Pointer (SPP)">SPP</RadioItem
 	>
 </RadioGroup>

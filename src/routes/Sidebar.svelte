@@ -29,7 +29,6 @@
 </script>
 
 <div class="m-0 flex flex-row align-top">
-
 	{#if $sidebarIsVisible}
 		<aside
 			transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
@@ -47,7 +46,7 @@
 
 			<!-- Sidebar content -->
 			<div class="flex-grow">
-				<div class="border-surface-300-600-token flex w-full flex-col  py-0">
+				<div class="border-surface-300-600-token flex w-full flex-col py-0">
 					<HelpComponent />
 				</div>
 				<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
@@ -94,7 +93,7 @@
 			</footer>
 		</aside>
 	{/if}
-	<div class="w-0 y-0 left-72 top-0" id="hideSidebarBtn">
+	<div class="y-0 left-72 top-0 w-0" id="hideSidebarBtn">
 		<ToggleSidebar />
 	</div>
 </div>

@@ -9,8 +9,6 @@
 	import { mediaInfoView } from '$lib/stores';
 	import { fade } from 'svelte/transition';
 
-
-
 	let player: Player | null = null;
 	let videoElement: HTMLVideoElement;
 

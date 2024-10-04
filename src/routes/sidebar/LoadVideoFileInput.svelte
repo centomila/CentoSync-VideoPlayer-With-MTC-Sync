@@ -80,7 +80,8 @@
 		title={$loadedFiles.currentFileName}
 	>
 		<i class="fa fa-upload flex-shrink-0"></i>
-		<span class="truncate" title="{$loadedFiles.currentFileName}">{$loadedFiles.currentFileName}</span>
+		<span class="truncate" title={$loadedFiles.currentFileName}>{$loadedFiles.currentFileName}</span
+		>
 		<input
 			type="file"
 			id="video-file"

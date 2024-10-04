@@ -67,7 +67,7 @@
 				duration: 150
 			}}>Analyzing {$loadedFiles.currentFileName}</pre>
 	{:else if results.length > 0}
-		<h2 class="title text-center h2 font-bold">{$loadedFiles.currentFileName}</h2>
+		<h2 class="title h2 text-center font-bold">{$loadedFiles.currentFileName}</h2>
 		<div transition:fade={{ delay: 0, duration: 150 }}>
 			{#each results as result}
 				{#if typeof result === 'string'}

@@ -3,13 +3,9 @@
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 	import { loadedFiles } from '$lib/stores';
 	import { SlideToggle } from '@skeletonlabs/skeleton';
-
 </script>
 
-<SlideToggle name="slider-label" bind:checked={$mediaInfoView}>
-  Media Info
-</SlideToggle>
-
+<SlideToggle name="slider-label" bind:checked={$mediaInfoView}>Media Info</SlideToggle>
 
 <!-- <RadioGroup class="w-full flex-wrap">
 	<RadioItem
