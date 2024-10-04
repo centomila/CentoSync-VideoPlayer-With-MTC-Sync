@@ -6,8 +6,8 @@
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
-	import SelectVideoFile from './SelectVideoFile.svelte';
-	import GuiViewSelection from './GuiViewSelection.svelte';
+	import SelectVideoFile from './LoadVideoFileInput.svelte';
+	import GuiViewSelection from './ToggleMediaInfo.svelte';
 	import MidiPortSelection from './MidiPortSelection.svelte';
 
 	import ToggleBpm from './tempoComponents/ToggleBpm.svelte';
@@ -28,21 +28,26 @@
 	});
 </script>
 
-<div class="flex flex-row">
+<div class="m-0 flex flex-row align-top">
+
 	{#if $sidebarIsVisible}
 		<aside
 			transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
-			class="border-surface-300-600-token sticky top-0 flex max-h-screen w-72 flex-col border-r pt-1"
+			class="border-surface-300-600-token sticky top-0 m-0 flex max-h-screen w-72 flex-col border-r"
 		>
 			<!-- Header -->
-			<header class="border-surface-300-600-token py-4">
-				<h1 class="text-center text-2xl font-bold">{$appName}</h1>
-				<p class="text-center text-xs">Version {$appVersion}</p>
+			<header
+				class="items-centerborder-surface-300-600-token align-items-top variant-glass-primary m-0 px-4 py-2"
+			>
+				<h1 class=" text-2xl font-extrabold">
+					{$appName}
+					<span class=" align-text-top text-xs font-normal text-primary-500">{$appVersion}</span>
+				</h1>
 			</header>
 
 			<!-- Sidebar content -->
 			<div class="flex-grow">
-				<div class="border-surface-300-600-token flex w-full flex-col border-t py-0">
+				<div class="border-surface-300-600-token flex w-full flex-col  py-0">
 					<HelpComponent />
 				</div>
 				<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
@@ -53,7 +58,7 @@
 				</div>
 
 				<div class="border-surface-300-600-token flex flex-col border-b border-t p-4">
-					<p class="font-bold mb-2">Widgets</p>
+					<p class="mb-2 font-bold">Widgets</p>
 					<div class="py-2">
 						<ToggleTrackPosition />
 					</div>
@@ -89,8 +94,7 @@
 			</footer>
 		</aside>
 	{/if}
-
-	<div class="relative h-0 w-0" id="hideSidebarBtn">
+	<div class="w-0 y-0 left-72 top-0" id="hideSidebarBtn">
 		<ToggleSidebar />
 	</div>
 </div>

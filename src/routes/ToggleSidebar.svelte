@@ -13,7 +13,7 @@
 
 <button
 	on:click={() => ($sidebarIsVisible = !$sidebarIsVisible)}
-	class="variant-glass-primary btn left-0 top-0 h-8 w-8 rounded-none hover:translate-x-1.5 hover:translate-y-1.5 hover:scale-125"
+	class="variant-glass-secondary btn left-0 top-0 text-tertiary-500 rounded-none border-0 h-12 w-12"
 	title={$sidebarIsVisible ? 'Hide sidebar (H)' : 'Show sidebar (H)'}
 >
 	{#if $sidebarIsVisible}<i class="fas fa-eye-slash" />{:else}<i class="fas fa-eye" />{/if}

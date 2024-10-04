@@ -5,7 +5,7 @@
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 	import MidiTimeCodeDiv from '../tempoComponents/MidiTimeCodeDiv.svelte';
 	import TrackPositionDiv from '../tempoComponents/TrackPositionDiv.svelte';
-	import SelectVideoFile from '../SelectVideoFile.svelte';
+	import SelectVideoFile from '../LoadVideoFileInput.svelte';
 	import { TableOfContents, tocCrawler } from '@skeletonlabs/skeleton';
 	import ToggleSidebar from '../ToggleSidebar.svelte';
 </script>
