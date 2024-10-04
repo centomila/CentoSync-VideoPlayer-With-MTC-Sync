@@ -1,5 +1,5 @@
 <script>
-  import DelayVideoInputNumber from './DelayVideo-InputNumber.svelte';
+	import DelayVideoInputNumber from './DelayVideo-InputNumber.svelte';
 
 	import ToggleSidebar from './sidebar/SidebarToggle.svelte';
 
@@ -9,7 +9,7 @@
 	import { quintOut } from 'svelte/easing';
 
 	import SelectVideoFile from './sidebar/LoadVideoFileInput.svelte';
-	import GuiViewSelection from './sidebar/MediaInfo-Checkbox.svelte';
+	import MediaInfoCheckbox from './sidebar/MediaInfo-Checkbox.svelte';
 	import MidiPortSelection from './sidebar/MidiPortSelection.svelte';
 
 	import ToggleBpm from './sidebar/widgetsCheckbox/Bpm-Checkbox.svelte';
@@ -34,7 +34,7 @@
 	{#if $sidebarIsVisible}
 		<aside
 			transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
-			class="border-surface-300-600-token sticky top-0 m-0 flex max-h-screen w-72 flex-col border-r"
+			class="border-surface-300-600-token sticky top-0 m-0 flex min-h-screen w-72 flex-col border-r"
 		>
 			<!-- Header -->
 			<header
@@ -56,11 +56,9 @@
 				</div>
 				<div class="border-surface-300-600-token flex flex-col border-t p-4">
 					<p class="mb-2 font-bold">Video</p>
+
 					<div class="py-2">
-					<GuiViewSelection />
-					</div>
-					<div class="py-2">
-						<DelayVideoInputNumber/>
+						<DelayVideoInputNumber />
 					</div>
 				</div>
 
@@ -81,6 +79,9 @@
 					{/if}
 					<div class="py-2">
 						<ToggleBpm />
+					</div>
+					<div class="py-2">
+						<MediaInfoCheckbox />
 					</div>
 				</div>
 			</div>

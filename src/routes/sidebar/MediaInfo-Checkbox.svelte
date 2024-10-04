@@ -7,7 +7,7 @@
 
 <label class="flex items-center space-x-2 cursor-pointer">
 	<input class="checkbox" type="checkbox" bind:checked={$mediaInfoView} />
-	<span>Media Info</span>
+	<span>Video File Detailed Info</span>
 </label>
 
 <!-- <RadioGroup class="w-full flex-wrap">
