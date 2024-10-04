@@ -1,6 +1,6 @@
 import { get } from 'svelte/store';
-import { isPlaying, mtcData, syncModeIsMTC, type MTCData } from '$lib/stores'; // Import the store
-import { onStartMessage, onStopMessage, seekPosition, startPlaying } from './webMidiInit';
+import {  mtcData, syncModeIsMTC, videoOffsetMinutes, videoOffsetSeconds, type MTCData } from '$lib/stores'; // Import the store
+import {seekPosition } from './webMidiInit';
 import { videoPlayerStore } from '$lib/videoPlayerStore';
 
 const SYNC_TOLERANCE = 0.1; // Tolerance of 0.1 seconds
@@ -86,7 +86,7 @@ export function onMtcMessage(midiData: { data: Uint8Array }): void {
 		// Update derived values
 		currentData.milliseconds = (totalSeconds % 1) * 1000;
 		currentData.elapsedFrames = totalFrames;
-		currentData.seekPosition = totalSeconds;
+		currentData.seekPosition = totalSeconds + (get(videoOffsetSeconds) + get(videoOffsetMinutes) * 60);
 
 		return currentData;
 	});
@@ -143,7 +143,7 @@ export function onSysexMessage(midiData: { data: Uint8Array }): void {
 
 			// Calculate seek position in seconds
 			currentData.seekPosition =
-				hours * 3600 + minutes * 60 + seconds + frames / currentData.frameRate;
+				(hours * 3600 + minutes * 60 + seconds + frames / currentData.frameRate) + (get(videoOffsetSeconds) + get(videoOffsetMinutes) * 60);
 
 			return currentData;
 		});
