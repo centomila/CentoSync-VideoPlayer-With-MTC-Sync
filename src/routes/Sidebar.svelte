@@ -1,4 +1,6 @@
 <script>
+  import DelayVideoInputNumber from './DelayVideo-InputNumber.svelte';
+
 	import ToggleSidebar from './sidebar/SidebarToggle.svelte';
 
 	import { onMount } from 'svelte';
@@ -58,7 +60,7 @@
 					<GuiViewSelection />
 					</div>
 					<div class="py-2">
-						<input class="input" title="Input (number)" type="number" step="0.01" />
+						<DelayVideoInputNumber/>
 					</div>
 				</div>
 

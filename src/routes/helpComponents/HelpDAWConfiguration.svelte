@@ -1,5 +1,5 @@
 <script lang="ts">
-	import LightBoxCustom from './LightBoxCustom.svelte';
+	import LightBoxCustom from '../LightBoxCustom.svelte';
 
 	import { appName } from '$lib/stores';
 	import { TableOfContents, tocCrawler } from '@skeletonlabs/skeleton';
