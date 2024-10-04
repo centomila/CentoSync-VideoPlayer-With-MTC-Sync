@@ -3,11 +3,11 @@ import { writable, readable } from 'svelte/store';
 
 // View
 
-export const guiView = writable('video');
+export const mediaInfoView = writable(false);
 export const theme = writable('centomila');
 
 export const appName = readable('CentoSync', () => {});
-export const appVersion = readable('0.7.9', () => {});
+export const appVersion = readable('0.8.0', () => {});
 export const gitHubUrl = readable('https://github.com/centomila/CentoSync', () => {});
 
 interface MidiInputs {

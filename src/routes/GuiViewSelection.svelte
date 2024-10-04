@@ -1,9 +1,17 @@
 <script lang="ts">
-	import { guiView } from '$lib/stores';
+	import { mediaInfoView } from '$lib/stores';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+	import { loadedFiles } from '$lib/stores';
+	import { SlideToggle } from '@skeletonlabs/skeleton';
+
 </script>
 
-<RadioGroup class="w-full flex-wrap">
+<SlideToggle name="slider-label" bind:checked={$mediaInfoView}>
+  Media Info
+</SlideToggle>
+
+
+<!-- <RadioGroup class="w-full flex-wrap">
 	<RadioItem
 		bind:group={$guiView}
 		name="justify"
@@ -19,4 +27,4 @@
 		title="Show technical informations about the loaded video. Even for unsupported formats by the browser or player"
 		><i class="fas fa-info"></i></RadioItem
 	>
-</RadioGroup>
+</RadioGroup> -->

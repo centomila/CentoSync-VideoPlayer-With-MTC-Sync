@@ -48,7 +48,7 @@
 				<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
 					<SelectVideoFile />
 				</div>
-				<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
+				<div class="border-surface-300-600-token flex flex-col border-t p-4">
 					<GuiViewSelection />
 				</div>
 

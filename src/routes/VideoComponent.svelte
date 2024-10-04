@@ -5,6 +5,11 @@
 	import { loadedFiles } from '$lib/stores';
 	import { videoPlayerStore } from '$lib/videoPlayerStore';
 	import MidiTimersContainer from './MidiTimersContainer.svelte';
+	import MediaInfoView from './MediaInfoView.svelte';
+	import { mediaInfoView } from '$lib/stores';
+	import { fade } from 'svelte/transition';
+
+
 
 	let player: Player | null = null;
 	let videoElement: HTMLVideoElement;
@@ -67,4 +72,11 @@
 <div id="video-container" class="mx-auto my-auto w-full">
 	<MidiTimersContainer />
 	<video bind:this={videoElement} id="my-video" class="video-js" preload="auto"></video>
+
+	<div class:hidden={!$mediaInfoView} transition:fade={{ delay: 0, duration: 150 }}>
+		<!-- View info -->
+		<section>
+			<MediaInfoView format="text" />
+		</section>
+	</div>
 </div>

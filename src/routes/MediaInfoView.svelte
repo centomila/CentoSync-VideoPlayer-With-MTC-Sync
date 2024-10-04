@@ -67,7 +67,7 @@
 				duration: 150
 			}}>Analyzing {$loadedFiles.currentFileName}</pre>
 	{:else if results.length > 0}
-		<h2 class="title text-center text-5xl font-bold">Media Info</h2>
+		<h2 class="title text-center h2 font-bold">{$loadedFiles.currentFileName}</h2>
 		<div transition:fade={{ delay: 0, duration: 150 }}>
 			{#each results as result}
 				{#if typeof result === 'string'}
@@ -78,7 +78,7 @@
 			{/each}
 		</div>
 	{:else}
-		<div class="flex h-screen items-center justify-center">
+		<div class="flex items-center justify-center">
 			<h2 class="title text-center text-xl">I have nothing to analyze. Load a video.</h2>
 		</div>
 	{/if}
