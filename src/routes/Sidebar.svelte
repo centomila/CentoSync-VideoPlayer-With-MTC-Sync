@@ -1,5 +1,5 @@
 <script>
-	import DelayVideoInputNumber from './DelayVideo-InputNumber.svelte';
+	import DelayVideoInputNumber from './sidebar/videoSettings/DelayVideo-InputNumber.svelte';
 
 	import ToggleSidebar from './sidebar/SidebarToggle.svelte';
 

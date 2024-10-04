@@ -1,6 +1,6 @@
 <script lang="ts">
-	let inputValueSeconds = 0;
-	let inputValueMinutes = 0;
+import { videoOffsetMinutes, videoOffsetSeconds } from "$lib/stores";
+
 	let interval: ReturnType<typeof setInterval>;
 	const stepSeconds = 0.01;
 	const stepMinutes = 1;
@@ -9,12 +9,12 @@
 		clearInterval(interval);
 		function update() {
 			if (unit === 'seconds') {
-				inputValueSeconds = Number(
-					(inputValueSeconds + (increment ? stepSeconds : -stepSeconds)).toFixed(2)
+				$videoOffsetSeconds = Number(
+					($videoOffsetSeconds + (increment ? stepSeconds : -stepSeconds)).toFixed(2)
 				);
 			} else {
-				inputValueMinutes = Number(
-					(inputValueMinutes + (increment ? stepMinutes : -stepMinutes)).toFixed(2)
+				$videoOffsetMinutes = Number(
+					($videoOffsetMinutes + (increment ? stepMinutes : -stepMinutes)).toFixed(2)
 				);
 			}
 		}
@@ -51,7 +51,7 @@
 				title="Input (number)"
 				type="number"
 				step={stepSeconds}
-				bind:value={inputValueMinutes}
+				bind:value={$videoOffsetMinutes}
 			/>
 
 			<button
@@ -96,7 +96,7 @@
 				title="Input (number)"
 				type="number"
 				step={stepSeconds}
-				bind:value={inputValueSeconds}
+				bind:value={$videoOffsetSeconds}
 			/>
 			<button
 				class="variant-filled-secondary btn"
