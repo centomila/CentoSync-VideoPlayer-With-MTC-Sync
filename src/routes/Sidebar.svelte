@@ -7,14 +7,14 @@
 	import { quintOut } from 'svelte/easing';
 
 	import SelectVideoFile from './sidebar/LoadVideoFileInput.svelte';
-	import GuiViewSelection from './ToggleMediaInfo.svelte';
-	import MidiPortSelection from './MidiPortSelection.svelte';
+	import GuiViewSelection from './sidebar/MediaInfo-Checkbox.svelte';
+	import MidiPortSelection from './sidebar/MidiPortSelection.svelte';
 
-	import ToggleBpm from './sidebar/widgetsToggle/ToggleBpm.svelte';
-	import ToggleElapsedFrames from './sidebar/widgetsToggle/ToggleElapsedFrames.svelte';
-	import ToggleMidiTimeCode from './sidebar/widgetsToggle/ToggleMidiTimeCode.svelte';
-	import ToggleTrackPosition from './sidebar/widgetsToggle/ToggleTrackPosition.svelte';
-	import ToggleSyncModeIsMTC from './tempoComponents/ToggleSyncModeIsMTC.svelte';
+	import ToggleBpm from './sidebar/widgetsCheckbox/Bpm-Checkbox.svelte';
+	import ToggleElapsedFrames from './sidebar/widgetsCheckbox/ElapsedFrames-Checkbox.svelte';
+	import ToggleMidiTimeCode from './sidebar/widgetsCheckbox/MTCTimeCode-Checkbox.svelte';
+	import ToggleTrackPosition from './sidebar/widgetsCheckbox/DAWTimeCode-Checkbox.svelte';
+	import ToggleSyncModeIsMTC from './rightPane/tempoWidgets/ToggleSyncModeIsMTC.svelte';
 	import { syncModeIsMTC } from '$lib/stores';
 
 	import ThemeSelector from './sidebar/ThemeSelector.svelte';
@@ -53,7 +53,13 @@
 					<SelectVideoFile />
 				</div>
 				<div class="border-surface-300-600-token flex flex-col border-t p-4">
+					<p class="mb-2 font-bold">Video</p>
+					<div class="py-2">
 					<GuiViewSelection />
+					</div>
+					<div class="py-2">
+						<input class="input" title="Input (number)" type="number" step="0.01" />
+					</div>
 				</div>
 
 				<div class="border-surface-300-600-token flex flex-col border-b border-t p-4">

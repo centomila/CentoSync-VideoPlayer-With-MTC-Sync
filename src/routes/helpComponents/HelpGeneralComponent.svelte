@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { appName } from '$lib/stores';
-	import ToggleSyncModeIsMtc from '../tempoComponents/ToggleSyncModeIsMTC.svelte';
-	import MidiPortSelection from '../MidiPortSelection.svelte';
+	import ToggleSyncModeIsMtc from '../rightPane/tempoWidgets/ToggleSyncModeIsMTC.svelte';
+	import MidiPortSelection from '../sidebar/MidiPortSelection.svelte';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
-	import MidiTimeCodeDiv from '../tempoComponents/MidiTimeCodeDiv.svelte';
-	import TrackPositionDiv from '../tempoComponents/TrackPositionDiv.svelte';
+	import MidiTimeCodeDiv from '../rightPane/tempoWidgets/MidiTimeCodeDiv.svelte';
+	import TrackPositionDiv from '../rightPane/tempoWidgets/TrackPositionDiv.svelte';
 	import SelectVideoFile from '../sidebar/LoadVideoFileInput.svelte';
 	import { TableOfContents, tocCrawler } from '@skeletonlabs/skeleton';
 	import ToggleSidebar from '../sidebar/SidebarToggle.svelte';

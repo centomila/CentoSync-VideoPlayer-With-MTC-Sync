@@ -4,7 +4,7 @@
 	import type Player from 'video.js/dist/types/player';
 	import { loadedFiles } from '$lib/stores';
 	import { videoPlayerStore } from '$lib/videoPlayerStore';
-	import MidiTimersContainer from './sidebar/TempoWidgetsContainer.svelte';
+	import MidiTimersContainer from './TempoWidgetsContainer.svelte';
 	import MediaInfoView from './MediaInfoView.svelte';
 	import { mediaInfoView } from '$lib/stores';
 	import { fade } from 'svelte/transition';

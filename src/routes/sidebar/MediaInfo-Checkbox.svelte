@@ -5,7 +5,10 @@
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 </script>
 
-<SlideToggle name="slider-label" bind:checked={$mediaInfoView}>Media Info</SlideToggle>
+<label class="flex items-center space-x-2 cursor-pointer">
+	<input class="checkbox" type="checkbox" bind:checked={$mediaInfoView} />
+	<span>Media Info</span>
+</label>
 
 <!-- <RadioGroup class="w-full flex-wrap">
 	<RadioItem
