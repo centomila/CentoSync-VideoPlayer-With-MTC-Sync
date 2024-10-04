@@ -43,3 +43,11 @@ video.vjs-tech {
 .video-js .vjs-remaining-time {
 	display: none;
 }
+
+/* #video-container {
+	    --tw-shadow: 0 0 50px -12px rgb(0 0 0 / 0.25);
+    --tw-shadow-colored: 0 0 50px -12px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+	    --tw-shadow-color: #030712;
+    --tw-shadow: var(--tw-shadow-colored);
+} */

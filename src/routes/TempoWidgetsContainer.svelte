@@ -29,7 +29,7 @@
 	};
 </script>
 
-<div class="border-surface-300-600-token flex flex-grow justify-center border-t">
+<div class={gridCols > 0 ? 'flex flex-grow justify-center border-surface-300-600-token border-t ' : 'flex flex-grow justify-center border-surface-300-600-token'}>
 	{#if $midiTimecodeComponent}
 		<div class={divClassess()} transition:fade={{ delay: 0, duration: 150 }}>
 			<MidiTimeCodeDiv />

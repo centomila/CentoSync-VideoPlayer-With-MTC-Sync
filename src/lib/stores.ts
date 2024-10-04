@@ -7,7 +7,7 @@ export const mediaInfoView = writable(false);
 export const theme = writable('centomila');
 
 export const appName = readable('CentoSync', () => {});
-export const appVersion = readable('0.8.0', () => {});
+export const appVersion = readable('0.8.1', () => {});
 export const gitHubUrl = readable('https://github.com/centomila/CentoSync', () => {});
 
 interface MidiInputs {
