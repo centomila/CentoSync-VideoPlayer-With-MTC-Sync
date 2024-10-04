@@ -53,6 +53,7 @@
 				</div>
 
 				<div class="border-surface-300-600-token flex flex-col border-b border-t p-4">
+					<p class="font-bold mb-2">Widgets</p>
 					<div class="py-2">
 						<ToggleTrackPosition />
 					</div>
