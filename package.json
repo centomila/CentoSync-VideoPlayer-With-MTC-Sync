@@ -1,6 +1,6 @@
 {
 	"name": "centosync",
-	"version": "0.8.0",
+	"version": "0.8.5",
 	"license": "MIT",
 	"homepage": "https://github.com/centomila/CentoSync-Web-MTC",
 	"description": "Video Player with MTC Sync",
