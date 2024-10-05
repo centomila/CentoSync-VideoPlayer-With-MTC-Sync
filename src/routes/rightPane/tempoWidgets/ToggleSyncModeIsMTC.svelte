@@ -33,9 +33,9 @@
 		<label
 			title={titleHover}
 			class="flex
-	items-center
-	space-x-2 pt-1
-	cursor-pointer"
+	cursor-pointer
+	items-center space-x-2
+	pt-1"
 		>
 			<input
 				title={titleHover}

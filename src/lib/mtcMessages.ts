@@ -44,8 +44,6 @@ $: videoPlayerStore.subscribe((player) => {
 	}
 });
 
-
-
 // end NOSYSEX MESSAGES CONTINUOS CHECK
 
 // ---------------------------------------------------------------------
@@ -112,7 +110,7 @@ $: alternativeMTCStartStop.subscribe((value) => {
 	} else {
 		alternativeSyncStop();
 	}
-})
+});
 
 export function onMtcMessage(midiData: { data: Uint8Array }): void {
 	const data = midiData.data[1];
