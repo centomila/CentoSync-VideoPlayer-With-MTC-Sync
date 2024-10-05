@@ -94,6 +94,6 @@ export const bpmComponent = writable(false);
 // SyncSetting
 export const syncModeIsMTC = writable(true);
 
-
 export const videoOffsetSeconds = writable(0);
 export const videoOffsetMinutes = writable(0);
+export const videoAlwaysSync = writable(true);

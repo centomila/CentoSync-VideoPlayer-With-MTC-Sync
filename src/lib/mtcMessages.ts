@@ -1,9 +1,17 @@
 import { get } from 'svelte/store';
-import {  mtcData, syncModeIsMTC, videoOffsetMinutes, videoOffsetSeconds, type MTCData } from '$lib/stores'; // Import the store
-import {seekPosition } from './webMidiInit';
+import {
+	isPlaying,
+	mtcData,
+	syncModeIsMTC,
+	videoOffsetMinutes,
+	videoOffsetSeconds,
+	videoAlwaysSync,
+	type MTCData
+} from '$lib/stores'; // Import the store
+import { seekPosition } from './webMidiInit';
 import { videoPlayerStore } from '$lib/videoPlayerStore';
 
-const SYNC_TOLERANCE = 0.1; // Tolerance of 0.1 seconds
+const SYNC_TOLERANCE = 0.01; // Tolerance of 0.1 seconds
 
 const isSynchronized = (playerTime: number, mtcTime: number) => {
 	return Math.abs(playerTime - mtcTime) <= SYNC_TOLERANCE;
@@ -13,25 +21,74 @@ const isSynchronized = (playerTime: number, mtcTime: number) => {
 $: videoPlayerStore.subscribe((player) => {
 	if (player && get(syncModeIsMTC)) {
 		player.on('play', () => {
-			console.log('player on play');
-			seekPosition();
-		});
+			if (get(videoAlwaysSync)) {
+				setTimeout(() => {
+					const playerTime = player.currentTime();
+					const mtcTime = get(mtcData).seekPosition;
 
-		setTimeout(() => {
-			const playerTime = player.currentTime();
-			const mtcTime = get(mtcData).seekPosition;
-
-			if (typeof playerTime === 'number' && !isSynchronized(playerTime, mtcTime)) {
-				console.log('Seeking position');
-				console.log('Player time:', playerTime, 'MTC time:', mtcTime);
-				seekPosition();
-			} else {
-				console.log('Player and MTC are synchronized');
+					if (typeof playerTime === 'number' && !isSynchronized(playerTime, mtcTime)) {
+						console.log('Seeking position');
+						console.log('Player time:', playerTime, 'MTC time:', mtcTime);
+						seekPosition();
+					} else {
+						console.log('Player and MTC are synchronized');
+					}
+				}, 500);
 			}
-		}, 500);
+		});
 	}
 });
 
+// NOSYSEX MESSAGES CONTINUOS CHECK
+let previousSeekPosition: number | undefined;
+let isReceivingMTC = false;
+let lastUpdateTime = performance.now();
+let playLoggedTime = 0;
+
+const MTC_TIMEOUT = 100; // Timeout in milliseconds to consider MTC stopped
+const PLAY_LOG_INTERVAL = 2000; // Minimum interval between "PLAYING" logs
+
+const unsubscribe = mtcData.subscribe((data) => {
+	const currentTime = performance.now();
+
+	if (data.seekPosition !== previousSeekPosition) {
+		lastUpdateTime = currentTime;
+
+		if (!isReceivingMTC || currentTime - playLoggedTime > PLAY_LOG_INTERVAL) {
+			console.log('PLAYING');
+			isReceivingMTC = true;
+			playLoggedTime = currentTime;
+
+			isPlaying.set(true);
+			videoPlayerStore.play();
+		}
+	} else if (isReceivingMTC && currentTime - lastUpdateTime > MTC_TIMEOUT) {
+		console.log('STOP');
+		console.log('Stopped playing. isPLaying:', get(isPlaying));
+		isReceivingMTC = false;
+	}
+
+	previousSeekPosition = data.seekPosition;
+});
+
+// Set up an interval to check for STOP condition regularly
+const intervalId = setInterval(() => {
+	const currentTime = performance.now();
+	if (isReceivingMTC && currentTime - lastUpdateTime > MTC_TIMEOUT) {
+		console.log('STOP');
+		isReceivingMTC = false;
+		isPlaying.set(false);
+		videoPlayerStore.pause();
+	}
+}, MTC_TIMEOUT);
+
+// Remember to call these when the component is destroyed:
+// unsubscribe();
+// clearInterval(intervalId);
+
+// end NOSYSEX MESSAGES CONTINUOS CHECK
+
+// ---------------------------------------------------------------------
 // Constants
 const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
 const MTC_QUARTER_FRAME_MASK = 0xf;
@@ -86,7 +143,8 @@ export function onMtcMessage(midiData: { data: Uint8Array }): void {
 		// Update derived values
 		currentData.milliseconds = (totalSeconds % 1) * 1000;
 		currentData.elapsedFrames = totalFrames;
-		currentData.seekPosition = totalSeconds + (get(videoOffsetSeconds) + get(videoOffsetMinutes) * 60);
+		currentData.seekPosition =
+			totalSeconds + (get(videoOffsetSeconds) + get(videoOffsetMinutes) * 60);
 
 		return currentData;
 	});
@@ -143,7 +201,11 @@ export function onSysexMessage(midiData: { data: Uint8Array }): void {
 
 			// Calculate seek position in seconds
 			currentData.seekPosition =
-				(hours * 3600 + minutes * 60 + seconds + frames / currentData.frameRate) + (get(videoOffsetSeconds) + get(videoOffsetMinutes) * 60);
+				hours * 3600 +
+				minutes * 60 +
+				seconds +
+				frames / currentData.frameRate +
+				(get(videoOffsetSeconds) + get(videoOffsetMinutes) * 60);
 
 			return currentData;
 		});

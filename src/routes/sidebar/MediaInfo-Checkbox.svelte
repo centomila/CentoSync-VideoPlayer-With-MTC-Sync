@@ -1,11 +1,8 @@
 <script lang="ts">
 	import { mediaInfoView } from '$lib/stores';
-	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-	import { loadedFiles } from '$lib/stores';
-	import { SlideToggle } from '@skeletonlabs/skeleton';
 </script>
 
-<label class="flex items-center space-x-2 cursor-pointer">
+<label class="flex cursor-pointer items-center space-x-2">
 	<input class="checkbox" type="checkbox" bind:checked={$mediaInfoView} />
 	<span>Video File Detailed Info</span>
 </label>

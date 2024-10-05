@@ -24,6 +24,7 @@
 	import HelpComponent from './sidebar/HelpMenuDrawer.svelte';
 
 	import Copyright from './sidebar/Copyright.svelte';
+	import AlwaysSyncCheckbox from './sidebar/videoSettings/AlwaysSync-checkbox.svelte';
 
 	onMount(() => {
 		document.title = `${$appName} ${$appVersion} - No video loaded`;
@@ -54,11 +55,14 @@
 				<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
 					<SelectVideoFile />
 				</div>
-				<div class="border-surface-300-600-token flex flex-col border-t p-4">
+				<div class="border-surface-300-600-token flex flex-col space-y-2 border-t p-4">
 					<p class="mb-2 font-bold">Video</p>
 
 					<div class="py-2">
 						<DelayVideoInputNumber />
+					</div>
+					<div class="py-2">
+						<AlwaysSyncCheckbox />
 					</div>
 				</div>
 
@@ -88,8 +92,6 @@
 
 			<div class="border-surface-300-600-token space-y-4 border-t p-4">
 				<MidiPortSelection />
-			</div>
-			<div class="border-surface-300-600-token space-y-4 border-t p-4">
 				<ToggleSyncModeIsMTC />
 			</div>
 			<!-- Footer -->

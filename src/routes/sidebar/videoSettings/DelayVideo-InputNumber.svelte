@@ -1,5 +1,5 @@
 <script lang="ts">
-import { videoOffsetMinutes, videoOffsetSeconds } from "$lib/stores";
+	import { videoOffsetMinutes, videoOffsetSeconds } from '$lib/stores';
 
 	let interval: ReturnType<typeof setInterval>;
 	const stepSeconds = 0.01;
@@ -34,7 +34,7 @@ import { videoOffsetMinutes, videoOffsetSeconds } from "$lib/stores";
 			<label
 				class="title text-bold text-left"
 				for="offset-video-minutes"
-				title="Offset the video playback by minutes">Minutes</label
+				title="Offset the video playback by minutes">Offset Minutes</label
 			>
 			<span
 				class="flex items-center gap-1 align-text-bottom font-mono text-xs font-light text-primary-500"
@@ -46,7 +46,7 @@ import { videoOffsetMinutes, videoOffsetSeconds } from "$lib/stores";
 
 		<div class="flex w-full justify-between gap-2">
 			<input
-				class="input"
+				class="input py-1"
 				id="offset-video-minutes"
 				title="Input (number)"
 				type="number"
@@ -80,7 +80,7 @@ import { videoOffsetMinutes, videoOffsetSeconds } from "$lib/stores";
 			<label
 				class="title text-bold text-left"
 				for="offset-video-seconds"
-				title="Offset the video playback by seconds">Seconds</label
+				title="Offset the video playback by seconds">Offset Seconds</label
 			>
 			<span
 				class="flex items-center gap-1 align-text-bottom font-mono text-xs font-light text-primary-500"
@@ -91,7 +91,7 @@ import { videoOffsetMinutes, videoOffsetSeconds } from "$lib/stores";
 		</div>
 		<div class="flex w-full justify-between gap-2">
 			<input
-				class="input"
+				class="input py-1"
 				id="offset-video-seconds"
 				title="Input (number)"
 				type="number"

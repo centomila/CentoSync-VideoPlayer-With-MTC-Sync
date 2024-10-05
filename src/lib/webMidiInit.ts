@@ -266,6 +266,7 @@ export function onStopMessage(midiData: { type: string } | null) {
 		...get(sppData),
 		secondsOnSPP: 0
 	});
+	console.log('Stopped playing. isPLaying:', get(isPlaying));
 }
 
 let seekTimeout: ReturnType<typeof setTimeout> | null = null;
