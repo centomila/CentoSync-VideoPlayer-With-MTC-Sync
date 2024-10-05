@@ -6,7 +6,7 @@
 </script>
 
 <!-- Frontend -->
-<div class="space-y-2">
+<div class="space-y-2 w-full">
 	<div class="flex w-full justify-between">
 		<label class="title text-bold text-left" for="midi-inputs">Sync Mode </label>
 		<!-- <button class="btn-primary variant-filled btn-icon max-h-5 max-w-5" title="Help"
@@ -34,12 +34,12 @@
 			title={titleHover}
 			class="flex
 	cursor-pointer
-	items-center space-x-2
+	items-center 
 	pt-1"
 		>
 			<input
 				title={titleHover}
-				class="checkbox"
+				class="checkbox mr-4"
 				type="checkbox"
 				checked={$alternativeMTCStartStop}
 				on:change={() => ($alternativeMTCStartStop = !$alternativeMTCStartStop)}

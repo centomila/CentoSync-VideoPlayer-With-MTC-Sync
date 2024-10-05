@@ -44,20 +44,20 @@
 			>
 				<h1 class=" text-2xl font-extrabold">
 					{$appName}
-					<span class=" align-text-top text-xs font-normal text-primary-500">{$appVersion}</span>
+					<span class=" align-text-top text-xs font-normal text-primary-800">{$appVersion}</span>
 				</h1>
 			</header>
 
 			<!-- Sidebar content -->
 			<div class="flex-grow">
-				<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
+				<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-0">
 					<SelectVideoFile />
 				</div>
 				<div class="border-surface-300-600-token flex flex-col space-y-2 border-t">
 					<Accordion spacing="space-y-0" padding="px-4 py-2" rounded="rounded-none">
 						<AccordionItem class="border-surface-300-600-token border-b">
 							<svelte:fragment slot="lead"><i class="fa-solid fa-video pr-2" /></svelte:fragment>
-							<svelte:fragment slot="summary"><span>Video Settings</span></svelte:fragment>
+							<svelte:fragment slot="summary"><span>Video Offset</span></svelte:fragment>
 							<svelte:fragment slot="content">
 								<div class="py-2">
 									<DelayVideoInputNumber />
@@ -99,13 +99,21 @@
 								</div>
 							</svelte:fragment>
 						</AccordionItem>
-						<AccordionItem class="border-surface-300-600-token">
+						<AccordionItem class="border-surface-300-600-token border-b">
 							<svelte:fragment slot="lead"><i class="fa-solid fa-gear pr-2" /></svelte:fragment>
 							<svelte:fragment slot="summary"><span>Settings</span></svelte:fragment>
 							<svelte:fragment slot="content">
 								<div class="py-2">
 									<MidiPortSelection />
-									<ToggleSyncModeIsMTC />
+								</div>
+							</svelte:fragment>
+						</AccordionItem>
+						<AccordionItem class="border-surface-300-600-token" open>
+							<svelte:fragment slot="lead"><i class="fa-solid fa-palette pr-4" /></svelte:fragment>
+							<svelte:fragment slot="summary"><span>Theme</span></svelte:fragment>
+							<svelte:fragment slot="content">
+								<div class="py-2">
+									<ThemeSelector />
 								</div>
 							</svelte:fragment>
 						</AccordionItem>
@@ -116,9 +124,6 @@
 			<!-- Footer -->
 			<div class="border-surface-300-600-token space-y-4 border-t font-normal">
 				<HelpComponent />
-			</div>
-			<div class="border-surface-300-600-token space-y-4 border-t p-4 font-normal">
-				<ThemeSelector />
 			</div>
 
 			<footer class="border-surface-300-600-token border-t">

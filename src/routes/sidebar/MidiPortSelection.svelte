@@ -6,6 +6,7 @@
 		midiInputs,
 		syncModeIsMTC
 	} from '$lib/stores';
+	import ToggleSyncModeIsMTC from '../rightPane/tempoWidgets/ToggleSyncModeIsMTC.svelte';
 	startWebMidi();
 </script>
 
@@ -44,5 +45,10 @@
 				<option value={input.value}>{input.name}</option>
 			{/each}
 		</select>
+	</div>
+	<div class="space-y-2">
+		<div class="flex w-full justify-between">
+			<ToggleSyncModeIsMTC />
+		</div>
 	</div>
 </div>

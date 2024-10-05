@@ -30,17 +30,19 @@
 	onMount(getTheme);
 </script>
 
-<div class="flex justify-between">
-	<label class="title text-bold text-left" for="theme-selector"><i class="fa-solid fa-palette pr-4"></i>Theme</label>
-	<LightSwitch title="Dark Mode" />
+<div class="space-y-2">
+	<div class="flex w-full justify-between">
+		<label class="title text-bold text-left" for="theme-selector">Theme</label>
+		<LightSwitch title="Dark Mode" />
+	</div>
+	<select
+		bind:value={$theme}
+		on:change={setTheme}
+		class="select w-full capitalize"
+		id="theme-selector"
+	>
+		{#each themeList as theme}
+			<option value={theme}>{theme}</option>
+		{/each}
+	</select>
 </div>
-<select
-	bind:value={$theme}
-	on:change={setTheme}
-	class="select w-full capitalize"
-	id="theme-selector"
->
-	{#each themeList as theme}
-		<option value={theme}>{theme}</option>
-	{/each}
-</select>

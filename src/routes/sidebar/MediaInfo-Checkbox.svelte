@@ -2,8 +2,8 @@
 	import { mediaInfoView } from '$lib/stores';
 </script>
 
-<label class="flex cursor-pointer items-center space-x-2">
-	<input class="checkbox" type="checkbox" bind:checked={$mediaInfoView} />
+<label class="flex cursor-pointer items-center">
+	<input class="checkbox mr-4" type="checkbox" bind:checked={$mediaInfoView} />
 	<span>Video File Detailed Info</span>
 </label>
 

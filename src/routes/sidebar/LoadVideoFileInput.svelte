@@ -72,11 +72,11 @@
 	}
 </script>
 
-<div class="w-full">
+<div class="w-full ">
 	<!-- Adjust max-w-md as needed -->
 	<label
 		for="video-file"
-		class="variant-filled-primary btn flex w-full cursor-pointer items-center space-x-2"
+		class="variant-filled-primary btn flex w-full cursor-pointer items-center space-x-2 rounded-none"
 		title={$loadedFiles.currentFileName}
 	>
 		<i class="fa fa-upload flex-shrink-0"></i>
