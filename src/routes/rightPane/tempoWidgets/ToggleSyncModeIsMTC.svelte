@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { syncModeIsMTC } from '$lib/stores';
+	import { syncModeIsMTC, alternativeMTCStartStop } from '$lib/stores';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+	const titleHover =
+		'If enabled, the video player will start and stop when notice a change in the MTC Timer. This is necessary for DAWs without Start/Stop messages in MTC Mode like FL Studio.';
 </script>
 
 <!-- Frontend -->
@@ -27,4 +29,22 @@
 			title="Song Position Pointer (SPP)">SPP</RadioItem
 		>
 	</RadioGroup>
+	{#if $syncModeIsMTC}
+		<label
+			title={titleHover}
+			class="flex
+	items-center
+	space-x-2 pt-1
+	cursor-pointer"
+		>
+			<input
+				title={titleHover}
+				class="checkbox"
+				type="checkbox"
+				checked={$alternativeMTCStartStop}
+				on:change={() => ($alternativeMTCStartStop = !$alternativeMTCStartStop)}
+			/>
+			<p>Alternative Start/Stop</p>
+		</label>
+	{/if}
 </div>

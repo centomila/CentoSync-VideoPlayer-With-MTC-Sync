@@ -6,11 +6,16 @@ import {
 	videoOffsetMinutes,
 	videoOffsetSeconds,
 	videoAlwaysSync,
+	alternativeMTCStartStop,
 	type MTCData
 } from '$lib/stores'; // Import the store
 import { seekPosition } from './webMidiInit';
 import { videoPlayerStore } from '$lib/videoPlayerStore';
 
+// Constants
+const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
+const MTC_QUARTER_FRAME_MASK = 0xf;
+const MTC_FULL_FRAME_MASK = 0xf0;
 const SYNC_TOLERANCE = 0.01; // Tolerance of 0.1 seconds
 
 const isSynchronized = (playerTime: number, mtcTime: number) => {
@@ -39,60 +44,75 @@ $: videoPlayerStore.subscribe((player) => {
 	}
 });
 
-// NOSYSEX MESSAGES CONTINUOS CHECK
-let previousSeekPosition: number | undefined;
-let isReceivingMTC = false;
-let lastUpdateTime = performance.now();
-let playLoggedTime = 0;
 
-const MTC_TIMEOUT = 100; // Timeout in milliseconds to consider MTC stopped
-const PLAY_LOG_INTERVAL = 2000; // Minimum interval between "PLAYING" logs
-
-const unsubscribe = mtcData.subscribe((data) => {
-	const currentTime = performance.now();
-
-	if (data.seekPosition !== previousSeekPosition) {
-		lastUpdateTime = currentTime;
-
-		if (!isReceivingMTC || currentTime - playLoggedTime > PLAY_LOG_INTERVAL) {
-			console.log('PLAYING');
-			isReceivingMTC = true;
-			playLoggedTime = currentTime;
-
-			isPlaying.set(true);
-			videoPlayerStore.play();
-		}
-	} else if (isReceivingMTC && currentTime - lastUpdateTime > MTC_TIMEOUT) {
-		console.log('STOP');
-		console.log('Stopped playing. isPLaying:', get(isPlaying));
-		isReceivingMTC = false;
-	}
-
-	previousSeekPosition = data.seekPosition;
-});
-
-// Set up an interval to check for STOP condition regularly
-const intervalId = setInterval(() => {
-	const currentTime = performance.now();
-	if (isReceivingMTC && currentTime - lastUpdateTime > MTC_TIMEOUT) {
-		console.log('STOP');
-		isReceivingMTC = false;
-		isPlaying.set(false);
-		videoPlayerStore.pause();
-	}
-}, MTC_TIMEOUT);
-
-// Remember to call these when the component is destroyed:
-// unsubscribe();
-// clearInterval(intervalId);
 
 // end NOSYSEX MESSAGES CONTINUOS CHECK
 
 // ---------------------------------------------------------------------
-// Constants
-const FRAME_RATES = new Uint8Array([24, 25, 29.97, 30]);
-const MTC_QUARTER_FRAME_MASK = 0xf;
-const MTC_FULL_FRAME_MASK = 0xf0;
+
+// NOSYSEX MESSAGES CONTINUOS CHECK
+
+let intervalId: ReturnType<typeof setInterval> | undefined;
+let unsubscribeMtcStreaming: (() => void) | undefined;
+function alternativeSyncStart() {
+	let previousSeekPosition: number | undefined;
+	let isReceivingMTC = false;
+	let lastUpdateTime = performance.now();
+	let playLoggedTime = 0;
+
+	const MTC_TIMEOUT = 100; // Timeout in milliseconds to consider MTC stopped
+	const PLAY_LOG_INTERVAL = 2000; // Minimum interval between "PLAYING" logs
+
+	unsubscribeMtcStreaming = mtcData.subscribe((data) => {
+		const currentTime = performance.now();
+
+		if (data.seekPosition !== previousSeekPosition) {
+			lastUpdateTime = currentTime;
+
+			if (!isReceivingMTC || currentTime - playLoggedTime > PLAY_LOG_INTERVAL) {
+				console.log('PLAYING');
+				isReceivingMTC = true;
+				playLoggedTime = currentTime;
+
+				isPlaying.set(true);
+				videoPlayerStore.play();
+			}
+		}
+
+		previousSeekPosition = data.seekPosition;
+	});
+
+	// Set up an interval to check for STOP condition regularly
+	intervalId = setInterval(() => {
+		const currentTime = performance.now();
+		if (isReceivingMTC && currentTime - lastUpdateTime > MTC_TIMEOUT) {
+			console.log('STOP');
+			isReceivingMTC = false;
+			isPlaying.set(false);
+			videoPlayerStore.pause();
+		}
+	}, MTC_TIMEOUT);
+}
+
+function alternativeSyncStop() {
+	if (intervalId) {
+		clearInterval(intervalId);
+		intervalId = undefined;
+	}
+
+	if (unsubscribeMtcStreaming) {
+		unsubscribeMtcStreaming();
+		unsubscribeMtcStreaming = undefined;
+	}
+}
+
+$: alternativeMTCStartStop.subscribe((value) => {
+	if (value) {
+		alternativeSyncStart();
+	} else {
+		alternativeSyncStop();
+	}
+})
 
 export function onMtcMessage(midiData: { data: Uint8Array }): void {
 	const data = midiData.data[1];
