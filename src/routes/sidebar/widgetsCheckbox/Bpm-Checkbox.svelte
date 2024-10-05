@@ -12,12 +12,11 @@
 <label
 	class="flex
 	items-center
-	space-x-2
 	{$selectedMidiInputSPP === 'DISABLED' ? 'text-gray-500' : ''}
 	cursor-{$selectedMidiInputSPP === 'DISABLED' ? 'not-allowed' : 'pointer'}"
 >
 	<input
-		class="checkbox"
+		class="checkbox mr-4"
 		type="checkbox"
 		checked={$bpmComponent}
 		on:change={() => ($bpmComponent = !$bpmComponent)}

@@ -4,7 +4,7 @@
 </script>
 
 <!-- Frontend -->
-<label class="flex cursor-pointer items-center space-x-2">
-	<input class="checkbox" type="checkbox" bind:checked={$midiTimecodeComponent} />
+<label class="flex cursor-pointer items-center">
+	<input class="checkbox mr-4" type="checkbox" bind:checked={$midiTimecodeComponent} />
 	<p>MTC Timecode</p>
 </label>

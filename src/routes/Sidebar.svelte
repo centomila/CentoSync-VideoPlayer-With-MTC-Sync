@@ -7,6 +7,7 @@
 	import { appName, appVersion, sidebarIsVisible } from '$lib/stores';
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
+	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 
 	import SelectVideoFile from './sidebar/LoadVideoFileInput.svelte';
 	import MediaInfoCheckbox from './sidebar/MediaInfo-Checkbox.svelte';
@@ -21,7 +22,7 @@
 
 	import ThemeSelector from './sidebar/ThemeSelector.svelte';
 
-	import HelpComponent from './sidebar/HelpMenuDrawer.svelte';
+	import HelpComponent from './sidebar/HelpMenuAccordion.svelte';
 
 	import Copyright from './sidebar/Copyright.svelte';
 	import AlwaysSyncCheckbox from './sidebar/videoSettings/AlwaysSync-checkbox.svelte';
@@ -49,60 +50,73 @@
 
 			<!-- Sidebar content -->
 			<div class="flex-grow">
-				<div class="border-surface-300-600-token flex w-full flex-col py-0">
-					<HelpComponent />
-				</div>
 				<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
 					<SelectVideoFile />
 				</div>
-				<div class="border-surface-300-600-token flex flex-col border-b border-t p-4 space-y-2">
-					<div class="flex items-center">
-						<i class="fa fa-video pr-2"></i>
-						<p class="font-bold">Video</p>
-					</div>
-
-					<div class="py-2">
-						<DelayVideoInputNumber />
-					</div>
-					<div class="py-2">
-						<AlwaysSyncCheckbox />
-					</div>
+				<div class="border-surface-300-600-token flex flex-col space-y-2 border-t">
+					<Accordion spacing="space-y-0" padding="px-4 py-2" rounded="rounded-none">
+						<AccordionItem class="border-surface-300-600-token border-b">
+							<svelte:fragment slot="lead"><i class="fa-solid fa-video pr-2" /></svelte:fragment>
+							<svelte:fragment slot="summary"><span>Video Settings</span></svelte:fragment>
+							<svelte:fragment slot="content">
+								<div class="py-2">
+									<DelayVideoInputNumber />
+								</div>
+								<div class="py-2">
+									<AlwaysSyncCheckbox />
+								</div>
+							</svelte:fragment>
+						</AccordionItem>
+					</Accordion>
 				</div>
 
-				<div class="border-surface-300-600-token flex flex-col border-b border-t p-4">
-					<div class="mb-2 flex items-center">
-						<i class="fa fa-layer-group pr-2"></i>
-						<p class="font-bold">Widgets</p>
-					</div>
-					<div class="py-2">
-						<TrackPositionCheckbox />
-					</div>
-					{#if $syncModeIsMTC}
-						<div class="py-2">
-							<MidiTimeCodeCheckbox />
-						</div>
-					{/if}
-					{#if $syncModeIsMTC}
-						<div class="py-2">
-							<ElapsedFramesCheckbox />
-						</div>
-					{/if}
-					<div class="py-2">
-						<BpmCheckbox />
-					</div>
-					<div class="py-2">
-						<MediaInfoCheckbox />
-					</div>
+				<div class="border-surface-300-600-token flex flex-col space-y-2 border-b">
+					<Accordion spacing="" padding="px-4 py-2" rounded="rounded-none">
+						<AccordionItem class="border-surface-300-600-token border-b" open>
+							<svelte:fragment slot="lead"
+								><i class="fa-solid fa-layer-group pr-2" /></svelte:fragment
+							>
+							<svelte:fragment slot="summary"><span>Widgets</span></svelte:fragment>
+							<svelte:fragment slot="content">
+								<div class="py-2">
+									<TrackPositionCheckbox />
+								</div>
+								{#if $syncModeIsMTC}
+									<div class="py-2">
+										<MidiTimeCodeCheckbox />
+									</div>
+								{/if}
+								{#if $syncModeIsMTC}
+									<div class="py-2">
+										<ElapsedFramesCheckbox />
+									</div>
+								{/if}
+								<div class="py-2">
+									<BpmCheckbox />
+								</div>
+								<div class="py-2">
+									<MediaInfoCheckbox />
+								</div>
+							</svelte:fragment>
+						</AccordionItem>
+						<AccordionItem class="border-surface-300-600-token">
+							<svelte:fragment slot="lead"><i class="fa-solid fa-gear pr-2" /></svelte:fragment>
+							<svelte:fragment slot="summary"><span>Settings</span></svelte:fragment>
+							<svelte:fragment slot="content">
+								<div class="py-2">
+									<MidiPortSelection />
+									<ToggleSyncModeIsMTC />
+								</div>
+							</svelte:fragment>
+						</AccordionItem>
+					</Accordion>
 				</div>
 			</div>
 
-			<!-- Sidebar footer -->
-
-			<div class="border-surface-300-600-token space-y-4 border-t p-4">
-				<MidiPortSelection />
-				<ToggleSyncModeIsMTC />
-			</div>
 			<!-- Footer -->
+			<div class="border-surface-300-600-token space-y-4 border-t font-normal">
+				<HelpComponent />
+			</div>
 			<div class="border-surface-300-600-token space-y-4 border-t p-4 font-normal">
 				<ThemeSelector />
 			</div>

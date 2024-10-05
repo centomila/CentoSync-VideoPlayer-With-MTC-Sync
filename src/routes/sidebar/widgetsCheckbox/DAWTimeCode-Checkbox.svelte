@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { trackPositionComponent } from '$lib/stores';
 </script>
 
 <!-- Frontend -->
-<label class="flex cursor-pointer items-center space-x-2">
-	<input class="checkbox" type="checkbox" bind:checked={$trackPositionComponent} />
+<label class="flex cursor-pointer items-center">
+	<input class="checkbox mr-4" type="checkbox" bind:checked={$trackPositionComponent} />
 	<p>DAW Timecode</p>
 </label>
