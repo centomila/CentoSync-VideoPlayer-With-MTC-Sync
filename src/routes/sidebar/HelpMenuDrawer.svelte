@@ -1,16 +1,15 @@
 <script lang="ts">
 	import { Drawer, getDrawerStore, initializeStores } from '@skeletonlabs/skeleton';
-	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 	import type { DrawerSettings } from '@skeletonlabs/skeleton';
-	import HelpGeneralComponent from '../helpComponents/HelpGeneralComponent.svelte';
-	import HelpPrivacyPolicy from '../helpComponents/HelpPrivacyPolicy.svelte';
-	import HelpLicense from '../helpComponents/HelpLicense.svelte';
-	import HelpSupportThisProject from '../helpComponents/HelpSupportThisProject.svelte';
-	import HelpDawConfiguration from '../helpComponents/HelpDAWConfiguration.svelte';
-
-	initializeStores();
-
+	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 	const drawerStore = getDrawerStore();
+
+	function openDrawerCustom(selecteDrawer: DrawerSettings) {
+		console.log('openDrawer');
+		const videoPlayer = document.getElementById('my-video');
+		videoPlayer?.classList.add('-z-40');
+		drawerStore.open(selecteDrawer);
+	}
 
 	const drawerConfig = {
 		position: 'right' as 'right', // or 'left', 'top', or 'bottom'
@@ -24,18 +23,6 @@
 	const HelpLicenseDrawer = { id: 'help-license', ...drawerConfig };
 	const HelpSupportThisProjectDrawer = { id: 'help-support-this-project', ...drawerConfig };
 	const HelpDAWConfigurationDrawer = { id: 'help-daw-configuration', ...drawerConfig };
-
-	function openDrawerCustom(selecteDrawer: DrawerSettings) {
-		console.log('openDrawer');
-		const videoPlayer = document.getElementById('my-video');
-		videoPlayer?.classList.add('-z-40');
-		drawerStore.open(selecteDrawer);
-	}
-	function closeDrawerCustom() {
-		const videoPlayer = document.getElementById('my-video');
-		videoPlayer?.classList.remove('-z-40');
-		console.log('closeDrawer');
-	}
 </script>
 
 <div>
@@ -93,19 +80,3 @@
 		</AccordionItem>
 	</Accordion>
 </div>
-
-<Drawer on:backdrop={() => closeDrawerCustom()} zIndex="z-50">
-	{#if $drawerStore.id === 'help-general'}
-		<HelpGeneralComponent />
-	{:else if $drawerStore.id === 'help-privacy-policy'}
-		<HelpPrivacyPolicy />
-	{:else if $drawerStore.id === 'help-license'}
-		<HelpLicense />
-	{:else if $drawerStore.id === 'help-support-this-project'}
-		<HelpSupportThisProject />
-	{:else if $drawerStore.id === 'help-daw-configuration'}
-		<HelpDawConfiguration />
-	{:else}
-		<!-- (fallback contents) -->
-	{/if}
-</Drawer>
