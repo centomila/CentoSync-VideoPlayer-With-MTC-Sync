@@ -171,6 +171,10 @@ export function onMtcMessage(midiData: { data: Uint8Array }): void {
 }
 
 export function onSysexMessage(midiData: { data: Uint8Array }): void {
+	if (get(alternativeMTCStartStop)) {
+		return;
+	}
+
 	const data = midiData.data;
 
 	// Ensure this is the expected SysEx message type
