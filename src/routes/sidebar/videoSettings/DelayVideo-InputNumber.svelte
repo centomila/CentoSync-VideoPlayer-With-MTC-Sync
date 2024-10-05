@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { videoOffsetMinutes, videoOffsetSeconds } from '$lib/stores';
 
+	const offsetSecondsTitle = 'Offset the video playback by seconds';
+	const offsetMinutesTitle = 'Offset the video playback by minutes';
+
 	let interval: ReturnType<typeof setInterval>;
 	const stepSeconds = 0.01;
 	const stepMinutes = 1;
@@ -34,11 +37,11 @@
 			<label
 				class="title text-bold text-left"
 				for="offset-video-minutes"
-				title="Offset the video playback by minutes">Offset Minutes</label
+				title={offsetMinutesTitle}>Offset Minutes</label
 			>
 			<span
 				class="flex items-center gap-1 align-text-bottom font-mono text-xs font-light text-primary-500"
-				title="Offset the video playback by minutes"
+				title={offsetMinutesTitle}
 			>
 				- 1 +
 			</span>
@@ -48,7 +51,7 @@
 			<input
 				class="input py-1"
 				id="offset-video-minutes"
-				title="Input (number)"
+				title={offsetMinutesTitle}
 				type="number"
 				step={stepSeconds}
 				bind:value={$videoOffsetMinutes}
@@ -80,11 +83,11 @@
 			<label
 				class="title text-bold text-left"
 				for="offset-video-seconds"
-				title="Offset the video playback by seconds">Offset Seconds</label
+				title={offsetSecondsTitle}>Offset Seconds</label
 			>
 			<span
 				class="flex items-center gap-1 align-text-bottom font-mono text-xs font-light text-primary-500"
-				title="Offset the video playback by seconds"
+				title={offsetSecondsTitle}
 			>
 				- 0.01 +
 			</span>
@@ -93,7 +96,7 @@
 			<input
 				class="input py-1"
 				id="offset-video-seconds"
-				title="Input (number)"
+				title={offsetSecondsTitle}
 				type="number"
 				step={stepSeconds}
 				bind:value={$videoOffsetSeconds}
@@ -127,6 +130,7 @@
 
 	/* Firefox */
 	input[type='number'] {
+		appearance: textfield;
 		-moz-appearance: textfield;
 	}
 </style>

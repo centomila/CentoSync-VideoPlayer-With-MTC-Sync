@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import DelayVideoInputNumber from './sidebar/videoSettings/DelayVideo-InputNumber.svelte';
 
 	import ToggleSidebar from './sidebar/SidebarToggle.svelte';
@@ -12,10 +12,10 @@
 	import MediaInfoCheckbox from './sidebar/MediaInfo-Checkbox.svelte';
 	import MidiPortSelection from './sidebar/MidiPortSelection.svelte';
 
-	import ToggleBpm from './sidebar/widgetsCheckbox/Bpm-Checkbox.svelte';
-	import ToggleElapsedFrames from './sidebar/widgetsCheckbox/ElapsedFrames-Checkbox.svelte';
-	import ToggleMidiTimeCode from './sidebar/widgetsCheckbox/MTCTimeCode-Checkbox.svelte';
-	import ToggleTrackPosition from './sidebar/widgetsCheckbox/DAWTimeCode-Checkbox.svelte';
+	import BpmCheckbox from './sidebar/widgetsCheckbox/Bpm-Checkbox.svelte';
+	import ElapsedFramesCheckbox from './sidebar/widgetsCheckbox/ElapsedFrames-Checkbox.svelte';
+	import MidiTimeCodeCheckbox from './sidebar/widgetsCheckbox/MTCTimeCode-Checkbox.svelte';
+	import TrackPositionCheckbox from './sidebar/widgetsCheckbox/DAWTimeCode-Checkbox.svelte';
 	import ToggleSyncModeIsMTC from './rightPane/tempoWidgets/ToggleSyncModeIsMTC.svelte';
 	import { syncModeIsMTC } from '$lib/stores';
 
@@ -55,8 +55,11 @@
 				<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-4">
 					<SelectVideoFile />
 				</div>
-				<div class="border-surface-300-600-token flex flex-col space-y-2 border-t p-4">
-					<p class="mb-2 font-bold">Video</p>
+				<div class="border-surface-300-600-token flex flex-col border-b border-t p-4 space-y-2">
+					<div class="flex items-center">
+						<i class="fa fa-video pr-2"></i>
+						<p class="font-bold">Video</p>
+					</div>
 
 					<div class="py-2">
 						<DelayVideoInputNumber />
@@ -67,28 +70,33 @@
 				</div>
 
 				<div class="border-surface-300-600-token flex flex-col border-b border-t p-4">
-					<p class="mb-2 font-bold">Widgets</p>
+					<div class="mb-2 flex items-center">
+						<i class="fa fa-layer-group pr-2"></i>
+						<p class="font-bold">Widgets</p>
+					</div>
 					<div class="py-2">
-						<ToggleTrackPosition />
+						<TrackPositionCheckbox />
 					</div>
 					{#if $syncModeIsMTC}
 						<div class="py-2">
-							<ToggleMidiTimeCode />
+							<MidiTimeCodeCheckbox />
 						</div>
 					{/if}
 					{#if $syncModeIsMTC}
 						<div class="py-2">
-							<ToggleElapsedFrames />
+							<ElapsedFramesCheckbox />
 						</div>
 					{/if}
 					<div class="py-2">
-						<ToggleBpm />
+						<BpmCheckbox />
 					</div>
 					<div class="py-2">
 						<MediaInfoCheckbox />
 					</div>
 				</div>
 			</div>
+
+			<!-- Sidebar footer -->
 
 			<div class="border-surface-300-600-token space-y-4 border-t p-4">
 				<MidiPortSelection />

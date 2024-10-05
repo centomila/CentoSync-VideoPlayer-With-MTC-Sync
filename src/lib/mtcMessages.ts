@@ -44,7 +44,6 @@ $: videoPlayerStore.subscribe((player) => {
 	}
 });
 
-// end NOSYSEX MESSAGES CONTINUOS CHECK
 
 // ---------------------------------------------------------------------
 
