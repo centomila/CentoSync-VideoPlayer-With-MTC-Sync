@@ -76,7 +76,7 @@
 	<!-- Adjust max-w-md as needed -->
 	<label
 		for="video-file"
-		class="flex w-full cursor-pointer items-center space-x-2 rounded-none text-left btn variant-glass-surface text-primary-400-500-token py-3"
+		class="flex w-full cursor-pointer items-center space-x-2 rounded-none text-left btn variant-glass-surface text-primary py-3 font-mono"
 		title={$loadedFiles.currentFileName}
 	>
 		<i class="fa fa-upload"></i>
