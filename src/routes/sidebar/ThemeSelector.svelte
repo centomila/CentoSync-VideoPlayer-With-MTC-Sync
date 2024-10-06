@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import { theme } from '$lib/stores';
+	import { onMount } from 'svelte';
 
 	const themeList = [
 		'centomila',
@@ -16,18 +16,21 @@
 		'crimson'
 	];
 
-	function setTheme() {
-		// use the selectedTheme variable here
-		localStorage.setItem('theme', $theme);
-		document.body.setAttribute('data-theme', $theme);
-	}
-	function getTheme() {
-		// use the selectedTheme variable here
-		$theme = localStorage.getItem('theme') || 'centomila';
-		document.body.setAttribute('data-theme', $theme);
+	function setTheme(currentTheme: string) {
+		if (typeof document !== 'undefined') {
+			document.body.setAttribute('data-theme', currentTheme);
+		}
 	}
 
-	onMount(getTheme);
+	// Use onMount to ensure DOM is ready
+	onMount(() => {
+		setTheme($theme);
+	});
+
+	// Reactive statement
+	$: if (typeof window !== 'undefined') {
+		setTheme($theme);
+	}
 </script>
 
 <div class="space-y-2">
@@ -37,12 +40,11 @@
 	</div>
 	<select
 		bind:value={$theme}
-		on:change={setTheme}
 		class="select w-full capitalize"
 		id="theme-selector"
 	>
-		{#each themeList as theme}
-			<option value={theme}>{theme}</option>
+		{#each themeList as t}
+			<option value={t}>{t}</option>
 		{/each}
 	</select>
 </div>

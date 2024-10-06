@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { startWebMidi } from '$lib/webMidiInit';
 	import {
 		selectedMidiInputMTC,
 		selectedMidiInputSPP,
@@ -7,7 +6,6 @@
 		syncModeIsMTC
 	} from '$lib/stores';
 	import ToggleSyncModeIsMTC from '../rightPane/tempoWidgets/ToggleSyncModeIsMTC.svelte';
-	startWebMidi();
 </script>
 
 <!-- Frontend -->

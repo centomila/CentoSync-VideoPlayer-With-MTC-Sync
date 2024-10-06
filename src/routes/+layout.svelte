@@ -11,6 +11,8 @@
 	import HelpDawConfiguration from './helpComponents/HelpDAWConfiguration.svelte';
 
 	import Sidebar from './Sidebar.svelte';
+	import { startWebMidi } from '$lib/webMidiInit';
+	startWebMidi();
 
 	initializeStores();
 	const drawerStore = getDrawerStore();
