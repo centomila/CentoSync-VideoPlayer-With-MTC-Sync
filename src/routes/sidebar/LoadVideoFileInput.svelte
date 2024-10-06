@@ -76,10 +76,10 @@
 	<!-- Adjust max-w-md as needed -->
 	<label
 		for="video-file"
-		class="variant-filled-primary btn flex w-full cursor-pointer items-center space-x-2 rounded-none"
+		class="flex w-full cursor-pointer items-center space-x-2 rounded-none text-left btn variant-glass-surface text-primary-400-500-token py-3"
 		title={$loadedFiles.currentFileName}
 	>
-		<i class="fa fa-upload flex-shrink-0"></i>
+		<i class="fa fa-upload"></i>
 		<span class="truncate" title={$loadedFiles.currentFileName}>{$loadedFiles.currentFileName}</span
 		>
 		<input

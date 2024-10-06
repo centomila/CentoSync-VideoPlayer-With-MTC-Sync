@@ -50,14 +50,14 @@
 
 			<!-- Sidebar content -->
 			<div class="flex-grow">
-				<div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-0">
+				<!-- <div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-0">
 					<SelectVideoFile />
-				</div>
+				</div> -->
 				<div class="border-surface-300-600-token flex flex-col space-y-2 border-t">
 					<Accordion spacing="space-y-0" padding="px-4 py-2" rounded="rounded-none">
 						<AccordionItem class="border-surface-300-600-token border-b">
-							<svelte:fragment slot="lead"><i class="fa-solid fa-video pr-2" /></svelte:fragment>
-							<svelte:fragment slot="summary"><span>Video Offset</span></svelte:fragment>
+							<svelte:fragment slot="lead"><i class="fa-solid fa-video" /></svelte:fragment>
+							<svelte:fragment slot="summary"><span class="font-semibold">Video Offset</span></svelte:fragment>
 							<svelte:fragment slot="content">
 								<div class="py-2">
 									<DelayVideoInputNumber />
@@ -74,9 +74,9 @@
 					<Accordion spacing="" padding="px-4 py-2" rounded="rounded-none">
 						<AccordionItem class="border-surface-300-600-token border-b" open>
 							<svelte:fragment slot="lead"
-								><i class="fa-solid fa-layer-group pr-2" /></svelte:fragment
+								><i class="fa-solid fa-layer-group" /></svelte:fragment
 							>
-							<svelte:fragment slot="summary"><span>Widgets</span></svelte:fragment>
+							<svelte:fragment slot="summary"><span class="font-semibold">Widgets</span></svelte:fragment>
 							<svelte:fragment slot="content">
 								<div class="py-2">
 									<TrackPositionCheckbox />
@@ -100,8 +100,8 @@
 							</svelte:fragment>
 						</AccordionItem>
 						<AccordionItem class="border-surface-300-600-token border-b">
-							<svelte:fragment slot="lead"><i class="fa-solid fa-gear pr-2" /></svelte:fragment>
-							<svelte:fragment slot="summary"><span>Settings</span></svelte:fragment>
+							<svelte:fragment slot="lead"><i class="fa-solid fa-gear" /></svelte:fragment>
+							<svelte:fragment slot="summary"><span class="font-semibold">Settings</span></svelte:fragment>
 							<svelte:fragment slot="content">
 								<div class="py-2">
 									<MidiPortSelection />
@@ -109,8 +109,8 @@
 							</svelte:fragment>
 						</AccordionItem>
 						<AccordionItem class="border-surface-300-600-token" open>
-							<svelte:fragment slot="lead"><i class="fa-solid fa-palette pr-4" /></svelte:fragment>
-							<svelte:fragment slot="summary"><span>Theme</span></svelte:fragment>
+							<svelte:fragment slot="lead"><i class="fa-solid fa-palette" /></svelte:fragment>
+							<svelte:fragment slot="summary"><span class="font-semibold">Theme</span></svelte:fragment>
 							<svelte:fragment slot="content">
 								<div class="py-2">
 									<ThemeSelector />

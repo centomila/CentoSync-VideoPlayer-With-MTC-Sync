@@ -12,12 +12,11 @@
 	title={titleHover}
 	class="flex
 	cursor-pointer
-	items-center
-	space-x-2"
+	items-center"
 >
 	<input
 		title={titleHover}
-		class="checkbox"
+		class="checkbox mr-4"
 		type="checkbox"
 		checked={$videoAlwaysSync}
 		on:change={() => ($videoAlwaysSync = !$videoAlwaysSync)}

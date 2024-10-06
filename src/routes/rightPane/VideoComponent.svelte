@@ -3,6 +3,7 @@
 	import videojs from 'video.js';
 	import type Player from 'video.js/dist/types/player';
 	import { loadedFiles } from '$lib/stores';
+	import SelectVideoFile from '../sidebar/LoadVideoFileInput.svelte';
 	import { videoPlayerStore } from '$lib/videoPlayerStore';
 	import MidiTimersContainer from './TempoWidgetsContainer.svelte';
 	import MediaInfoView from './MediaInfoView.svelte';
@@ -70,7 +71,9 @@
 <div id="video-container" class="mx-auto my-auto w-full">
 	<MidiTimersContainer />
 	<video bind:this={videoElement} id="my-video" class="video-js" preload="auto"></video>
-
+	<div class="border-surface-300-600-token flex w-full flex-col items-center p-0 border-b">
+		<SelectVideoFile />
+	</div>
 	<div class:hidden={!$mediaInfoView} transition:fade={{ delay: 0, duration: 150 }}>
 		<!-- View info -->
 		<section>
