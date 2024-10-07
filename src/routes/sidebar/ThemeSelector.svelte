@@ -38,11 +38,7 @@
 		<label class="title text-bold text-left" for="theme-selector">Theme</label>
 		<LightSwitch title="Dark Mode" />
 	</div>
-	<select
-		bind:value={$theme}
-		class="select w-full capitalize"
-		id="theme-selector"
-	>
+	<select bind:value={$theme} class="select w-full capitalize" id="theme-selector">
 		{#each themeList as t}
 			<option value={t}>{t}</option>
 		{/each}

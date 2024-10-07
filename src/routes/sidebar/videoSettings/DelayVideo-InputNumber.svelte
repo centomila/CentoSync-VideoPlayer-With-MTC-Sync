@@ -34,10 +34,8 @@
 	<!-- Minutes -->
 	<div class="flex flex-col space-y-2">
 		<div class="flex w-full justify-between">
-			<label
-				class="title text-bold text-left"
-				for="offset-video-minutes"
-				title={offsetMinutesTitle}>Offset Minutes</label
+			<label class="title text-bold text-left" for="offset-video-minutes" title={offsetMinutesTitle}
+				>Offset Minutes</label
 			>
 			<span
 				class="flex items-center gap-1 align-text-bottom font-mono text-xs font-light text-primary-500"
@@ -80,10 +78,8 @@
 
 	<div class="flex flex-col space-y-2">
 		<div class="flex w-full justify-between">
-			<label
-				class="title text-bold text-left"
-				for="offset-video-seconds"
-				title={offsetSecondsTitle}>Offset Seconds</label
+			<label class="title text-bold text-left" for="offset-video-seconds" title={offsetSecondsTitle}
+				>Offset Seconds</label
 			>
 			<span
 				class="flex items-center gap-1 align-text-bottom font-mono text-xs font-light text-primary-500"

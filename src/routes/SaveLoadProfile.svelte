@@ -6,14 +6,13 @@
 		videoAlwaysSync,
 		videoOffsetMinutes,
 		videoOffsetSeconds,
-        trackPositionComponent,
-        midiTimecodeComponent,
-        elapsedFramesComponent,
-        bpmComponent,
-        selectedMidiInputSPP,
-        selectedMidiInputMTC
+		trackPositionComponent,
+		midiTimecodeComponent,
+		elapsedFramesComponent,
+		bpmComponent,
+		selectedMidiInputSPP,
+		selectedMidiInputMTC
 	} from '$lib/stores';
-
 
 	function saveToLocalStorage(): void {
 		localStorage.setItem('theme', $theme as string);
@@ -33,41 +32,64 @@
 	function loadFromLocalStorage() {
 		// use the selectedTheme variable here
 		const themeValue = localStorage.getItem('theme');
-        if (themeValue) { $theme = themeValue; }
+		if (themeValue) {
+			$theme = themeValue;
+		}
 
-        const syncModeIsMTCValue = localStorage.getItem('syncModeIsMTC');
-        if (syncModeIsMTCValue) { $syncModeIsMTC = syncModeIsMTCValue === 'true'; }
+		const syncModeIsMTCValue = localStorage.getItem('syncModeIsMTC');
+		if (syncModeIsMTCValue) {
+			$syncModeIsMTC = syncModeIsMTCValue === 'true';
+		}
 
-        const alternativeMTCStartStopValue = localStorage.getItem('alternativeMTCStartStop');
-        if (alternativeMTCStartStopValue) { $alternativeMTCStartStop = alternativeMTCStartStopValue === 'true'; }
+		const alternativeMTCStartStopValue = localStorage.getItem('alternativeMTCStartStop');
+		if (alternativeMTCStartStopValue) {
+			$alternativeMTCStartStop = alternativeMTCStartStopValue === 'true';
+		}
 
-        const videoAlwaysSyncValue = localStorage.getItem('videoAlwaysSync');
-        if (videoAlwaysSyncValue) { $videoAlwaysSync = videoAlwaysSyncValue === 'true'; }
+		const videoAlwaysSyncValue = localStorage.getItem('videoAlwaysSync');
+		if (videoAlwaysSyncValue) {
+			$videoAlwaysSync = videoAlwaysSyncValue === 'true';
+		}
 
-        const videoOffsetMinutesValue = localStorage.getItem('videoOffsetMinutes');
-        if (videoOffsetMinutesValue) { $videoOffsetMinutes = parseInt(videoOffsetMinutesValue, 10); }
+		const videoOffsetMinutesValue = localStorage.getItem('videoOffsetMinutes');
+		if (videoOffsetMinutesValue) {
+			$videoOffsetMinutes = parseInt(videoOffsetMinutesValue, 10);
+		}
 
-        const videoOffsetSecondsValue = localStorage.getItem('videoOffsetSeconds');
-        if (videoOffsetSecondsValue) { $videoOffsetSeconds = parseInt(videoOffsetSecondsValue, 10); }
+		const videoOffsetSecondsValue = localStorage.getItem('videoOffsetSeconds');
+		if (videoOffsetSecondsValue) {
+			$videoOffsetSeconds = parseInt(videoOffsetSecondsValue, 10);
+		}
 
-        const trackPositionComponentValue = localStorage.getItem('trackPositionComponent');
-        if (trackPositionComponentValue) { $trackPositionComponent = trackPositionComponentValue === 'true'; }
+		const trackPositionComponentValue = localStorage.getItem('trackPositionComponent');
+		if (trackPositionComponentValue) {
+			$trackPositionComponent = trackPositionComponentValue === 'true';
+		}
 
-        const midiTimecodeComponentValue = localStorage.getItem('midiTimecodeComponent');
-        if (midiTimecodeComponentValue) { $midiTimecodeComponent = midiTimecodeComponentValue === 'true'; }
+		const midiTimecodeComponentValue = localStorage.getItem('midiTimecodeComponent');
+		if (midiTimecodeComponentValue) {
+			$midiTimecodeComponent = midiTimecodeComponentValue === 'true';
+		}
 
-        const elapsedFramesComponentValue = localStorage.getItem('elapsedFramesComponent');
-        if (elapsedFramesComponentValue) { $elapsedFramesComponent = elapsedFramesComponentValue === 'true'; }
+		const elapsedFramesComponentValue = localStorage.getItem('elapsedFramesComponent');
+		if (elapsedFramesComponentValue) {
+			$elapsedFramesComponent = elapsedFramesComponentValue === 'true';
+		}
 
-        const bpmComponentValue = localStorage.getItem('bpmComponent');
-        if (bpmComponentValue) { $bpmComponent = bpmComponentValue === 'true'; }
+		const bpmComponentValue = localStorage.getItem('bpmComponent');
+		if (bpmComponentValue) {
+			$bpmComponent = bpmComponentValue === 'true';
+		}
 
-        const selectedMidiInputSPPValue = localStorage.getItem('selectedMidiInputSPP');
-        if (selectedMidiInputSPPValue) { $selectedMidiInputSPP = selectedMidiInputSPPValue as string; }
+		const selectedMidiInputSPPValue = localStorage.getItem('selectedMidiInputSPP');
+		if (selectedMidiInputSPPValue) {
+			$selectedMidiInputSPP = selectedMidiInputSPPValue as string;
+		}
 
-        const selectedMidiInputMTCValue = localStorage.getItem('selectedMidiInputMTC');
-        if (selectedMidiInputMTCValue) { $selectedMidiInputMTC = selectedMidiInputMTCValue as string; }   
-
+		const selectedMidiInputMTCValue = localStorage.getItem('selectedMidiInputMTC');
+		if (selectedMidiInputMTCValue) {
+			$selectedMidiInputMTC = selectedMidiInputMTCValue as string;
+		}
 	}
 </script>
 

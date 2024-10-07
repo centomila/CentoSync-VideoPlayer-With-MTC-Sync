@@ -17,8 +17,6 @@
 	initializeStores();
 	const drawerStore = getDrawerStore();
 
-
-
 	function closeDrawerCustom() {
 		const videoPlayer = document.getElementById('my-video');
 		videoPlayer?.classList.remove('-z-40');

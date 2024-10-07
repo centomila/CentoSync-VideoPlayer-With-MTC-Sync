@@ -27,8 +27,8 @@
 
 <Accordion spacing="space-y-0" padding="pl-4 px-4 py-2" rounded="rounded-none">
 	<AccordionItem class="border-surface-300-600-token border-b">
-							<svelte:fragment slot="lead"><i class="fa-solid fa-info-circle pr-1" /></svelte:fragment>
-							<svelte:fragment slot="summary"><span>About</span></svelte:fragment>
+		<svelte:fragment slot="lead"><i class="fa-solid fa-info-circle pr-1" /></svelte:fragment>
+		<svelte:fragment slot="summary"><span>About</span></svelte:fragment>
 		<svelte:fragment slot="content">
 			<div class="space-y-4 pl-9">
 				<button

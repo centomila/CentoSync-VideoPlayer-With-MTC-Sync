@@ -71,7 +71,7 @@
 <div id="video-container" class="mx-auto my-auto w-full">
 	<MidiTimersContainer />
 	<video bind:this={videoElement} id="my-video" class="video-js" preload="auto"></video>
-	<div class="border-surface-300-600-token flex w-full flex-col items-center p-0 border-b">
+	<div class="border-surface-300-600-token flex w-full flex-col items-center border-b p-0">
 		<SelectVideoFile />
 	</div>
 	<div class:hidden={!$mediaInfoView} transition:fade={{ delay: 0, duration: 150 }}>
