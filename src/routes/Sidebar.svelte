@@ -6,7 +6,14 @@
 	import ToggleSidebar from './sidebar/SidebarToggle.svelte';
 
 	import { onMount } from 'svelte';
-	import { appName, appVersion, sidebarIsVisible } from '$lib/stores';
+	import {
+		appName,
+		appVersion,
+		sidebarIsVisible,
+		syncModeIsMTC,
+		selectedMidiInputMTC,
+		selectedMidiInputSPP
+	} from '$lib/stores';
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
@@ -20,7 +27,6 @@
 	import MidiTimeCodeCheckbox from './sidebar/widgetsCheckbox/MTCTimeCode-Checkbox.svelte';
 	import TrackPositionCheckbox from './sidebar/widgetsCheckbox/DAWTimeCode-Checkbox.svelte';
 	import ToggleSyncModeIsMTC from './rightPane/tempoWidgets/ToggleSyncModeIsMTC.svelte';
-	import { syncModeIsMTC } from '$lib/stores';
 
 	import ThemeSelector from './sidebar/ThemeSelector.svelte';
 
@@ -111,8 +117,12 @@
 						<AccordionItem class="border-surface-300-600-token border-b">
 							<svelte:fragment slot="lead"><i class="fa-solid fa-gear" /></svelte:fragment>
 							<svelte:fragment slot="summary"
-								><span class="font-semibold">MIDI Settings</span></svelte:fragment
-							>
+								><span
+									class={`font-semibold ${$selectedMidiInputMTC === 'DISABLED' && $selectedMidiInputSPP === 'DISABLED' ? 'text-error-500-400-token' : ''}`}
+								>
+									MIDI Settings
+								</span>
+							</svelte:fragment>
 							<svelte:fragment slot="content">
 								<div class="py-2">
 									<MidiPortSelection />
