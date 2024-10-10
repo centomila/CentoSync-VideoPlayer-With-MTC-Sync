@@ -2,7 +2,6 @@
 	import '../app.css';
 	import '@fortawesome/fontawesome-free/css/all.min.css';
 	import { Drawer, getDrawerStore, initializeStores } from '@skeletonlabs/skeleton';
-	import type { DrawerSettings } from '@skeletonlabs/skeleton';
 
 	import HelpGeneralComponent from './helpComponents/HelpGeneralComponent.svelte';
 	import HelpPrivacyPolicy from './helpComponents/HelpPrivacyPolicy.svelte';

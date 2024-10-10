@@ -22,13 +22,14 @@ function syncMode() {
 	}
 }
 
-// eslint-disable-next-line
+// eslint-disable-next-line no-unused-labels
 $: selectedMidiInputMTC.subscribe((value) => {
 	stopMtcAndSPPListeners();
 	restartListeners();
 	logListOfInputs();
 	console.log(`Selected MTC  input: ${value}`);
 });
+// eslint-disable-next-line no-unused-labels
 $: selectedMidiInputSPP.subscribe((value) => {
 	stopMtcAndSPPListeners();
 	restartListeners();
@@ -36,7 +37,7 @@ $: selectedMidiInputSPP.subscribe((value) => {
 	logListOfInputs();
 	console.log(`Selected SPP input: ${value}`);
 });
-
+// eslint-disable-next-line no-unused-labels
 $: syncModeIsMTC.subscribe(() => {
 	restartListeners();
 });
@@ -51,6 +52,7 @@ function restartListeners() {
 	startMidiClockListening();
 }
 
+// eslint-disable-next-line no-unused-labels
 $: isPlaying;
 
 // Enable WEBMIDI.js and trigger the onEnabled() function when ready
@@ -83,26 +85,26 @@ export function startWebMidi() {
 // startWebMidi();
 // restartListeners();
 
-function closeAllMidiInputs() {
-	for (const input of WebMidi.inputs) {
-		input.close();
-	}
-}
+// function closeAllMidiInputs() {
+// 	for (const input of WebMidi.inputs) {
+// 		input.close();
+// 	}
+// }
 
-function closeAllMidiOutputs() {
-	for (const output of WebMidi.outputs) {
-		output.close();
-	}
-	console.log('All MIDI outputs closed');
-	console.table(
-		WebMidi.outputs.map((output) => ({
-			name: output.name,
-			manufacturer: output.manufacturer,
-			state: output.state,
-			connection: output.connection
-		}))
-	);
-}
+// function closeAllMidiOutputs() {
+// 	for (const output of WebMidi.outputs) {
+// 		output.close();
+// 	}
+// 	console.log('All MIDI outputs closed');
+// 	console.table(
+// 		WebMidi.outputs.map((output) => ({
+// 			name: output.name,
+// 			manufacturer: output.manufacturer,
+// 			state: output.state,
+// 			connection: output.connection
+// 		}))
+// 	);
+// }
 
 function addMidiInputOptions() {
 	if (WebMidi.inputs.length === 0) {

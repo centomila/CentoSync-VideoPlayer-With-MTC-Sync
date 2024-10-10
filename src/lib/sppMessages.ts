@@ -8,6 +8,7 @@ import type { MessageEvent } from 'webmidi';
 export { onSPPMessage, onMidiClockMessage };
 
 let currentBpm = 0;
+// eslint-disable-next-line no-unused-labels
 $: sppData.subscribe((data: SPPData) => {
 	if (data.bpm !== 0) {
 		currentBpm = data.bpm;

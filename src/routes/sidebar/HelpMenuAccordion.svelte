@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Drawer, getDrawerStore, initializeStores } from '@skeletonlabs/skeleton';
+	import { getDrawerStore } from '@skeletonlabs/skeleton';
 	import type { DrawerSettings } from '@skeletonlabs/skeleton';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 	const drawerStore = getDrawerStore();
@@ -12,7 +12,7 @@
 	}
 
 	const drawerConfig = {
-		position: 'right' as 'right', // or 'left', 'top', or 'bottom'
+		position: 'right' as const, // or 'left', 'top', or 'bottom'
 		rounded: 'rounded-xl',
 		width: 'w-1/3',
 		padding: 'p-8'

@@ -23,6 +23,7 @@ const isSynchronized = (playerTime: number, mtcTime: number) => {
 };
 
 // Force resync on play
+// eslint-disable-next-line no-unused-labels
 $: videoPlayerStore.subscribe((player) => {
 	if (player && get(syncModeIsMTC)) {
 		player.on('play', () => {
@@ -102,6 +103,7 @@ function alternativeSyncStop() {
 	}
 }
 
+// eslint-disable-next-line no-unused-labels
 $: alternativeMTCStartStop.subscribe((value) => {
 	if (value) {
 		alternativeSyncStart();

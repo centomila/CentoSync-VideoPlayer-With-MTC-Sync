@@ -1,7 +1,5 @@
 <script>
 	import VideoComponent from './rightPane/VideoComponent.svelte';
-	import MediaInfoView from './rightPane/MediaInfoView.svelte';
-	import { mediaInfoView } from '$lib/stores';
 	import { fade } from 'svelte/transition';
 </script>
 

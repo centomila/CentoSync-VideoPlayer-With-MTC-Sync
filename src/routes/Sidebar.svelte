@@ -18,7 +18,6 @@
 	import { quintOut } from 'svelte/easing';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 
-	import SelectVideoFile from './sidebar/LoadVideoFileInput.svelte';
 	import MediaInfoCheckbox from './sidebar/MediaInfo-Checkbox.svelte';
 	import MidiPortSelection from './sidebar/MidiPortSelection.svelte';
 
@@ -26,7 +25,6 @@
 	import ElapsedFramesCheckbox from './sidebar/widgetsCheckbox/ElapsedFrames-Checkbox.svelte';
 	import MidiTimeCodeCheckbox from './sidebar/widgetsCheckbox/MTCTimeCode-Checkbox.svelte';
 	import TrackPositionCheckbox from './sidebar/widgetsCheckbox/DAWTimeCode-Checkbox.svelte';
-	import ToggleSyncModeIsMTC from './rightPane/tempoWidgets/ToggleSyncModeIsMTC.svelte';
 
 	import ThemeSelector from './sidebar/ThemeSelector.svelte';
 
@@ -114,9 +112,7 @@
 								</div>
 							</svelte:fragment>
 						</AccordionItem>
-						<AccordionItem
-							class="border-surface-300-600-token border-b" open
-						>
+						<AccordionItem class="border-surface-300-600-token border-b" open>
 							<svelte:fragment slot="lead"><i class="fa-solid fa-gear" /></svelte:fragment>
 							<svelte:fragment slot="summary"
 								><span
