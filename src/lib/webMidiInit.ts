@@ -52,7 +52,7 @@ function restartListeners() {
 	startMidiClockListening();
 }
 
-// eslint-disable-next-line no-unused-labels
+// eslint-disable-next-line
 $: isPlaying;
 
 // Enable WEBMIDI.js and trigger the onEnabled() function when ready
@@ -158,16 +158,16 @@ function startMidiClockListening() {
 	}
 }
 
-function stopMidiClockLisening() {
-	if (WebMidi.enabled) {
-		console.log('Clock listener stopping');
-		// Remove all listeners
-		for (const input of WebMidi.inputs) {
-			input.removeListener('clock');
-			console.info(`Removed listeners for CLOCK from ${input.name}...`);
-		}
-	}
-}
+// function stopMidiClockLisening() {
+// 	if (WebMidi.enabled) {
+// 		console.log('Clock listener stopping');
+// 		// Remove all listeners
+// 		for (const input of WebMidi.inputs) {
+// 			input.removeListener('clock');
+// 			console.info(`Removed listeners for CLOCK from ${input.name}...`);
+// 		}
+// 	}
+// }
 
 function stopMtcAndSPPListeners() {
 	if (WebMidi.enabled) {

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { midiTimecodeComponent } from '$lib/stores';
 </script>
 

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { bpmComponent, selectedMidiInputSPP } from '$lib/stores';
 
 	// eslint-disable-next-line
 	$: $bpmComponent;
 
+	// eslint-disable-next-line
 	$: $selectedMidiInputSPP === 'DISABLED' ? ($bpmComponent = false) : $bpmComponent;
 </script>
 

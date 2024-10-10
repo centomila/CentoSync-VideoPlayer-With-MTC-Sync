@@ -74,7 +74,11 @@
 	<div class="border-surface-300-600-token flex w-full flex-col items-center border-b p-0">
 		<SelectVideoFile />
 	</div>
-	<div class:hidden={!$mediaInfoView} transition:fade={{ delay: 0, duration: 150 }}>
+	<div
+		id="mediaInfoView"
+		class:hidden={!$mediaInfoView}
+		transition:fade={{ delay: 0, duration: 150 }}
+	>
 		<!-- View info -->
 		<section>
 			<MediaInfoView format="text" />

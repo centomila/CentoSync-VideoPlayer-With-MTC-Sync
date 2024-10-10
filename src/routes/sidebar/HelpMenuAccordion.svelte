@@ -25,27 +25,27 @@
 	const HelpDAWConfigurationDrawer = { id: 'help-daw-configuration', ...drawerConfig };
 </script>
 
-<Accordion spacing="space-y-0" padding="pl-4 px-4 py-2" rounded="rounded-none">
+<Accordion spacing="space-y-0" padding="px-4 py-2" rounded="rounded-none">
 	<AccordionItem class="border-surface-300-600-token border-b">
 		<svelte:fragment slot="lead"><i class="fa-solid fa-info-circle pr-1" /></svelte:fragment>
 		<svelte:fragment slot="summary"><span>About</span></svelte:fragment>
 		<svelte:fragment slot="content">
-			<div class="space-y-4 pl-9">
+			<div class="space-y-4 pl-9 pt-2">
 				<button
-					class="anchor block w-full text-left"
+					class="anchor w-full text-left"
 					on:click={() => {
 						openDrawerCustom(HelpSupportThisProjectDrawer);
 					}}>Support this project</button
 				>
 				<button
-					class="anchor block w-full text-left"
+					class="anchor w-full text-left"
 					on:click={() => {
 						openDrawerCustom(HelpLicenseDrawer);
 					}}>License</button
 				>
 				<button
 					title="Privacy Policy. This app don't collect any information. No analytics, no cookies, no ads."
-					class="anchor block w-full text-left"
+					class="anchor w-full text-left"
 					on:click={() => {
 						openDrawerCustom(HelpPrivacyDrawer);
 					}}>Privacy Policy</button
@@ -58,7 +58,7 @@
 		<svelte:fragment slot="lead"><i class="fa-solid fa-question-circle pr-1" /></svelte:fragment>
 		<svelte:fragment slot="summary"><span>Help</span></svelte:fragment>
 		<svelte:fragment slot="content">
-			<div class="space-y-4 pl-9">
+			<div class="space-y-4 pl-9 pt-2">
 				<button
 					class="anchor block w-full text-left"
 					on:click={() => {

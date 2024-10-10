@@ -1,9 +1,21 @@
 <script lang="ts">
 	import { mediaInfoView } from '$lib/stores';
+
+	function scrollToDiv() {
+		const div = document.getElementById('mediaInfoView');
+		if (div) {
+			div.scrollIntoView({ behavior: 'smooth' });
+		}
+	}
 </script>
 
 <label class="flex cursor-pointer items-center">
-	<input class="checkbox mr-4" type="checkbox" bind:checked={$mediaInfoView} />
+	<input
+		class="checkbox mr-4"
+		type="checkbox"
+		bind:checked={$mediaInfoView}
+		on:change={() => scrollToDiv()}
+	/>
 	<span>Video File Detailed Info</span>
 </label>
 

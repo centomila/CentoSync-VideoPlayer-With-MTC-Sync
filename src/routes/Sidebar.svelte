@@ -65,25 +65,28 @@
 					<SaveLoadProfile />
 				</div>
 				<div class="border-surface-300-600-token flex flex-col space-y-2 border-t">
-					<Accordion spacing="space-y-0" padding="px-4 py-2" rounded="rounded-none">
+					<Accordion spacing="space-y-0" padding="px-4 py-2" rounded="rounded-none" transitions>
 						<AccordionItem class="border-surface-300-600-token border-b">
 							<svelte:fragment slot="lead"><i class="fa-solid fa-video" /></svelte:fragment>
 							<svelte:fragment slot="summary"
-								><span class="font-semibold">Video Offset</span></svelte:fragment
+								><span class="font-semibold">Video Player</span></svelte:fragment
 							>
 							<svelte:fragment slot="content">
-								<div class="py-2">
+								<div class="">
 									<DelayVideoInputNumber />
 								</div>
-								<div class="py-2">
+								<div class="">
 									<AlwaysSyncCheckbox />
+								</div>
+								<div class="">
+									<MediaInfoCheckbox />
 								</div>
 							</svelte:fragment>
 						</AccordionItem>
 					</Accordion>
 				</div>
 
-				<div class="border-surface-300-600-token flex flex-col space-y-2 border-b">
+				<div class="border-surface-300-600-token flex flex-col space-y-2">
 					<Accordion spacing="" padding="px-4 py-2" rounded="rounded-none">
 						<AccordionItem class="border-surface-300-600-token border-b">
 							<svelte:fragment slot="lead"><i class="fa-solid fa-layer-group" /></svelte:fragment>
@@ -91,24 +94,21 @@
 								><span class="font-semibold">Widgets</span></svelte:fragment
 							>
 							<svelte:fragment slot="content">
-								<div class="py-2">
+								<div>
 									<TrackPositionCheckbox />
 								</div>
 								{#if $syncModeIsMTC}
-									<div class="py-2">
+									<div>
 										<MidiTimeCodeCheckbox />
 									</div>
 								{/if}
 								{#if $syncModeIsMTC}
-									<div class="py-2">
+									<div>
 										<ElapsedFramesCheckbox />
 									</div>
 								{/if}
-								<div class="py-2">
+								<div>
 									<BpmCheckbox />
-								</div>
-								<div class="py-2">
-									<MediaInfoCheckbox />
 								</div>
 							</svelte:fragment>
 						</AccordionItem>
@@ -127,7 +127,7 @@
 								</div>
 							</svelte:fragment>
 						</AccordionItem>
-						<AccordionItem class="border-surface-300-600-token" open>
+						<!-- <AccordionItem class="border-surface-300-600-token" >
 							<svelte:fragment slot="lead"><i class="fa-solid fa-palette" /></svelte:fragment>
 							<svelte:fragment slot="summary"
 								><span class="font-semibold">Theme</span></svelte:fragment
@@ -137,22 +137,26 @@
 									<ThemeSelector />
 								</div>
 							</svelte:fragment>
-						</AccordionItem>
+						</AccordionItem> -->
 					</Accordion>
+				</div>
+				<div class="border-surface-300-600-token space-y-4 border-b font-normal">
+					<HelpComponent />
 				</div>
 			</div>
 
 			<!-- Footer -->
-			<div class="border-surface-300-600-token space-y-4 border-t font-normal">
-				<HelpComponent />
-			</div>
 
 			<footer class="border-surface-300-600-token border-t">
+				<div class="border-surface-300-600-token border-b p-4">
+					<ThemeSelector />
+				</div>
+
 				<Copyright />
 			</footer>
 		</aside>
 	{/if}
-	<div class="y-0 left-72 top-0 w-0" id="hideSidebarBtn">
+	<div class="top-0 w-0" id="hideSidebarBtn">
 		<ToggleSidebar />
 	</div>
 </div>

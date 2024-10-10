@@ -35,7 +35,9 @@
 
 <div class="space-y-2">
 	<div class="flex w-full justify-between">
-		<label class="title text-bold text-left" for="theme-selector">Theme</label>
+		<label class="title text-bold text-left" for="theme-selector"
+			><i class="fa-solid fa-palette pr-4" />Theme</label
+		>
 		<LightSwitch title="Dark Mode" />
 	</div>
 	<select bind:value={$theme} class="select w-full capitalize" id="theme-selector">

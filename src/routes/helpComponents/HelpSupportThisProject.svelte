@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { appName, appVersion } from '$lib/stores';
+	import { appName } from '$lib/stores';
 	import { TableOfContents, tocCrawler } from '@skeletonlabs/skeleton';
 </script>
 
