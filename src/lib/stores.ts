@@ -98,3 +98,10 @@ export const videoOffsetSeconds = writable(0);
 export const videoOffsetMinutes = writable(0);
 export const videoAlwaysSync = writable(true);
 export const alternativeMTCStartStop = writable(false);
+
+// Sidebar Accordion
+
+export const videoOffsetAccordionOpen = writable(false);
+export const widgetsAccordionOpen = writable(false);
+export const midiSettingsAccordionOpen = writable(false);
+export const themeAccordionOpen = writable(false);

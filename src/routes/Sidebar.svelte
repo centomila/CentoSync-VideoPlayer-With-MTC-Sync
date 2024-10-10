@@ -87,7 +87,7 @@
 
 				<div class="border-surface-300-600-token flex flex-col space-y-2 border-b">
 					<Accordion spacing="" padding="px-4 py-2" rounded="rounded-none">
-						<AccordionItem class="border-surface-300-600-token border-b" open>
+						<AccordionItem class="border-surface-300-600-token border-b">
 							<svelte:fragment slot="lead"><i class="fa-solid fa-layer-group" /></svelte:fragment>
 							<svelte:fragment slot="summary"
 								><span class="font-semibold">Widgets</span></svelte:fragment
@@ -114,7 +114,9 @@
 								</div>
 							</svelte:fragment>
 						</AccordionItem>
-						<AccordionItem class="border-surface-300-600-token border-b">
+						<AccordionItem
+							class="border-surface-300-600-token border-b" open
+						>
 							<svelte:fragment slot="lead"><i class="fa-solid fa-gear" /></svelte:fragment>
 							<svelte:fragment slot="summary"
 								><span
