@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 
 	const themeList = [
+		'bitwig',
 		'centomila',
 		'skeleton',
 		'modern',

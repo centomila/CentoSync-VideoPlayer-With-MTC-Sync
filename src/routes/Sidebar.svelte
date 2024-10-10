@@ -46,7 +46,7 @@
 		>
 			<!-- Header -->
 			<header
-				class="items-centerborder-surface-300-600-token align-items-top variant-glass-primary m-0 px-4 py-2"
+				class="items-centerborder-surface-300-600-token align-items-top variant-filled-primary m-0 px-4 py-2"
 			>
 				<h1 class=" text-2xl font-extrabold">
 					{$appName}
@@ -60,7 +60,7 @@
 					<SelectVideoFile />
 				</div> -->
 				<div
-					class="variant-glass-secondary border-surface-300-600-token flex w-full flex-row items-center border-t p-4"
+					class="variant-filled-surface  border-surface-300-600-token flex w-full flex-row items-center border-t p-4"
 				>
 					<SaveLoadProfile />
 				</div>
