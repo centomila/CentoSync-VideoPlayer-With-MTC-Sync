@@ -96,9 +96,9 @@
 <div class="flex w-full items-center justify-between text-nowrap">
 	<div>
 		<i class="fa-solid fa-sliders text-token pr-4" />
-		<span class="font-semibold text-token">Profile</span>
+		<span class="text-token font-semibold">Profile</span>
 	</div>
-	<div class="btn-group text-primary-500 font-bold bg-surface-700 border border-primary-500">
+	<div class="btn-group border border-primary-500 bg-surface-700 font-bold text-primary-500">
 		<button on:click={saveToLocalStorage} title="Save configuration"
 			><span class="text-xs">Save</span></button
 		>

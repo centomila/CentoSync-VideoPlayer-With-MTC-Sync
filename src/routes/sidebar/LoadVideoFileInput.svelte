@@ -79,9 +79,7 @@
 		class="
 		bg-surface-50-900-token
 		 text-surface-900-50-token
-		 hover:bg-primary-500 hover:text-surface-50-900-token
-		 btn
-		 flex
+		 btn flex
 		 w-full
 		 cursor-pointer
 		 items-center
@@ -90,7 +88,9 @@
 		 py-3
 		 text-left
 		 font-mono
-		 font-bold"
+		 font-bold
+		 hover:text-surface-50-900-token
+		 hover:bg-primary-500"
 		title={$loadedFiles.currentFileName}
 	>
 		<i class="fa fa-upload"></i>
