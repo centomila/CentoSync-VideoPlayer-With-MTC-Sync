@@ -1,13 +1,20 @@
 # MIDI Timecode Display
 
+## Online version
+
+A compiled version of this project can be found [here](https://centosync.centomila.com).
+
+## Description
+
 MIDI Timecode Display is a simple web application that shows the current MTC timecode from a selected MIDI port. It uses [express](https://expressjs.com/) as server and [webmidi](https://github.com/djipco/webmidi) to manage MIDI. It is written in vanilla JavaScript.
 
 - [MIDI Timecode Display](#midi-timecode-display)
+  - [Online version](#online-version)
+  - [Description](#description)
   - [Features](#features)
   - [Why this project exists](#why-this-project-exists)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [TODO](#todo)
 
 ## Features
 
@@ -45,9 +52,3 @@ After you have started the server:
 - Allow MIDI access in your browser.
 - Select a MIDI port in the dropdown menu.
 - Send MTC messages to the selected port.
-
-## TODO
-
-- [ ] Remember the last selected MIDI port (https://github.com/joshnuss/svelte-persisted-store)
-- [ ] Install mediainfo
-- [ ] Videoplayer

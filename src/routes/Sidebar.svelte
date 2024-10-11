@@ -45,19 +45,19 @@
 	>
 		<!-- Header -->
 		<header
-			class="items-centerborder-surface-300-600-token align-items-top variant-filled-primary m-0 px-4 py-2"
+			class="w-full border-surface-300-600-token align-items-top  m-0 px-4 py-2 text-justify"
 		>
-			<h1 class=" text-2xl font-extrabold">
-				{$appName}
-				<span class=" align-text-top text-xs font-normal text-primary-800">{$appVersion}</span>
+			<h1 class="flex items-center text-2xl font-extrabold w-full">
+				<!-- <i class="fa fa-film pr-4" /> -->
+				<div>
+					{$appName}
+					<span class=" align-text-top text-xs font-normal text-primary-800">{$appVersion}</span>
+				</div>
 			</h1>
 		</header>
 
 		<!-- Sidebar content -->
 		<div class="flex-grow">
-			<!-- <div class="border-surface-300-600-token flex w-full flex-col items-center border-t p-0">
-					<SelectVideoFile />
-				</div> -->
 			<div
 				class="variant-glass-surface border-surface-300-600-token flex w-full flex-row items-center border-t p-4"
 			>
