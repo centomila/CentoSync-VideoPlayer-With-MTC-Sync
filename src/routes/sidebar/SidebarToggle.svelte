@@ -11,12 +11,34 @@
 	});
 </script>
 
-<button
-	on:click={() => ($sidebarIsVisible = !$sidebarIsVisible)}
-	class="hover:opacity-100hover:hue-rotate-180 variant-glass-surface btn relative top-0 z-50 h-12 w-12 cursor-pointer rounded-none border-0 opacity-50 {$sidebarIsVisible
-		? '-left-12'
-		: '-left-0'}"
-	title={$sidebarIsVisible ? 'Hide sidebar (H)' : 'Show sidebar (H)'}
+<div
+	class="relative
+right-12
+z-50
+border-0
+{$sidebarIsVisible ? '-left-12' : 'left-0'}"
 >
-	{#if $sidebarIsVisible}<i class="fas fa-eye-slash" />{:else}<i class="fas fa-eye" />{/if}
-</button>
+	<button
+		on:click={() => ($sidebarIsVisible = !$sidebarIsVisible)}
+		class="
+		variant-glass
+		btn
+		sticky
+		left-0
+		top-0
+		z-50
+		h-12
+		w-12
+		cursor-pointer
+		rounded-none
+		border-0
+		border-transparent
+		
+		transition-all
+		duration-300
+		hover:opacity-100"
+		title={$sidebarIsVisible ? 'Hide sidebar (H)' : 'Show sidebar (H)'}
+	>
+		{#if $sidebarIsVisible}<i class="fas fa-eye-slash" />{:else}<i class="fas fa-eye" />{/if}
+	</button>
+</div>

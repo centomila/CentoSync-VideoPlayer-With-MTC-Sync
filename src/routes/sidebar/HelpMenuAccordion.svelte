@@ -25,10 +25,13 @@
 	const HelpDAWConfigurationDrawer = { id: 'help-daw-configuration', ...drawerConfig };
 </script>
 
-<Accordion spacing="space-y-0" padding="px-4 py-2" rounded="rounded-none">
-	<AccordionItem class="border-surface-300-600-token border-b">
-		<svelte:fragment slot="lead"><i class="fa-solid fa-info-circle pr-1" /></svelte:fragment>
-		<svelte:fragment slot="summary"><span>About</span></svelte:fragment>
+<Accordion spacing="space-y-0" padding="px-4 py-2" rounded="rounded-none" transitions>
+	<AccordionItem
+		class="border-surface-300-600-token border-b"
+		hover="hover:bg-surface-500 hover:text-primary-500"
+	>
+		<svelte:fragment slot="lead"><i class="fa fa-star w-4 text-center" /></svelte:fragment>
+		<svelte:fragment slot="summary"><span class="font-bold">About</span></svelte:fragment>
 		<svelte:fragment slot="content">
 			<div class="space-y-4 pl-9 pt-2">
 				<button
@@ -54,9 +57,12 @@
 			<span class="block"></span>
 		</svelte:fragment>
 	</AccordionItem>
-	<AccordionItem>
-		<svelte:fragment slot="lead"><i class="fa-solid fa-question-circle pr-1" /></svelte:fragment>
-		<svelte:fragment slot="summary"><span>Help</span></svelte:fragment>
+	<AccordionItem
+		class="border-surface-300-600-token"
+		hover="hover:bg-surface-500 hover:text-primary-500"
+	>
+		<svelte:fragment slot="lead"><i class="fa fa-question w-4 text-center" /></svelte:fragment>
+		<svelte:fragment slot="summary"><span class="font-bold">Help</span></svelte:fragment>
 		<svelte:fragment slot="content">
 			<div class="space-y-4 pl-9 pt-2">
 				<button

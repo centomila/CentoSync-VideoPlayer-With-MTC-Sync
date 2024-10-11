@@ -38,11 +38,11 @@
 	});
 </script>
 
-<div class="m-0 flex flex-row align-top">
+
 	{#if $sidebarIsVisible}
 		<aside
 			transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
-			class="border-surface-300-600-token sticky top-0 m-0 flex min-h-screen w-72 flex-col border-r"
+			class="border-surface-300-600-token top-0 m-0 flex sticky h-screen flex-col w-80 border-r overflow-scroll shadow-2xl z-10"
 		>
 			<!-- Header -->
 			<header
@@ -60,16 +60,19 @@
 					<SelectVideoFile />
 				</div> -->
 				<div
-					class="variant-filled-surface  border-surface-300-600-token flex w-full flex-row items-center border-t p-4"
+					class="variant-glass-surface border-surface-300-600-token flex w-full flex-row items-center border-t p-4"
 				>
 					<SaveLoadProfile />
 				</div>
 				<div class="border-surface-300-600-token flex flex-col space-y-2 border-t">
 					<Accordion spacing="space-y-0" padding="px-4 py-2" rounded="rounded-none" transitions>
-						<AccordionItem class="border-surface-300-600-token border-b">
-							<svelte:fragment slot="lead"><i class="fa-solid fa-video" /></svelte:fragment>
+						<AccordionItem
+							class="border-surface-300-600-token border-b"
+							hover="hover:bg-surface-500 hover:text-primary-500"
+						>
+							<svelte:fragment slot="lead"><i class=" fa w-4 text-center fa-video" /></svelte:fragment>
 							<svelte:fragment slot="summary"
-								><span class="font-semibold">Video Player</span></svelte:fragment
+								><div><span class="font-semibold">Video Player</span></div></svelte:fragment
 							>
 							<svelte:fragment slot="content">
 								<div class="">
@@ -88,8 +91,11 @@
 
 				<div class="border-surface-300-600-token flex flex-col space-y-2">
 					<Accordion spacing="" padding="px-4 py-2" rounded="rounded-none">
-						<AccordionItem class="border-surface-300-600-token border-b">
-							<svelte:fragment slot="lead"><i class="fa-solid fa-layer-group" /></svelte:fragment>
+						<AccordionItem
+							class="border-surface-300-600-token border-b"
+							hover="hover:bg-surface-500 hover:text-primary-500"
+						>
+							<svelte:fragment slot="lead"><i class=" fa w-4 text-center fa-layer-group" /></svelte:fragment>
 							<svelte:fragment slot="summary"
 								><span class="font-semibold">Widgets</span></svelte:fragment
 							>
@@ -112,13 +118,15 @@
 								</div>
 							</svelte:fragment>
 						</AccordionItem>
-						<AccordionItem class="border-surface-300-600-token border-b" open>
-							<svelte:fragment slot="lead"><i class="fa-solid fa-gear" /></svelte:fragment>
+						<AccordionItem
+							class="border-surface-300-600-token border-b"
+							hover="hover:bg-surface-500 hover:text-primary-500"
+						>
+							<svelte:fragment slot="lead"><i class=" fa w-4 text-center fa-gear" /></svelte:fragment>
 							<svelte:fragment slot="summary"
 								><span
 									class={`font-semibold ${$selectedMidiInputMTC === 'DISABLED' && $selectedMidiInputSPP === 'DISABLED' ? 'text-error-500-400-token' : ''}`}
-								>
-									MIDI Settings
+								>MIDI Settings
 								</span>
 							</svelte:fragment>
 							<svelte:fragment slot="content">
@@ -127,8 +135,8 @@
 								</div>
 							</svelte:fragment>
 						</AccordionItem>
-						<!-- <AccordionItem class="border-surface-300-600-token" >
-							<svelte:fragment slot="lead"><i class="fa-solid fa-palette" /></svelte:fragment>
+						<!-- <AccordionItem class="border-surface-300-600-token"  hover="hover:bg-surface-500 hover:text-primary-500">
+							<svelte:fragment slot="lead"><i class=" fa w-4 text-center fa-palette" /></svelte:fragment>
 							<svelte:fragment slot="summary"
 								><span class="font-semibold">Theme</span></svelte:fragment
 							>
@@ -140,14 +148,14 @@
 						</AccordionItem> -->
 					</Accordion>
 				</div>
+			</div>
+			
+			<!-- Footer -->
+			
+			<footer class="border-surface-300-600-token border-t bottom-0 ">
 				<div class="border-surface-300-600-token space-y-4 border-b font-normal">
 					<HelpComponent />
 				</div>
-			</div>
-
-			<!-- Footer -->
-
-			<footer class="border-surface-300-600-token border-t">
 				<div class="border-surface-300-600-token border-b p-4">
 					<ThemeSelector />
 				</div>
@@ -156,7 +164,7 @@
 			</footer>
 		</aside>
 	{/if}
-	<div class="top-0 w-0" id="hideSidebarBtn">
+	<div class="top-0 w-0 border-0" id="hideSidebarBtn">
 		<ToggleSidebar />
 	</div>
-</div>
+

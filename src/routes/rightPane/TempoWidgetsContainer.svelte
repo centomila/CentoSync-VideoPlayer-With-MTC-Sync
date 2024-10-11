@@ -31,7 +31,7 @@
 
 <div
 	class={gridCols > 0
-		? 'variant-glass-surface border-surface-300-600-token flex flex-grow justify-center border-t'
+		? 'border-surface-300-600-token flex flex-grow justify-center border-t'
 		: 'border-surface-300-600-token flex flex-grow justify-center'}
 >
 	{#if $midiTimecodeComponent}

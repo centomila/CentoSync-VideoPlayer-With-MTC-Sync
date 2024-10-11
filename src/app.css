@@ -30,6 +30,7 @@ video.vjs-tech {
 	max-width: 100% !important;
 	padding-top: 0 !important;
 	line-height: 0;
+	background-color: transparent !important;
 }
 
 /* Fix the control bar due to us resetting the line-height on the video-js */
@@ -51,3 +52,10 @@ video.vjs-tech {
 	    --tw-shadow-color: #030712;
     --tw-shadow: var(--tw-shadow-colored);
 } */
+
+
+video {
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
