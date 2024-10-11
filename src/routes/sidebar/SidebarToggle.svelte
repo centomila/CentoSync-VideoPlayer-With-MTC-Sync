@@ -12,18 +12,17 @@
 </script>
 
 <div
-	class="relative
-right-12
+	class="fixed
 z-50
 border-0
-{$sidebarIsVisible ? '-left-12' : 'left-0'}"
+{$sidebarIsVisible ? '' : 'left-0'}"
 >
 	<button
 		on:click={() => ($sidebarIsVisible = !$sidebarIsVisible)}
 		class="
 		variant-glass
 		btn
-		sticky
+		relative
 		left-0
 		top-0
 		z-50
