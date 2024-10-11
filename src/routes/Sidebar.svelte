@@ -47,12 +47,12 @@
 		<header
 			class="w-full border-surface-300-600-token align-items-top  m-0 px-4 py-2 text-justify"
 		>
-			<h1 class="flex items-center text-2xl font-extrabold w-full">
+			<h1 class="flex justify-between items-center text-2xl font-extrabold w-full">
 				<!-- <i class="fa fa-film pr-4" /> -->
 				<div>
 					{$appName}
-					<span class=" align-text-top text-xs font-normal text-primary-800">{$appVersion}</span>
 				</div>
+				<span class=" text-xs font-mono text-secondary-500">{$appVersion}</span>
 			</h1>
 		</header>
 
@@ -124,7 +124,9 @@
 						class="border-surface-300-600-token border-b"
 						hover="hover:bg-surface-500 hover:text-primary-500"
 					>
-						<svelte:fragment slot="lead"><i class=" fa fa-gear w-4 text-center" /></svelte:fragment>
+						<svelte:fragment slot="lead"><i 
+						class={`font-semibold ${$selectedMidiInputMTC === 'DISABLED' && $selectedMidiInputSPP === 'DISABLED' ? 'text-error-500-400-token  fa fa-gear w-4 text-center' : ' fa fa-gear w-4 text-center'}`}
+						 /></svelte:fragment>
 						<svelte:fragment slot="summary"
 							><span
 								class={`font-semibold ${$selectedMidiInputMTC === 'DISABLED' && $selectedMidiInputSPP === 'DISABLED' ? 'text-error-500-400-token' : ''}`}
