@@ -123,6 +123,7 @@
 					<AccordionItem
 						class="border-surface-300-600-token border-b"
 						hover="hover:bg-surface-500 hover:text-primary-500"
+						open
 					>
 						<svelte:fragment slot="lead"><i 
 						class={`font-semibold ${$selectedMidiInputMTC === 'DISABLED' && $selectedMidiInputSPP === 'DISABLED' ? 'text-error-500-400-token  fa fa-gear w-4 text-center' : ' fa fa-gear w-4 text-center'}`}

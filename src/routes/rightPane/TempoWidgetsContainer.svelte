@@ -7,7 +7,10 @@
 		bpmComponent,
 		midiTimecodeComponent,
 		elapsedFramesComponent,
-		trackPositionComponent
+		trackPositionComponent,
+
+		syncModeIsMTC
+
 	} from '$lib/stores';
 
 	import { fade } from 'svelte/transition';
@@ -34,12 +37,12 @@
 		? 'border-surface-300-600-token flex flex-grow justify-center border-t'
 		: 'border-surface-300-600-token flex flex-grow justify-center'}
 >
-	{#if $midiTimecodeComponent}
+	{#if $midiTimecodeComponent && $syncModeIsMTC}
 		<div class={divClassess()} transition:fade={{ delay: 0, duration: 150 }}>
 			<MidiTimeCodeDiv />
 		</div>
 	{/if}
-	{#if $elapsedFramesComponent}
+	{#if $elapsedFramesComponent && $syncModeIsMTC}
 		<div class={divClassess()} transition:fade={{ delay: 0, duration: 150 }}>
 			<ElapsedFramesDiv />
 		</div>
