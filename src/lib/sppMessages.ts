@@ -4,6 +4,7 @@ import { isPlaying, sppData, syncModeIsMTC } from '$lib/stores';
 
 import type { SPPData } from '$lib/stores';
 import type { MessageEvent } from 'webmidi';
+import { seekPosition } from './webMidiInit';
 
 export { onSPPMessage, onMidiClockMessage };
 
@@ -71,6 +72,7 @@ function onMidiClockMessage(): void {
 function onSPPMessage(midiData: MessageEvent) {
 	console.log(midiData);
 	sppArrayToTime(midiData, get(sppData).bpm);
+	seekPosition();
 }
 
 let lastClockTime: number | null = null;
