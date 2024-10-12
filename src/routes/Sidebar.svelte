@@ -41,23 +41,41 @@
 {#if $sidebarIsVisible}
 	<aside
 		transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
-		class="border-surface-300-600-token sticky top-0 z-10 m-0 flex h-screen w-80 flex-col overflow-scroll border-r shadow-2xl"
+		class="
+		border-surface-300-600-token
+		sticky
+		top-0
+		z-10
+		m-0
+		flex
+		h-screen
+		w-80
+		flex-col
+		overflow-scroll
+		border-r
+		shadow-2xl"
 	>
 		<!-- Header -->
 		<header
-			class="align-items-top border-surface-300-600-token m-0 w-full py-2 pr-4 text-justify"
+			class="align-items-top border-surface-300-600-token m-0 w-full px-2 py-2 text-justify shadow"
 		>
 			<!-- <i class="fa fa-film pr-4" /> -->
 			<div class="w-full">
-				<img src="./logo-horizontal.svg" class="mix-blend-overlay filter dark:invert" alt="test" />
+				<img
+					src="./logo-horizontal.svg"
+					class="w-2/3 mix-blend-overlay filter dark:invert"
+					alt="test"
+				/>
 			</div>
-			<span class="font-mono text-xs text-secondary-900-50-token fixed right-1 bottom-1">{$appVersion}</span>
+			<span class="text-secondary-900-50-token fixed bottom-1 right-1 font-mono text-xs"
+				>{$appVersion}</span
+			>
 		</header>
 
 		<!-- Sidebar content -->
 		<div class="flex-grow">
 			<div
-				class="variant-glass-surface border-surface-300-600-token flex w-full flex-row items-center border-t p-4"
+				class="variant-glass-surface border-surface-300-600-token flex w-full flex-row items-center p-4"
 			>
 				<SaveLoadProfile />
 			</div>
@@ -73,22 +91,14 @@
 							><div><span class="font-semibold">Video Player</span></div></svelte:fragment
 						>
 						<svelte:fragment slot="content">
-							<div class="">
+							<div class="space-y-4 py-4">
 								<DelayVideoInputNumber />
-							</div>
-							<div class="">
-								<AlwaysSyncCheckbox />
-							</div>
-							<div class="">
+
 								<MediaInfoCheckbox />
 							</div>
 						</svelte:fragment>
 					</AccordionItem>
-				</Accordion>
-			</div>
 
-			<div class="border-surface-300-600-token flex flex-col space-y-2">
-				<Accordion spacing="" padding="px-4 py-2" rounded="rounded-none">
 					<AccordionItem
 						class="border-surface-300-600-token border-b"
 						hover="hover:bg-surface-500 hover:text-primary-500"
@@ -100,20 +110,14 @@
 							><span class="font-semibold">Widgets</span></svelte:fragment
 						>
 						<svelte:fragment slot="content">
-							<div>
+							<div class="space-y-4 py-4">
 								<TrackPositionCheckbox />
-							</div>
-							{#if $syncModeIsMTC}
-								<div>
+								{#if $syncModeIsMTC}
 									<MidiTimeCodeCheckbox />
-								</div>
-							{/if}
-							{#if $syncModeIsMTC}
-								<div>
+								{/if}
+								{#if $syncModeIsMTC}
 									<ElapsedFramesCheckbox />
-								</div>
-							{/if}
-							<div>
+								{/if}
 								<BpmCheckbox />
 							</div>
 						</svelte:fragment>
@@ -135,8 +139,9 @@
 							</span>
 						</svelte:fragment>
 						<svelte:fragment slot="content">
-							<div class="py-2">
+							<div class="space-y-4 py-4">
 								<MidiPortSelection />
+								<AlwaysSyncCheckbox />
 							</div>
 						</svelte:fragment>
 					</AccordionItem>

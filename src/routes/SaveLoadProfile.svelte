@@ -97,7 +97,7 @@
 	<div>
 		<i class="fa-solid fa-sliders text-token pr-4" />
 	</div>
-	<div class=" gap-2">
+	<div class="space-x-2">
 		<button
 			class="variant-filled-primary btn  font-bold"
 			on:click={saveToLocalStorage}

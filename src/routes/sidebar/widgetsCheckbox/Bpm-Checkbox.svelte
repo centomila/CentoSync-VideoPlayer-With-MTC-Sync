@@ -22,5 +22,5 @@
 		on:change={() => ($bpmComponent = !$bpmComponent)}
 		disabled={$selectedMidiInputSPP === 'DISABLED'}
 	/>
-	<p>Midi Clock (BPM)</p>
+	<p>Clock (BPM)</p>
 </label>

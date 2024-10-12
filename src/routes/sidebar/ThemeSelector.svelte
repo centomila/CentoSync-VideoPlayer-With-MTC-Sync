@@ -35,15 +35,13 @@
 </script>
 
 <div class="space-y-2">
-	<div class="flex w-full justify-between">
-		<label class="title text-bold text-left" for="theme-selector"
-			><i class="fa-solid fa-palette pr-4" />Theme</label
-		>
-		<LightSwitch title="Dark Mode" />
+	<div class="flex w-full justify-between items-center">
+		<i class="fa-solid fa-palette" />
+		<select bind:value={$theme} class="select capitalize max-w-36 py-1 text-xs" id="theme-selector">
+			{#each themeList as t}
+				<option value={t}>{t}</option>
+			{/each}
+		</select>
+		<LightSwitch title="Dark Mode"  class=" h-2" />
 	</div>
-	<select bind:value={$theme} class="select w-full capitalize" id="theme-selector">
-		{#each themeList as t}
-			<option value={t}>{t}</option>
-		{/each}
-	</select>
 </div>
