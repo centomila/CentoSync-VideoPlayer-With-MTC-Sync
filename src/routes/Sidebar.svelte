@@ -57,28 +57,28 @@
 	>
 		<!-- Header -->
 		<header
-			class="align-items-top border-surface-300-600-token m-0 w-full px-2 py-2 text-justify shadow"
+			class="bg-surface-600-300-token align-items-top border-b border-surface-300-600-token m-0 w-full px-2 py-2 text-justify"
 		>
 			<!-- <i class="fa fa-film pr-4" /> -->
 			<div class="w-full">
-				<img
-					src="./logo-horizontal.svg"
-					class="w-2/3 mix-blend-overlay filter dark:invert"
-					alt="test"
-				/>
+				<img src="./logo-horizontal.svg" class="w-full filter mix-blend-hue-rotate invert dark:invert-0" alt="test" />
 			</div>
 			<span class="text-secondary-900-50-token fixed bottom-1 right-1 font-mono text-xs"
 				>{$appVersion}</span
 			>
 		</header>
+		<div class="bg-surface-300-600-token border-surface-300-600-token border-b p-4">
+			<ThemeSelector />
+		</div>
+		<div
+			class=" flex w-full flex-row items-center  p-4"
+		>
+			<SaveLoadProfile />
+		</div>
 
 		<!-- Sidebar content -->
 		<div class="flex-grow">
-			<div
-				class="variant-glass-surface border-surface-300-600-token flex w-full flex-row items-center p-4"
-			>
-				<SaveLoadProfile />
-			</div>
+
 			<div class="border-surface-300-600-token flex flex-col space-y-2 border-t">
 				<Accordion spacing="space-y-0" padding="px-4 py-2" rounded="rounded-none" transitions>
 					<AccordionItem
@@ -166,14 +166,11 @@
 			<div class="border-surface-300-600-token space-y-4 border-b font-normal">
 				<HelpComponent />
 			</div>
-			<div class="border-surface-300-600-token border-b p-4">
-				<ThemeSelector />
-			</div>
 
 			<Copyright />
 		</footer>
 	</aside>
 {/if}
-<div class=" w-0 border-0" id="hideSidebarBtn">
+<div class=" relative bottom-0 block min-h-screen w-0 border-0" id="hideSidebarBtn">
 	<ToggleSidebar />
 </div>

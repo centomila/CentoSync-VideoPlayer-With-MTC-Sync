@@ -93,18 +93,18 @@
 	}
 </script>
 
-<div class="flex w-full items-center justify-between">
+<div class="flex w-full items-center">
 	<div>
 		<i class="fa-solid fa-sliders text-token pr-4" />
 	</div>
-	<div class="space-x-2">
+	<div class="space-x-2 flex justify-between w-full items-center">
 		<button
-			class="variant-filled-primary btn  font-bold"
+			class="variant-filled-primary hover:variant-filled-secondary btn max-h-8 font-bold w-1/2"
 			on:click={saveToLocalStorage}
 			title="Save configuration"><span class="text-xs">Save</span></button
 		>
 		<button
-			class="variant-filled-primary btn  font-bold"
+			class="variant-filled-primary hover:variant-filled-secondary btn max-h-8 font-bold w-1/2"
 			on:click={loadFromLocalStorage}
 			title="Load configuration"><span class="text-xs">Load</span></button
 		>

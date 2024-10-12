@@ -15,6 +15,7 @@
 	class="fixed
 z-50
 border-0
+bottom-0
 {$sidebarIsVisible ? '' : 'left-0'}"
 >
 	<button
@@ -23,10 +24,11 @@ border-0
 		variant-glass-tertiary
 		btn
 		relative
-		h-8
+		h-12
 		w-12
 		shadow-2xl
-		{$sidebarIsVisible ? 'right-16 top-2' : 'top-1 left-1'}
+		rounded-none
+		rounded-tr-md
 		cursor-pointer
 		
 		transition-all

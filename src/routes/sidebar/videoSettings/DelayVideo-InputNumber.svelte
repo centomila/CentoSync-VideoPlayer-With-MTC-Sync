@@ -56,7 +56,7 @@
 			/>
 
 			<button
-				class="variant-filled-primary btn"
+				class="variant-filled-primary btn hover:variant-filled-secondary"
 				on:pointerdown={() => handlePointerDown(false, 'minutes')}
 				on:pointerup={handlePointerUp}
 				on:pointerleave={handlePointerUp}
@@ -64,7 +64,7 @@
 				<i class="fa fa-minus"></i>
 			</button>
 			<button
-				class="variant-filled-primary btn"
+				class="variant-filled-primary btn hover:variant-filled-secondary"
 				on:pointerdown={() => handlePointerDown(true, 'minutes')}
 				on:pointerup={handlePointerUp}
 				on:pointerleave={handlePointerUp}
@@ -98,7 +98,7 @@
 				bind:value={$videoOffsetSeconds}
 			/>
 			<button
-				class="variant-filled-primary btn"
+				class="variant-filled-primary btn hover:variant-filled-secondary"
 				on:pointerdown={() => handlePointerDown(false, 'seconds')}
 				on:pointerup={handlePointerUp}
 				on:pointerleave={handlePointerUp}
@@ -106,7 +106,7 @@
 				<i class="fa fa-minus"></i>
 			</button>
 			<button
-				class="variant-filled-primary btn"
+				class="variant-filled-primary btn hover:variant-filled-secondary"
 				on:pointerdown={() => handlePointerDown(true, 'seconds')}
 				on:pointerup={handlePointerUp}
 				on:pointerleave={handlePointerUp}
