@@ -20,18 +20,20 @@ border-0
 	<button
 		on:click={() => ($sidebarIsVisible = !$sidebarIsVisible)}
 		class="
-		variant-glass
+		variant-glass-tertiary
 		btn
 		relative
 		left-0
 		top-0
 		z-50
-		h-12
-		w-12
+		h-16
+		w-16
 		cursor-pointer
 		rounded-none
 		border-0
 		border-transparent
+		
+		
 		
 		transition-all
 		duration-300

@@ -45,15 +45,13 @@
 	>
 		<!-- Header -->
 		<header
-			class="w-full border-surface-300-600-token align-items-top  m-0 px-4 py-2 text-justify"
+			class="align-items-top border-surface-300-600-token m-0 w-full py-2 pr-4 text-justify"
 		>
-			<h1 class="flex justify-between items-center text-2xl font-extrabold w-full">
-				<!-- <i class="fa fa-film pr-4" /> -->
-				<div>
-					{$appName}
-				</div>
-				<span class=" text-xs font-mono text-secondary-500">{$appVersion}</span>
-			</h1>
+			<!-- <i class="fa fa-film pr-4" /> -->
+			<div class="w-full">
+				<img src="./logo-horizontal.svg" class="mix-blend-overlay filter dark:invert" alt="test" />
+			</div>
+			<span class="font-mono text-xs text-secondary-900-50-token fixed right-1 bottom-1">{$appVersion}</span>
 		</header>
 
 		<!-- Sidebar content -->
@@ -125,9 +123,11 @@
 						hover="hover:bg-surface-500 hover:text-primary-500"
 						open
 					>
-						<svelte:fragment slot="lead"><i 
-						class={`font-semibold ${$selectedMidiInputMTC === 'DISABLED' && $selectedMidiInputSPP === 'DISABLED' ? 'text-error-500-400-token  fa fa-gear w-4 text-center' : ' fa fa-gear w-4 text-center'}`}
-						 /></svelte:fragment>
+						<svelte:fragment slot="lead"
+							><i
+								class={`font-semibold ${$selectedMidiInputMTC === 'DISABLED' && $selectedMidiInputSPP === 'DISABLED' ? 'fa  fa-gear text-error-500-400-token w-4 text-center' : ' fa fa-gear w-4 text-center'}`}
+							/></svelte:fragment
+						>
 						<svelte:fragment slot="summary"
 							><span
 								class={`font-semibold ${$selectedMidiInputMTC === 'DISABLED' && $selectedMidiInputSPP === 'DISABLED' ? 'text-error-500-400-token' : ''}`}
