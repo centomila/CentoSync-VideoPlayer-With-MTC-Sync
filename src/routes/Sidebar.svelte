@@ -169,6 +169,6 @@
 		</footer>
 	</aside>
 {/if}
-<div class="top-0 w-0 border-0" id="hideSidebarBtn">
+<div class=" w-0 border-0" id="hideSidebarBtn">
 	<ToggleSidebar />
 </div>

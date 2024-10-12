@@ -23,20 +23,23 @@ border-0
 		variant-glass-tertiary
 		btn
 		relative
-		left-0
+	
 		top-0
 		z-50
 		h-16
 		w-16
+		-translate-x-4
+		-translate-y-4
+		scale-50
 		cursor-pointer
 		rounded-none
 		border-0
 		border-transparent
-		
-		
-		
 		transition-all
 		duration-300
+		hover:-translate-x-0
+		hover:-translate-y-0
+		hover:scale-100
 		hover:opacity-100"
 		title={$sidebarIsVisible ? 'Hide sidebar (H)' : 'Show sidebar (H)'}
 	>
