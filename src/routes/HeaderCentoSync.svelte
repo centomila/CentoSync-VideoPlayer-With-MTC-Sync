@@ -5,6 +5,7 @@
 <header
 	class="bg-surface-600-300-token
 		   border-surface-300-600-token
+		   border-b
 		   m-0
 		   flex
 		   w-full

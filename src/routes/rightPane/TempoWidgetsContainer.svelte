@@ -32,8 +32,8 @@
 
 <div
 	class={gridCols > 0
-		? 'border-surface-300-600-token flex flex-grow justify-center border-t'
-		: 'border-surface-300-600-token flex flex-grow justify-center'}
+		? 'border-surface-300-600-token flex  justify-center border-t'
+		: 'border-surface-300-600-token flex  justify-center'}
 >
 	{#if $midiTimecodeComponent && $syncModeIsMTC}
 		<div class={divClassess()} transition:fade={{ delay: 0, duration: 150 }}>

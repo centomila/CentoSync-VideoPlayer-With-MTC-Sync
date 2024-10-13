@@ -28,7 +28,7 @@
 <Accordion spacing="space-y-0" padding="px-4 py-2" rounded="rounded-none" transitions>
 	<AccordionItem
 		class="border-surface-300-600-token border-b"
-		hover="bg-surface-300-600-token hover:bg-surface-600-300-token hover:text-surface-50-900-token"
+		hover="transition-all variant-glass-surface hover:bg-surface-600-300-token hover:text-surface-50-900-token"
 	>
 		<svelte:fragment slot="lead"><i class="fa fa-star w-4 text-center" /></svelte:fragment>
 		<svelte:fragment slot="summary"><span class="font-bold">About</span></svelte:fragment>
@@ -59,7 +59,7 @@
 	</AccordionItem>
 	<AccordionItem
 		class="border-surface-300-600-token border-b"
-		hover="bg-surface-300-600-token hover:bg-surface-600-300-token hover:text-surface-50-900-token"
+		hover="transition-all variant-glass-surface hover:bg-surface-600-300-token hover:text-surface-50-900-token"
 	>
 		<svelte:fragment slot="lead"><i class="fa fa-question w-4 text-center" /></svelte:fragment>
 		<svelte:fragment slot="summary"><span class="font-bold">Help</span></svelte:fragment>

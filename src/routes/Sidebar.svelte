@@ -47,11 +47,11 @@
 		border-surface-300-600-token
 		sticky
 		top-0
-		z-10
 		m-0
 		flex
 		h-screen
 		w-80
+		max-w-80
 		flex-col
 		overflow-scroll
 		border-r
@@ -72,7 +72,7 @@
 				<Accordion spacing="space-y-0" padding="px-4 py-4" rounded="rounded-none">
 					<AccordionItem
 						class="border-surface-300-600-token border-b"
-						hover="bg-surface-300-600-token hover:bg-surface-600-300-token hover:text-surface-50-900-token"
+						hover="transition-all variant-glass-surface hover:bg-surface-600-300-token hover:text-surface-50-900-token"
 					>
 						<svelte:fragment slot="lead"><i class=" fa fa-video w-4 text-center" /></svelte:fragment
 						>
@@ -88,7 +88,7 @@
 
 					<AccordionItem
 						class="border-surface-300-600-token border-b"
-						hover="bg-surface-300-600-token hover:bg-surface-600-300-token hover:text-surface-50-900-token"
+						hover="transition-all variant-glass-surface hover:bg-surface-600-300-token hover:text-surface-50-900-token"
 					>
 						<svelte:fragment slot="lead"
 							><i class=" fa fa-layer-group w-4 text-center" /></svelte:fragment
@@ -112,7 +112,7 @@
 					</AccordionItem>
 					<AccordionItem
 						class="border-surface-300-600-token border-b"
-						hover="bg-surface-300-600-token hover:bg-surface-600-300-token hover:text-surface-50-900-token"
+						hover="transition-all variant-glass-surface hover:bg-surface-600-300-token hover:text-surface-50-900-token"
 						open
 					>
 						<svelte:fragment slot="lead"
@@ -133,7 +133,7 @@
 							</div>
 						</svelte:fragment>
 					</AccordionItem>
-					<!-- <AccordionItem class="border-surface-300-600-token"  hover="bg-surface-300-600-token hover:bg-surface-600-300-token hover:text-surface-50-900-token"
+					<!-- <AccordionItem class="border-surface-300-600-token"  hover="transition-all variant-glass-surface hover:bg-surface-600-300-token hover:text-surface-50-900-token"
 							<svelte:fragment slot="lead"><i class=" fa w-4 text-center fa-palette" /></svelte:fragment>
 							<svelte:fragment slot="summary"
 								><span class="font-semibold">Theme</span></svelte:fragment

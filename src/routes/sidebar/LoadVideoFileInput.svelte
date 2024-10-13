@@ -85,7 +85,7 @@
 		 items-center
 		 space-x-2
 		 rounded-none
-		 py-3
+		 py-4
 		 text-left
 		 font-mono
 		 font-bold"

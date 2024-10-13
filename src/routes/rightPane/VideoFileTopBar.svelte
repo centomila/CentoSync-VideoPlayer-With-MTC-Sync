@@ -3,7 +3,11 @@
 	import videojs from 'video.js';
 	import type Player from 'video.js/dist/types/player';
 	import { loadedFiles } from '$lib/stores';
+
+	import SelectVideoFile from '../sidebar/LoadVideoFileInput.svelte';
 	import { videoPlayerStore } from '$lib/videoPlayerStore';
+	import { mediaInfoView } from '$lib/stores';
+	import SidebarToggle from '../sidebar/SidebarToggle.svelte';
 
 	let player: Player | null = null;
 	let videoElement: HTMLVideoElement;
@@ -62,7 +66,30 @@
 	});
 </script>
 
-<!-- svelte-ignore a11y-media-has-caption -->
-<div id="video-container" class="mx-auto my-auto w-full">
-	<video bind:this={videoElement} id="my-video" class="video-js" preload="auto"></video>
+<div class="border-surface-300-600-token flex w-full items-center shadow-2xl border-b">
+	<div id="hideSidebarBtn">
+		<SidebarToggle />
+	</div>
+	<SelectVideoFile />
+	<button
+		on:click={() => ($mediaInfoView = !$mediaInfoView)}
+		class="
+	        min-w-16
+	        cursor-pointer
+	        rounded-none
+	        border-0
+	        px-6
+	        py-4
+	        shadow-2xl
+	{$mediaInfoView
+			? 'variant-filled-primary opacity-100 hover:variant-filled-secondary'
+			: 'variant-glass-surface opacity-50 hover:variant-filled-primary'}
+			
+			transition-all
+			duration-300
+			hover:opacity-100"
+		title={$mediaInfoView ? 'Hide Video File Detailed Info' : 'Show Video File Detailed Info'}
+	>
+		{#if $mediaInfoView}<i class="fas fa-info-circle" />{:else}<i class="fas fa-info" />{/if}
+	</button>
 </div>
