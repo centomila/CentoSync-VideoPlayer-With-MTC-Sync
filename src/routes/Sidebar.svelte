@@ -55,7 +55,9 @@
 		flex-col
 		overflow-scroll
 		border-r
-		shadow-2xl"
+		shadow-2xl
+		transition-all
+		duration-300"
 	>
 		<!-- Header -->
 		<HeaderCentoSync />
