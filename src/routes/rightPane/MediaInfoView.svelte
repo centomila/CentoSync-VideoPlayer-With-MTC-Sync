@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy, afterUpdate } from 'svelte';
 	import { createMediaInfoHandler } from '$lib/MediaInfo';
-	import { loadedFiles } from '$lib/stores';
+	import { loadedFiles, sidebarIsVisible } from '$lib/stores';
 	import type { MediaInfoFormat } from '$lib/MediaInfo';
 	import { fade } from 'svelte/transition';
 
@@ -58,15 +58,17 @@
 
 <!-- <input type="file" multiple bind:files={$loadedFiles.files} /> -->
 
-<div class="mx-auto my-auto max-w-screen-lg py-10">
-	{#if isAnalyzing}
+{#if isAnalyzing}
+	<div class="mx-auto my-auto max-w-screen-lg justify-center py-10 text-center">
 		<pre
 			class="text-xxl"
 			transition:fade={{
 				delay: 0,
 				duration: 150
 			}}>Analyzing {$loadedFiles.currentFileName}</pre>
-	{:else if results.length > 0}
+	</div>
+{:else if results.length > 0}
+	<div class="mx-auto my-auto max-w-screen-lg px-4 py-8">
 		<!-- <h2 class="title h2 text-center font-bold">{$loadedFiles.currentFileName}</h2> -->
 		<div transition:fade={{ delay: 0, duration: 150 }}>
 			{#each results as result}
@@ -77,9 +79,16 @@
 				{/if}
 			{/each}
 		</div>
-	{:else}
-		<div class="flex items-center justify-center">
-			<h2 class="title text-center text-xl">I have nothing to analyze. Load a video.</h2>
+	</div>
+{:else}
+	<div
+		class="fixed right-0 top-0 flex h-screen items-center justify-center text-center transition-all
+			{$sidebarIsVisible ? ' left-80' : 'left-0'}"
+	>
+		<div class="title z-50 mx-auto space-y-8 text-center text-xl">
+			<p>I don't have anything to analyze 🥺</p>
+			<hr />
+			<p>Please load a video using the button above or drag it into this window.</p>
 		</div>
-	{/if}
-</div>
+	</div>
+{/if}
