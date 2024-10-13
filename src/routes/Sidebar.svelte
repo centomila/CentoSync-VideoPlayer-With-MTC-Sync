@@ -1,5 +1,5 @@
 <script lang="ts">
-  import HeaderCentoSync from './HeaderCentoSync.svelte';
+	import HeaderCentoSync from './HeaderCentoSync.svelte';
 
 	import SaveLoadProfile from './SaveLoadProfile.svelte';
 
@@ -59,9 +59,7 @@
 	>
 		<!-- Header -->
 		<HeaderCentoSync />
-		<div class="bg-surface-300-600-token border-surface-300-600-token border-b p-4 shadow-2xl">
-			<ThemeSelector />
-		</div>
+
 		<div class=" flex w-full flex-row items-center p-4">
 			<SaveLoadProfile />
 		</div>
@@ -153,6 +151,9 @@
 		<footer class="border-surface-300-600-token bottom-0 border-t">
 			<div class="border-surface-300-600-token space-y-4 border-b font-normal">
 				<HelpComponent />
+			</div>
+			<div class="bg-surface-300-600-token border-surface-300-600-token border-b p-4 shadow-2xl">
+				<ThemeSelector />
 			</div>
 
 			<Copyright />

@@ -3,6 +3,7 @@
 	import videojs from 'video.js';
 	import type Player from 'video.js/dist/types/player';
 	import { loadedFiles } from '$lib/stores';
+
 	import SelectVideoFile from '../sidebar/LoadVideoFileInput.svelte';
 	import { videoPlayerStore } from '$lib/videoPlayerStore';
 	import MidiTimersContainer from './TempoWidgetsContainer.svelte';
@@ -77,6 +78,29 @@
 			<SidebarToggle />
 		</div>
 		<SelectVideoFile />
+
+		<button
+			on:click={() => ($mediaInfoView = !$mediaInfoView)}
+			class="		
+		min-w-16
+		cursor-pointer
+		rounded-none
+		border-0
+		px-6
+		py-3
+		
+		shadow-2xl
+		{$mediaInfoView
+				? 'variant-filled-primary opacity-100 hover:variant-filled-secondary'
+				: 'variant-glass-surface opacity-50 hover:variant-filled-primary'}
+		
+		transition-all
+		duration-300
+		hover:opacity-100"
+			title={$mediaInfoView ? 'Hide Video File Detailed Info' : 'Show Video File Detailed Info'}
+		>
+			{#if $mediaInfoView}<i class="fas fa-info-circle" />{:else}<i class="fas fa-info" />{/if}
+		</button>
 	</div>
 	<div
 		id="mediaInfoView"

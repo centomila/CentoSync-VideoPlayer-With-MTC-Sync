@@ -8,9 +8,7 @@
 		midiTimecodeComponent,
 		elapsedFramesComponent,
 		trackPositionComponent,
-
 		syncModeIsMTC
-
 	} from '$lib/stores';
 
 	import { fade } from 'svelte/transition';

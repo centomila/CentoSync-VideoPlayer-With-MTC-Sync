@@ -88,7 +88,9 @@
 					Set the MTC Rate according to the framerate of your video. If your video is 60 fps or 120
 					fps, set it to 30. If your video is 50 fps, set it to 25.
 				</p>
-				<p>In {$appName} you also <b>need</b> to enable the option <i>Alternative Start/Stop</i>.</p>
+				<p>
+					In {$appName} you also <b>need</b> to enable the option <i>Alternative Start/Stop</i>.
+				</p>
 
 				<LightBoxCustom imgSrc="./FLStudio-Help-MTC.png" imgAlt="FL Studio - MTC Mode" />
 			</svelte:fragment>
@@ -131,7 +133,9 @@
 			hover="hover:bg-surface-500 hover:text-primary-500"
 		>
 			<svelte:fragment slot="lead"><i class="fa fa-circle w-4 text-center" /></svelte:fragment>
-			<svelte:fragment slot="summary"><span class="font-semibold">Ableton Live</span></svelte:fragment>
+			<svelte:fragment slot="summary"
+				><span class="font-semibold">Ableton Live</span></svelte:fragment
+			>
 			<svelte:fragment slot="content">
 				<h3 class="h3 font-bold">Ableton Live</h3>
 				<h4 class="h4 font-bold">MIDI Time Code (MTC)</h4>

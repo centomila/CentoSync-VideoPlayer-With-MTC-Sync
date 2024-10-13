@@ -11,25 +11,27 @@
 	});
 </script>
 
-<div
-	class=" border-0 {$sidebarIsVisible ? '' : 'left-0'}">
+<div class=" border-0 {$sidebarIsVisible ? '' : 'left-0'}">
 	<button
 		on:click={() => ($sidebarIsVisible = !$sidebarIsVisible)}
 		class="		
-		py-3
-		w-12
+		variant-glass-surface
+		min-w-16
 		cursor-pointer
 		rounded-none
 		border-0
+		px-6
+		py-3
 		opacity-50
 		shadow-2xl
-		variant-glass-surface
-		hover:variant-filled-tertiary
 		transition-all
 		duration-300
+		hover:variant-filled-tertiary
 		hover:opacity-100"
 		title={$sidebarIsVisible ? 'Hide sidebar (H)' : 'Show sidebar (H)'}
 	>
-		{#if $sidebarIsVisible}<i class="fas fa-angle-left " />{:else}<i class="fas fa-angle-right " />{/if}
+		{#if $sidebarIsVisible}<i class="fas fa-angle-left" />{:else}<i
+				class="fas fa-angle-right"
+			/>{/if}
 	</button>
 </div>
