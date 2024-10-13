@@ -1,54 +1,99 @@
-# MIDI Timecode Display
+# CentoSync
 
-## Online version
+CentoSync is a web application that synchronizes video playback with Digital Audio Workstations (DAWs) using MIDI Time Code (MTC) or MIDI Clock with Song Position Pointer (SPP).
 
-A compiled version of this project can be found [here](https://centosync.centomila.com).
+CentoSync has been tested with:
 
-## Description
+- Bitwig Studio 5.2
+  - MTC
+  - SPP
+- Reason Studio 12
+  - SPP
+- FL Studio 2024
+  - MTC with CentoSync's Alternative Start/Stop checkbox enabled
+- WaveForm Tracktion
+  - MTC with CentoSync's Alternative Start/Stop checkbox enabled
+- Ableton Live 10 Suite
+  - MTC with LiveMTC Max Plugin
+  - SPP
+- Ableton Live 12 Lite
+  - SPP
+- NI Maschine 2
+  - SPP
 
-MIDI Timecode Display is a simple web application that shows the current MTC timecode from a selected MIDI port. It uses [express](https://expressjs.com/) as server and [webmidi](https://github.com/djipco/webmidi) to manage MIDI. It is written in vanilla JavaScript.
+Other DAWs, and new/previous versions of the listed DAWs should works fine as well.
 
-- [MIDI Timecode Display](#midi-timecode-display)
-  - [Online version](#online-version)
-  - [Description](#description)
-  - [Features](#features)
-  - [Why this project exists](#why-this-project-exists)
-  - [Installation](#installation)
-  - [Usage](#usage)
+MTC is the default and recommended mode.
+
+## Online Demo
+
+Try out the live version at [https://centosync.centomila.com](https://centosync.centomila.com). It's free to use.
 
 ## Features
 
-- Shows the current MTC timecode from a selected MIDI port
-- Shows current timecode in hours, minutes, seconds and frames (HH:MM:SS:FF)
-- Shows DAW style audio track time in hours, minutes, seconds (HH:MM:SSS) (MS are estimated from frames)
-- Shows MTC frame rate in FPS
-- Shows elapsed frames from the start of the MTC
-- Easily hide the GUI when is not needed
-- Load the video from a local file (muted by default)
-- Multiple themes to find inspiration when composition
+- Synchronizes video player seek time with DAWs
+- Supports both MIDI Timecode (MTC) and Song Position Pointer (SPP)
+- User-friendly interface
+- Video offset
+- Embedded manual
+- Picture in Picture (Use browser control)
+- Dark mode and multiple themes
+- Save settings to local storage
+- Detailed video info
 
-## Why this project exists
+## Limitations
 
-- I'm learning the ins and outs of webmidi.js.
-- My DAW of choice doesn't support natively video and this is one step to code an alternative solution to the existing ones. Follow me on GitHub to see when it's ready 😉
+- In SPP Mode, synchronization is limited to the first 1024 bars (approximately 30 minutes at 120 BPM). This is due to a limitation in the MIDI protocol.
+
+## Technologies Used
+
+- [Svelte](https://svelte.dev/)
+- [SvelteKit](https://kit.svelte.dev/)
+- [Vite](https://vite.dev/)
+- [Skeleton](https://www.skeleton.dev/)
+- [WebMidi.js](https://webmidijs.org/)
+- [Video.js](https://videojs.com/)
+- [MediaInfo](https://mediainfo.js.org/)
 
 ## Installation
 
-You can install MTC Timecode using npm:
+1. Clone the repository
+2. Install dependencies:
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 ## Usage
 
-```bash
-npm start
-```
+1. Start the development server:
 
-After you have started the server:
+   ```bash
+   npm run dev
+   ```
 
-- Go to http://localhost:3000 in your browser.
-- Allow MIDI access in your browser.
-- Select a MIDI port in the dropdown menu.
-- Send MTC messages to the selected port.
+2. Open [http://localhost:5173](http://localhost:5173) in your browser
+3. Allow MIDI access when prompted
+4. Select a MIDI port from the dropdown menu
+5. Send MTC messages to the selected port
+
+For detailed instructions, please refer to the Help menu within the application.
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for more information.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE.md).
+
+## Support
+
+For questions or issues, please [open an issue](https://github.com/centomila/CentoSync-VideoPlayer-With-MTC-Sync/issues) on GitHub.
+
+### Donate a Little
+
+If you're able to donate, I'd greatly appreciate it! If it's not within your budget, no
+worries at all—your support in any form is already more than enough.
+
+To make a donation, visit my [Buy Me a Coffee](https://buymeacoffee.com/centomila) page.
