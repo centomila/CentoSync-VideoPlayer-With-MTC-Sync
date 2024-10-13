@@ -10,7 +10,7 @@
 		   w-full
 		   items-center
 		   px-2
-		   py-1
+		   py-2
 		   transition-all
 		   duration-300
 			hover:shadow-2xl
