@@ -55,7 +55,7 @@
 		flex-col
 		overflow-scroll
 		border-r
-		shadow-2xl
+		
 		transition-all
 		duration-300"
 	>

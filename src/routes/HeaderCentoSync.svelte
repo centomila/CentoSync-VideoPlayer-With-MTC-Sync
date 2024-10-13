@@ -3,9 +3,9 @@
 </script>
 
 <header
-	class="bg-surface-600-300-token
-		   border-surface-300-600-token
-		   border-b
+	class="bg-surface-200-700-token
+		   
+		   
 		   m-0
 		   flex
 		   w-full
@@ -22,7 +22,7 @@
 	<div class="flex w-full">
 		<img
 			src="./logo-horizontal.svg"
-			class="h-8 invert filter dark:mix-blend-multiply dark:invert-0"
+			class="h-8 filter dark:mixed-mode dark:invert"
 			alt="CentoSync - Video Player with MTC Sync"
 		/>
 	</div>
@@ -38,7 +38,7 @@
 		text-xs
 		font-bold
 		opacity-0
-		invert
+		
 		transition-all
 		duration-300
 		hover:opacity-100
