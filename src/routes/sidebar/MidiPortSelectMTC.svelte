@@ -1,10 +1,5 @@
 <script lang="ts">
-	import {
-		selectedMidiInputMTC,
-		selectedMidiInputSPP,
-		midiInputs,
-		syncModeIsMTC
-	} from '$lib/stores';
+	import { selectedMidiInputMTC, midiInputs, syncModeIsMTC } from '$lib/stores';
 </script>
 
 {#if $syncModeIsMTC}

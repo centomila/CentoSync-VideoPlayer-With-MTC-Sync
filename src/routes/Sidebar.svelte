@@ -5,8 +5,6 @@
 
 	import DelayVideoInputNumber from './sidebar/videoSettings/DelayVideo-InputNumber.svelte';
 
-	import ToggleSidebar from './sidebar/SidebarToggle.svelte';
-
 	import { onMount } from 'svelte';
 	import {
 		appName,
@@ -20,7 +18,7 @@
 	import { quintOut } from 'svelte/easing';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 
-	import MidiPortSelection from './sidebar/MidiSettingsContainer.svelte';
+	import MidiSettingsContainer from './sidebar/MidiSettingsContainer.svelte';
 
 	import BpmCheckbox from './sidebar/widgetsCheckbox/Bpm-Checkbox.svelte';
 	import ElapsedFramesCheckbox from './sidebar/widgetsCheckbox/ElapsedFrames-Checkbox.svelte';
@@ -33,7 +31,6 @@
 	import HelpComponent from './sidebar/HelpMenuAccordion.svelte';
 
 	import Copyright from './sidebar/Copyright.svelte';
-	import AlwaysSyncCheckbox from './sidebar/videoSettings/AlwaysSync-checkbox.svelte';
 
 	onMount(() => {
 		document.title = `${$appName} ${$appVersion} - No video loaded`;
@@ -128,8 +125,7 @@
 						</svelte:fragment>
 						<svelte:fragment slot="content">
 							<div class="space-y-2 pb-2">
-								<MidiPortSelection />
-								<AlwaysSyncCheckbox />
+								<MidiSettingsContainer />
 							</div>
 						</svelte:fragment>
 					</AccordionItem>
@@ -150,15 +146,15 @@
 
 		<!-- Footer -->
 
-		<footer class="border-surface-300-600-token bottom-0 border-t">
+		<div class="border-surface-300-600-token bottom-0 border-t">
 			<div class="border-surface-300-600-token space-y-4 border-b font-normal">
 				<HelpComponent />
 			</div>
 			<div class="bg-surface-300-600-token border-surface-300-600-token border-b p-4 shadow-2xl">
 				<ThemeSelector />
 			</div>
+		</div>
 
-			<Copyright />
-		</footer>
+		<Copyright />
 	</aside>
 {/if}

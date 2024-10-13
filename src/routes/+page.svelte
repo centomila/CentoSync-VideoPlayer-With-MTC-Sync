@@ -16,14 +16,12 @@
 	<VideoComponent />
 	<MidiTimersContainer />
 
-	<div
-		id="mediaInfoView"
-		class:hidden={!$mediaInfoView}
-		transition:fade={{ delay: 0, duration: 150 }}
-	>
-		<!-- View info -->
-		<section>
-			<MediaInfoView format="text" />
-		</section>
-	</div>
+	{#if $mediaInfoView}
+		<div id="mediaInfoView" transition:fade={{ delay: 0, duration: 300 }}>
+			<!-- View info -->
+			<section>
+				<MediaInfoView format="text" />
+			</section>
+		</div>
+	{/if}
 </section>

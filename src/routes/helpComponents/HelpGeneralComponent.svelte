@@ -1,13 +1,11 @@
 <script lang="ts">
 	import { appName } from '$lib/stores';
 	import ToggleSyncModeIsMtc from '../rightPane/tempoWidgets/ToggleSyncModeIsMTC.svelte';
-	import MidiPortSelection from '../sidebar/MidiSettingsContainer.svelte';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 	import MidiTimeCodeDiv from '../rightPane/tempoWidgets/MidiTimeCodeDiv.svelte';
 	import TrackPositionDiv from '../rightPane/tempoWidgets/TrackPositionDiv.svelte';
 	import SelectVideoFile from '../sidebar/LoadVideoFileInput.svelte';
 	import { TableOfContents, tocCrawler } from '@skeletonlabs/skeleton';
-	import ToggleSidebar from '../sidebar/SidebarToggle.svelte';
 	import MidiPortSelectMtc from '../sidebar/MidiPortSelectMTC.svelte';
 	import MidiPortSelectSppClock from '../sidebar/MidiPortSelectSPPClock.svelte';
 </script>
@@ -134,8 +132,8 @@
 		<div class="blockquote space-y-2">
 			<p><strong class="text-warning-600-300-token">NOTE:</strong></p>
 			<p>
-				<b>{$appName}</b> requires a desktop browser, as WebMidi is not currently available on
-				mobile browsers.
+				<b>{$appName}</b> requires a desktop browser, as WebMidi is not currently available on mobile
+				browsers.
 			</p>
 		</div>
 	</section>

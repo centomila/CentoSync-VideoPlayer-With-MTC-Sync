@@ -22,7 +22,7 @@
 	<div class="flex w-full">
 		<img
 			src="./logo-horizontal.svg"
-			class="h-8 filter dark:mixed-mode dark:invert"
+			class="dark:mixed-mode h-8 filter dark:invert"
 			alt="CentoSync - Video Player with MTC Sync"
 		/>
 	</div>
