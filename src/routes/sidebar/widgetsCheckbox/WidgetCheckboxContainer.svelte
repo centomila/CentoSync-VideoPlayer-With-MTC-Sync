@@ -1,8 +1,9 @@
 <script lang="ts">
-	import BpmCheckbox from './Bpm-Checkbox.svelte';
 	import ElapsedFramesCheckbox from './ElapsedFrames-Checkbox.svelte';
 	import MTCTimeCodeCheckbox from './MTCTimeCode-Checkbox.svelte';
 	import DAWTimeCodeCheckbox from './DAWTimeCode-Checkbox.svelte';
+	import BpmCheckbox from './Bpm-Checkbox.svelte';
+	import MediaInfoCheckbox from '../MediaInfo-Checkbox.svelte';
 	import { syncModeIsMTC } from '$lib/stores';
 </script>
 
@@ -24,3 +25,6 @@
 		<BpmCheckbox />
 	</div>
 {/if}
+<div class="py-2">
+	<MediaInfoCheckbox />
+</div>

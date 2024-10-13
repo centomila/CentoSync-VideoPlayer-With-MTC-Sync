@@ -9,6 +9,7 @@
 	import MediaInfoView from './MediaInfoView.svelte';
 	import { mediaInfoView } from '$lib/stores';
 	import { fade } from 'svelte/transition';
+	import SidebarToggle from '../sidebar/SidebarToggle.svelte';
 
 	let player: Player | null = null;
 	let videoElement: HTMLVideoElement;
@@ -71,7 +72,10 @@
 <div id="video-container" class="mx-auto my-auto w-full">
 	<MidiTimersContainer />
 	<video bind:this={videoElement} id="my-video" class="video-js" preload="auto"></video>
-	<div class="border-surface-300-600-token flex w-full flex-col items-center border-b p-0">
+	<div class="border-surface-300-600-token flex w-full items-center p-0">
+		<div id="hideSidebarBtn">
+			<SidebarToggle />
+		</div>
 		<SelectVideoFile />
 	</div>
 	<div

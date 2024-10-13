@@ -77,10 +77,10 @@
 	<label
 		for="video-file"
 		class="
-		bg-surface-50-900-token
-		 text-surface-900-50-token
+		variant-filled-surface
 		 btn flex
-		 w-full
+		 
+		 
 		 cursor-pointer
 		 items-center
 		 space-x-2
@@ -88,9 +88,7 @@
 		 py-3
 		 text-left
 		 font-mono
-		 font-bold
-		 hover:text-surface-50-900-token
-		 hover:bg-primary-500"
+		 font-bold"
 		title={$loadedFiles.currentFileName}
 	>
 		<i class="fa fa-upload"></i>
