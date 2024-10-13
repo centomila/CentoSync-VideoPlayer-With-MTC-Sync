@@ -20,7 +20,7 @@
 	import { quintOut } from 'svelte/easing';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 
-	import MidiPortSelection from './sidebar/MidiPortSelection.svelte';
+	import MidiPortSelection from './sidebar/MidiSettingsContainer.svelte';
 
 	import BpmCheckbox from './sidebar/widgetsCheckbox/Bpm-Checkbox.svelte';
 	import ElapsedFramesCheckbox from './sidebar/widgetsCheckbox/ElapsedFrames-Checkbox.svelte';

@@ -17,21 +17,23 @@
 
 	<h3 class="h3 mb-4">Local Storage</h3>
 	<p>
-		The only information stored locally on your device is your selected theme preference. This is
-		stored in your browser's local storage to ensure that your visual preferences are saved between
-		sessions. Local storage is specific to your device and browser, and this data is not transmitted
-		to any servers or third parties.
+		When the user press the SAVE button, settings will be store in the Browser's Local Storage. The
+		saved settings are:
 	</p>
+	<ul class="list-inside list-disc">
+		<li>Video Player Offset Time</li>
+		<li>MIDI Settings</li>
+		<li>Current Theme</li>
+	</ul>
 
 	<h3 class="h3 mb-4">No Third-Party Services</h3>
 	<p>
 		{$appName} does not integrate with any third-party services that could collect or process your data.
 		This means no social media trackers, no embedded analytics tools, and no third-party cookies.
 	</p>
-
-	<h3 class="h3 mb-4">Changes to This Policy</h3>
 	<p>
-		Should we ever update this privacy policy, we will notify users of the changes within the app.
-		However, the core principle of not collecting personal data will always remain unchanged.
+		<strong>Disclaimer:</strong>
+		{$appName} is not responsible for the content, privacy practices, or security of any third-party
+		websites linked in the help section. Users access these external websites at their own risk.
 	</p>
 </div>

@@ -1,13 +1,15 @@
 <script lang="ts">
 	import { appName } from '$lib/stores';
 	import ToggleSyncModeIsMtc from '../rightPane/tempoWidgets/ToggleSyncModeIsMTC.svelte';
-	import MidiPortSelection from '../sidebar/MidiPortSelection.svelte';
+	import MidiPortSelection from '../sidebar/MidiSettingsContainer.svelte';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 	import MidiTimeCodeDiv from '../rightPane/tempoWidgets/MidiTimeCodeDiv.svelte';
 	import TrackPositionDiv from '../rightPane/tempoWidgets/TrackPositionDiv.svelte';
 	import SelectVideoFile from '../sidebar/LoadVideoFileInput.svelte';
 	import { TableOfContents, tocCrawler } from '@skeletonlabs/skeleton';
 	import ToggleSidebar from '../sidebar/SidebarToggle.svelte';
+	import MidiPortSelectMtc from '../sidebar/MidiPortSelectMTC.svelte';
+	import MidiPortSelectSppClock from '../sidebar/MidiPortSelectSPPClock.svelte';
 </script>
 
 <div class="space-y-8 p-8" use:tocCrawler={{ mode: 'generate' }}>
@@ -129,10 +131,13 @@
 			system. Please grant this permission for the app to function correctly. If the port list is
 			still empty after you granted permissions, try refreshing the page.
 		</p>
-		<p class="blockquote">
-			Note: <b>{$appName}</b> requires a desktop browser, as WebMidi is not currently available on mobile
-			browsers.
-		</p>
+		<div class="blockquote space-y-2">
+			<p><strong class="text-warning-600-300-token">NOTE:</strong></p>
+			<p>
+				<b>{$appName}</b> requires a desktop browser, as WebMidi is not currently available on
+				mobile browsers.
+			</p>
+		</div>
 	</section>
 
 	<hr />
@@ -144,11 +149,12 @@
 			be sure that MIDI permission is granted (check in your browser address bar).
 		</p>
 		<p>
-			SPP/Clock port is optional for MTC mode. It's better using a separate port to avoid drifting,
-			but not mandatory.
+			SPP/Clock port is optional for MTC mode and is used only to show the current BPM. It's better
+			using a separate port to avoid drifting, but not mandatory.
 		</p>
 		<div class="space-y-4 border border-primary-600 p-4">
-			<MidiPortSelection />
+			<MidiPortSelectMtc />
+			<MidiPortSelectSppClock />
 		</div>
 	</section>
 
@@ -215,11 +221,23 @@
 			</li>
 		</ol>
 
-		<p class="blockquote">
-			<b>NOTE:</b> In SPP mode, the time will reset to 0 if playback starts after bar 1024. This corresponds
-			to 34:08.000 at 120 BPM. To extend the time, you can run your project at half the tempo, effectively
-			doubling the duration. This limitation is due to the MIDI standard.
-		</p>
+		<div class="blockquote space-y-2">
+			<p>
+				<strong class="text-warning-600-300-token">NOTE:</strong>
+			</p>
+
+			<p>
+				In SPP mode, the time will reset to 0 if playback starts after bar 1024. This corresponds to
+				34:08.000 at 120 BPM.
+			</p>
+
+			<p>
+				To extend the time, you can run your project at half the tempo, effectively doubling the
+				duration.
+			</p>
+
+			<p>This limitation is due to the MIDI standard.</p>
+		</div>
 	</section>
 
 	<hr />
@@ -256,7 +274,7 @@
 		</ol>
 
 		<div class="pl-8">
-			<h6 class="h6 font-bold">Notes about the video player:</h6>
+			<h6 class="h6 font-bold">Notes about the video player</h6>
 			<ul class="list-inside list-disc space-y-4">
 				<li>
 					The player can read any video format that is supported by your browser.<br class="mb-1" />
@@ -310,11 +328,17 @@
 		<div class="my-4 space-y-4 border border-primary-600 p-4">
 			<TrackPositionDiv />
 		</div>
-		<p class="blockquote">
-			<b>Note:</b> milliseconds after the first decimal are estimates and may not display the exact same
-			time as your DAW, except when the milliseconds are exactly .000. Video synchronization is not affected
-			by this. This timer it's only a visual indicator. Refer to the DAW time to see the real track time.
-		</p>
+		<div class="blockquote space-y-2">
+			<p><strong class="text-warning-600-300-token">NOTE:</strong></p>
+			<p>
+				Milliseconds after the first decimal are estimates and may not display the exact same time
+				as your DAW, except when the milliseconds are exactly .000. Video synchronization is not
+				affected by this.
+			</p>
+			<p>
+				This timer it's only a visual indicator. Refer to the DAW time to see the real track time.
+			</p>
+		</div>
 
 		<hr class="mx-auto max-w-xs" />
 		<h5 class="h5 font-bold">MTC Timecode</h5>
