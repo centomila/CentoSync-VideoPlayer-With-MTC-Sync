@@ -2,7 +2,7 @@
 import type { CustomThemeConfig } from '@skeletonlabs/tw-plugin';
 
 export const bitwigTheme: CustomThemeConfig = {
-	name: 'bitwig',
+	name: 'cento-bitwig',
 	properties: {
 		// =~= Theme Properties =~=
 		"--theme-font-family-base": `Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'`,

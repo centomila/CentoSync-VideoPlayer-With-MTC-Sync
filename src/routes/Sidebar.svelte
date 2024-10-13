@@ -1,4 +1,6 @@
 <script lang="ts">
+  import HeaderCentoSync from './HeaderCentoSync.svelte';
+
 	import SaveLoadProfile from './SaveLoadProfile.svelte';
 
 	import DelayVideoInputNumber from './sidebar/videoSettings/DelayVideo-InputNumber.svelte';
@@ -56,22 +58,8 @@
 		shadow-2xl"
 	>
 		<!-- Header -->
-		<header
-			class="bg-surface-600-300-token border-surface-300-600-token m-0 w-full border-b px-2 py-2"
-		>
-			<!-- <i class="fa fa-film pr-4" /> -->
-			<div class="w-full flex justify-left">
-				<img
-					src="./logo-horizontal.svg"
-					class="mix-blend-hue-rotate h-8 invert filter dark:invert-0"
-					alt="test"
-				/>
-			</div>
-			<span class="text-secondary-900-50-token fixed bottom-1 right-1 font-mono text-xs"
-				>{$appVersion}</span
-			>
-		</header>
-		<div class="bg-surface-300-600-token border-surface-300-600-token border-b p-4">
+		<HeaderCentoSync />
+		<div class="bg-surface-300-600-token border-surface-300-600-token border-b p-4 shadow-2xl">
 			<ThemeSelector />
 		</div>
 		<div class=" flex w-full flex-row items-center p-4">
@@ -84,7 +72,7 @@
 				<Accordion spacing="space-y-0" padding="px-4 py-4" rounded="rounded-none">
 					<AccordionItem
 						class="border-surface-300-600-token border-b"
-						hover="hover:bg-surface-500"
+						hover="bg-surface-300-600-token hover:bg-surface-600-300-token hover:text-surface-50-900-token"
 					>
 						<svelte:fragment slot="lead"><i class=" fa fa-video w-4 text-center" /></svelte:fragment
 						>
@@ -92,7 +80,7 @@
 							><div><span class="font-semibold">Video Player</span></div></svelte:fragment
 						>
 						<svelte:fragment slot="content">
-							<div class="space-y-4 py-4">
+							<div class="space-y-2 pb-2">
 								<DelayVideoInputNumber />
 							</div>
 						</svelte:fragment>
@@ -100,7 +88,7 @@
 
 					<AccordionItem
 						class="border-surface-300-600-token border-b"
-						hover="hover:bg-surface-500"
+						hover="bg-surface-300-600-token hover:bg-surface-600-300-token hover:text-surface-50-900-token"
 					>
 						<svelte:fragment slot="lead"
 							><i class=" fa fa-layer-group w-4 text-center" /></svelte:fragment
@@ -109,7 +97,7 @@
 							><span class="font-semibold">Widgets</span></svelte:fragment
 						>
 						<svelte:fragment slot="content">
-							<div class="space-y-4 py-4">
+							<div class="space-y-2 pb-2">
 								<TrackPositionCheckbox />
 								{#if $syncModeIsMTC}
 									<MidiTimeCodeCheckbox />
@@ -124,7 +112,7 @@
 					</AccordionItem>
 					<AccordionItem
 						class="border-surface-300-600-token border-b"
-						hover="hover:bg-surface-500"
+						hover="bg-surface-300-600-token hover:bg-surface-600-300-token hover:text-surface-50-900-token"
 						open
 					>
 						<svelte:fragment slot="lead"
@@ -139,13 +127,13 @@
 							</span>
 						</svelte:fragment>
 						<svelte:fragment slot="content">
-							<div class="space-y-4 py-4">
+							<div class="space-y-2 pb-2">
 								<MidiPortSelection />
 								<AlwaysSyncCheckbox />
 							</div>
 						</svelte:fragment>
 					</AccordionItem>
-					<!-- <AccordionItem class="border-surface-300-600-token"  hover="hover:bg-surface-500">
+					<!-- <AccordionItem class="border-surface-300-600-token"  hover="bg-surface-300-600-token hover:bg-surface-600-300-token hover:text-surface-50-900-token"
 							<svelte:fragment slot="lead"><i class=" fa w-4 text-center fa-palette" /></svelte:fragment>
 							<svelte:fragment slot="summary"
 								><span class="font-semibold">Theme</span></svelte:fragment
@@ -171,4 +159,3 @@
 		</footer>
 	</aside>
 {/if}
-
