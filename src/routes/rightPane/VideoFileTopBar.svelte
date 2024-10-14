@@ -66,7 +66,7 @@
 	});
 </script>
 
-<div class="border-surface-300-600-token z-50 flex w-full items-center">
+<div class="border-surface-300-600-token z-10 flex w-full items-center">
 	<div id="hideSidebarBtn">
 		<SidebarToggle />
 	</div>
