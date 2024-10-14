@@ -85,7 +85,7 @@
 		class="fixed right-0 top-0 flex h-screen items-center justify-center text-center transition-all
 			{$sidebarIsVisible ? ' left-80' : 'left-0'}"
 	>
-		<div class="title z-50 mx-auto space-y-8 text-center text-xl">
+		<div class="title z-50 mx-auto space-y-8 text-center text-xl text-surface-50-900-token dark:text-surface-900-50-token">
 			<p>I don't have anything to analyze 🥺</p>
 			<hr />
 			<p>Please load a video using the button above or drag it into this window.</p>
