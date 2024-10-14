@@ -7,7 +7,7 @@ export const mediaInfoView = writable(false);
 export const theme = writable('cento-minimal');
 
 export const appName = readable('CentoSync', () => {});
-export const appVersion = readable('0.9.63', () => {});
+export const appVersion = readable('0.9.65', () => {});
 export const gitHubUrl = readable(
 	'https://github.com/centomila/CentoSync-VideoPlayer-With-MTC-Sync',
 	() => {}
