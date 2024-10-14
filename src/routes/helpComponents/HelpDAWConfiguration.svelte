@@ -12,9 +12,13 @@
 
 	<p>
 		{$appName} should work with any DAW on Windows, Mac, and Linux. {$appName} requires a browser with
-		WebMIDI capabilities. Check
+		WebMIDI capabilities.
+	</p>
+
+	<p class="text-left">
+		Check
 		<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API" class="anchor"
-			>https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API</a
+			>developer.mozilla.org</a
 		> for more details.
 	</p>
 
@@ -56,6 +60,18 @@
 				</p>
 
 				<LightBoxCustom imgSrc="./Bitwig-Help-MTC.png" imgAlt="Bitwig Studio MTC Mode" />
+				<p>
+					If you also want to see the BPM Widget, you need to enable the optional SPP/Clock Port.
+				</p>
+				<LightBoxCustom
+					imgSrc="./Bitwig-Help-MTC-Port-2.png"
+					imgAlt="Bitwig Studio MTC Mode - Port 2 - Optional"
+				/>
+
+				<h4 class="h4 font-bold">Song Position Pointer (SPP)</h4>
+				<p>SPP Mode is not reccommended when MTC is available.</p>
+
+				<LightBoxCustom imgSrc="./Bitwig-Help-SPP.png" imgAlt="Bitwig Studio SPP Mode" />
 			</svelte:fragment>
 		</AccordionItem>
 
@@ -134,6 +150,29 @@
 		>
 			<svelte:fragment slot="lead"><i class="fa fa-circle w-4 text-center" /></svelte:fragment>
 			<svelte:fragment slot="summary"
+				><span class="font-semibold">Tracktion Waveform</span></svelte:fragment
+			>
+			<svelte:fragment slot="content">
+				<h3 class="h3 font-bold">Tracktion Waveform</h3>
+				<h4 class="h4 font-bold">MIDI Time Code (MTC)</h4>
+
+				<LightBoxCustom imgSrc="./Waveform-Help-MTC.png" imgAlt="Tracktion Waveform - MTC Mode" />
+				<LightBoxCustom
+					imgSrc="./Waveform-Help-MTC-Port-2.png"
+					imgAlt="Tracktion Waveform - MTC Mode - Port 2 (Optional)"
+				/>
+				<p>
+					In {$appName} you also <b>need</b> to enable the option <i>Alternative Start/Stop</i>.
+				</p>
+			</svelte:fragment>
+		</AccordionItem>
+
+		<AccordionItem
+			class="border-surface-300-600-token border-b"
+			hover="hover:bg-surface-500 hover:text-primary-500"
+		>
+			<svelte:fragment slot="lead"><i class="fa fa-circle w-4 text-center" /></svelte:fragment>
+			<svelte:fragment slot="summary"
 				><span class="font-semibold">Ableton Live</span></svelte:fragment
 			>
 			<svelte:fragment slot="content">
@@ -151,6 +190,15 @@
 
 				<h4 class="h4 font-bold">Song Position Pointer (SPP Mode)</h4>
 				<p>SPP Mode is available in all Ableton Live versions.</p>
+				<p>In the desidered <b>output</b> port, set those options:</p>
+				<ul class="list-inside list-disc">
+					<li>Enable <b>Track</b> checkbox</li>
+					<li>Enable <b>Sync</b> checkbox</li>
+					<li>Set <b>Midi Clock Type</b> to <b>Song</b></li>
+					<li>Set <b>Hardware Resync</b> to <b>Stop and Start</b></li>
+				</ul>
+
+				<LightBoxCustom imgSrc="./Ableton-Help-SPP.png" imgAlt="Ableton Live - SPP Mode" />
 			</svelte:fragment>
 		</AccordionItem>
 	</Accordion>

@@ -25,9 +25,13 @@ Other DAWs, and new/previous versions of the listed DAWs should works fine as we
 
 MTC is the default and recommended mode.
 
-## Online Demo
+## The Web App
 
-Try out the live version at [https://centosync.centomila.com](https://centosync.centomila.com). It's free to use.
+The compiled web app is available for everyone to use for free. No cookies, no ads! 🥳
+
+👉👉👉[https://centosync.centomila.com](https://centosync.centomila.com).👈👈👈
+
+Have fun!
 
 ## Features
 
@@ -43,6 +47,7 @@ Try out the live version at [https://centosync.centomila.com](https://centosync.
 
 ## Limitations
 
+- CentoSync doesn't work on mobile devices. Only desktop browsers are supported.
 - In SPP Mode, synchronization is limited to the first 1024 bars (approximately 30 minutes at 120 BPM). This is due to a limitation in the MIDI protocol.
 
 ## Technologies Used
@@ -81,7 +86,7 @@ For detailed instructions, please refer to the Help menu within the application.
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for more information.
+Testers and contributions are welcome! Please see the [Contributing Guidelines](CONTRIBUTING.md) for more information.
 
 ## License
 

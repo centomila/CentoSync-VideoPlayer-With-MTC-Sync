@@ -56,11 +56,16 @@
 		</h3>
 		<p>
 			Whether you love it or not, give my music a listen—someone out there enjoys it! You can check
-			it out here: <a href="https://centomila.com/music/" target="_blank" class="anchor"
+			it out here:
+		</p>
+		<p>
+			<a href="https://centomila.com/music/" target="_blank" class="anchor"
 				>https://centomila.com/music/</a
 			><br />
+		</p>
+		<p>
 			<i
-				>My personal favorite is <a
+				>My personal favorite is the album <a
 					href="https://centomila.com/music/music-for-annoyed-robots/"
 					target="_blank"
 					class="anchor">Music For Annoyed Robots</a

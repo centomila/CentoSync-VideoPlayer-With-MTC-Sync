@@ -144,10 +144,12 @@
 		respective owners:
 	</p>
 	<ul class="list-inside list-disc space-y-2">
-		<li>Ableton and Ableton Live are registered trademarks of Ableton AG.</li>
-		<li>Bitwig and Bitwig Studio are trademarks of Bitwig GmbH.</li>
+		<li>Bitwig and Bitwig Studio are registered trademarks of Bitwig GmbH.</li>
 		<li>Reason is a registered trademark of Reason Studios AB.</li>
 		<li>Maschine and Maschine 2 are registered trademarks of Native Instruments GmbH.</li>
+		<li>Fruity Loops and FL Studio are registered trademarks of Image Line NV.</li>
+		<li>Tracktion and WaveForm are registered trademarks of Tracktion Software Corporation.</li>
+		<li>Ableton and Ableton Live are registered trademarks of Ableton AG.</li>
 	</ul>
 	<p>
 		<b>{$appName}</b> is an independent project and is not affiliated with, endorsed by, sponsored by,
