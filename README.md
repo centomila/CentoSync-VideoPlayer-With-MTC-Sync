@@ -31,6 +31,8 @@ The compiled web app is available for everyone to use for free. No cookies, no a
 
 👉👉👉[https://centosync.centomila.com](https://centosync.centomila.com).👈👈👈
 
+Check the interactive help documentation directly in the app.
+
 Have fun!
 
 ## Features
