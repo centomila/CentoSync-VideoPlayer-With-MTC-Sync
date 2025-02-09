@@ -96,9 +96,6 @@ This project is licensed under the [MIT License](LICENSE.md).
 
 For questions or issues, please [open an issue](https://github.com/centomila/CentoSync-VideoPlayer-With-MTC-Sync/issues) on GitHub.
 
-### Donate a Little
+### Support My Work
 
-If you're able to donate, I'd greatly appreciate it! If it's not within your budget, no
-worries at all—your support in any form is already more than enough.
-
-To make a donation, visit my [Buy Me a Coffee](https://buymeacoffee.com/centomila) page.
+If you find CentoSync useful, consider supporting me on [Patreon](https://patreon.com/Centomila)! If it's not within your budget, no worries at all—your support in any form is already more than enough.

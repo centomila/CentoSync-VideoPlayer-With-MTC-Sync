@@ -30,23 +30,18 @@
 
 	<div class="space-y-4">
 		<h3 class="h3">
-			<span><span class="fas fa-heart pr-4" aria-hidden="true"></span>Donate a Little</span>
+			<span><span class="fas fa-heart pr-4" aria-hidden="true"></span>Support My Work</span>
 		</h3>
 		<p>
-			If you're able to donate, I'd greatly appreciate it! If it's not within your budget, no
-			worries at all—your support in any form is already more than enough.
+			If you find CentoSync useful, consider supporting me on Patreon! If it's not within your
+			budget, no worries at all. Your support in any form is already more than enough!
 		</p>
-		<p>
-			To make a donation, visit my <i>Buy Me a Coffee</i> page:
-			<a href="https://buymeacoffee.com/centomila" target="_blank" class="anchor"
-				>https://buymeacoffee.com/centomila</a
-			>
-		</p>
+
 		<button
 			class="variant-filled-primary btn w-full"
 			on:click={() => {
-				window.open('https://buymeacoffee.com/centomila', '_blank');
-			}}>Buy Me A Coffee</button
+				window.open('https://patreon.com/Centomila', '_blank');
+			}}>patreon.com/Centomila</button
 		>
 	</div>
 	<hr />
